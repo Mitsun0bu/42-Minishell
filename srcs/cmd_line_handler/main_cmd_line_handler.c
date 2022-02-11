@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 16:33:25 by llethuil          #+#    #+#             */
-/*   Updated: 2022/02/11 11:15:19 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/02/11 11:56:28 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,15 @@
 
 void	main_cmd_line_handler(t_input *input)
 {
-	// static int turn = 0;
+	static int turn = 0;
 	int	fd;
 
 	fd = open_history_file();
-	// printf("turn = %d\n", turn);
-	// if (turn == 0)
-	// {
+	if (turn == 0)
+	{
 		get_history(fd);
-	// 	turn ++;
-	// }
+		turn ++;
+	}
 	get_cmd_line(input, fd);
 	close(fd);
 	return ;

@@ -6,7 +6,7 @@
 #    By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/25 15:43:51 by llethuil          #+#    #+#              #
-#    Updated: 2022/02/10 18:18:53 by llethuil         ###   ########lyon.fr    #
+#    Updated: 2022/02/11 14:57:43 by llethuil         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,7 +47,8 @@ SRCS_DIR	:= srcs
 
 OBJS_DIR	:= .objs
 
-INCS_LST	:=	minishell.h							\
+INCS_LST	:=	cmd_line_handler.h					\
+				minishell.h							\
 				lexer.h								\
 				parser.h							\
 
@@ -82,6 +83,7 @@ SRCS_LST	:=	built_ins/built_ins.c						\
 				utils.c										\
 
 SUBDIRS_LST	:=	built_ins							\
+				cmd_line_handler					\
 				lexer								\
 				parser								\
 
@@ -95,6 +97,8 @@ SRCS		:= $(addprefix $(SRCS_DIR)/, $(SRCS_LST))
 
 OBJS		:= $(addprefix $(OBJS_DIR)/, $(OBJS_LST))
 
+COMPILED	:= 0
+
 # ************************************************************************** #
 #                                                                            #
 #                              ~~~ RULES & COMMANDS ~~~                      #
@@ -107,10 +111,11 @@ all: libft $(NAME)
 
 libft:
 	make -C $(LIBFT_DIR)
-	printf "$(GREEN)> Libft archive has been compiled successfully !$(END)\n"
 
 $(NAME): $(LIBFT_AR) $(OBJS)
+ifeq ($(COMPILED), 1)
 	printf "$(GREEN)> All the .c files have been compiled successfully !$(END)\n"
+endif
 	printf "$(BLUE)> Creating the executable file :$(END) $@\n"
 	$(CC) $(OBJS) $(LIBFT_AR) -lreadline -o $(NAME)
 	printf "$(GREEN)> Executable file has been created successfully !$(END)\n"
@@ -119,6 +124,7 @@ $(OBJS_DIR):
 	mkdir -p $(addprefix $(OBJS_DIR)/, $(SUBDIRS_LST))
 
 $(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c $(INCS) Makefile | $(OBJS_DIR)
+override COMPILED=1
 	$(CC) $(CFLAGS) -I $(INCS_DIR) -c $< -o $@
 	printf "$(BLUE)> Compiling :$(END) $<\n"
 

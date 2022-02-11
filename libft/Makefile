@@ -6,7 +6,7 @@
 #    By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/05 14:36:18 by llethuil          #+#    #+#              #
-#    Updated: 2022/02/02 14:19:42 by llethuil         ###   ########lyon.fr    #
+#    Updated: 2022/02/11 13:31:39 by llethuil         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -96,20 +96,23 @@ OBJS = ${SRCS:.c=.o}
 
 all: ${NAME}
 
-%.o: %.c libft.h
-	@${CC} ${CFLAGS} -I $(INCS) -c $< -o $@
-	@printf "$(BLUE)> Compiling :$(END) libft/$<\n"
+.SILENT:
+
+%.o: %.c libft.h Makefile
+	${CC} ${CFLAGS} -I $(INCS) -c $< -o $@
+	printf "$(BLUE)> Compiling :$(END) libft/$<\n"
 
 ${NAME}: ${OBJS}
-	@printf "$(GREEN)> All the .c files have been compiled successfully !$(END)\n"
-	@printf "$(BLUE)> Creating the libft archive file :$(END) $@\n"
-	@ar rcs $@ ${OBJS}
+	printf "$(GREEN)> All the .c files have been compiled successfully !$(END)\n"
+	printf "$(BLUE)> Creating the libft archive file :$(END) $@\n"
+	ar rcs $@ ${OBJS}
+	printf "$(GREEN)> Libft archive has been compiled successfully !$(END)\n"
 
 bonus: all
 
 clean:
-	@${RM} ${OBJS}
-	@printf "$(PINK)> Removing .o files ...$(END)\n"
+	${RM} ${OBJS}
+	printf "$(PINK)> Removing .o files ...$(END)\n"
 
 fclean: clean
 	${RM} ${NAME}
