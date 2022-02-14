@@ -6,11 +6,12 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 11:29:56 by llethuil          #+#    #+#             */
-/*   Updated: 2022/02/10 16:35:03 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/02/14 12:04:28 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incs/lexer.h"
+#include "../../incs/lexer.h"
+#include "../../incs/utils.h"
 
 int	single_cmd(t_input *input)
 {

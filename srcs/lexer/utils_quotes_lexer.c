@@ -6,11 +6,11 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 10:35:00 by llethuil          #+#    #+#             */
-/*   Updated: 2022/02/10 11:10:10 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/02/14 12:04:19 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incs/lexer.h"
+#include "../../incs/lexer.h"
 
 // int	skip_quotes(char *cmd, int *i, char c)
 // {

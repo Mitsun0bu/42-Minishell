@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_lexer.c                                       :+:      :+:    :+:   */
+/*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 11:26:57 by llethuil          #+#    #+#             */
-/*   Updated: 2022/02/10 16:53:07 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/02/14 12:04:24 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incs/lexer.h"
+#include "../../incs/lexer.h"
 
-void	main_lexer(t_input *input)
+void	lexer(t_input *input)
 {
 	if (!ft_strchr(input->cmd_line, '|'))
 		single_cmd(input);

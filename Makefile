@@ -6,7 +6,7 @@
 #    By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/25 15:43:51 by llethuil          #+#    #+#              #
-#    Updated: 2022/02/11 15:22:52 by llethuil         ###   ########lyon.fr    #
+#    Updated: 2022/02/14 12:18:39 by llethuil         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,45 +47,50 @@ SRCS_DIR	:= srcs
 
 OBJS_DIR	:= .objs
 
-INCS_LST	:=	cmd_line_handler.h					\
-				minishell.h							\
+INCS_LST	:=	built_ins.h							\
+				cmd_line_handler.h					\
+				main.h								\
 				lexer.h								\
 				parser.h							\
+				utils.h								\
 
-SRCS_LST	:=	built_ins/built_ins.c						\
-				cmd_line_handler/get_cmd_line.c				\
-				cmd_line_handler/get_next_line.c			\
-				cmd_line_handler/main_cmd_line_handler.c	\
-				lexer/cmd_separator.c						\
-				lexer/fill_redir_tab_input.c				\
-				lexer/fill_redir_tab_output.c				\
-				lexer/fill_redir_tab_heredoc.c				\
-				lexer/fill_redir_tab_app_output.c			\
-				lexer/main_lexer.c							\
-				lexer/redir_manager_app_output.c			\
-				lexer/redir_manager_heredoc.c				\
-				lexer/redir_manager_input.c					\
-				lexer/redir_manager_output.c				\
-				lexer/redir_tab_memory_manager.c			\
-				lexer/utils_other_lexer.c					\
-				lexer/utils_quotes_lexer.c					\
-				parser/arg_length.c							\
-				parser/arg_number.c							\
-				parser/checker.c							\
-				parser/cleaner.c							\
-				parser/main_parser.c						\
-				parser/utils_parser.c						\
-				main.c										\
-				error_manager.c								\
-				ft_exec_single_cmd.c						\
-				init_shell.c								\
-				utils_free.c								\
-				utils.c										\
+SRCS_LST	:=	built_ins/built_ins.c				\
+				cmd_line_handler/get_cmd_line.c		\
+				cmd_line_handler/get_next_line.c	\
+				cmd_line_handler/cmd_line_handler.c	\
+				executer/exec_single_cmd.c			\
+				lexer/cmd_separator.c				\
+				lexer/fill_redir_tab_input.c		\
+				lexer/fill_redir_tab_output.c		\
+				lexer/fill_redir_tab_heredoc.c		\
+				lexer/fill_redir_tab_app_output.c	\
+				lexer/lexer.c						\
+				lexer/redir_manager_app_output.c	\
+				lexer/redir_manager_heredoc.c		\
+				lexer/redir_manager_input.c			\
+				lexer/redir_manager_output.c		\
+				lexer/redir_tab_memory_manager.c	\
+				lexer/utils_other_lexer.c			\
+				lexer/utils_quotes_lexer.c			\
+				parser/arg_length.c					\
+				parser/arg_number.c					\
+				parser/checker.c					\
+				parser/cleaner.c					\
+				parser/parser.c						\
+				parser/utils_parser.c				\
+				utils/utils_free.c					\
+				utils/utils.c						\
+				main/main.c							\
+				main/init_shell.c					\
+				error_manager.c						\
 
 SUBDIRS_LST	:=	built_ins							\
 				cmd_line_handler					\
+				executer							\
 				lexer								\
+				main								\
 				parser								\
+				utils								\
 
 OBJS_LST	:=	$(SRCS_LST:.c=.o)
 
@@ -96,8 +101,6 @@ INCS		:= $(addprefix $(INCS_DIR)/, $(INCS_LST))
 SRCS		:= $(addprefix $(SRCS_DIR)/, $(SRCS_LST))
 
 OBJS		:= $(addprefix $(OBJS_DIR)/, $(OBJS_LST))
-
-COMPILED	:= 0
 
 # ************************************************************************** #
 #                                                                            #
@@ -112,10 +115,8 @@ all: libft $(NAME)
 libft:
 	make -C $(LIBFT_DIR)
 
-$(NAME): $(LIBFT_AR) $(OBJS)
-ifeq ($(COMPILED), 1)
-	printf "$(GREEN)> All the .c files have been compiled successfully !$(END)\n"
-endif
+$(NAME): $(OBJS) $(LIBFT_AR)
+	# test ($(filter %.o,$<) -nt $(LIBFT_AR)) && printf "$(GREEN)> All the .c files have been compiled successfully !$(END)\n"
 	printf "$(BLUE)> Creating the executable file :$(END) $@\n"
 	$(CC) $(OBJS) $(LIBFT_AR) -lreadline -o $(NAME)
 	printf "$(GREEN)> Executable file has been created successfully !$(END)\n"
@@ -124,7 +125,6 @@ $(OBJS_DIR):
 	mkdir -p $(addprefix $(OBJS_DIR)/, $(SUBDIRS_LST))
 
 $(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c $(INCS) Makefile | $(OBJS_DIR)
-override COMPILED=1
 	$(CC) $(CFLAGS) -I $(INCS_DIR) -c $< -o $@
 	printf "$(BLUE)> Compiling :$(END) $<\n"
 

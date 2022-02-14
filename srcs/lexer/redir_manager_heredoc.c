@@ -6,11 +6,12 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 16:38:53 by llethuil          #+#    #+#             */
-/*   Updated: 2022/02/10 11:09:20 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/02/14 12:04:23 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incs/lexer.h"
+#include "../../incs/lexer.h"
+#include "../../incs/utils.h"
 
 int	malloc_heredoc_redir_tab(t_input *input)
 {

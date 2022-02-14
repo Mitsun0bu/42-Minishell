@@ -6,11 +6,17 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 17:07:38 by llethuil          #+#    #+#             */
-/*   Updated: 2022/02/11 15:22:53 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/02/14 12:23:17 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incs/minishell.h"
+#include "../../incs/main.h"
+#include "../../incs/built_ins.h"
+#include "../../incs/cmd_line_handler.h"
+#include "../../incs/executer.h"
+#include "../../incs/lexer.h"
+#include "../../incs/parser.h"
+#include "../../incs/utils.h"
 
 int	main(int ac, char **av)
 {
@@ -27,11 +33,11 @@ int	main(int ac, char **av)
 	while (1)
 	{
 		ft_memset(&input, 0, sizeof(input));
-		main_cmd_line_handler(&input);
-		main_lexer(&input);
-		main_parser(&input);
+		cmd_line_handler(&input);
+		lexer(&input);
+		parser(&input);
 		// if (ft_cmd_counter(&input) == 0)
-		// 	ft_exec_single_cmd(&input);
+		// 	exec_single_cmd(&input);
 	// 	ft_free_struct(&input);
 	}
 	free_struct(&input);

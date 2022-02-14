@@ -6,11 +6,12 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 10:31:04 by agirardi          #+#    #+#             */
-/*   Updated: 2022/02/10 11:12:13 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/02/14 12:08:10 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../incs/parser.h"
+#include "../../incs/utils.h"
 
 void	handle_quote(char *str, int *i, int *count, int *red)
 {

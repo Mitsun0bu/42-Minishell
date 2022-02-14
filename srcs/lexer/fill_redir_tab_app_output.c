@@ -6,11 +6,12 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 13:52:08 by llethuil          #+#    #+#             */
-/*   Updated: 2022/02/10 11:06:57 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/02/14 12:04:27 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incs/lexer.h"
+#include "../../incs/lexer.h"
+#include "../../incs/utils.h"
 
 int	fill_redir_tab_app_output(t_input *input)
 {

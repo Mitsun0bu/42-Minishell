@@ -6,7 +6,7 @@
 #    By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/05 14:36:18 by llethuil          #+#    #+#              #
-#    Updated: 2022/02/11 15:22:59 by llethuil         ###   ########lyon.fr    #
+#    Updated: 2022/02/14 10:00:26 by llethuil         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -103,7 +103,7 @@ all: ${NAME}
 	printf "$(BLUE)> Compiling :$(END) libft/$<\n"
 
 ${NAME}: ${OBJS}
-	printf "$(GREEN)> All the .c files have been compiled successfully !$(END)\n"
+	printf "$(GREEN)> All the libft .c files have been compiled successfully !$(END)\n"
 	printf "$(BLUE)> Creating the libft archive file :$(END) $@\n"
 	ar rcs $@ ${OBJS}
 	printf "$(GREEN)> Libft archive has been compiled successfully !$(END)\n"

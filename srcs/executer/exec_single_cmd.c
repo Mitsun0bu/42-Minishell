@@ -1,18 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_exec_single_cmd.c                               :+:      :+:    :+:   */
+/*   exec_single_cmd.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 14:51:13 by llethuil          #+#    #+#             */
-/*   Updated: 2022/02/10 13:07:34 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/02/14 12:18:43 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incs/minishell.h"
+#include "../../incs/main.h"
+#include "built_ins.h"
 
-void	ft_exec_single_cmd(t_input *input)
+void	exec_single_cmd(t_input *input)
 {
 	if (ft_strncmp(input->cmd_tab[0], "pwd", 3) == 0)
 		ft_pwd(input);

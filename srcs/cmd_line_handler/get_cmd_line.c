@@ -6,11 +6,11 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 16:38:19 by llethuil          #+#    #+#             */
-/*   Updated: 2022/02/11 15:22:58 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/02/14 12:05:27 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incs/cmd_line_handler.h"
+#include "../../incs/cmd_line_handler.h"
 
 int	get_cmd_line(t_input *input, int fd)
 {

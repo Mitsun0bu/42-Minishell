@@ -1,18 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_parser.c                                      :+:      :+:    :+:   */
+/*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 13:23:14 by llethuil          #+#    #+#             */
-/*   Updated: 2022/02/10 16:52:39 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/02/14 12:08:13 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../incs/parser.h"
+#include "../../incs/utils.h"
 
-int	main_parser(t_input *input)
+int	parser(t_input *input)
 {
 	if (!check_basics(input))
 		return (0);

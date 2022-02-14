@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   main.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 17:07:56 by llethuil          #+#    #+#             */
-/*   Updated: 2022/02/10 16:56:18 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/02/14 12:23:18 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+#ifndef MAIN_H
+# define MAIN_H
 
 /* ************************************************************************** */
 /*                                                                            */
@@ -101,37 +101,14 @@ typedef struct s_input
 /*                                                                            */
 /* ************************************************************************** */
 
-/* built_ins.c */
-void	ft_echo(t_input *input);
-int		ft_cd(t_input *input);
-void	ft_pwd(t_input *input);
-
-/* cmd_line_handler/main_cmd_line_handler.c */
-void	main_cmd_line_handler(t_input *input);
-
-/* main.c */
+/* main/main.c */
 int		main(int ac, char **av);
 void	init_shell(void);
 
-/* lexer/main_lexer.c */
-void	main_lexer(t_input *input);
-
-/* parser/main_parser.c */
-int	main_parser(t_input *input);
-
-/* error_handler.c */
+/* main/error_handler.c */
 void	ft_error_handler(char *err);
 
-/* ft_exec_single_cmd_line.c */
+/* main/ft_exec_single_cmd_line.c */
 void	ft_exec_single_cmd(t_input *input);
-
-/* utils.c */
-void	skip_quotes(char *str, int *i);
-
-/* utils_free.c */
-void	free_struct(t_input *input);
-void	free_double(char **array);
-void	free_quad(char ****array);
-void	free_triple(char ***array);
 
 #endif

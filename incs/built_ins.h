@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.h                                           :+:      :+:    :+:   */
+/*   built_ins.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/10 10:09:31 by llethuil          #+#    #+#             */
-/*   Updated: 2022/02/14 11:55:00 by llethuil         ###   ########lyon.fr   */
+/*   Created: 2022/02/14 11:56:09 by llethuil          #+#    #+#             */
+/*   Updated: 2022/02/14 12:08:07 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PARSER_H
-# define PARSER_H
+#ifndef BUILT_INS_H
+# define BUILT_INS_H
 
 /* ************************************************************************** */
 /*                                                                            */
@@ -33,32 +33,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-/* parser/parser.c */
-int		parser(t_input *input);
-
-/* parser/arg_length.c */
-void	count_quote(char *str, int *i, int *count, int red);
-int		get_arg_len(char *str, int *i);
-void	copy_quote(char *cmd, char *exec_cmd, int *i, int *j);
-void	fill_tab(char *cmd, char *exec_cmd, int i);
-
-/* parser/arg_number.c */
-void	handle_quote(char *str, int *i, int *count, int *red);
-int		get_arg_num(char *str);
-int		create_arg_tab(t_input *input, int i);
-
-/* parser/checker.c */
-int		check_basics(t_input *input);
-int		check_quotes(char *str);
-int		check_redirections(char *str);
-
-/* parser/cleaner.c */
-int		clean_command(t_input *input);
-
-/* parser/utils_parser.c */
-void	check_red(int *red, char *cmd, int *i);
-int		is_isspace(char c);
-int		check_next_arg(char *str, int i);
-int		end_check(char *cmd, int *i, int *red);
+/* built_ins/built_ins.c */
+void	ft_echo(t_input *input);
+int		ft_cd(t_input *input);
+void	ft_pwd(t_input *input);
 
 #endif
