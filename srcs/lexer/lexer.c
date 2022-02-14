@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 11:26:57 by llethuil          #+#    #+#             */
-/*   Updated: 2022/02/14 12:04:24 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/02/14 14:27:55 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,31 +30,27 @@ void	lexer(t_input *input)
 	fill_redir_tab_heredoc(input);
 	fill_redir_tab_app_output(input);
 
-	/* TEST FINAL TAB */
-	int	i = -1;
-	while(input->redir_tab[++i])
-	{
-		printf("=============================================\n");
-		printf("command : %d\n", i);
-		int j = -1;
-		while (input->redir_tab[i][++j])
-		{
-			printf("\t-------------------------------------\n");
-			printf("\tredirection type : %d\n", j);
-			int	k = -1;
-			while(input->redir_tab[i][j][++k])
-			{
-				printf("\t\t-----------------------------\n");
-				printf("\t\tredirection index : %d\n", k);
-				// int	l = -1;
-				// while(input->redir_tab[i][j][k][++l])
-				// {
-				// 	printf("redir = %c\n", input->redir_tab[i][j][k][l]);
-				// }
-				printf("\t\t\tred = %s\n",input->redir_tab[i][j][k]);
-			}
-		}
-	}
+	// ---------------- FINAL TEST ---------------- //
+	// int	i = -1;
+	// while(input->redir_tab[++i])
+	// {
+	// 	printf("=============================================\n");
+	// 	printf("command : %d\n", i);
+	// 	int j = -1;
+	// 	while (input->redir_tab[i][++j])
+	// 	{
+	// 		printf("\t-------------------------------------\n");
+	// 		printf("\tredirection type : %d\n", j);
+	// 		int	k = -1;
+	// 		while(input->redir_tab[i][j][++k])
+	// 		{
+	// 			printf("\t\t-----------------------------\n");
+	// 			printf("\t\tredirection index : %d\n", k);
+	// 			printf("\t\t\tred = %s\n",input->redir_tab[i][j][k]);
+	// 		}
+	// 	}
+	// }
+	// -------------------------------------------- //
 }
 
 	/* =====	TEST CMD SEPARATOR	===== */

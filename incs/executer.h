@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 12:09:40 by llethuil          #+#    #+#             */
-/*   Updated: 2022/02/14 12:15:04 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/02/14 14:23:38 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LEXER_H
-# define LEXER_H
+#ifndef EXECUTER_H
+# define EXECUTER_H
 
 /* ************************************************************************** */
 /*                                                                            */
@@ -34,6 +34,6 @@
 /* ************************************************************************** */
 
 /*executer/exec_single_cmd.c */
-void	ft_exec_single_cmd(t_input *input);
+void	exec_single_cmd(t_input *input);
 
 #endif

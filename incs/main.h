@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 17:07:56 by llethuil          #+#    #+#             */
-/*   Updated: 2022/02/14 12:23:18 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/02/14 15:22:51 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,8 +107,5 @@ void	init_shell(void);
 
 /* main/error_handler.c */
 void	ft_error_handler(char *err);
-
-/* main/ft_exec_single_cmd_line.c */
-void	ft_exec_single_cmd(t_input *input);
 
 #endif

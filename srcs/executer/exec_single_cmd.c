@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 14:51:13 by llethuil          #+#    #+#             */
-/*   Updated: 2022/02/14 12:18:43 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/02/14 15:22:46 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 
 void	exec_single_cmd(t_input *input)
 {
-	if (ft_strncmp(input->cmd_tab[0], "pwd", 3) == 0)
+	if (ft_strncmp(input->cmd_exec_tab[0][0], "pwd", 3) == 0)
 		ft_pwd(input);
-	else if (ft_strncmp(input->cmd_tab[0], "echo", 4) == 0)
+	else if (ft_strncmp(input->cmd_exec_tab[0][0], "echo", 4) == 0)
 		ft_echo(input);
-	else if (ft_strncmp(input->cmd_tab[0], "cd", 2) == 0)
+	else if (ft_strncmp(input->cmd_exec_tab[0][0], "cd", 2) == 0)
 		ft_cd(input);
 	else
 	{
