@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 17:07:56 by llethuil          #+#    #+#             */
-/*   Updated: 2022/02/15 15:48:45 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/02/15 19:02:12 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,18 @@ typedef struct s_input
 	char	**cmd_tab;
 	char	****redir_tab;
 	char	***cmd_exec_tab;
+	char	**paths_tab;
+	// char 	*path;
 	int		n_cmd;
 	int		fd_history;
 }	t_input;
+
+// typedef struct s_cmd
+// {
+// 	char	**paths_tab;
+// 	char	*name;
+// 	char	*path;
+// }	t_cmd;
 
 /* ************************************************************************** */
 /*                                                                            */
@@ -115,6 +124,6 @@ typedef struct s_input
 void	init_shell(void);
 
 /* main/main.c */
-int		main(int ac, char **av);
+int	main(int ac, char **av, char **envp);
 
 #endif

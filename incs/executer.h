@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 12:09:40 by llethuil          #+#    #+#             */
-/*   Updated: 2022/02/14 14:23:38 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/02/15 19:04:48 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,11 @@
 /* ************************************************************************** */
 
 /*executer/exec_single_cmd.c */
-void	exec_single_cmd(t_input *input);
+int		executer(t_input *input, char **av, char **envp);
+void	exec_single_cmd(t_input *input, char **av, char **envp);
+void	get_paths_tab(char **envp, t_input *input);
+char	*assign_path(char **av, char *arg, char *cmd_name, t_input *input);
+void	exec_multi_cmd(t_input *input);
+
 
 #endif

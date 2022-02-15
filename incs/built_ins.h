@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 11:56:09 by llethuil          #+#    #+#             */
-/*   Updated: 2022/02/14 12:08:07 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/02/15 17:13:22 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,13 @@
 /* ************************************************************************** */
 
 /* built_ins/built_ins.c */
-void	ft_echo(t_input *input);
 int		ft_cd(t_input *input);
+void	ft_echo(t_input *input);
+int		ft_env(t_input *input);
+int		ft_exit(t_input *input);
+int		ft_export(t_input *input);
 void	ft_pwd(t_input *input);
+int		ft_unset(t_input *input);
+
 
 #endif

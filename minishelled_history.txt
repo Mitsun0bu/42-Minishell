@@ -1,1 +1,10 @@
 hello
+echo
+echo hello
+wc -l
+wc -l
+wc -l
+cat test.txt 
+ls -l
+ls -l
+wc -l test.txt 
