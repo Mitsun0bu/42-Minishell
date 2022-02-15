@@ -6,12 +6,11 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 13:23:14 by llethuil          #+#    #+#             */
-/*   Updated: 2022/02/14 15:22:47 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/02/15 15:55:54 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../incs/parser.h"
-#include "../../incs/utils.h"
+#include "main.h"
 
 int	parser(t_input *input)
 {
@@ -23,19 +22,19 @@ int	parser(t_input *input)
 		return (0);
 	}
 	// ---------------- DEBUG ---------------- //
-	int i = -1;
-	int j;
-	while (input->cmd_exec_tab[++i])
-	{
-		j = -1;
-		printf("\nTEST with : %s\n", input->cmd_tab[i]);
-		printf("\nARG NUM : %d\n", get_arg_num(input->cmd_tab[i]));
-		while (input->cmd_exec_tab[i][++j])
-		{
-			printf("[%d] %s\n", j, input->cmd_exec_tab[i][j]);
-		}
-		printf("\n\n-------------------------------\n\n");
-	}
+	// int i = -1;
+	// int j;
+	// while (input->cmd_exec_tab[++i])
+	// {
+	// 	j = -1;
+	// 	printf("\nTEST with : %s\n", input->cmd_tab[i]);
+	// 	printf("\nARG NUM : %d\n", get_arg_num(input->cmd_tab[i]));
+	// 	while (input->cmd_exec_tab[i][++j])
+	// 	{
+	// 		printf("[%d] %s\n", j, input->cmd_exec_tab[i][j]);
+	// 	}
+	// 	printf("\n\n-------------------------------\n\n");
+	// }
 	// -------------------------------------- //
 	return (1);
 }

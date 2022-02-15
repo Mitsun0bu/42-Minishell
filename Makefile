@@ -6,7 +6,7 @@
 #    By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/25 15:43:51 by llethuil          #+#    #+#              #
-#    Updated: 2022/02/14 12:18:39 by llethuil         ###   ########lyon.fr    #
+#    Updated: 2022/02/15 15:41:57 by llethuil         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,7 +56,6 @@ INCS_LST	:=	built_ins.h							\
 
 SRCS_LST	:=	built_ins/built_ins.c				\
 				cmd_line_handler/get_cmd_line.c		\
-				cmd_line_handler/get_next_line.c	\
 				cmd_line_handler/cmd_line_handler.c	\
 				executer/exec_single_cmd.c			\
 				lexer/cmd_separator.c				\
@@ -72,17 +71,18 @@ SRCS_LST	:=	built_ins/built_ins.c				\
 				lexer/redir_tab_memory_manager.c	\
 				lexer/utils_other_lexer.c			\
 				lexer/utils_quotes_lexer.c			\
+				main/init_shell.c					\
+				main/main.c							\
 				parser/arg_length.c					\
 				parser/arg_number.c					\
 				parser/checker.c					\
 				parser/cleaner.c					\
 				parser/parser.c						\
 				parser/utils_parser.c				\
+				utils/utils_error_manager.c			\
 				utils/utils_free.c					\
+				utils/utils_history.c				\
 				utils/utils.c						\
-				main/main.c							\
-				main/init_shell.c					\
-				error_manager.c						\
 
 SUBDIRS_LST	:=	built_ins							\
 				cmd_line_handler					\
@@ -116,7 +116,7 @@ libft:
 	make -C $(LIBFT_DIR)
 
 $(NAME): $(OBJS) $(LIBFT_AR)
-	# test ($(filter %.o,$<) -nt $(LIBFT_AR)) && printf "$(GREEN)> All the .c files have been compiled successfully !$(END)\n"
+	test -z '$(filter %.o,$?)' || printf "$(GREEN)> All the .c files have been compiled successfully !$(END)\n"
 	printf "$(BLUE)> Creating the executable file :$(END) $@\n"
 	$(CC) $(OBJS) $(LIBFT_AR) -lreadline -o $(NAME)
 	printf "$(GREEN)> Executable file has been created successfully !$(END)\n"

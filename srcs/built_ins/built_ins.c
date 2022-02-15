@@ -6,11 +6,11 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 13:19:30 by llethuil          #+#    #+#             */
-/*   Updated: 2022/02/14 15:22:49 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/02/15 15:48:40 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "built_ins.h"
+# include "main.h"
 
 void	ft_pwd(t_input *input)
 {

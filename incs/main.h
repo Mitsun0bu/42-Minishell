@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 17:07:56 by llethuil          #+#    #+#             */
-/*   Updated: 2022/02/14 15:22:51 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/02/15 15:48:45 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,33 @@
 
 /* ************************************************************************** */
 /*                                                                            */
+/*                              ~~~ TYPEDEFS ~~~                              */
+/*                                                                            */
+/* ************************************************************************** */
+
+typedef struct s_input
+{
+	char	*cmd_line;
+	char	**cmd_tab;
+	char	****redir_tab;
+	char	***cmd_exec_tab;
+	int		n_cmd;
+	int		fd_history;
+}	t_input;
+
+/* ************************************************************************** */
+/*                                                                            */
 /*                               ~~~ INCLUDES ~~~                             */
 /*                                                                            */
 /* ************************************************************************** */
+
+/* our headers */
+# include "built_ins.h"
+# include "cmd_line_handler.h"
+# include "executer.h"
+# include "lexer.h"
+# include "parser.h"
+# include "utils.h"
 
 /* opendir, readdir, closedir */
 # include <dirent.h>
@@ -80,20 +104,6 @@
 # include <curses.h>
 # include <term.h>
 
-/* ************************************************************************** */
-/*                                                                            */
-/*                              ~~~ TYPEDEFS ~~~                              */
-/*                                                                            */
-/* ************************************************************************** */
-
-typedef struct s_input
-{
-	char	*cmd_line;
-	char	**cmd_tab;
-	char	****redir_tab;
-	char	***cmd_exec_tab;
-	int		n_cmd;
-}	t_input;
 
 /* ************************************************************************** */
 /*                                                                            */
@@ -101,11 +111,10 @@ typedef struct s_input
 /*                                                                            */
 /* ************************************************************************** */
 
-/* main/main.c */
-int		main(int ac, char **av);
+/* main/init_shell.c */
 void	init_shell(void);
 
-/* main/error_handler.c */
-void	ft_error_handler(char *err);
+/* main/main.c */
+int		main(int ac, char **av);
 
 #endif

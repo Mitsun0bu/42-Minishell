@@ -1,16 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   utils_history.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/17 17:02:15 by llethuil          #+#    #+#             */
-/*   Updated: 2022/02/14 12:05:20 by llethuil         ###   ########lyon.fr   */
+/*   Created: 2022/02/15 10:22:49 by llethuil          #+#    #+#             */
+/*   Updated: 2022/02/15 15:55:51 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../incs/cmd_line_handler.h"
+# include "main.h"
+
+int	get_history(t_input *input)
+{
+	char	*cmd_line_history;
+
+	input->fd_history = open("minishelled_history.txt", O_CREAT | O_RDWR | O_APPEND, 0644);
+	if (input->fd_history < 0)
+	{
+		printf("Couldn't open history file");
+		exit(0);
+	}
+	cmd_line_history = "init";
+	while (cmd_line_history)
+	{
+		cmd_line_history = get_next_line(input->fd_history);
+		add_history(cmd_line_history);
+		free(cmd_line_history);
+	}
+	close (input->fd_history);
+	return (0);
+}
 
 char	*get_next_line(int fd)
 {

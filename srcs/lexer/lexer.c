@@ -6,11 +6,11 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 11:26:57 by llethuil          #+#    #+#             */
-/*   Updated: 2022/02/14 14:27:55 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/02/15 15:48:59 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../incs/lexer.h"
+# include "main.h"
 
 void	lexer(t_input *input)
 {

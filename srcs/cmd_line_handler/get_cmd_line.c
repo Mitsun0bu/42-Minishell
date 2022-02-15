@@ -6,54 +6,34 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 16:38:19 by llethuil          #+#    #+#             */
-/*   Updated: 2022/02/14 12:05:27 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/02/15 15:48:42 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../incs/cmd_line_handler.h"
+# include "main.h"
 
-int	get_cmd_line(t_input *input, int fd)
+int	get_cmd_line(t_input *input)
 {
 	char	*buff;
 
-	(void)fd;
 	buff = readline("minishelled > ");
 	while(!ft_strncmp(buff, "", ft_strlen(buff)))
 		buff = readline("minishelled > ");
 	if (ft_strlen(buff))
 	{
 		add_history(buff);
-		write(fd, buff, ft_strlen(buff));
-		write(fd, "\n", 1);
+		input->fd_history = open("minishelled_history.txt", O_CREAT | O_RDWR | O_APPEND, 0644);
+		if (input->fd_history < 0)
+		{
+			printf("Couldn't open history file");
+			exit(0);
+		}
+		write(input->fd_history, buff, ft_strlen(buff));
+		write(input->fd_history, "\n", 1);
 		input->cmd_line = ft_strdup(buff);
 		free (buff);
 		return (0);
 	}
+	close (input->fd_history);
 	return (1);
-}
-
-int	open_history_file(void)
-{
-	int	fd;
-
-	fd = open("minishelled_history.txt", O_CREAT | O_RDWR, 0644);
-	if (fd < 0)
-	{
-		printf("Couldn't open history file");
-		exit(0);
-	}
-	return (fd);
-}
-
-int	get_history(int	fd)
-{
-	char	*cmd_line_history;
-	cmd_line_history = "init";
-	while (cmd_line_history)
-	{
-		cmd_line_history = get_next_line(fd);
-		add_history(cmd_line_history);
-		free(cmd_line_history);
-	}
-	return (0);
 }

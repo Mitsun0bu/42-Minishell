@@ -6,11 +6,11 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 11:19:07 by llethuil          #+#    #+#             */
-/*   Updated: 2022/02/10 11:23:30 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/02/15 15:55:55 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../incs/parser.h"
+#include "main.h"
 
 int	clean_command(t_input *input)
 {

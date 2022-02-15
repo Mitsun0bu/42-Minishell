@@ -6,11 +6,11 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 11:29:34 by llethuil          #+#    #+#             */
-/*   Updated: 2022/02/14 12:04:20 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/02/15 15:56:05 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../incs/lexer.h"
+#include "main.h"
 
 int	bidim_tab_size(char **table)
 {

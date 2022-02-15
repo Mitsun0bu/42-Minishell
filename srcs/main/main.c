@@ -6,17 +6,11 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 17:07:38 by llethuil          #+#    #+#             */
-/*   Updated: 2022/02/15 09:55:43 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/02/15 15:55:59 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../incs/main.h"
-#include "../../incs/built_ins.h"
-#include "../../incs/cmd_line_handler.h"
-#include "../../incs/executer.h"
-#include "../../incs/lexer.h"
-#include "../../incs/parser.h"
-#include "../../incs/utils.h"
+#include "main.h"
 
 int	main(int ac, char **av)
 {
@@ -29,14 +23,15 @@ int	main(int ac, char **av)
 		return (1);
 	}
 	init_shell();
+	get_history(&input);
+	ft_memset(&input, 0, sizeof(input));
 	while (1)
 	{
-		ft_memset(&input, 0, sizeof(input));
 		cmd_line_handler(&input);
 		lexer(&input);
 		parser(&input);
-		if (input.n_cmd == 1)
-			exec_single_cmd(&input);
+		// if (input.n_cmd == 1)
+		// 	exec_single_cmd(&input);
 	// 	ft_free_struct(&input);
 	}
 	free_struct(&input);

@@ -6,12 +6,11 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 13:18:59 by agirardi          #+#    #+#             */
-/*   Updated: 2022/02/14 12:08:12 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/02/15 15:55:56 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../incs/parser.h"
-#include "../../incs/utils.h"
+#include "main.h"
 
 int	check_basics(t_input *input)
 {

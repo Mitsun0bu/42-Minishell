@@ -6,12 +6,11 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 14:51:13 by llethuil          #+#    #+#             */
-/*   Updated: 2022/02/14 15:22:46 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/02/15 15:48:38 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../incs/main.h"
-#include "built_ins.h"
+#include "main.h"
 
 void	exec_single_cmd(t_input *input)
 {

@@ -6,24 +6,11 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 10:35:00 by llethuil          #+#    #+#             */
-/*   Updated: 2022/02/14 12:04:19 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/02/15 15:56:04 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../incs/lexer.h"
-
-// int	skip_quotes(char *cmd, int *i, char c)
-// {
-// 	while (cmd[++ *i])
-// 	{
-// 		if (cmd[*i] == c)
-// 		{
-// 			*i = *i + 1;
-// 			return (1);
-// 		}
-// 	}
-// 	return (0);
-// }
+#include "main.h"
 
 int	count_in_quotes(char *cmd, int *i, int *len, char c)
 {

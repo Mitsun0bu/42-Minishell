@@ -1,0 +1,53 @@
+TESTS MINISHELL
+
+echo > | <  OK
+
+echo bonjour | OK
+
+echo bonjour |               OK
+
+echo bonjour |       | cat infile OK
+
+wc -l > outfile OK
+
+echo < hello OK
+
+echo hello world | wc -l > outfile OK
+
+echo hello world < | wc -l > outfile OK
+
+echo hello world < infile | wc -l > outfile OK
+
+echo hello world < | wc -l > outfile | cat << hello OK
+
+echo hello     world < |   wc -l > outfile      |  cat << hello OK
+
+echo hello     world < |   wc -l > outfile      |  cat << hello     | OK
+
+echo hello world << outfile | wc -l > outfile | cat < | grep >> 123456 << 123 > 1234 | hello world OK
+
+echo hello world >>dgh>fhhh|cat >echo OK
+
+echo hello world >>dgh<""fhhh|cat >echo OK
+
+echo hello world >>dgh<"hello world" fhhh|cat >echo OK
+
+echo hello world >>dgh<"hello world"fhhh|cat >echo OK
+
+hello  " > hello world " hello > world OK
+
+hello " >> coucou << ca va " | cat " < gfgf > ergs " OK
+
+hello ' >> coucou << ca va ' | cat ' < gfgf > ergs ' OK
+
+hello > " > hello world "" hello > world OK
+
+hello > ' > hello world '' hello > world OK
+
+echo hello >"out"file OK
+
+echo >>		hello		"fefe"abc"ok"abc <	 here "test" < b 123"ddds" yuio
+
+echo < abc"hello world" OK
+
+echo > abc" 'a'ab"ab << ab""''ab c			<		'a'			>> ' 'ab""

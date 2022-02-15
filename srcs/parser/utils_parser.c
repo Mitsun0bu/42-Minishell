@@ -6,11 +6,11 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/01 10:34:53 by agirardi          #+#    #+#             */
-/*   Updated: 2022/02/10 11:12:25 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/02/15 15:55:54 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../incs/parser.h"
+#include "main.h"
 
 void	check_red(int *red, char *cmd, int *i)
 {

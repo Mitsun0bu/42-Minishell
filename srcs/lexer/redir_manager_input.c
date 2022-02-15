@@ -6,12 +6,11 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 10:27:25 by llethuil          #+#    #+#             */
-/*   Updated: 2022/02/14 12:04:22 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/02/15 16:13:37 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../incs/lexer.h"
-#include "../../incs/utils.h"
+#include "main.h"
 
 int	malloc_input_redir_tab(t_input *input)
 {
@@ -67,7 +66,6 @@ int	malloc_input_name(t_input *input, int *i_cmd)
 	while (++i_red < count_input_redir(input->cmd_tab[*i_cmd]))
 	{
 		len = count_input_name_len(input->cmd_tab[*i_cmd], &i_red);
-		printf("len = %d\n", len);
 		input->redir_tab[*i_cmd][0][i_red] = malloc((len + 1) * sizeof(char));
 		if (!input->redir_tab[*i_cmd][0][i_red])
 			return (1);
