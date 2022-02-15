@@ -1,26 +1,5 @@
-cd srcs 
-ello
-ld
-echo hello
-echo hello
-echo
-echo hello
-echo hello
-echo hello
-echo hello
-echo hello
-echo hello
-echo hello
-echo hello
-echo hello
-echo hello
-echo hello
-echo -n hello
-echo hello
-echo hello
-echo hello
-echo hello
-echo -n hello
-cd
+pwd
+l
+cd ..
 cd ..
 cd ..
