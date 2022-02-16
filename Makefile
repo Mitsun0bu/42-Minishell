@@ -6,7 +6,7 @@
 #    By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/25 15:43:51 by llethuil          #+#    #+#              #
-#    Updated: 2022/02/15 15:41:57 by llethuil         ###   ########lyon.fr    #
+#    Updated: 2022/02/16 13:19:56 by llethuil         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,7 +57,7 @@ INCS_LST	:=	built_ins.h							\
 SRCS_LST	:=	built_ins/built_ins.c				\
 				cmd_line_handler/get_cmd_line.c		\
 				cmd_line_handler/cmd_line_handler.c	\
-				executer/exec_single_cmd.c			\
+				executer/executer.c					\
 				lexer/cmd_separator.c				\
 				lexer/fill_redir_tab_input.c		\
 				lexer/fill_redir_tab_output.c		\
@@ -116,7 +116,7 @@ libft:
 	make -C $(LIBFT_DIR)
 
 $(NAME): $(OBJS) $(LIBFT_AR)
-	test -z '$(filter %.o,$?)' || printf "$(GREEN)> All the .c files have been compiled successfully !$(END)\n"
+	test -z '$(filter %.o,$?)' || printf "$(GREEN)> All the .c files from minishell have been compiled successfully !$(END)\n"
 	printf "$(BLUE)> Creating the executable file :$(END) $@\n"
 	$(CC) $(OBJS) $(LIBFT_AR) -lreadline -o $(NAME)
 	printf "$(GREEN)> Executable file has been created successfully !$(END)\n"

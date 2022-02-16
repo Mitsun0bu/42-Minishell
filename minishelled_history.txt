@@ -8,3 +8,45 @@ cat test.txt
 ls -l
 ls -l
 wc -l test.txt 
+ls -l
+cat hello
+echo hello
+echo re
+ls -l
+ls -l
+echo bla bla | cd dfhdfgds | grep 
+echo bla bla | cd dfhdfgds | grep
+echo bla bla | cd dfhdfgds | grep
+echo bla bla | cd dfhdfgds | grep
+echo bla bla | cd dfhdfgds | grep
+echo bla bla | cd dfhdfgds | grep
+echo bla bla | cd dfhdfgds | grep
+echo bla bla | cd dfhdfgds | grep
+echo bla bla | cd dfhdfgds | grep
+echo bla bla | cd dfhdfgds | grep
+echo bla bla | cd dfhdfgds | grep
+echo bla bla | cd dfhdfgds | grep
+echo bla bla | cd dfhdfgds | grep
+echo < bla bla | cd dfhdfgds | grep
+echo < bla bla | cd dfhdfgds | grep
+echo < bla bla | cd dfhdfgds | grep
+echo < bla bla | cd dfhdfgds | grep
+echo < bla bla | cd dfhdfgds | grep
+echo < bla bla | cd dfhdfgds | grep
+echo < bla bla | cd dfhdfgds | grep
+echo < bla bla | cd dfhdfgds | grep
+echo < bla bla | cd dfhdfgds | grep
+echo < bla bla | cd dfhdfgds | grep
+echo < bla bla < hello world| cd dfhdfgds | grep
+echo < bla bla < hello world| cd dfhdfgds | grep
+echo < bla bla < hello world| cd dfhdfgds | grep
+echo < bla bla < hello world| cd dfhdfgds | grep
+echo < bla bla < hello world| cd dfhdfgds | grep
+echo < bla bla < hello world| cd dfhdfgds | grep
+echo < bla bla < hello world| cd dfhdfgds | grep
+echo < bla bla < hello world| cd dfhdfgds | grep
+echo < bla bla > hello world| cd dfhdfgds | grep
+echo < bla bla > hello world| cd dfhdfgds | grep
+echo < bla bla > hello world < dggdgd > rgasgsdfs > afgfgsd > ga| cd dfhdfgds | grep
+echo < bla bla > hello world < dggdgd > rgasgsdfs > afgfgsd > ga| cd dfhdfgds | grep
+echo < bla bla > hello world < dggdgd > rgasgsdfs > afgfgsd > ga| cd dfhdfgds | grep
