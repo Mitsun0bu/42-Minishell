@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 17:07:38 by llethuil          #+#    #+#             */
-/*   Updated: 2022/02/16 18:27:09 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/02/16 19:08:58 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,10 @@ int	main(int ac, char **av, char **envp)
 		printf("input[1] = %s\n", lst_head->input_redir[1]);
 		printf("n_output_redir = %d\n", lst_head->n_output_redir);
 		printf("output[1] = %s\n", lst_head->output_redir[1]);
+		printf("n_app_output_redir = %d\n", lst_head->n_app_output_redir);
+		printf("app_output[1] = %s\n", lst_head->app_output_redir[1]);
+		printf("n_heredoc = %d\n", lst_head->n_heredoc);
+		printf("heredoc[1] = %s\n", lst_head->heredoc[1]);
 		// executer(&input, av, envp);
 	}
 	free_struct(&input);
@@ -90,6 +94,8 @@ t_cmd_lst	*create_new_node(int *i, t_input *input)
 	new_node->name = ft_strdup(input->cmd_exec_tab[*i][0]);
 	node_input_redir_manager(i, new_node, input);
 	node_output_redir_manager(i, new_node, input);
+	node_app_output_redir_manager(i, new_node, input);
+	node_heredoc_manager(i, new_node, input);
 	new_node->next = NULL;
 	return (new_node);
 }
@@ -139,5 +145,52 @@ int	node_output_redir_manager(int *i, t_cmd_lst *new_node, t_input *input)
 		new_node->output_redir[i_r] = ft_strdup(input->redir_tab[*i][1][i_r]);
 	return (0);
 }
-	// printf("i = %d, cmd_index = %d, i_r = %d\n", *i, new_node->cmd_index, i_r);
-	// printf("n_input_redir = %d\n", new_node->n_input_redir);
+
+int	node_app_output_redir_manager(int *i, t_cmd_lst *new_node, t_input *input)
+{
+	int			i_r;
+
+	i_r = 0;
+	while(input->redir_tab[*i][2][i_r])
+		i_r ++;
+	new_node->n_app_output_redir = i_r;
+	new_node->app_output_redir = malloc(sizeof(char *) * (i_r + 1));
+	if(!new_node->app_output_redir)
+		return (1);
+	if (i_r == 0)
+	{
+		new_node->app_output_redir[i_r] = ft_strdup("");
+		return (0);
+	}
+	new_node->app_output_redir[i_r] = 0;
+	i_r = -1;
+	while(input->redir_tab[*i][2][++i_r])
+		new_node->app_output_redir[i_r] = ft_strdup(input->redir_tab[*i][2][i_r]);
+	return (0);
+}
+
+int	node_heredoc_manager(int *i, t_cmd_lst *new_node, t_input *input)
+{
+	int			i_r;
+
+	i_r = 0;
+	while(input->redir_tab[*i][3][i_r])
+		i_r ++;
+	new_node->n_heredoc = i_r;
+	new_node->heredoc = malloc(sizeof(char *) * (i_r + 1));
+	if(!new_node->heredoc)
+		return (1);
+	if (i_r == 0)
+	{
+		new_node->heredoc[i_r] = ft_strdup("");
+		return (0);
+	}
+	new_node->heredoc[i_r] = 0;
+	i_r = -1;
+	while(input->redir_tab[*i][3][++i_r])
+		new_node->heredoc[i_r] = ft_strdup(input->redir_tab[*i][3][i_r]);
+	return (0);
+}
+
+// printf("i = %d, cmd_index = %d, i_r = %d\n", *i, new_node->cmd_index, i_r);
+// printf("n_input_redir = %d\n", new_node->n_input_redir);

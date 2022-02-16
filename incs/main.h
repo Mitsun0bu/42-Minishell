@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 17:07:56 by llethuil          #+#    #+#             */
-/*   Updated: 2022/02/16 18:27:14 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/02/16 19:12:20 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,5 +141,7 @@ t_cmd_lst	*is_last_node(t_cmd_lst *lst_head);
 t_cmd_lst	*create_new_node(int *i, t_input *input);
 int			node_input_redir_manager(int *i, t_cmd_lst *new_node, t_input *input);
 int			node_output_redir_manager(int *i, t_cmd_lst *new_node, t_input *input);
+int			node_app_output_redir_manager(int *i, t_cmd_lst *new_node, t_input *input);
+int			node_heredoc_manager(int *i, t_cmd_lst *new_node, t_input *input);
 
 #endif
