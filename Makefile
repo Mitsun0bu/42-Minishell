@@ -6,7 +6,7 @@
 #    By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/25 15:43:51 by llethuil          #+#    #+#              #
-#    Updated: 2022/02/16 13:19:56 by llethuil         ###   ########lyon.fr    #
+#    Updated: 2022/02/17 18:03:40 by llethuil         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,7 @@ NAME		:= minishell
 
 CC			:= gcc
 
-CFLAGS		:= -Wall -Wextra -Werror
+CFLAGS		:= -Wall -Wextra -Werror #-g
 
 RM			:= rm -f
 
@@ -49,6 +49,7 @@ OBJS_DIR	:= .objs
 
 INCS_LST	:=	built_ins.h							\
 				cmd_line_handler.h					\
+				cmd_lst_init.h						\
 				main.h								\
 				lexer.h								\
 				parser.h							\
@@ -57,6 +58,9 @@ INCS_LST	:=	built_ins.h							\
 SRCS_LST	:=	built_ins/built_ins.c				\
 				cmd_line_handler/get_cmd_line.c		\
 				cmd_line_handler/cmd_line_handler.c	\
+				cmd_lst_init/cmd_lst_init.c			\
+				cmd_lst_init/node_manager.c			\
+				cmd_lst_init/utils_linked_lst.c		\
 				executer/executer.c					\
 				lexer/cmd_separator.c				\
 				lexer/fill_redir_tab_input.c		\
@@ -86,6 +90,7 @@ SRCS_LST	:=	built_ins/built_ins.c				\
 
 SUBDIRS_LST	:=	built_ins							\
 				cmd_line_handler					\
+				cmd_lst_init						\
 				executer							\
 				lexer								\
 				main								\

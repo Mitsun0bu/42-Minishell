@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 16:37:51 by llethuil          #+#    #+#             */
-/*   Updated: 2022/02/15 15:56:08 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/02/17 13:50:54 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	count_output_redir(char *cmd)
 	{
 		if (cmd[i] == '\'' || cmd[i] == '"')
 			skip_quotes(cmd, &i);
-		if ((cmd[i] == '>' && cmd[i + 1] != '>') && cmd[i - 1] != '>')
+		if ((cmd[i] == '>' && cmd[i + 1] != '>') && (i != 0 && cmd[i - 1] != '>'))
 			n_red ++;
 	}
 	return (n_red);
@@ -86,7 +86,7 @@ int	count_output_name_len(char *cmd, int *i_red)
 	{
 		if (cmd[i] == '\'' || cmd[i] == '"')
 			skip_quotes(cmd, &i);
-		if (cmd[i] == '>' && cmd[i + 1] != '>' && cmd[i - 1] != '>')
+		if ((cmd[i] == '>' && cmd[i + 1] != '>') && (i != 0 && cmd[i - 1] != '>'))
 		{
 			skip_space(cmd, &i);
 			while (cmd[i] && !ft_strchr(" \"\'<>", cmd[i]))

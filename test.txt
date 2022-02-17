@@ -51,3 +51,5 @@ echo >>		hello		"fefe"abc"ok"abc <	 here "test" < b 123"ddds" yuio
 echo < abc"hello world" OK
 
 echo > abc" 'a'ab"ab << ab""''ab c			<		'a'			>> ' 'ab""
+
+echo > bla bla > hello world < dggdgd << doc rgasgsdfs > afgfgsd >> app > ga << heredoc << here >> hello >> salut | cd dfhdfgds | grep >> azerty

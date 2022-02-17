@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 17:07:56 by llethuil          #+#    #+#             */
-/*   Updated: 2022/02/16 19:12:20 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/02/17 18:04:41 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,15 +39,17 @@ typedef struct s_input
 typedef struct s_cmd_lst
 {
 	int					cmd_index;
-	char				*name;
+	char				*cmd_name;
+	int					n_args;
+	char				**cmd_args;
 	int					n_input_redir;
 	char				**input_redir;
 	int					n_output_redir;
 	char				**output_redir;
-	char				**app_output_redir;
 	int					n_app_output_redir;
+	char				**app_output_redir;
+	int					n_heredoc;
 	char				**heredoc;
-	char				n_heredoc;
 	char				*valid_path;
 	struct s_cmd_lst	*next;
 	struct s_cmd_lst	*previous;
@@ -62,6 +64,7 @@ typedef struct s_cmd_lst
 /* our headers */
 # include "built_ins.h"
 # include "cmd_line_handler.h"
+# include "cmd_lst_init.h"
 # include "executer.h"
 # include "lexer.h"
 # include "parser.h"
@@ -134,14 +137,5 @@ void	init_shell(void);
 
 /* main/main.c */
 int	main(int ac, char **av, char **envp);
-
-int			init_cmd_lst(t_input *input, t_cmd_lst **lst_head);
-void		add_node_back(t_cmd_lst **lst_head, t_cmd_lst *new);
-t_cmd_lst	*is_last_node(t_cmd_lst *lst_head);
-t_cmd_lst	*create_new_node(int *i, t_input *input);
-int			node_input_redir_manager(int *i, t_cmd_lst *new_node, t_input *input);
-int			node_output_redir_manager(int *i, t_cmd_lst *new_node, t_input *input);
-int			node_app_output_redir_manager(int *i, t_cmd_lst *new_node, t_input *input);
-int			node_heredoc_manager(int *i, t_cmd_lst *new_node, t_input *input);
 
 #endif

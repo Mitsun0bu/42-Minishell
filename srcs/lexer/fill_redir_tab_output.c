@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 13:52:08 by llethuil          #+#    #+#             */
-/*   Updated: 2022/02/15 15:48:28 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/02/17 13:53:11 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,13 @@ int	cp_output_name(t_input *input, char *cmd, int *i_cmd, int *i_red)
 	int			j;
 
 	if (*i_red == 0)
-		i = -1;
+		i = 0;
 	j = 0;
-	while (cmd[++i])
+	while (cmd[i])
 	{
 		if (cmd[i] == '\'' || cmd[i] == '"')
 			skip_quotes(cmd, &i);
-		if (cmd[i] == '>' && cmd[i + 1] != '>' && cmd[i - 1] != '>')
+		if (cmd[i] == '>' && cmd[i + 1] != '>' && (i != 0 && cmd[i - 1] != '>'))
 		{
 			skip_space(cmd, &i);
 			while (cmd[i] && !ft_strchr(" \"\'<>", cmd[i]))
@@ -57,6 +57,7 @@ int	cp_output_name(t_input *input, char *cmd, int *i_cmd, int *i_red)
 			i --;
 			return (0);
 		}
+		i ++;
 	}
 	return (0);
 }
