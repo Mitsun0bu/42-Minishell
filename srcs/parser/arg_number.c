@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 10:31:04 by agirardi          #+#    #+#             */
-/*   Updated: 2022/02/15 15:55:58 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/02/18 12:06:11 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,8 @@ int	create_arg_tab(t_input *input, int i)
 					&start) + 1, sizeof(char));
 		if (!input->cmd_exec_tab[i][j])
 			return (0);
+		// input->cmd_exec_tab[i][j] = safe_malloc(sizeof(char),
+		// 	get_arg_len(input->cmd_tab[i], &start) + 1);
 		fill_tab(input->cmd_tab[i], input->cmd_exec_tab[i][j], buff_start);
 	}
 	return (1);

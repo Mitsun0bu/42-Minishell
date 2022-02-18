@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 16:37:51 by llethuil          #+#    #+#             */
-/*   Updated: 2022/02/17 13:50:54 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/02/18 11:42:13 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,16 +23,18 @@ int	malloc_output_redir_tab(t_input *input)
 		n_red = count_output_redir(input->cmd_tab[i_cmd]);
 		if (!n_red)
 		{
-			input->redir_tab[i_cmd][1] = malloc(2 * sizeof(char *));
-			if (!input->redir_tab[i_cmd][1])
-				return (1);
+			// input->redir_tab[i_cmd][1] = malloc(2 * sizeof(char *));
+			// if (!input->redir_tab[i_cmd][1])
+			// 	return (1);
+			input->redir_tab[i_cmd][1] = safe_malloc(sizeof(char *), 2);
 			input->redir_tab[i_cmd][1][0] = NULL;
 		}
 		else
 		{
-			input->redir_tab[i_cmd][1] = malloc((n_red + 1) * sizeof(char *));
-			if (!input->redir_tab[i_cmd][1])
-				return (1);
+			// input->redir_tab[i_cmd][1] = malloc((n_red + 1) * sizeof(char *));
+			// if (!input->redir_tab[i_cmd][1])
+			// 	return (1);
+			input->redir_tab[i_cmd][1] = safe_malloc(sizeof(char *), (n_red + 1));
 			input->redir_tab[i_cmd][1][n_red] = NULL;
 		}
 	}
@@ -66,9 +68,10 @@ int	malloc_output_name(t_input *input, int *i_cmd)
 	while (++i_red < count_output_redir(input->cmd_tab[*i_cmd]))
 	{
 		len = count_output_name_len(input->cmd_tab[*i_cmd], &i_red);
-		input->redir_tab[*i_cmd][1][i_red] = malloc(len + 1 * sizeof(char));
-		if (!input->redir_tab[*i_cmd][1][i_red])
-			return (1);
+		// input->redir_tab[*i_cmd][1][i_red] = malloc(len + 1 * sizeof(char));
+		// if (!input->redir_tab[*i_cmd][1][i_red])
+		// 	return (1);
+		input->redir_tab[*i_cmd][1][i_red] = safe_malloc(sizeof(char), (len + 1));
 		input->redir_tab[*i_cmd][1][i_red][len] = '\0';
 	}
 	return (0);

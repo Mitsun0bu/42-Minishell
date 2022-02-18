@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 17:07:38 by llethuil          #+#    #+#             */
-/*   Updated: 2022/02/17 18:04:22 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/02/18 16:13:00 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,15 @@ int	main(int ac, char **av, char **envp)
 	get_history(&input);
 	ft_memset(&input, 0, sizeof(input));
 	ft_memset(&lst_head, 0, sizeof(lst_head));
-	// while (1)
-	// {
+	while (1)
+	{
 		cmd_line_handler(&input);
 		lexer(&input);
 		parser(&input);
 		cmd_lst_init(&input, &lst_head);
-		// executer(&input, av, envp);
-	// }
-	free_struct(&input);
+		executer(av, envp, &input, &lst_head);
+		free_lst(&lst_head);
+		free_struct(&input);
+	}
 	return (0);
 }

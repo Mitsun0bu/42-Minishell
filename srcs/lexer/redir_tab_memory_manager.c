@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 15:14:37 by llethuil          #+#    #+#             */
-/*   Updated: 2022/02/15 15:56:06 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/02/18 11:44:33 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,10 @@
 
 int	malloc_redir_tab(t_input *input)
 {
-	input->redir_tab = malloc((input->n_cmd + 1) * sizeof(char ***));
-	if (!input->redir_tab)
-		return (1);
+	// input->redir_tab = malloc((input->n_cmd + 1) * sizeof(char ***));
+	// if (!input->redir_tab)
+	// 	return (1);
+	input->redir_tab = safe_malloc(sizeof(char ***), (input->n_cmd + 1));
 	input->redir_tab[input->n_cmd] = NULL;
 	return (0);
 }
@@ -28,9 +29,10 @@ int	malloc_redir_subdiv(t_input *input)
 	i_cmd = -1;
 	while (input->cmd_tab[++i_cmd])
 	{
-		input->redir_tab[i_cmd] = malloc(5 * sizeof(char **));
-		if (!input->redir_tab[i_cmd])
-			return (1);
+		// input->redir_tab[i_cmd] = malloc(5 * sizeof(char **));
+		// if (!input->redir_tab[i_cmd])
+		// 	return (1);
+		input->redir_tab[i_cmd] = safe_malloc(sizeof(char **), 5);
 		input->redir_tab[i_cmd][4] = NULL;
 	}
 	return (0);

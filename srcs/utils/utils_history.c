@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 10:22:49 by llethuil          #+#    #+#             */
-/*   Updated: 2022/02/15 15:55:51 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/02/18 15:32:07 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,10 @@ char	*get_next_line(int fd)
 
 	if (fd < 0 || fd > OPEN_MAX || BUFFER_SIZE <= 0)
 		return (NULL);
-	line = malloc(sizeof(char) * 1);
-	if (!line)
-		return (NULL);
+	// line = malloc(sizeof(char) * 1);
+	// if (!line)
+	// 	return (NULL);
+	line = safe_malloc(sizeof(char), 1);
 	line[0] = 0;
 	line = ft_get_line(line, buff, fd);
 	if (line && ft_strlen(line))
@@ -107,9 +108,10 @@ char	*strjoin_gnl(char *line, char *buff)
 		buff_size = position_nl(buff) + 1;
 	else
 		buff_size = ft_strlen(buff);
-	joined = malloc(sizeof(char) * (ft_strlen(line) + buff_size + 1));
-	if (!joined)
-		return (NULL);
+	// joined = malloc(sizeof(char) * (ft_strlen(line) + buff_size + 1));
+	// if (!joined)
+	// 	return (NULL);
+	joined = safe_malloc(sizeof(char), (ft_strlen(line) + buff_size + 1));
 	i_l = -1;
 	while (line[++i_l])
 		joined[i_l] = line[i_l];

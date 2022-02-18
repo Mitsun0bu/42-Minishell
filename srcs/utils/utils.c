@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 11:12:43 by llethuil          #+#    #+#             */
-/*   Updated: 2022/02/15 15:55:47 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/02/18 12:14:01 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,4 +22,17 @@ void	skip_quotes(char *str, int *i)
 	{
 		(*i)++;
 	}
+}
+
+void	*safe_malloc(size_t size, size_t count)
+{
+	void	*result;
+
+	result = malloc(size * count);
+	if (!result)
+	{
+		perror("malloc");
+		exit (0);
+	}
+	return (result);
 }

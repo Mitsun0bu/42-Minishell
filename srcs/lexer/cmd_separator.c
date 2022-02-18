@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 11:29:56 by llethuil          #+#    #+#             */
-/*   Updated: 2022/02/15 15:48:35 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/02/18 11:33:42 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,10 @@
 
 int	single_cmd(t_input *input)
 {
-	input->cmd_tab = malloc (sizeof(char *) * 2);
-	if (!input->cmd_tab)
-		return (1);
+	// input->cmd_tab = malloc (sizeof(char *) * 2);
+	// if (!input->cmd_tab)
+	// 	return (1);
+	input->cmd_tab = safe_malloc (sizeof(char *), 2);
 	input->cmd_tab[0] = ft_strdup(input->cmd_line);
 	input->cmd_tab[0] = ft_strtrim(input->cmd_tab[0], " ");
 	input->cmd_tab[1] = 0;
@@ -52,9 +53,10 @@ int	final_pipe_case(t_input *input)
 	if (input->cmd_line[ft_strlen(input->cmd_line) - 1] != '|')
 		return (0);
 	size = bidim_tab_size(input->cmd_tab);
-	buff = malloc((size + 2) * sizeof(char *));
-	if (!buff)
-		return (2);
+	// buff = malloc((size + 2) * sizeof(char *));
+	// if (!buff)
+	// 	return (2);
+	buff = safe_malloc(sizeof(char *), (size + 2));
 	i = -1;
 	while (++i < size)
 		buff[i] = ft_strdup(input->cmd_tab[i]);

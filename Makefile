@@ -6,7 +6,7 @@
 #    By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/25 15:43:51 by llethuil          #+#    #+#              #
-#    Updated: 2022/02/17 18:03:40 by llethuil         ###   ########lyon.fr    #
+#    Updated: 2022/02/18 15:33:17 by llethuil         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -84,6 +84,7 @@ SRCS_LST	:=	built_ins/built_ins.c				\
 				parser/parser.c						\
 				parser/utils_parser.c				\
 				utils/utils_error_manager.c			\
+				utils/utils_free_lst.c				\
 				utils/utils_free.c					\
 				utils/utils_history.c				\
 				utils/utils.c						\

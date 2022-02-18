@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 15:25:12 by llethuil          #+#    #+#             */
-/*   Updated: 2022/02/17 18:01:13 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/02/18 11:52:05 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,10 @@ t_cmd_lst	*create_new_node(int *i, t_input *input)
 {
 	t_cmd_lst	*new_node;
 
-	new_node = malloc(sizeof(t_cmd_lst));
-	if (!new_node)
-		return (NULL);
+	// new_node = malloc(sizeof(t_cmd_lst));
+	// if (!new_node)
+	// 	return (NULL);
+	new_node = safe_malloc(sizeof(t_cmd_lst), 1);
 	new_node->cmd_index = *i;
 	new_node->cmd_name = ft_strdup(input->cmd_exec_tab[*i][0]);
 	node_args_manager(i, new_node, input);
