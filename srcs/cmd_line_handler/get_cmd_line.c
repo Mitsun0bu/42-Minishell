@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 16:38:19 by llethuil          #+#    #+#             */
-/*   Updated: 2022/02/15 15:48:42 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/02/21 10:48:35 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	get_cmd_line(t_input *input)
 		write(input->fd_history, buff, ft_strlen(buff));
 		write(input->fd_history, "\n", 1);
 		input->cmd_line = ft_strdup(buff);
-		free (buff);
+		ft_free (buff);
 		return (0);
 	}
 	close (input->fd_history);

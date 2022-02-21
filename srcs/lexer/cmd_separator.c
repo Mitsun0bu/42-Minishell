@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 11:29:56 by llethuil          #+#    #+#             */
-/*   Updated: 2022/02/18 11:33:42 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/02/21 11:31:51 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int	final_pipe_case(t_input *input)
 	buff[i] = ft_strdup("");
 	i ++;
 	buff[i] = 0;
-	free_double(input->cmd_tab);
+	// free_double(input->cmd_tab);
 	input->cmd_tab = buff;
 	input->n_cmd = size + 1;
 	return (1);

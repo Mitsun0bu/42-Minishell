@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 13:19:30 by llethuil          #+#    #+#             */
-/*   Updated: 2022/02/18 12:06:09 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/02/21 10:48:30 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	ft_pwd(t_input *input)
 		printf("pwd: too many arguments\n");
 	else
 		printf("%s\n", cwd);
-	free (cwd);
+	ft_free (cwd);
 }
 
 void	ft_echo(t_input *input)
@@ -48,7 +48,7 @@ void	ft_echo(t_input *input)
 		if (ft_strncmp(input->cmd_exec_tab[0][1], "-n", 2) != 0)
 			printf("\n");
 	}
-	free (message);
+	ft_free (message);
 }
 
 int	ft_cd(t_input *input)

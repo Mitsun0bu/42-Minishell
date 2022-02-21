@@ -6,15 +6,21 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 11:48:19 by llethuil          #+#    #+#             */
-/*   Updated: 2022/02/18 16:00:53 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/02/21 14:23:27 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "main.h"
 
+void	ft_free(void *ptr)
+{
+	free(ptr);
+	ptr = NULL;
+}
+
 void	free_struct(t_input *input)
 {
-	free(input->cmd_line);
+	ft_free(input->cmd_line);
 	free_double(input->cmd_tab);
 	free_quad(input->redir_tab);
 	free_triple(input->cmd_exec_tab);
@@ -28,10 +34,10 @@ void	free_double(char **array)
 	i = 0;
 	while (array[i])
 	{
-		free(array[i]);
+		ft_free(array[i]);
 		i++;
 	}
-	free(array);
+	ft_free(array);
 }
 
 void	free_quad(char ****array)
@@ -48,14 +54,12 @@ void	free_quad(char ****array)
 		{
 			k = -1;
 			while (array[i][j][++k])
-			{
-				free(array[i][j][k]);
-			}
-			free(array[i][j]);
+				ft_free(array[i][j][k]);
+			ft_free(array[i][j]);
 		}
-		free(array[i]);
+		ft_free(array[i]);
 	}
-	free(array);
+	ft_free(array);
 }
 
 void	free_triple(char ***array)
@@ -69,11 +73,11 @@ void	free_triple(char ***array)
 		j = 0;
 		while (array[i][j])
 		{
-			free(array[i][j]);
+			ft_free(array[i][j]);
 			j++;
 		}
-		free(array[i]);
+		ft_free(array[i]);
 		i++;
 	}
-	free(array);
+	ft_free(array);
 }

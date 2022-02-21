@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 10:22:49 by llethuil          #+#    #+#             */
-/*   Updated: 2022/02/18 15:32:07 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/02/21 10:50:39 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	get_history(t_input *input)
 	{
 		cmd_line_history = get_next_line(input->fd_history);
 		add_history(cmd_line_history);
-		free(cmd_line_history);
+		ft_free(cmd_line_history);
 	}
 	close (input->fd_history);
 	return (0);
@@ -48,7 +48,7 @@ char	*get_next_line(int fd)
 	line = ft_get_line(line, buff, fd);
 	if (line && ft_strlen(line))
 		return (line);
-	free (line);
+	ft_free (line);
 	return (NULL);
 }
 
@@ -73,7 +73,7 @@ char	*ft_get_line(char *line, char *buff, int fd)
 		}
 		read_ret = read(fd, buff, BUFFER_SIZE);
 		if (read_ret == -1)
-			free (line);
+			ft_free (line);
 		if (read_ret == -1)
 			return (NULL);
 		buff[read_ret] = '\0';
@@ -115,7 +115,7 @@ char	*strjoin_gnl(char *line, char *buff)
 	i_l = -1;
 	while (line[++i_l])
 		joined[i_l] = line[i_l];
-	free(line);
+	ft_free(line);
 	i_b = 0;
 	while (buff[i_b])
 	{
