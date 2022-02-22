@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 12:09:53 by llethuil          #+#    #+#             */
-/*   Updated: 2022/02/21 11:32:17 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/02/22 18:12:10 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,12 @@ void	free_node(t_cmd_lst *lst_head)
 	ft_free (lst_head->cmd_name);
 	free_double (lst_head->cmd_args);
 	free_double (lst_head->input_redir);
+	ft_free(lst_head->fd_input);
 	free_double (lst_head->output_redir);
+	ft_free(lst_head->fd_output);
 	free_double (lst_head->app_output_redir);
+	ft_free(lst_head->fd_app_output);
 	free_double (lst_head->heredoc);
 	ft_free (lst_head->valid_path);
-	ft_free (lst_head->next);
-	ft_free (lst_head->previous);
 	ft_free (lst_head);
 }

@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 17:07:56 by llethuil          #+#    #+#             */
-/*   Updated: 2022/02/17 18:04:41 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/02/22 18:12:13 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,16 +44,26 @@ typedef struct s_cmd_lst
 	char				**cmd_args;
 	int					n_input_redir;
 	char				**input_redir;
+	int					*fd_input;
 	int					n_output_redir;
 	char				**output_redir;
+	int					*fd_output;
 	int					n_app_output_redir;
 	char				**app_output_redir;
+	int					*fd_app_output;
 	int					n_heredoc;
 	char				**heredoc;
 	char				*valid_path;
 	struct s_cmd_lst	*next;
 	struct s_cmd_lst	*previous;
 }	t_cmd_lst;
+
+typedef struct s_pip
+{
+	int		n_fd;
+	int		*fd_tab;
+	// pid_t	*task;
+}	t_pip;
 
 /* ************************************************************************** */
 /*                                                                            */

@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 17:07:38 by llethuil          #+#    #+#             */
-/*   Updated: 2022/02/18 16:13:00 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/02/22 18:11:59 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ int	main(int ac, char **av, char **envp)
 	t_cmd_lst	*lst_head;
 
 	(void)av;
-	(void)envp;
 	lst_head = NULL;
 	if (ac > 1)
 	{

@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 12:09:40 by llethuil          #+#    #+#             */
-/*   Updated: 2022/02/21 18:10:54 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/02/22 16:03:54 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,16 @@
 /* executer/executer.c */
 int		executer(char **av, char **envp, t_input *input, t_cmd_lst **lst_head);
 void	exec_cmd(t_input *input, char **av, char **envp);
+int		pipex(t_input *input, t_cmd_lst **lst_head);
+int		create_pipes(t_input *input, t_pip *pip);
+
+
+/* executer/file_manager.c */
+int		open_files(t_cmd_lst **lst_head);
+int		open_infiles(t_cmd_lst *lst_head);
+int		open_outfiles(t_cmd_lst *lst_head);
+int		open_app_outfiles(t_cmd_lst *lst_head);
+
 
 /* executer/path_manager.c */
 void	path_manager(char **av, char **envp, t_input *input, t_cmd_lst **lst_head);

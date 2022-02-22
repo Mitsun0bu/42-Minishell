@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 11:48:19 by llethuil          #+#    #+#             */
-/*   Updated: 2022/02/21 14:23:27 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/02/22 15:32:27 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	free_struct(t_input *input)
 	free_quad(input->redir_tab);
 	free_triple(input->cmd_exec_tab);
 	free_double(input->paths_tab);
+	// reflechir au free des tableaux de fd qui ne seront pas malloc si il y a une seule commande a executer
 }
 
 void	free_double(char **array)
