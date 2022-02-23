@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 17:07:56 by llethuil          #+#    #+#             */
-/*   Updated: 2022/02/22 18:12:13 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/02/23 17:49:15 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,15 @@
 
 typedef struct s_input
 {
-	char	*cmd_line;
-	char	**cmd_tab;
-	char	****redir_tab;
-	char	***cmd_exec_tab;
-	char	**paths_tab;
-	int		n_cmd;
-	int		fd_history;
+	char			*cmd_line;
+	struct s_env	*env_tab;
+	int				n_env;
+	char			**cmd_tab;
+	char			****redir_tab;
+	char			***cmd_exec_tab;
+	char			**paths_tab;
+	int				n_cmd;
+	int				fd_history;
 }	t_input;
 
 typedef struct s_cmd_lst
@@ -58,11 +60,18 @@ typedef struct s_cmd_lst
 	struct s_cmd_lst	*previous;
 }	t_cmd_lst;
 
+typedef struct s_env
+{
+	char	*key;
+	char	*value;
+	int		is_global;
+}	t_env;
+
 typedef struct s_pip
 {
 	int		n_fd;
 	int		*fd_tab;
-	// pid_t	*task;
+	pid_t	*task;
 }	t_pip;
 
 /* ************************************************************************** */
@@ -73,8 +82,9 @@ typedef struct s_pip
 
 /* our headers */
 # include "built_ins.h"
-# include "cmd_line_handler.h"
+# include "cmd_line_manager.h"
 # include "cmd_lst_init.h"
+# include "env_manager.h"
 # include "executer.h"
 # include "lexer.h"
 # include "parser.h"

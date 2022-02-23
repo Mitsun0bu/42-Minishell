@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cmd_line_handler.h                                 :+:      :+:    :+:   */
+/*   env_manager.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/10 16:36:06 by llethuil          #+#    #+#             */
-/*   Updated: 2022/02/15 15:16:21 by llethuil         ###   ########lyon.fr   */
+/*   Created: 2022/02/15 10:21:58 by agirardi          #+#    #+#             */
+/*   Updated: 2022/02/23 17:41:54 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CMD_LINE_HANDLER_H
-# define CMD_LINE_HANDLER_H
-
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 1024
-# endif
+#ifndef ENV_MANAGER_H
+# define ENV_MANAGER_H
 
 /* ************************************************************************** */
 /*                                                                            */
@@ -37,10 +33,16 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-/* cmd_line_handler/cmd_line_handler.c */
-void	cmd_line_handler(t_input *input);
+/* env_manager/env.c */
+void	add_to_env(t_input *input, char *str, int is_global);
+void	init_env(t_input *input, char **envp);
+void	remove_from_env(t_input *input, char *key);
 
-/* cmd_line_handler/get_cmd_line.c */
-int	get_cmd_line(t_input *input);
+/* env_manager/env_utils.c */
+void	free_env(t_input *input);
+char	*find_key(char *str);
+char	*find_value(char *str);
+char	*get_value(char *str, t_input *input);
+int		search_key(const char *str, const char *key);
 
 #endif

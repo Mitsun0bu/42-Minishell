@@ -1,74 +1,8 @@
-cat infile | grep outfile
-cat infile | grep outfile
-cat infile | grep outfile
-cat infile | grep outfile
-cat infile | grep outfile
-cat infile | grep outfile
-cat infile | grep outfile
-cat infile | grep outfile
-cat infile | grep outfile
-cat < infile | grep > outfile
-cat < infile | grep > outfile
-cat < infile | grep > outfile
-cat < infile | grep > outfile
-cat < infile | grep > outfile
-cat < infile | grep > outfile
-cat < infile | grep > outfile
-cat < infile | grep > outfile
-cat < infile | grep > outfile
-cat < infile | grep > outfile
-cat < infile | grep > outfile
-cat < infile | grep > outfile
-cat < infile | grep > outfile
-cat < infile | grep > outfile
-cat < infile | grep > outfile
-cat < infile | grep > outfile
-cat < infile | grep > outfile
-cat < infile | grep > outfile
-cat < infile | grep > outfile
-cat < infile | grep > outfile
-cat < infile | grep > outfile
-cat < infile | grep > outfile
-cat < infile | grep > outfile
-cat < infile | grep > outfile
-cat < infile | grep > outfile
-cat < infile | grep > outfile
-cat < infile | grep > outfile
-cat < infile | grep > outfile
-cat < infile | grep > outfile
-cat < infile | grep > outfile
-cat < infile | grep > outfile
-cat < infile | grep > outfile
-cat < infile | grep > outfile
-cat < infile | grep > outfile
-cat < infile | grep > outfile
-cat < infile | grep > outfile
-cat < infile | grep > outfile
-cat < infile | grep > outfile
-q
-cat < infile | grep > outfile
-q
-cat < infile | grep > outfile
-cat < infile | grep > outfile
-cat < infile | grep > outfile
-cat < infile | grep > outfile
-cat < infile | grep > outfile
-cat < infile | grep > outfile
-cat < infile | grep > outfile
-cat < infile | grep > outfile
-cat < infile | grep > outfile
-cat < infile | grep > outfile
-cat < infile | grep > outfile
-cat < infile | grep > outfile
-cat < infile | grep > outfile
-cat < infile | grep > outfile
-cat < infile | grep > outfile
-cat < infile | grep > outfile
-cat < infile | grep > outfile
-cat < infile | grep > outfile
-cat < infile | grep > outfile
-cat < infile | grep > outfile
-cat < infile | grep > outfile
-cat < infile | grep > outfile
-cat < infile | grep > outfile
-cat < infile | grep > outfile
+ls -l
+ls -l
+ls -l
+ls -l
+wc -l
+ls -l | grep hello | echo world
+wc -l
+ls -l | grep hello | echo world

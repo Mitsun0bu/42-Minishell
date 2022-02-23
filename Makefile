@@ -6,7 +6,7 @@
 #    By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/25 15:43:51 by llethuil          #+#    #+#              #
-#    Updated: 2022/02/22 18:11:29 by llethuil         ###   ########lyon.fr    #
+#    Updated: 2022/02/23 15:25:25 by llethuil         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,19 +48,28 @@ SRCS_DIR	:= srcs
 OBJS_DIR	:= .objs
 
 INCS_LST	:=	built_ins.h							\
-				cmd_line_handler.h					\
+				cmd_line_manager.h					\
 				cmd_lst_init.h						\
-				main.h								\
+				env_manager.h						\
+				executer.h							\
 				lexer.h								\
+				main.h								\
 				parser.h							\
 				utils.h								\
 
 SRCS_LST	:=	built_ins/built_ins.c				\
-				cmd_line_handler/get_cmd_line.c		\
-				cmd_line_handler/cmd_line_handler.c	\
+				built_ins/ft_cd.c					\
+				built_ins/ft_echo.c					\
+				built_ins/ft_env.c					\
+				built_ins/ft_exit.c					\
+				built_ins/ft_pwd.c					\
+				cmd_line_manager/get_cmd_line.c		\
+				cmd_line_manager/cmd_line_manager.c	\
 				cmd_lst_init/cmd_lst_init.c			\
 				cmd_lst_init/node_manager.c			\
 				cmd_lst_init/utils_linked_lst.c		\
+				env_manager/env_utils.c				\
+				env_manager/env.c					\
 				executer/executer.c					\
 				executer/file_manager.c				\
 				executer/path_manager.c				\
@@ -92,8 +101,9 @@ SRCS_LST	:=	built_ins/built_ins.c				\
 				utils/utils.c						\
 
 SUBDIRS_LST	:=	built_ins							\
-				cmd_line_handler					\
+				cmd_line_manager					\
 				cmd_lst_init						\
+				env_manager							\
 				executer							\
 				lexer								\
 				main								\

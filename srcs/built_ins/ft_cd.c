@@ -1,25 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   built_ins.c                                        :+:      :+:    :+:   */
+/*   ft_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/10 13:19:30 by llethuil          #+#    #+#             */
-/*   Updated: 2022/02/23 15:15:44 by llethuil         ###   ########lyon.fr   */
+/*   Created: 2022/02/23 10:56:25 by llethuil          #+#    #+#             */
+/*   Updated: 2022/02/23 14:25:14 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "main.h"
 
-int	ft_export(t_input *input)
+int	ft_cd(t_cmd_lst *lst_node)
 {
-	(void)input;
-	return (0);
-}
-
-int	ft_unset(t_input *input)
-{
-	(void)input;
+	if (access(lst_node->cmd_args[1], F_OK) == 0)
+		chdir(lst_node->cmd_args[1]);
+	else
+	{
+		printf("chdir: no such file or directory:");
+		printf("%s\n", lst_node->cmd_args[1]);
+		return (1);
+	}
+	// Rajouter changement de directory dans la structure env
+	// Voir comment gerer le cas d'erreur
 	return (0);
 }

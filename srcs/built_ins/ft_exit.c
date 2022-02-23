@@ -1,25 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   built_ins.c                                        :+:      :+:    :+:   */
+/*   ft_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/10 13:19:30 by llethuil          #+#    #+#             */
-/*   Updated: 2022/02/23 15:15:44 by llethuil         ###   ########lyon.fr   */
+/*   Created: 2022/02/23 11:51:38 by llethuil          #+#    #+#             */
+/*   Updated: 2022/02/23 12:03:09 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "main.h"
 
-int	ft_export(t_input *input)
+void	ft_exit(void)
 {
-	(void)input;
-	return (0);
-}
-
-int	ft_unset(t_input *input)
-{
-	(void)input;
-	return (0);
+	printf("exit\n");
+	exit(0);
 }

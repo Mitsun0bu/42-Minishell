@@ -6,24 +6,25 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 14:58:04 by llethuil          #+#    #+#             */
-/*   Updated: 2022/02/22 12:15:10 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/02/23 14:25:05 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-void	path_manager(char **av, char **envp, t_input *input, t_cmd_lst **lst_head)
+void	path_manager(char **envp, t_input *input, t_cmd_lst **lst_node)
 {
 	t_cmd_lst	*start;
 
-	start = *lst_head;
+	start = *lst_node;
 	get_paths_tab(envp, input);
-	while (*lst_head)
+	while (*lst_node)
 	{
-		(*lst_head)->valid_path = assign_path(av, "test", input, *lst_head);
-		*lst_head = (*lst_head)->next;
+		// Reflechir à l'utilite du premier parametre de la fonction assign_path dans minishell
+		(*lst_node)->valid_path = assign_path("test", input, *lst_node);
+		*lst_node = (*lst_node)->next;
 	}
-	*lst_head = start;
+	*lst_node = start;
 }
 
 void	get_paths_tab(char **envp, t_input	*input)
@@ -53,7 +54,7 @@ void	get_paths_tab(char **envp, t_input	*input)
 	ft_free(paths_line);
 }
 
-char	*assign_path(char **av, char *arg, t_input *input, t_cmd_lst *lst_head)
+char	*assign_path(char *arg, t_input *input, t_cmd_lst *lst_node)
 {
 	int		i;
 	char	*path;
@@ -64,12 +65,11 @@ char	*assign_path(char **av, char *arg, t_input *input, t_cmd_lst *lst_head)
 		(void)arg;
 		// if (access(arg, F_OK) == 0)
 		// 	return (arg);
-		path = ft_strjoin(input->paths_tab[i], lst_head->cmd_name);
+		path = ft_strjoin(input->paths_tab[i], lst_node->cmd_name);
 		if (access(path, F_OK) == 0)
 			return (path);
 		ft_free(path);
 	}
-	(void)av;
 	// if (access(path, F_OK) == -1 && cmd_name == cmd->name_1[0])
 	// 	error_handler(av, ERR_CMD_1);
 	// if (access(path, F_OK) == -1 && cmd_name == cmd->name_2[0])
