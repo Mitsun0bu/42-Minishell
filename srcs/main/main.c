@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 17:07:38 by llethuil          #+#    #+#             */
-/*   Updated: 2022/02/23 16:55:18 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/02/24 20:11:53 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ int	main(int ac, char **av, char **envp)
 	t_cmd_lst	*lst_node;
 
 	(void)av;
-	// lst_node = NULL;
 	if (ac > 1)
 	{
 		printf("To start our shell, use : ./minishell !\n");

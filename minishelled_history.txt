@@ -6,3 +6,19 @@ wc -l
 ls -l | grep hello | echo world
 wc -l
 ls -l | grep hello | echo world
+ls -l
+ls -l
+ls -l
+ls -l
+ls -l
+ls -l
+ls -l
+ls -l
+ls -l
+ls -l
+ls -l
+ls -l | echo hello
+echo lol | echo hello
+echo lol | echo hello
+echo lol | echo hello
+echo lol | echo hello

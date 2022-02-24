@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 17:07:56 by llethuil          #+#    #+#             */
-/*   Updated: 2022/02/23 17:49:15 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/02/24 19:13:29 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,20 +42,24 @@ typedef struct s_cmd_lst
 {
 	int					cmd_index;
 	char				*cmd_name;
-	int					n_args;
 	char				**cmd_args;
-	int					n_input_redir;
-	char				**input_redir;
-	int					*fd_input;
-	int					n_output_redir;
-	char				**output_redir;
-	int					*fd_output;
-	int					n_app_output_redir;
-	char				**app_output_redir;
-	int					*fd_app_output;
-	int					n_heredoc;
-	char				**heredoc;
 	char				*valid_path;
+	int					n_args;
+	int					n_input_redir;
+	int					n_output_redir;
+	int					n_app_output_redir;
+	int					n_heredoc;
+	char				**input_redir;
+	char				**output_redir;
+	char				**app_output_redir;
+	char				**heredoc;
+	int					*fd_input;
+	int					*fd_output;
+	int					*fd_app_output;
+	int					pipe_fd_tab[2];
+	// pid_t				*process_input;
+	// pid_t				*process_output;
+	// pid_t				*process_app_output;
 	struct s_cmd_lst	*next;
 	struct s_cmd_lst	*previous;
 }	t_cmd_lst;
@@ -66,13 +70,6 @@ typedef struct s_env
 	char	*value;
 	int		is_global;
 }	t_env;
-
-typedef struct s_pip
-{
-	int		n_fd;
-	int		*fd_tab;
-	pid_t	*task;
-}	t_pip;
 
 /* ************************************************************************** */
 /*                                                                            */

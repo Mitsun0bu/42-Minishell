@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 16:33:25 by llethuil          #+#    #+#             */
-/*   Updated: 2022/02/23 16:53:07 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/02/24 13:03:53 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,5 +15,6 @@
 void	cmd_line_manager(t_input *input)
 {
 	get_cmd_line(input);
+	//ajouter "parse env" ici
 	return ;
 }

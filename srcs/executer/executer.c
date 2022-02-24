@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 14:51:13 by llethuil          #+#    #+#             */
-/*   Updated: 2022/02/23 18:43:08 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/02/24 20:11:56 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,12 @@
 
 int	executer(char **envp, t_input *input, t_cmd_lst **lst_node)
 {
+	int	status;
 	path_manager(envp, input, lst_node);
-	if (input->n_cmd == 1)
-		exec_single_cmd(envp, input, lst_node);
-	else
-		exec_multi_cmd(input, lst_node);
+	// if (input->n_cmd == 1)
+	// 	exec_single_cmd(envp, input, lst_node);
+	// else
+	status = exec_multi_cmd(envp, input, lst_node);
 	return (0);
 }
 
@@ -40,67 +41,96 @@ void	exec_single_cmd(char **envp, t_input *input, t_cmd_lst **lst_node)
 	// 	ft_unset(input);
 	else
 	{
+		printf("here_2\n");
 		execve((*lst_node)->valid_path, (*lst_node)->cmd_args, envp);
 	}
-	return ;
 }
 
-int	exec_multi_cmd(t_input *input, t_cmd_lst **lst_node)
+int	exec_multi_cmd(char **envp, t_input *input, t_cmd_lst **lst_node)
 {
-	t_pip	pip;
+	t_cmd_lst	*start;
+	int			status;
 
-	ft_memset(&pip, 0, sizeof(pip));
+	start = *lst_node;
 	open_files(lst_node);
-	create_pipes(input, &pip);
-	pipex(input, lst_node, &pip);
-	close_pipes(input, &pip);
-	ft_free(pip.fd_tab);
-	return (0);
+	while (*lst_node)
+	{
+		status = pipex(envp, input, *lst_node);
+		*lst_node = (*lst_node)->next;
+	}
+	*lst_node = start;
+	return (status);
 }
 
-int	create_pipes(t_input *input, t_pip *pip)
+int	pipex(char **envp, t_input *input, t_cmd_lst *lst_node)
 {
-	int	i;
+	int		i;
+	int		status;
+	pid_t	process[2];
 
+	(void)input;
 	i = -1;
-	pip->n_fd = (input->n_cmd - 1) * 2;
-	pip->fd_tab = safe_malloc(sizeof(int), pip->n_fd);
-	while(++i < input->n_cmd - 1)
+	if (pipe(lst_node->pipe_fd_tab) == -1)
 	{
-		if (pipe(&pip->fd_tab[i * 2]) == -1)
+		perror("");
+		exit (1);
+	}
+	while (++i < 2)
+	{
+		process[i] = fork();
+		if (process[i] < 0)
 		{
 			perror("");
-			exit(1);
+			exit (1);
+		}
+		if (i == 0 && process[i] == 0)
+		{
+			printf("here_1\n");
+			exec_current_cmd(envp, lst_node);
+		}
+		else if (i == 1 && process[i] == 0)
+		{
+			printf("here_2\n");
+			*lst_node = *lst_node->next;
+			exec_current_cmd(envp, lst_node);
 		}
 	}
-	return (0);
+	close(lst_node->pipe_fd_tab[0]);
+	close(lst_node->pipe_fd_tab[1]);
+	waitpid(process[0], &status, 0);
+	waitpid(process[1], &status, 0);
+	return (WEXITSTATUS(status));
 }
 
-int	close_pipes(t_input *input, t_pip *pip)
+void	exec_current_cmd(char **envp, t_cmd_lst *lst_node)
 {
+	int i;
 
-}
-
-int	pipex(t_input *input, t_cmd_lst **lst_node, t_pip *pip)
-{
-	int	i;
-
-	pip->task = safe_malloc(sizeof(pid_t), pip->n_fd);
 	i = -1;
-	while (++i < input->n_cmd - 1)
+	printf("here_3\n");
+	if (lst_node->n_input_redir > 0)
 	{
-		pip->task[i] = fork();
-		if(i = 0 && pip->task[i] == 0)
+		while (++i < lst_node->n_input_redir)
 		{
-
-		}
-		// else if ()
-		// {
-
-		// }
-		else if (i = input->n_cmd - 1 && pip->task[i] == 0)
-		{
-
+			if (lst_node->cmd_index == 0)
+				dup2(lst_node->fd_input[i], STDIN_FILENO);
+			else
+				dup2(lst_node->fd_input[i], lst_node->previous->pipe_fd_tab[1]);
+			close(lst_node->fd_input[i]);
 		}
 	}
+	i = -1;
+	if (lst_node->n_output_redir > 0)
+	{
+		while (++i < lst_node->n_output_redir)
+		{
+			if (lst_node->next == NULL)
+				dup2(lst_node->pipe_fd_tab[1], STDOUT_FILENO);
+			else
+				dup2(lst_node->pipe_fd_tab[1], lst_node->next->pipe_fd_tab[0]);
+			close(lst_node->pipe_fd_tab[1]);
+		}
+	}
+	if (lst_node->valid_path)
+		execve(lst_node->valid_path, &lst_node->cmd_name, envp);
 }
