@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 12:09:40 by llethuil          #+#    #+#             */
-/*   Updated: 2022/02/24 20:11:54 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/02/25 19:28:20 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 /* ************************************************************************** */
 
 # include "main.h"
+# include <sys/types.h>
 
 /* ************************************************************************** */
 /*                                                                            */
@@ -38,8 +39,13 @@ int		executer(char **envp, t_input *input, t_cmd_lst **lst_node);
 void	exec_single_cmd(char **envp, t_input *input, t_cmd_lst **lst_node);
 int		exec_multi_cmd(char **envp, t_input *input, t_cmd_lst **lst_node);
 int		pipex(char **envp, t_input *input, t_cmd_lst *lst_node);
+void	open_pipe(int	*pipe_fd_tab);
+void	check_fork_error(pid_t	process);
+void	close_pipe(int *pipe_fd_tab);
+void	exec_first_cmd(char **envp, t_cmd_lst *lst_node);
 void	exec_current_cmd(char **envp, t_cmd_lst *lst_node);
-
+void	exec_next_cmd(char **envp, t_cmd_lst *lst_node);
+void	exec_last_cmd(char **envp, t_cmd_lst *lst_node);
 
 /* executer/file_manager.c */
 int		open_files(t_cmd_lst **lst_node);

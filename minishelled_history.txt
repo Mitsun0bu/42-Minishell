@@ -1,24 +1,184 @@
-ls -l
-ls -l
-ls -l
-ls -l
-wc -l
-ls -l | grep hello | echo world
-wc -l
-ls -l | grep hello | echo world
-ls -l
-ls -l
-ls -l
-ls -l
-ls -l
-ls -l
-ls -l
-ls -l
-ls -l
-ls -l
-ls -l
+echo lol | echo hello
+echo lol | echo hello
+echo lol | echo hello
+echo lol | echo hello
+echo lol | echo hello
+echo lol | echo hello
+echo lol | echo hello
+echo lol | echo hello
+echo lol | echo hello
 ls -l | echo hello
-echo lol | echo hello
-echo lol | echo hello
-echo lol | echo hello
-echo lol | echo hello
+ls -l | echo hello
+ls -l | echo hello
+ls -l | echo hello
+ls -l | echo hello
+ls -l | echo hello
+ls -l | echo hello
+ls -l | echo hello
+ls -l | echo hello
+ls -l | echo hello
+ls -l | echo hello
+ls -l | echo hello
+ls -l | echo hello
+ls -l | echo hello
+ls -l | echo hello
+ls -l | echo hello
+ls -l | echo hello
+ls -l | echo hello
+ls -l | echo hello
+ls -l | echo hello
+ls -l | echo hello
+ls -l | echo hello
+ls -l | echo hello
+ls -l | echo hello
+ls -l | echo hello
+ls -l | echo hello
+ls -l | echo hello
+ls -l | echo hello
+ls -l | echo hello
+ls -l | echo hello
+ls -l | echo hello
+ls -l | echo hello
+ls -l | echo hello
+ls -l | echo hello
+ls -l | echo hello
+ls -l | echo hello
+ls -l | echo hello
+ls -l | echo hello
+ls -l | echo hello
+ls -l | echo hello
+ls -l | echo hello
+ls -l | echo hello
+ls -l | echo hello
+ls -l | echo hello
+ls -l | echo hello
+ls -l | echo hello
+ls -l | echo hello
+ls -l | echo hello
+ls -l | echo hello
+ls -l | echo hello
+ls -l | echo hello
+ls -l | echo hello
+ls -l | wc -l
+ls -l | echo hello
+ls -l | echo hello
+ls -l | wc -l
+ls -l | wc -l
+ls -l | wc -l
+ls -l | wc -l
+ls -l | wc -l
+ls -l | wc -l
+ls -l | wc -l
+ls -l | wc -l
+ls -l | wc -l
+ls -l | wc -l
+ls -l | wc -l
+ls -l | wc -l
+ls -l | wc -l
+ls -l | wc -l
+ls -l | wc -l
+ls -l | wc -l
+ls -l | wc -l
+ls -l | wc -l
+ls -l | wc -l
+ls -l | wc -l
+ls -l | wc -l
+ls -l | wc -l
+ls -l | wc -l
+ls -l | wc -l
+ls -l | wc -l
+ls -l | wc -l
+ls -l | wc -l
+ls -l | wc -l
+ls -l | wc -l
+ls -l | wc -l
+ls -l | wc -l
+ls -l | wc -l
+ls -l | wc -l
+ls -l | wc -l
+ls -l | wc -l
+ls -l | wc -l
+ls -l | wc -l
+ls -l | wc -l
+ls -l | wc -l
+ls -l | wc -l
+ls -l | wc -l
+ls -l | wc -l
+ls -l | wc -l
+ls -l | wc -l
+ls -l | wc -l
+ls -l | wc -l
+ls -l | wc -l
+ls -l | wc -l
+ls -l | wc -l
+ls -l | wc -l
+ls -l | wc -l
+ls -l | wc -l
+ls -l | wc -l
+ls -l | wc -l
+ls -l | wc -l
+ls -l | wc -l
+ls -l | wc -l
+ls -l | wc -l
+echo hello | cat
+echo hello | cat
+echo "J'aime la vie" | sed "s/'aime/e déteste/g"
+echo "J'aime la vie" | sed s/'aime/e déteste/g
+echo "J'aime la vie" | sed "s/'aime/e déteste/g"
+echo "J'aime la vie" | sed "s/'aime/e déteste/g"
+echo hello | cat
+echo hello | cat
+echo hello | cat
+echo hello | cat
+echo hello | cat
+ls -l | wc -l
+ls -l | wc -l
+ls -l | wc -l
+ls -l | wc -l
+ls -l | wc -l
+echo hello | cat
+echo hello | cat
+echo hello | cat
+echo "J'aime la vie" | sed "s/'aime/e déteste/g"
+echo "J'aime la vie" | sed "s/'aime/e déteste/g"
+echo hello | rev
+echo hello | rev
+echo hello | rev
+echo hello | rev
+echo hello | rev
+echo hello | rev
+env
+echo hello | rev
+echo hello | rev
+echo hello | rev
+echo hello | rev
+echo hello | rev
+echo hello | rev
+echo hello | rev
+echo hello | rev
+echo hello | rev
+echo hello | rev
+echo hello | rev
+echo hello | rev
+echo hello | rev
+echo hello | rev
+echo hello | rev | echo lol
+echo hello | rev | echo lol
+echo hello | rev | echo lol
+echo hello | rev | echo lol
+echo hello | rev | echo lol
+echo hello | rev | echo lol
+echo hello | rev | echo lol
+echo hello | rev | echo lol
+echo hello | rev | echo lol
+echo hello | rev | echo lol
+echo hello | rev | echo lol
+echo hello | rev | echo lol
+echo hello | rev | echo lol
+echo hello | rev | echo lol
+echo hello | rev | echo lol
+echo hello | rev | echo lol | rev
+echo hello | rev | echo lol | rev
+echo hello | rev | echo lol | rev
+echo hello | rev | echo lol | rev
+echo hello | rev | echo lol | rev
