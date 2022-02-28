@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 17:07:56 by llethuil          #+#    #+#             */
-/*   Updated: 2022/02/25 19:17:05 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/02/28 19:27:23 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ typedef struct s_input
 	char			**paths_tab;
 	int				n_cmd;
 	int				fd_history;
+	int				*process;
 }	t_input;
 
 typedef struct s_cmd_lst
@@ -57,9 +58,6 @@ typedef struct s_cmd_lst
 	int					*fd_output;
 	int					*fd_app_output;
 	int					pipe_fd_tab[2];
-	// pid_t				*process_input;
-	// pid_t				*process_output;
-	// pid_t				*process_app_output;
 	struct s_cmd_lst	*next;
 	struct s_cmd_lst	*previous;
 }	t_cmd_lst;

@@ -182,3 +182,268 @@ echo hello | rev | echo lol | rev
 echo hello | rev | echo lol | rev
 echo hello | rev | echo lol | rev
 echo hello | rev | echo lol | rev
+echo hello | rev
+echo hello | rev
+echo hello | rev
+echo hello | rev | rev
+echo hello | rev | rev
+echo hello | rev | rev
+echo hello | rev | rev
+echo hello | rev | rev
+echo hello | rev | rev
+echo hello | rev | rev
+echo hello | rev | rev
+echo hello | rev | rev
+echo hello | rev | rev
+echo hello | rev | rev
+echo hello | rev | rev
+echo hello | rev | rev
+echo hello | rev | rev
+echo hello | rev | rev
+echo hello | rev | rev
+echo hello | rev | rev
+echo hello | rev | rev
+echo hello | rev | rev
+echo hello | rev | rev
+echo hello | rev | rev
+echo hello | rev | rev
+echo hello | rev | rev
+echo hello | rev | rev
+echo hello | rev | rev
+echo hello | rev
+echo hello | rev
+echo hello | rev | rev
+echo hello | rev | rev
+echo hello | rev | rev
+echo hello | rev | rev
+echo hello | rev | rev
+echo hello | rev
+echo hello | rev | rev
+echo hello | rev | rev
+echo hello | rev | rev
+echo hello | rev | rev
+echo hello | rev | rev
+echo hello | rev | rev
+echo hello | rev | rev
+echo hello | rev | rev
+echo hello | rev | rev
+echo hello | rev | rev
+echo hello | rev | rev
+echo hello | rev | rev
+echo hello | rev | rev
+echo hello | rev | rev
+echo hello | rev | rev
+echo hello | rev | rev
+echo hello | rev | rev
+echo hello | rev | rev
+echo hello | rev | rev
+echo hello | rev | rev
+echo hello | rev | rev
+echo hello | rev | rev
+echo hello | rev | rev
+echo hello | rev | rev
+echo hello | rev | rev
+echo hello | rev | rev
+echo hello | rev | rev
+echo hello | rev | rev
+echo hello | rev | rev
+echo hello | rev | rev
+echo hello | rev | rev
+echo hello | rev
+echo hello | rev | rev
+echo hello | rev | rev
+echo hello | rev | rev
+echo hello | rev
+echo hello | rev
+echo hello | rev | rev
+echo hello | rev | rev
+echo hello | rev | rev
+echo hello | rev | rev
+echo hello | rev
+echo hello | rev
+echo hello | rev
+echo hello | rev
+echo hello | rev | rev
+echo hello | rev | rev
+echo hello | rev | rev
+echo hello | rev | rev
+echo hello | rev | rev
+echo hello | rev | rev
+echo hello | rev | rev
+echo hello | rev
+echo hello | rev | rev
+echo hello | rev
+echo hello | rev | rev
+echo hello | rev | rev
+echo hello | rev
+echo hello | rev
+echo hello | rev | rev
+echo hello | rev | rev
+echo hello | rev | rev
+echo hello | rev | rev
+echo hello | rev | rev
+echo hello | rev | rev
+echo hello | rev | rev
+echo hello | rev | rev
+echo hello | rev | rev
+echo hello | rev | rev
+echo hello | rev | rev
+echo hello | rev | rev
+echo hello | rev | rev
+echo hello | rev | rev
+echo hello | rev | rev
+echo hello | rev | rev
+echo hello | rev | rev
+echo hello | rev | rev
+echo hello | rev | rev
+echo hello | rev | rev
+echo hello | rev | rev
+echo hello
+echo hello
+echo hello | rev | rev
+echo hello | rev | rev
+echo hello | rev | rev
+echo hello | rev | rev
+echo hello | rev | rev
+echo hello | rev | rev
+echo hello | rev | rev
+echo hello | rev | rev
+echo hello | rev | rev
+echo hello | rev | rev
+echo hello | rev | rev
+echo hello | rev | rev
+echo hello | rev | rev
+echo hello | rev | rev
+echo hello | rev | rev
+echo hello | rev | rev
+echo hello | rev | rev
+echo hello | rev | rev
+echo hello | rev | rev
+echo hello | rev | rev
+echo hello | rev | rev
+echo hello | rev | rev
+echo hello | rev | rev
+echo hello | rev | rev
+echo hello | rev | rev
+echo hello | rev | rev
+echo hello | rev | rev
+echo hello | rev | rev
+echo hello | rev | rev
+echo hello | rev | rev
+echo hello | rev | rev
+echo hello | rev | rev
+echo hello | rev | rev
+echo hello | rev | rev
+echo hello | rev | rev
+echo hello | rev | rev
+echo hello | rev | rev
+echo hello | rev 
+echo hello | rev
+echo hello | rev
+echo hello | rev
+echo hello | rev
+echo hello | rev | rev
+echo hello | rev
+echo hello | rev
+echo hello | rev
+echo hello | rev
+echo hello | rev
+echo hello | rev
+echo hello | rev
+echo hello | rev
+echo hello | rev
+echo hello | rev
+echo hello | rev | rev
+echo hello | rev | rev
+echo hello | rev | rev
+echo hello | rev | rev
+echo hello | rev | rev
+echo hello | rev | rev
+echo hello | rev | rev
+echo hello | rev | rev
+echo hello | rev | rev
+echo hello | rev | rev
+echo hello | rev | rev
+echo hello | rev | rev
+echo hello | rev | rev
+echo hello | rev | rev
+echo hello | rev | rev
+echo hello | rev | rev
+echo hello | rev | rev
+echo hello | rev
+echo hello | rev | rev
+echo hello | rev | rev
+echo hello | rev | rev
+echo hello | rev | rev
+echo hello | rev | rev
+echo hello | rev | rev
+echo hello | rev | rev
+echo hello | rev | rev
+echo hello | rev
+echo hello | rev
+echo hello | rev
+echo hello | rev
+echo hello | rev
+echo hello | rev
+echo hello | rev
+echo hello | rev
+echo hello | rev
+echo hello | rev
+echo hello | rev
+echo hello | rev
+echo hello | rev
+echo hello | rev
+echo hello | rev
+echo hello | rev
+echo hello | rev
+echo hello | rev
+echo hello | rev
+echo hello | rev
+echo hello | rev
+echo hello | rev
+echo hello | rev
+echo hello | rev
+echo hello | rev
+echo hello | rev
+echo hello | rev
+echo hello | rev
+echo hello | rev
+echo hello | rev
+echo hello | rev
+echo hello | rev
+echo hello | rev
+echo hello | rev
+echo hello | rev
+echo hello | rev
+echo hello | rev
+echo hello | rev
+echo hello | rev
+echo hello | rev
+echo hello | rev
+echo hello | rev
+echo hello | rev
+echo hello | rev
+echo hello | rev
+echo hello | rev
+echo hello | rev
+echo hello | rev
+echo hello | rev
+echo hello | rev
+echo hello | rev
+echo hello | rev
+echo hello | rev
+echo hello | rev
+echo hello | rev
+echo hello | rev
+echo hello | rev
+echo hello | rev
+echo hello | rev
+echo hello | rev
+echo hello | rev
+echo hello | rev
+echo hello | rev
+echo hello | rev
+echo hello | rev
+echo hello | rev
+echo hello | rev
+echo hello | rev
