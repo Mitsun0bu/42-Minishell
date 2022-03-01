@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 14:51:13 by llethuil          #+#    #+#             */
-/*   Updated: 2022/02/28 19:28:02 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/01 14:25:07 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,54 +47,42 @@ void	exec_single_cmd(char **envp, t_input *input, t_cmd_lst **lst_node)
 
 int	exec_multi_cmd(char **envp, t_input *input, t_cmd_lst **lst_node)
 {
-	t_cmd_lst	*start;
-	int			status = 0;
-	int 		i = -1;
+	int	status;
 
-	start = *lst_node;
+	status = 0;
 	open_files(lst_node);
-	while (*lst_node)
-	{
-		printf(" - - - - - - - - - - - - - - - - - - - - - \n");
-		printf("| OPEN PIPE_FD TAB #%d\n", ++i);
-		printf("| NODE INDEX = %d\n", (*lst_node)->cmd_index);
-		open_pipe((*lst_node)->pipe_fd_tab);
-		printf("| PIPE_FD[0] = %d, PIPE_FD[1] = %d\n", (*lst_node)->pipe_fd_tab[0], (*lst_node)->pipe_fd_tab[1]);
-		if ((*lst_node)->next == NULL)
-			break;
-		*lst_node = (*lst_node)->next->next;
-		printf(" - - - - - - - - - - - - - - - - - - - - - \n");
-	}
-	*lst_node = start;
+	open_all_pipes(lst_node);
 	status = pipex(envp, input, lst_node);
-	printf(" - - - - - - - - - - - - - - - - - - - - - \n");
+	printf(" - - - - - - - - - - - - - - - - - - - \n");
 	return (status);
 }
 
 int	pipex(char **envp, t_input *input, t_cmd_lst **lst_node)
 {
+	int			i;
 	t_cmd_lst	*start;
 	int			status;
 
-	start = *lst_node;
-	printf(" - - - - - - - - - - - - - - - - - - - - - \n");
-	printf("| PIPEX \n");
+	printf(" - - - - - - - - PIPEX - - - - - - - - \n");
 	input->process = safe_malloc(sizeof(pid_t), input->n_cmd);
-	printf(" - - - - - - - - - - - - - - - - - - - - - \n\n");
-	*lst_node = start;
-	close_all_pipes(lst_node);
-	*lst_node = start;
-	status = wait_all_processes(input, lst_node);
-	return (WEXITSTATUS(status));
-}
-
-void	open_pipe(int	*pipe_fd_tab)
-{
-	if (pipe(pipe_fd_tab) == -1)
+	i = -1;
+	start = *lst_node;
+	while(++i < input->n_cmd)
 	{
-		perror("");
-		exit (1);
+		input->process[i] = fork();
+		check_fork_error(input->process[i]);
+		if (i == 0 && input->process[i] == 0)
+			exec_first_cmd(envp, *lst_node);
+		else if (i != 0 && i != input->n_cmd - 1 && input->process[i] == 0)
+			exec_a_cmd(envp, *lst_node);
+		else if (i == input->n_cmd - 1 && input->process[i] == 0)
+			exec_last_cmd(envp, *lst_node);
+		*lst_node = (*lst_node)->next;
 	}
+	*lst_node = start;
+	close_all_pipes(*lst_node);
+	status = wait_all_processes(input);
+	return (WEXITSTATUS(status));
 }
 
 void	check_fork_error(pid_t	process)
@@ -106,30 +94,7 @@ void	check_fork_error(pid_t	process)
 	}
 }
 
-void	close_all_pipes(t_cmd_lst **lst_node)
-{
-	int i = -1;
-	while (*lst_node)
-	{
-		printf(" - - - - - - - - - - - - - - - - - - - - - \n");
-		printf("| CLOSE PIPE_FD TAB #%d\n", ++i);
-		printf("| NODE INDEX = %d\n", (*lst_node)->cmd_index);
-		close_pipe((*lst_node)->pipe_fd_tab);
-		printf("| PIPE_FD[0] = %d, PIPE_FD[1] = %d\n", (*lst_node)->pipe_fd_tab[0], (*lst_node)->pipe_fd_tab[1]);
-		if ((*lst_node)->next == NULL)
-			break;
-		*lst_node = (*lst_node)->next->next;
-		printf(" - - - - - - - - - - - - - - - - - - - - - \n");
-	}
-}
-
-void	close_pipe(int *pipe_fd_tab)
-{
-	close(pipe_fd_tab[0]);
-	close(pipe_fd_tab[1]);
-}
-
-int	wait_all_processes(t_input *input, t_cmd_lst **lst_node)
+int	wait_all_processes(t_input *input)
 {
 	int	status;
 	int	i;
@@ -145,15 +110,27 @@ int	wait_all_processes(t_input *input, t_cmd_lst **lst_node)
 
 void	exec_first_cmd(char **envp, t_cmd_lst *lst_node)
 {
+	printf("| \n");
 	printf("| EXEC FIRST CMD\n");
+	dup2(lst_node->pipe_fd_tab[1], STDOUT_FILENO);
+	close_all_pipes(lst_node);
+	if (lst_node->valid_path)
+		execve(lst_node->valid_path, lst_node->cmd_args, envp);
 }
 
 void	exec_a_cmd(char **envp, t_cmd_lst *lst_node)
 {
 	printf("| EXEC A CMD\n");
+	(void)envp;
+	(void)lst_node;
 }
 
 void	exec_last_cmd(char **envp, t_cmd_lst *lst_node)
 {
+	printf("| \n");
 	printf("| EXEC LAST CMD\n");
+	dup2(lst_node->previous->pipe_fd_tab[0], STDIN_FILENO);
+	close_all_pipes(lst_node);
+	if (lst_node->valid_path)
+		execve(lst_node->valid_path, lst_node->cmd_args, envp);
 }
