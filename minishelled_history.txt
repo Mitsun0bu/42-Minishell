@@ -504,3 +504,42 @@ echo hello | rev
 echo hello | rev
 echo hello | rev
 echo hello | rev
+echo hello | rev | rev
+echo hello | rev | rev | rev
+echo hello | rev | rev | rev
+echo hello
+echo hello
+echo hello > outfile
+echo hello > outfile | rev
+echo hello > outfile | rev
+echo hello > outfile_1 > outfile_2 | rev
+echo hello > outfile_1 > outfile_2 | rev
+echo hello > outfile_1 > outfile_2 | rev
+echo hello > outfile_1 > outfile_2 | rev
+echo hello > outfile_1 > outfile_2 | rev
+echo hello > outfile_1 > outfile_2 | rev
+echo hello > outfile_1 > outfile_2 | rev
+echo hello > outfile_1 > outfile_2 | rev
+echo hello | rev
+echo hello > outfile | rev
+echo hello > outfile | rev
+echo hello > outfile_1 > outfile_2 | rev
+echo hello > outfile_1 > outfile_2 | rev
+echo hello > outfile_1
+echo hellolastreet > outfile_1 | rev
+echo hello > outfile | rev
+echo hello > outfile | rev
+echo hello > outfile | rev
+echo hello > outfile | rev
+echo hello > outfile | rev
+echo hello > outfile | rev
+echo hello > outfile | rev
+echo hello > outfile | rev
+echo hello > outfile | rev
+echo hello > outfile | rev
+echo hello > outfile | rev
+echo hello > outfile | rev
+echo hello > outfile | rev
+echo hello > outfile | rev
+echo hello > outfile | rev
+echo hello > outfile | rev
