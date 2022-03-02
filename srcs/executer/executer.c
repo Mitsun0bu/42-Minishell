@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 14:51:13 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/02 17:40:47 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/02 18:48:16 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,18 +28,18 @@ void	exec_single_cmd(char **envp, t_input *input, t_cmd_lst *lst_node)
 {
 	if (ft_strncmp(lst_node->cmd_name, "cd", 2) == 0)
 		ft_cd(lst_node);
-	else if (ft_strncmp(lst_node->cmd_name, "echo", 4) == 0)
-		ft_echo(lst_node);
+	// else if (ft_strncmp(lst_node->cmd_name, "echo", 4) == 0)
+	// 	ft_echo(lst_node);
 	else if (ft_strncmp(lst_node->cmd_name, "pwd", 3) == 0)
 		ft_pwd(lst_node);
 	else if (ft_strncmp(lst_node->cmd_name, "env", 3) == 0)
 		ft_env(input);
 	else if (ft_strncmp(lst_node->cmd_name, "exit", 4) == 0)
 		ft_exit();
-	// else if (ft_strncmp(input->cmd_exec_tab[0][0], "export", 6) == 0)
-	// 	ft_export(input);
-	// else if (ft_strncmp(input->cmd_exec_tab[0][0], "unset", 5) == 0)
-	// 	ft_unset(input);
+	else if (ft_strncmp(lst_node->cmd_name, "export", 6) == 0)
+		ft_export(input);
+	else if (ft_strncmp(lst_node->cmd_name, "unset", 5) == 0)
+		ft_unset(input);
 	else
 		execve(lst_node->valid_path, lst_node->cmd_args, envp);
 }
@@ -74,6 +74,8 @@ void	exec_mid_cmd(char **envp, t_input *input, t_cmd_lst *lst_node)
 	printf("| EXEC A CMD\n");
 	redir_in = 0;
 	redir_out = 0;
+	if (lst_node->n_input_redir)
+		redir_in = redir_input(lst_node);
 	if (lst_node->n_output_redir)
 		redir_out = redir_output(lst_node);
 	if (lst_node->n_app_output_redir)

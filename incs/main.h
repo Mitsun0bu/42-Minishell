@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 17:07:56 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/02 17:40:57 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/02 19:11:59 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,9 @@
 
 #ifndef MAIN_H
 # define MAIN_H
+
+# define TRUNCATING_OUTPUT 42
+# define APPENDING_OUTPUT 43
 
 /* ************************************************************************** */
 /*                                                                            */
@@ -31,6 +34,7 @@ typedef struct s_input
 	struct s_env	*env_tab;
 	int				n_env;
 	char			**cmd_tab;
+	int				*last_output_redir_tab;
 	char			****redir_tab;
 	char			***cmd_exec_tab;
 	char			**paths_tab;
@@ -54,6 +58,7 @@ typedef struct s_cmd_lst
 	char				**output_redir;
 	char				**app_output_redir;
 	char				**heredoc;
+	int					last_output_redir;
 	int					*fd_input;
 	int					*fd_output;
 	int					*fd_app_output;

@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 11:48:19 by llethuil          #+#    #+#             */
-/*   Updated: 2022/02/23 16:36:11 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/02 19:12:08 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	free_struct(t_input *input)
 {
 	ft_free(input->cmd_line);
 	free_double(input->cmd_tab);
+	free(input->last_output_redir_tab);
 	free_quad(input->redir_tab);
 	free_triple(input->cmd_exec_tab);
 	free_double(input->paths_tab);

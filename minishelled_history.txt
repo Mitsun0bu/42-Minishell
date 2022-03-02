@@ -622,3 +622,8 @@ echo hello
 echo hello
 echo hello
 echo hello
+echo hello | rev > outfile >> outfile_1 >> outfile_2 > outfile_3 | rev
+echo hello | rev > outfile >> outfile_1 >> outfile_2 > outfile_3 | rev
+echo hello | rev > outfile >> outfile_1 >> outfile_2 > outfile_3 | rev
+echo hello | rev > outfile >> outfile_1 >> outfile_2 > outfile_3 | rev
+echo hello | rev > outfile >> outfile_1 >> outfile_2 > outfile_3 | rev
