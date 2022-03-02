@@ -543,3 +543,82 @@ echo hello > outfile | rev
 echo hello > outfile | rev
 echo hello > outfile | rev
 echo hello > outfile | rev
+echo hello > outfile | rev
+echo hello > outfile | rev
+echo hello > outfile | rev
+echo hello > outfile | rev
+echo hello > outfile | rev
+echo hello > outfile | rev
+echo hello > outfile | rev
+echo hello > outfile | rev
+echo hello > outfile | rev
+echo hello > outfile | rev
+echo hello > outfile | rev
+echo hello > outfile_1 > outfile_2 | rev
+echo hello > outfile_1 > outfile_2 | rev
+echo hello > outfile_1 > outfile_2 | rev
+echo hello > outfile_1 > outfile_2 | rev
+echo hello > outfile | rev
+echo hello > outfile | rev
+echo hello > outfile | rev
+echo hello > outfile | rev
+echo hello > outfile | rev
+echo hello > outfile | rev
+echo hello > outfile | rev
+echo hello > outfile | rev
+echo hello > outfile | rev
+echo hello > outfile | rev
+echo hello > outfile | rev
+echo hello > outfile | rev
+echo hello > outfile | rev
+echo hello > outfile | rev
+echo hello > outfile | rev
+echo hello > outfile | rev
+echo hello > outfile | rev
+echo hello > outfile | rev
+echo hello > outfile | rev
+echo hello > outfile | rev
+echo hello > outfile | rev
+echo hello > outfile | rev
+echo hello > outfile | rev
+echo hello > outfile | rev
+echo hello > outfile | rev
+echo hello > outfile | rev
+echo hello > outfile | rev
+echo hello > outfile | rev
+echo hello > outfile | rev
+echo hello > outfile | rev
+echo hello > outfile | rev
+echo hello > outfile | rev
+echo hello > outfile | rev
+echo hello > outfile | rev
+echo hello > outfile | rev
+echo hello > outfile | sleep 3
+echo hello > outfile | sleep 3
+echo hello > outfile_1 > outfile_2 | sleep 3
+echo hello > outfile_1 > outfile_2 | sleep 3
+cat < infile_1 < infile_2 > outfile | rev
+cat < infile_1 < infile_2 >> outfile_1 >> outfile_1 | rev
+cat < infile_1 < infile_2 >> outfile_1 >> outfile_1 | rev
+cat < infile_1 < infile_2 >> outfile_1 >> outfile_1 | rev
+echo hello > outfile | rev
+echo hello > outfile | rev
+echo hello > outfile | rev
+echo hello > outfile | rev
+echo hello > outfile | rev
+echo hello > outfile | rev
+echo hello > outfile | rev
+if (lst_node->n_output_redir)
+echo hello | rev > outfile > outfile_1
+echo hello | rev >> outfile >> outfile_1
+echo hello | rev >> outfile >> outfile_1
+echo hello | rev < infile_2 > outfile
+echo hello | rev < infile_2 > outfile
+echo hello | rev < infile_2 > outfile
+echo hello | rev > outfile | rev
+echo hello | rev
+echo hello | rev
+echo hello
+echo hello
+echo hello
+echo hello

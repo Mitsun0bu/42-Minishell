@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 12:09:40 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/01 17:44:04 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/02 17:32:52 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,10 @@
 
 /* executer/executer.c */
 int		executer(char **envp, t_input *input, t_cmd_lst **lst_node);
-void	exec_single_cmd(char **envp, t_input *input, t_cmd_lst **lst_node);
-int		exec_all_cmd(char **envp, t_input *input, t_cmd_lst **lst_node);
-void	exec_first_cmd(char **envp, t_cmd_lst *lst_node);
-void	exec_mid_cmd(char **envp, t_cmd_lst *lst_node);
-void	exec_last_cmd(char **envp, t_cmd_lst *lst_node);
+void	exec_single_cmd(char **envp, t_input *input, t_cmd_lst *lst_node);
+void	exec_first_cmd(char **envp, t_input *input, t_cmd_lst *lst_node);
+void	exec_mid_cmd(char **envp, t_input *input, t_cmd_lst *lst_node);
+void	exec_last_cmd(char **envp, t_input *input, t_cmd_lst *lst_node);
 
 /* executer/file_manager.c */
 int		open_files(t_cmd_lst **lst_node);
@@ -55,10 +54,17 @@ char	*assign_path(char *arg, t_input *input, t_cmd_lst *lst_node);
 
 /* executer/pipe_manager.c */
 void	open_all_pipes(t_cmd_lst **lst_node);
+void	open_single_pipe(int *fd_tab);
 void	close_all_pipes(t_cmd_lst *lst_node);
+void	close_single_pipe(int *fd_tab);
 
 /* executer/pipex.c */
 int		pipex(char **envp, t_input *input, t_cmd_lst **lst_node);
+
+/*executer/redir_manager.c */
+int		redir_input(t_cmd_lst *lst_node);
+int		redir_output(t_cmd_lst *lst_node);
+int		redir_app_output(t_cmd_lst *lst_node);
 
 /* executer/utils_pipex.c */
 void	check_fork_error(pid_t	process);

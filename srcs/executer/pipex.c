@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 17:31:40 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/01 17:31:55 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/02 17:40:54 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,11 @@ int	pipex(char **envp, t_input *input, t_cmd_lst **lst_node)
 		input->process[i] = fork();
 		check_fork_error(input->process[i]);
 		if (i == 0 && input->process[i] == 0)
-			exec_first_cmd(envp, *lst_node);
+			exec_first_cmd(envp, input, *lst_node);
 		else if (i != 0 && i != input->n_cmd - 1 && input->process[i] == 0)
-			exec_mid_cmd(envp, *lst_node);
+			exec_mid_cmd(envp, input, *lst_node);
 		else if (i == input->n_cmd - 1 && input->process[i] == 0)
-			exec_last_cmd(envp, *lst_node);
+			exec_last_cmd(envp, input, *lst_node);
 		*lst_node = (*lst_node)->next;
 	}
 	*lst_node = start;

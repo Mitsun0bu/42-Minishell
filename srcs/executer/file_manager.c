@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 12:14:03 by llethuil          #+#    #+#             */
-/*   Updated: 2022/02/23 14:25:08 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/02 15:31:07 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ int	open_infiles(t_cmd_lst *lst_node)
 {
 	int	i;
 
-	printf("n_input_redir = %d\n", lst_node->n_input_redir);
 	lst_node->fd_input = safe_malloc(sizeof(int), lst_node->n_input_redir);
 	i = -1;
 	while(++i < lst_node->n_input_redir)
