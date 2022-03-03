@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 10:22:00 by agirardi          #+#    #+#             */
-/*   Updated: 2022/02/23 16:32:02 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/03 16:18:39 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,29 @@ void	remove_from_env(t_input *input, char *key)
 	}
 	ft_free(input->env_tab);
 	input->env_tab = buffer;
+}
+
+void	change_value(t_input *input, char *key, char *value)
+{
+	int	i;
+
+	i = -1;
+	while (++i < input->n_env)
+	{
+		if (ft_strncmp(key, input->env_tab[i].key, ft_strlen(key)) == 0)
+		{
+			if (ft_strlen(key) == ft_strlen(input->env_tab[i].key))
+			{
+				free(input->env_tab[i].value);
+				input->env_tab[i].value = value;
+				if (!value)
+					input->env_tab[i].is_global = 2;
+				else
+					input->env_tab[i].is_global = 1;
+			}
+		}
+	}
+	free(key);
 }
 
 // check nom variable -> 1?\*"'

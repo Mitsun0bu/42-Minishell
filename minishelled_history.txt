@@ -627,3 +627,99 @@ echo hello | rev > outfile >> outfile_1 >> outfile_2 > outfile_3 | rev
 echo hello | rev > outfile >> outfile_1 >> outfile_2 > outfile_3 | rev
 echo hello | rev > outfile >> outfile_1 >> outfile_2 > outfile_3 | rev
 echo hello | rev > outfile >> outfile_1 >> outfile_2 > outfile_3 | rev
+echo hello | rev > outfile >> outfile_1 >> outfile_2 > outfile_3 | rev
+echo hello | rev > outfile >> outfile_1 >> outfile_2 > outfile_3 | rev
+echo hello | rev > outfile >> outfile_1 >> outfile_2 > outfile_3 | rev
+echo hello | rev > outfile >> outfile_1 >> outfile_2 > outfile_3 | rev
+echo hello | rev > outfile >> outfile_1 >> outfile_2 > outfile_3 | rev
+echo hello | rev > outfile >> outfile_1 >> outfile_2 > outfile_3 | rev
+echo hello > outfile >> outfile_1 >> outfile_2 > outfile_3
+echo hello | rev > outfile >> outfile_1 < infile_1 > outfile_3 | rev
+echo hello | rev > outfile >> outfile_1 < infile_1 > outfile_3 | rev
+echo hello | rev > outfile >> outfile_1 < infile_1 > outfile_3 | rev
+echo hello | rev > outfile >> outfile_1 < infile_1 > outfile_3 | rev
+echo hello | rev | rev > outfile >> outfile_1 < infile_1 > outfile_3
+echo hello | rev | rev > outfile >> outfile_1 < infile_1 > outfile_3
+echo hello | rev > outfile >> outfile_1 < infile_1 > outfile_3 | rev
+echo hello | rev | rev
+echo hello | rev > outfile >> outfile_1 < infile_1 > outfile_3 | rev
+echo hello | rev > outfile >> outfile_1 < infile_1 > outfile_3 | rev
+echo hello | rev | rev | rev | rev | rev | rev | rev
+echo hello | rev | rev | rev | rev | rev | rev | rev | rev | rev
+cat infile_1 | cat | cat | cat | cat | cat | cat | cat | cat | cat
+cat infile_1 | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat
+echo hello
+echo hello
+echo hello
+echo hello | rev > outfile >> outfile_1 >> outfile_2 > outfile_3 | rev
+echo hello | rev > outfile >> outfile_1 >> outfile_2 > outfile_3 | rev
+echo hello | rev > outfile >> outfile_1 >> outfile_2 > outfile_3 | rev
+echo hello
+echo hello | rev
+echo hello | rev
+echo hello | rev
+echo hello | rev
+echo hello | rev
+echo hello | rev
+echo hello | rev
+echo hello | rev
+ls -l | rev
+echo hello | rev
+echo hello | rev
+echo hello | rev
+echo hello | rev
+echo hello | rev
+echo hello | rev
+echo hello | rev
+cd srcs 
+ls -la
+pwd
+cd srcs
+ls
+cd srcs
+ls -la
+pwd
+cd ..
+ls -la
+cd srcs | pwd
+exit
+exit
+env\
+env
+exit
+env
+exit
+pwd
+cd srcs
+pwd
+env
+export 
+export
+export
+echo hello
+echo hello
+export
+export
+export
+export
+unset PWD
+env
+export
+export
+export
+location export
+export
+export test=truc
+env
+export
+echo $PWD
+echo $PWD
+echo hello
+echo hello
+echo hello
+echo hello
+echo $PWD
+echo $PWD
+echo $PWD
+echo $PWD
+echo $PWD

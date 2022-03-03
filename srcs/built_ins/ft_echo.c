@@ -6,13 +6,13 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 10:55:57 by llethuil          #+#    #+#             */
-/*   Updated: 2022/02/23 14:25:12 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/03 14:49:24 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "main.h"
 
-void	ft_echo(t_cmd_lst *lst_node)
+int	ft_echo(t_cmd_lst *lst_node)
 {
 	int		i;
 	char	*message;
@@ -22,7 +22,7 @@ void	ft_echo(t_cmd_lst *lst_node)
 	if (!lst_node->cmd_args[1])
 		printf("\n");
 	else if (ft_strncmp(lst_node->cmd_args[1], "-n", 2) == 0 && !lst_node->cmd_args[2])
-		return ;
+		return (1);
 	else
 	{
 		if (ft_strncmp(lst_node->cmd_args[1], "-n", 2) == 0)
@@ -38,6 +38,7 @@ void	ft_echo(t_cmd_lst *lst_node)
 			printf("\n");
 	}
 	ft_free (message);
+	return (0);
 }
 
 void	print_message(char *message)

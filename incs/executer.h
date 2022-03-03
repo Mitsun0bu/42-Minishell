@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 12:09:40 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/02 17:32:52 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/03 16:00:57 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,12 @@
 
 /* executer/executer.c */
 int		executer(char **envp, t_input *input, t_cmd_lst **lst_node);
-void	exec_single_cmd(char **envp, t_input *input, t_cmd_lst *lst_node);
+
+/* executer/execution_manager.c */
 void	exec_first_cmd(char **envp, t_input *input, t_cmd_lst *lst_node);
 void	exec_mid_cmd(char **envp, t_input *input, t_cmd_lst *lst_node);
 void	exec_last_cmd(char **envp, t_input *input, t_cmd_lst *lst_node);
+void	exec_single_cmd(char **envp, t_input *input, t_cmd_lst *lst_node);
 
 /* executer/file_manager.c */
 int		open_files(t_cmd_lst **lst_node);
@@ -69,6 +71,7 @@ int		redir_app_output(t_cmd_lst *lst_node);
 /* executer/utils_pipex.c */
 void	check_fork_error(pid_t	process);
 int		wait_all_processes(t_input *input);
+// int		wait_all_processes(t_input *input, t_cmd_lst **lst_node);
 
 
 

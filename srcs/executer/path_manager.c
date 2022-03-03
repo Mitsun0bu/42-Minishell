@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 14:58:04 by llethuil          #+#    #+#             */
-/*   Updated: 2022/02/23 14:25:05 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/03 17:15:58 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,12 @@ void	path_manager(char **envp, t_input *input, t_cmd_lst **lst_node)
 	while (*lst_node)
 	{
 		// Reflechir à l'utilite du premier parametre de la fonction assign_path dans minishell
-		(*lst_node)->valid_path = assign_path("test", input, *lst_node);
+		if (ft_strncmp((*lst_node)->cmd_name, "export", 6) == 0)
+			(*lst_node)->valid_path = ft_strdup("export");
+		else if (ft_strncmp((*lst_node)->cmd_name, "unset", 5) == 0)
+			(*lst_node)->valid_path = ft_strdup("unset");
+		else
+			(*lst_node)->valid_path = assign_path("test", input, *lst_node);
 		*lst_node = (*lst_node)->next;
 	}
 	*lst_node = start;

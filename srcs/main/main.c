@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 17:07:38 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/02 19:12:07 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/03 17:15:52 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,16 +28,19 @@ int	main(int ac, char **av, char **envp)
 	init_shell();
 	init_env(&input, envp);
 	get_history(&input);
-	// while (1)
-	// {
+	while (1)
+	{
 		cmd_line_manager(&input);
+		parse_env(&input);
+		printf("%s\n", input.cmd_line);
 		lexer(&input);
 		parser(&input);
+		printf("args[1] = %s\n", input.cmd_exec_tab[0][1]);
 		cmd_lst_init(&input, &lst_node);
 		executer(envp, &input, &lst_node);
 		free_lst(&input, &lst_node);
 		free_struct(&input);
-	// }
+	}
 	free_env(&input);
 	return (0);
 }

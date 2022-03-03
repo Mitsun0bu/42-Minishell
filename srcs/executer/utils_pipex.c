@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 17:32:59 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/01 17:33:22 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/03 16:01:11 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,40 @@ int	wait_all_processes(t_input *input)
 	int	status;
 	int	i;
 
+	status = 0;
 	i = -1;
 	while (++i < input->n_cmd)
 	{
+		if(input->process[i] == 0)
+			printf("i am a child\n");
+		if(input->process[i] > 0)
+			printf("i am a parent\n");
 		waitpid(input->process[i], &status, 0);
 		printf("| STATUS PROCESS %d = %d\n", i, status);
 	}
 	return (status);
 }
+
+// int	wait_all_processes(t_input *input, t_cmd_lst **lst_node)
+// {
+// 	t_cmd_lst	*start;
+// 	int			status;
+// 	int			i;
+
+// 	start = *lst_node;
+// 	status = 0;
+// 	i = -1;
+// 	while (++i < input->n_cmd)
+// 	{
+// 		printf("| NODE #%d\n", (*lst_node)->cmd_index);
+// 		if(input->process[i] == 0)
+// 			printf("I AM A CHILD\n");
+// 		if(input->process[i] > 0)
+// 			printf("I AM A PARENT\n");
+// 		waitpid(input->process[i], &status, 0);
+// 		printf("| STATUS PROCESS %d = %d\n", i, status);
+// 		*lst_node = (*lst_node)->next;
+// 	}
+// 	*lst_node = start;
+// 	return (status);
+// }

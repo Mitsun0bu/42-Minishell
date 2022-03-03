@@ -6,7 +6,7 @@
 #    By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/25 15:43:51 by llethuil          #+#    #+#              #
-#    Updated: 2022/03/02 19:12:04 by llethuil         ###   ########lyon.fr    #
+#    Updated: 2022/03/03 17:01:07 by llethuil         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,20 +57,23 @@ INCS_LST	:=	built_ins.h							\
 				parser.h							\
 				utils.h								\
 
-SRCS_LST	:=	built_ins/built_ins.c				\
-				built_ins/ft_cd.c					\
+SRCS_LST	:=	built_ins/ft_cd.c					\
 				built_ins/ft_echo.c					\
 				built_ins/ft_env.c					\
 				built_ins/ft_exit.c					\
+				built_ins/ft_export.c				\
 				built_ins/ft_pwd.c					\
+				built_ins/ft_unset.c				\
 				cmd_line_manager/get_cmd_line.c		\
 				cmd_line_manager/cmd_line_manager.c	\
 				cmd_lst_init/cmd_lst_init.c			\
 				cmd_lst_init/node_manager.c			\
 				cmd_lst_init/utils_linked_lst.c		\
+				env_manager/env_parser.c			\
 				env_manager/env_utils.c				\
 				env_manager/env.c					\
 				executer/executer.c					\
+				executer/execution_manager.c		\
 				executer/file_manager.c				\
 				executer/path_manager.c				\
 				executer/pipe_manager.c				\

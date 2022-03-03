@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 11:56:09 by llethuil          #+#    #+#             */
-/*   Updated: 2022/02/23 15:24:45 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/03 16:27:55 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,22 +37,28 @@
 int		ft_cd(t_cmd_lst *lst_node);
 
 /* built_ins/ft_echo.c */
-void	ft_echo(t_cmd_lst *lst_node);
+int		ft_echo(t_cmd_lst *lst_node);
 void	print_message(char *message);
 
 /* built_ins/ft_env.c */
 int		ft_env(t_input *input);
 
 /* built_ins/ft_exit.c */
-void	ft_exit(void);
+int		ft_exit(void);
 
 /* built_ins/ft_pwd.c */
-void	ft_pwd(t_cmd_lst *lst_node);
+int		ft_pwd(t_cmd_lst *lst_node);
 
-/* built_ins/built_ins.c */
-int		ft_env(t_input *input);
+/* built_ins/ft_export.c */
 int		ft_export(t_input *input);
+int		parse_var(char *str, t_input *input);
+int		parse_key(char	*str, t_input *input, int type);
+char	*del_quotes(char	*str);
+void	print_export(t_input *input);
+
+/*built_ins/ft_unset.c */
 int		ft_unset(t_input *input);
+int		parse_arg(char *str);
 
 
 #endif
