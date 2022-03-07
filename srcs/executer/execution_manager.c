@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 10:41:38 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/07 17:20:26 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/07 18:42:18 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,10 @@ void	exec_first_cmd(char **envp, t_input *input, t_cmd_lst *lst_node)
 		if (lst_node->next != NULL)
 			dup2(lst_node->pipe_fd_tab[1], STDOUT_FILENO);
 	close_all_pipes(lst_node);
-	if (lst_node->valid_path)
-		exec_single_cmd(envp, input, lst_node);
-	else
+	if (ft_strncmp(lst_node->cmd_name, "./minishell", 11) == 0)
 		printf("failed\n");
+	if (lst_node->valid_path)
+		exit(exec_single_cmd(envp, input, lst_node));
 }
 
 void	exec_mid_cmd(char **envp, t_input *input, t_cmd_lst *lst_node)
@@ -72,7 +72,7 @@ void	exec_mid_cmd(char **envp, t_input *input, t_cmd_lst *lst_node)
 		dup2(lst_node->pipe_fd_tab[1], STDOUT_FILENO);
 	close_all_pipes(lst_node);
 	if (lst_node->valid_path)
-		exec_single_cmd(envp, input, lst_node);
+		exit(exec_single_cmd(envp, input, lst_node));
 }
 
 void	exec_last_cmd(char **envp, t_input *input, t_cmd_lst *lst_node)
@@ -100,25 +100,29 @@ void	exec_last_cmd(char **envp, t_input *input, t_cmd_lst *lst_node)
 		dup2(lst_node->previous->pipe_fd_tab[0], STDIN_FILENO);
 	close_all_pipes(lst_node);
 	if (lst_node->valid_path)
-		exec_single_cmd(envp, input, lst_node);
+		exit(exec_single_cmd(envp, input, lst_node));
 }
 
-void	exec_single_cmd(char **envp, t_input *input, t_cmd_lst *lst_node)
+int	exec_single_cmd(char **envp, t_input *input, t_cmd_lst *lst_node)
 {
+	int	status;
+
+	status = 0;
 	if (ft_strncmp(lst_node->cmd_name, "cd", 2) == 0)
-		exit(ft_cd(input, lst_node));
+		status = ft_cd(input, lst_node);
 	else if (ft_strncmp(lst_node->cmd_name, "echo", 4) == 0)
-		exit(ft_echo(lst_node));
+		status = ft_echo(lst_node);
 	else if (ft_strncmp(lst_node->cmd_name, "pwd", 3) == 0)
-		exit(ft_pwd(lst_node));
+		status = ft_pwd(lst_node);
 	else if (ft_strncmp(lst_node->cmd_name, "env", 3) == 0)
-		exit(ft_env(input));
+		status = ft_env(input);
 	else if (ft_strncmp(lst_node->cmd_name, "exit", 4) == 0)
-		exit(ft_exit());
+		status = ft_exit();
 	else if (ft_strncmp(lst_node->cmd_name, "export", 6) == 0)
-		exit(ft_export(input, lst_node));
+		status = ft_export(input, lst_node);
 	else if (ft_strncmp(lst_node->cmd_name, "unset", 5) == 0)
-		exit(ft_unset(input));
+		status = ft_unset(input);
 	else
 		execve(lst_node->valid_path, lst_node->cmd_args, envp);
+	return (status);
 }

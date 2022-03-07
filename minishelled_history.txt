@@ -810,3 +810,51 @@ exit
 cd srcs 
 cd srcs
 ls -la
+./minishell
+./minishell
+total 208
+drwxr-xr-x  17 llethuil  4221    578 Mar  7 17:42 .
+drwxr-xr-x   5 llethuil  4221    170 Feb 23 14:26 ..
+drwxr-xr-x  12 llethuil  4221    408 Mar  7 17:33 .git
+drwxr-xr-x  13 llethuil  4221    442 Mar  7 16:22 .objs
+-rw-r--r--   1 llethuil  4221   6063 Mar  7 11:22 Makefile
+drwxr-xr-x  13 llethuil  4221    442 Mar  7 11:05 incs
+-rw-r--r--   1 llethuil  4221     20 Mar  2 18:23 infile_1
+-rw-r--r--   1 llethuil  4221     20 Mar  2 16:55 infile_2
+drwxr-xr-x  93 llethuil  4221   3162 Mar  7 16:22 libft
+-rwxr-xr-x   1 llethuil  4221  58736 Mar  7 17:42 minishell
+-rw-r--r--   1 llethuil  4221  18048 Mar  7 17:42 minishelled_history.txt
+-rw-r--r--   1 llethuil  4221      0 Mar  3 14:40 outfile
+-rw-r--r--   1 llethuil  4221      0 Mar  2 19:12 outfile_1
+-rw-r--r--   1 llethuil  4221      0 Mar  3 10:50 outfile_2
+-rw-r--r--   1 llethuil  4221      6 Mar  3 14:40 outfile_3
+drwxr-xr-x@ 14 llethuil  4221    476 Mar  7 17:14 srcs
+-rw-r--r--   1 llethuil  4221   2433 Mar  3 11:36 test.txt
+hello
+exit
+hello
+echo hello | rev
+export
+cd srcs
+echo hello | rev
+q
+echo hello | rev
+cd srcs
+echo hello
+ls
+cat
+cat Makefile 
+cat Makefile
+ls
+ls
+cat Makefile
+cat Makefile
+cat Makefile
+echo hello
+echo hello
+cat Makefile 
+cat Makefile
+cat Makefile
+echo hello
+echo hello | grep h
+echo hello | cat Makefile 
