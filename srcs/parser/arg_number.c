@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 10:31:04 by agirardi          #+#    #+#             */
-/*   Updated: 2022/02/18 12:06:11 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/07 14:14:31 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	get_arg_num(char *str)
 			handle_quote(str, &i, &count, &red);
 		if (ft_strchr("<>", str[i]))
 			red = 1;
-		if ((ft_isalnum(str[i]) || str[i] == '-' || str[i] == '.')
+		if ((ft_isalnum(str[i]) || ft_strchr("-./\\", str[i]))
 			&& (i == 0 || ft_strchr(" <>", str[i - 1])))
 		{
 			if (red == 1)

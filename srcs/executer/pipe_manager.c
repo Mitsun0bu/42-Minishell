@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 10:32:58 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/03 11:58:33 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/07 11:39:38 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	open_all_pipes(t_cmd_lst **lst_node)
 {
 	t_cmd_lst	*start;
-	int 		i;
+	int			i;
 
 	i = -1;
 	start = *lst_node;
@@ -23,7 +23,7 @@ void	open_all_pipes(t_cmd_lst **lst_node)
 	{
 		open_single_pipe((*lst_node)->pipe_fd_tab);
 		if ((*lst_node)->next == NULL)
-			break;
+			break ;
 		*lst_node = (*lst_node)->next;
 	}
 	*lst_node = start;
@@ -40,7 +40,7 @@ void	open_single_pipe(int *fd_tab)
 
 void	close_all_pipes(t_cmd_lst *lst_node)
 {
-	int i;
+	int	i;
 
 	i = -1;
 	while (lst_node->previous)

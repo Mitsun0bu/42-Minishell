@@ -6,7 +6,7 @@
 #    By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/05 14:36:18 by llethuil          #+#    #+#              #
-#    Updated: 2022/02/16 13:15:15 by llethuil         ###   ########lyon.fr    #
+#    Updated: 2022/03/07 10:50:54 by llethuil         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -112,7 +112,7 @@ bonus: all
 
 clean:
 	${RM} ${OBJS}
-	printf "$(PINK)> Removing .o files ...$(END)\n"
+	printf "$(PINK)> Removing libft .o files ...$(END)\n"
 
 fclean: clean
 	${RM} ${NAME}

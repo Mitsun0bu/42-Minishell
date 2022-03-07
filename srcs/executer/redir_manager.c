@@ -6,13 +6,13 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 15:45:14 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/02 15:57:51 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/07 11:40:19 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-int redir_input(t_cmd_lst *lst_node)
+int	redir_input(t_cmd_lst *lst_node)
 {
 	int	i;
 
@@ -22,7 +22,7 @@ int redir_input(t_cmd_lst *lst_node)
 	return (1);
 }
 
-int redir_output(t_cmd_lst *lst_node)
+int	redir_output(t_cmd_lst *lst_node)
 {
 	int	i;
 
@@ -32,7 +32,7 @@ int redir_output(t_cmd_lst *lst_node)
 	return (1);
 }
 
-int redir_app_output(t_cmd_lst *lst_node)
+int	redir_app_output(t_cmd_lst *lst_node)
 {
 	int	i;
 

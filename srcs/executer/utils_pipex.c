@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 17:32:59 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/03 16:01:11 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/07 13:52:35 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,6 @@ int	wait_all_processes(t_input *input)
 	i = -1;
 	while (++i < input->n_cmd)
 	{
-		if(input->process[i] == 0)
-			printf("i am a child\n");
-		if(input->process[i] > 0)
-			printf("i am a parent\n");
 		waitpid(input->process[i], &status, 0);
 		printf("| STATUS PROCESS %d = %d\n", i, status);
 	}

@@ -6,32 +6,11 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 10:22:49 by llethuil          #+#    #+#             */
-/*   Updated: 2022/02/21 10:50:39 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/07 11:47:46 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "main.h"
-
-int	get_history(t_input *input)
-{
-	char	*cmd_line_history;
-
-	input->fd_history = open("minishelled_history.txt", O_CREAT | O_RDWR | O_APPEND, 0644);
-	if (input->fd_history < 0)
-	{
-		printf("Couldn't open history file");
-		exit(0);
-	}
-	cmd_line_history = "init";
-	while (cmd_line_history)
-	{
-		cmd_line_history = get_next_line(input->fd_history);
-		add_history(cmd_line_history);
-		ft_free(cmd_line_history);
-	}
-	close (input->fd_history);
-	return (0);
-}
+#include "main.h"
 
 char	*get_next_line(int fd)
 {
@@ -40,9 +19,6 @@ char	*get_next_line(int fd)
 
 	if (fd < 0 || fd > OPEN_MAX || BUFFER_SIZE <= 0)
 		return (NULL);
-	// line = malloc(sizeof(char) * 1);
-	// if (!line)
-	// 	return (NULL);
 	line = safe_malloc(sizeof(char), 1);
 	line[0] = 0;
 	line = ft_get_line(line, buff, fd);
@@ -108,9 +84,6 @@ char	*strjoin_gnl(char *line, char *buff)
 		buff_size = position_nl(buff) + 1;
 	else
 		buff_size = ft_strlen(buff);
-	// joined = malloc(sizeof(char) * (ft_strlen(line) + buff_size + 1));
-	// if (!joined)
-	// 	return (NULL);
 	joined = safe_malloc(sizeof(char), (ft_strlen(line) + buff_size + 1));
 	i_l = -1;
 	while (line[++i_l])

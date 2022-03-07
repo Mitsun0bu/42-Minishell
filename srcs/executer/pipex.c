@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 17:31:40 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/03 16:02:15 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/07 13:52:34 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	pipex(char **envp, t_input *input, t_cmd_lst **lst_node)
 	input->process = safe_malloc(sizeof(pid_t), input->n_cmd);
 	i = -1;
 	start = *lst_node;
-	while(++i < input->n_cmd)
+	while (++i < input->n_cmd)
 	{
 		input->process[i] = fork();
 		check_fork_error(input->process[i]);

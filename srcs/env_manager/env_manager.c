@@ -1,34 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env.c                                              :+:      :+:    :+:   */
+/*   env_manager.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 10:22:00 by agirardi          #+#    #+#             */
-/*   Updated: 2022/03/03 16:18:39 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/07 11:14:31 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
-
-void	init_env(t_input *input, char **envp)
-{
-	int	i;
-
-	i = 0;
-	while (envp[i])
-		i++;
-	input->env_tab = safe_malloc(sizeof(t_env), i);
-	input->n_env = i;
-	i = -1;
-	while (envp[++i])
-	{
-		input->env_tab[i].key = find_key(envp[i]);
-		input->env_tab[i].value = find_value(envp[i]);
-		input->env_tab[i].is_global = 1;
-	}
-}
 
 void	add_to_env(t_input *input, char *str, int is_global)
 {

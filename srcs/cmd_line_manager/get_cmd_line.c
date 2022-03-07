@@ -6,18 +6,18 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 16:38:19 by llethuil          #+#    #+#             */
-/*   Updated: 2022/02/23 16:53:14 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/07 11:28:21 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "main.h"
+#include "main.h"
 
 int	get_cmd_line(t_input *input)
 {
 	char	*buff;
 
 	buff = readline("minishelled > ");
-	while(!ft_strncmp(buff, "", ft_strlen(buff)))
+	while (!ft_strncmp(buff, "", ft_strlen(buff)))
 		buff = readline("minishelled > ");
 	if (ft_strlen(buff))
 	{

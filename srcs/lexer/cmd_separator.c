@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 11:29:56 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/02 18:48:23 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/07 13:58:16 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,6 @@
 
 int	single_cmd(t_input *input)
 {
-	// input->cmd_tab = malloc (sizeof(char *) * 2);
-	// if (!input->cmd_tab)
-	// 	return (1);
 	input->cmd_tab = safe_malloc (sizeof(char *), 2);
 	input->cmd_tab[0] = ft_strdup(input->cmd_line);
 	input->cmd_tab[0] = ft_strtrim(input->cmd_tab[0], " ");

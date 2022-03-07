@@ -6,11 +6,11 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 11:12:43 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/03 10:31:25 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/07 11:46:26 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "main.h"
+#include "main.h"
 
 void	skip_quotes(char *str, int *i)
 {

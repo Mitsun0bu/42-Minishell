@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 16:38:53 by llethuil          #+#    #+#             */
-/*   Updated: 2022/02/18 11:39:10 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/07 11:44:17 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,17 +23,11 @@ int	malloc_heredoc_redir_tab(t_input *input)
 		n_red = count_heredoc_redir(input->cmd_tab[i_cmd]);
 		if (!n_red)
 		{
-			// input->redir_tab[i_cmd][2] = malloc(2 * sizeof(char *));
-			// if (!input->redir_tab[i_cmd][2])
-			// 	return (1);
 			input->redir_tab[i_cmd][2] = safe_malloc(sizeof(char *), 2);
 			input->redir_tab[i_cmd][2][0] = NULL;
 		}
 		else
 		{
-			// input->redir_tab[i_cmd][2] = malloc((n_red + 1) * sizeof(char *));
-			// if (!input->redir_tab[i_cmd][2])
-			// 	return (1);
 			input->redir_tab[i_cmd][2] = safe_malloc(sizeof(char *), (n_red + 1));
 			input->redir_tab[i_cmd][2][n_red] = NULL;
 		}
@@ -68,9 +62,6 @@ int	malloc_heredoc_name(t_input *input, int *i_cmd)
 	while (++i_red < count_heredoc_redir(input->cmd_tab[*i_cmd]))
 	{
 		len = count_heredoc_name_len(input->cmd_tab[*i_cmd], &i_red);
-		// input->redir_tab[*i_cmd][2][i_red] = malloc((len + 1) * sizeof(char));
-		// if (!input->redir_tab[*i_cmd][2][i_red])
-		// 	return (1);
 		input->redir_tab[*i_cmd][2][i_red] = safe_malloc(sizeof(char), (len + 1));
 		input->redir_tab[*i_cmd][2][i_red][len] = '\0';
 	}

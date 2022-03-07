@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.h                                            :+:      :+:    :+:   */
+/*   env_parser.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/14 11:29:37 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/07 10:44:50 by llethuil         ###   ########lyon.fr   */
+/*   Created: 2022/02/15 10:21:58 by agirardi          #+#    #+#             */
+/*   Updated: 2022/03/07 11:16:21 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef UTILS_H
-# define UTILS_H
+#ifndef ENV_PARSER_H
+# define ENV_PARSER_H
 
 /* ************************************************************************** */
 /*                                                                            */
@@ -26,7 +26,6 @@
 /* ************************************************************************** */
 
 # include "main.h"
-# include <stdlib.h>
 
 /* ************************************************************************** */
 /*                                                                            */
@@ -34,28 +33,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-/* utils/utils_free_lst */
-void	free_lst(t_input *input, t_cmd_lst	**lst_node);
-void	free_node(t_input *input, t_cmd_lst *lst_node);
-
-/* utils/utils_free.c */
-void	free_input_struct(t_input *input);
-void	free_env_struct(t_input *input);
-
-/* utils/utils_free.c */
-void	ft_free(void *ptr);
-void	free_double(char **array);
-void	free_quad(char ****array);
-void	free_triple(char ***array);
-
-/* utils/utils_history.c */
-char	*get_next_line(int fd);
-char	*ft_get_line(char *line, char *buff, int fd);
-int		position_nl(char *str);
-char	*strjoin_gnl(char *line, char *buff);
-
-/* utils.c */
-void	skip_quotes(char *str, int *i);
-void	*safe_malloc(size_t size, size_t count);
+/* env_parser/env_parser.c */
+void	env_parser(t_input *input);
+void	fill_buffer(char *buffer, t_input *input);
+void	fill_env(char *buffer, int *i, int *j, t_input *input);
+void	fill_quotes(char *buffer, int *i, int *j, t_input *input);
 
 #endif

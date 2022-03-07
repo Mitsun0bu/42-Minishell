@@ -6,11 +6,11 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 10:55:57 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/03 14:49:24 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/07 11:25:24 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "main.h"
+#include "main.h"
 
 int	ft_echo(t_cmd_lst *lst_node)
 {
@@ -31,7 +31,7 @@ int	ft_echo(t_cmd_lst *lst_node)
 		{
 			message = ft_strjoin(message, lst_node->cmd_args[i]);
 			if (i != lst_node->n_args - 1)
-			message = ft_strjoin(message, " ");
+				message = ft_strjoin(message, " ");
 		}
 		print_message(message);
 		if (ft_strncmp(lst_node->cmd_args[1], "-n", 2) != 0)

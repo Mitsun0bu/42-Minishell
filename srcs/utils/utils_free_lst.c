@@ -6,11 +6,11 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 12:09:53 by llethuil          #+#    #+#             */
-/*   Updated: 2022/02/23 14:25:03 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/07 11:46:53 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "main.h"
+#include "main.h"
 
 void	free_lst(t_input *input, t_cmd_lst	**lst_node)
 {

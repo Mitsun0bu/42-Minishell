@@ -1,47 +1,48 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_unset.c                                         :+:      :+:    :+:   */
+/*   utils_env_finder.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/01 11:40:20 by agirardi          #+#    #+#             */
-/*   Updated: 2022/03/07 11:26:59 by llethuil         ###   ########lyon.fr   */
+/*   Created: 2022/03/07 11:11:10 by llethuil          #+#    #+#             */
+/*   Updated: 2022/03/07 11:33:20 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-int	ft_unset(t_input *input)
+char	*find_key(char *str)
 {
 	char	*key;
 	int		i;
 
-	if (input->n_cmd > 1)
-		return (0);
 	i = 0;
-	while (input->cmd_exec_tab[0][++i])
-	{
-		key = del_quotes(input->cmd_exec_tab[0][i]);
-		if (parse_arg(key) && check_dubble(key, input))
-			remove_from_env(input, key);
-		ft_free(key);
-	}
-	print_export(input);
-	return (0);
+	while (str[i] != '=' && str[i])
+		i++;
+	key = ft_substr(str, 0, i);
+	return (key);
 }
 
-int	parse_arg(char *str)
+char	*find_value(char *str)
 {
-	int	i;
+	char	*value;
+	int		key_count;
+	int		i;
 
-	if (ft_isdigit(str[0]))
-		return (0);
+	key_count = 0;
 	i = -1;
-	while (str[++i])
+	while (str[++i] != '=' && str[i])
+		key_count++;
+	if (!str[i + 1])
+		return (0);
+	if (key_count == (int)ft_strlen(str))
 	{
-		if ((!ft_isalnum(str[i]) && str[i] != '_'))
-			return (0);
+		printf("!\n");
+		return (0);
 	}
-	return (1);
+	while (str[i])
+		i++;
+	value = ft_substr(str, key_count + 1, i);
+	return (value);
 }

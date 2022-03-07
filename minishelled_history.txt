@@ -723,3 +723,38 @@ echo $PWD
 echo $PWD
 echo $PWD
 echo $PWD
+echo hello
+echo $PWD
+echo hello
+echo hello
+echo hello
+echo $PWD
+echo $PWD
+echo $PWD
+echo $PWD
+echo $PWD
+echo $PWD
+echo $PWD
+echo $PWD
+echo $PWD
+echo $PWD
+echo $PWD
+echo $PWD
+echo $PWD
+echo $PWD
+echo $PWD
+echo $PWD
+echo $PWD
+echo $PWD sfsddgh
+echo $PWD sfsddgh
+echo $PWD
+echo $PWD
+echo "$PWD"$PWD$PWD
+echo "$PWD"$PWD$PWD
+cd srcs
+ll
+ls -l
+export
+export test=machin
+export
+export | grep test

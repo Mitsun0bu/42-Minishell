@@ -6,11 +6,11 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 16:33:25 by llethuil          #+#    #+#             */
-/*   Updated: 2022/02/24 13:03:53 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/07 11:27:35 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "main.h"
+#include "main.h"
 
 void	cmd_line_manager(t_input *input)
 {

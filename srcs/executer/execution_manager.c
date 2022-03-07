@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 10:41:38 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/03 16:41:00 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/07 13:52:32 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,13 @@ void	exec_first_cmd(char **envp, t_input *input, t_cmd_lst *lst_node)
 	redir = 0;
 	if (lst_node->n_input_redir)
 		redir = redir_input(lst_node);
-	if (input->last_output_redir_tab[0] == TRUNCATING_OUTPUT)
+	if (input->last_output_redir_tab[0] == TRUNC_OUTPUT)
 	{
 		if (lst_node->n_app_output_redir)
 			redir = redir_app_output(lst_node);
 		redir = redir_output(lst_node);
 	}
-	else if (input->last_output_redir_tab[0] == APPENDING_OUTPUT)
+	else if (input->last_output_redir_tab[0] == APP_OUTPUT)
 	{
 		if (lst_node->n_app_output_redir)
 			redir = redir_output(lst_node);
@@ -54,13 +54,13 @@ void	exec_mid_cmd(char **envp, t_input *input, t_cmd_lst *lst_node)
 	redir_out = 0;
 	if (lst_node->n_input_redir)
 		redir_in = redir_input(lst_node);
-	if (input->last_output_redir_tab[lst_node->cmd_index] == TRUNCATING_OUTPUT)
+	if (input->last_output_redir_tab[lst_node->cmd_index] == TRUNC_OUTPUT)
 	{
 		if (lst_node->n_app_output_redir)
 			redir_out = redir_app_output(lst_node);
 		redir_out = redir_output(lst_node);
 	}
-	else if (input->last_output_redir_tab[lst_node->cmd_index] == APPENDING_OUTPUT)
+	else if (input->last_output_redir_tab[lst_node->cmd_index] == APP_OUTPUT)
 	{
 		if (lst_node->n_app_output_redir)
 			redir_out = redir_output(lst_node);
@@ -78,18 +78,19 @@ void	exec_mid_cmd(char **envp, t_input *input, t_cmd_lst *lst_node)
 void	exec_last_cmd(char **envp, t_input *input, t_cmd_lst *lst_node)
 {
 	int	redir;
+
 	printf("| \n");
 	printf("| EXEC LAST CMD\n");
 	redir = 0;
 	if (lst_node->n_input_redir)
 		redir = redir_input(lst_node);
-	if (input->last_output_redir_tab[lst_node->cmd_index] == TRUNCATING_OUTPUT)
+	if (input->last_output_redir_tab[lst_node->cmd_index] == TRUNC_OUTPUT)
 	{
 		if (lst_node->n_app_output_redir)
 			redir = redir_app_output(lst_node);
 		redir = redir_output(lst_node);
 	}
-	else if (input->last_output_redir_tab[lst_node->cmd_index] == APPENDING_OUTPUT)
+	else if (input->last_output_redir_tab[lst_node->cmd_index] == APP_OUTPUT)
 	{
 		if (lst_node->n_app_output_redir)
 			redir = redir_output(lst_node);
@@ -104,7 +105,6 @@ void	exec_last_cmd(char **envp, t_input *input, t_cmd_lst *lst_node)
 
 void	exec_single_cmd(char **envp, t_input *input, t_cmd_lst *lst_node)
 {
-	printf("hello from exec single\n");
 	if (ft_strncmp(lst_node->cmd_name, "cd", 2) == 0)
 		exit(ft_cd(lst_node));
 	else if (ft_strncmp(lst_node->cmd_name, "echo", 4) == 0)

@@ -6,27 +6,16 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 11:48:19 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/02 19:12:08 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/07 11:46:33 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "main.h"
+#include "main.h"
 
 void	ft_free(void *ptr)
 {
 	free(ptr);
 	ptr = NULL;
-}
-
-void	free_struct(t_input *input)
-{
-	ft_free(input->cmd_line);
-	free_double(input->cmd_tab);
-	free(input->last_output_redir_tab);
-	free_quad(input->redir_tab);
-	free_triple(input->cmd_exec_tab);
-	free_double(input->paths_tab);
-	// reflechir au free des tableaux de fd qui ne seront pas malloc si il y a une seule commande a executer
 }
 
 void	free_double(char **array)

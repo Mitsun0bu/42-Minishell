@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 13:25:05 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/03 10:16:25 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/07 11:43:39 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,6 @@ int	malloc_app_output_name(t_input *input, int *i_cmd)
 	while (++i_red < count_app_output_redir(input->cmd_tab[*i_cmd]))
 	{
 		len = count_app_output_name_len(input->cmd_tab[*i_cmd], &i_red);
-		// input->redir_tab[*i_cmd][3][i_red] = malloc((len + 1) * sizeof(char));
-		// if (!input->redir_tab[*i_cmd][3][i_red])
-		// 	return (1);
 		input->redir_tab[*i_cmd][3][i_red] = safe_malloc(sizeof(char), (len + 1));
 		input->redir_tab[*i_cmd][3][i_red][len] = '\0';
 	}

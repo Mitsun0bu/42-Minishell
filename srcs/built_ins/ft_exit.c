@@ -6,11 +6,11 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 11:51:38 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/03 16:08:00 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/07 11:26:27 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "main.h"
+#include "main.h"
 
 int	ft_exit(void)
 {

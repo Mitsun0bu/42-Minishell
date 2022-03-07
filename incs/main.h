@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 17:07:56 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/03 17:15:57 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/07 11:34:46 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@
 #ifndef MAIN_H
 # define MAIN_H
 
-# define TRUNCATING_OUTPUT 42
-# define APPENDING_OUTPUT 43
+# define TRUNC_OUTPUT 42
+# define APP_OUTPUT 43
 
 /* ************************************************************************** */
 /*                                                                            */
@@ -85,9 +85,11 @@ typedef struct s_env
 # include "cmd_line_manager.h"
 # include "cmd_lst_init.h"
 # include "env_manager.h"
+# include "env_parser.h"
 # include "executer.h"
 # include "lexer.h"
 # include "parser.h"
+# include "shell_initializer.h"
 # include "utils.h"
 
 /* opendir, readdir, closedir */
@@ -151,9 +153,6 @@ typedef struct s_env
 /*                              ~~~ PROTOTYPES ~~~                            */
 /*                                                                            */
 /* ************************************************************************** */
-
-/* main/init_shell.c */
-void	init_shell(void);
 
 /* main/main.c */
 int	main(int ac, char **av, char **envp);

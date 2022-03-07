@@ -6,15 +6,15 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 18:48:00 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/03 10:37:55 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/07 11:41:50 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "main.h"
+#include "main.h"
 
-int		fill_last_output_redir_type_tab(t_input *input)
+int	fill_last_output_redir_type_tab(t_input *input)
 {
-	int i_cmd;
+	int	i_cmd;
 	int	i_start;
 
 	input->last_output_redir_tab = safe_malloc(sizeof(int), input->n_cmd);
@@ -34,12 +34,12 @@ int	find_output_type(char *str, int *i)
 		if (str[*i] == '\'' || str[*i] == '"')
 			back_skip_quotes(str, i);
 		else if (str[*i] == '>' && str[*i - 1] != '>')
-			return (TRUNCATING_OUTPUT);
+			return (TRUNC_OUTPUT);
 		else if (str[*i] == '>' && str[*i - 1] == '>')
-			return(APPENDING_OUTPUT);
+			return (APP_OUTPUT);
 		(*i)--;
 	}
-	return(0);
+	return (0);
 }
 
 void	back_skip_quotes(char *str, int *i)

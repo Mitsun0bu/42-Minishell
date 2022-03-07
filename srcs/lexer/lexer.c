@@ -6,11 +6,11 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 11:26:57 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/03 10:39:13 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/07 13:52:39 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "main.h"
+#include "main.h"
 
 void	lexer(t_input *input)
 {
@@ -19,12 +19,6 @@ void	lexer(t_input *input)
 	else
 		split_multi_cmd(input);
 	fill_last_output_redir_type_tab(input);
-	printf("\n----- TESTEUR DU DETECTEUR DE TYPE D'OUTPUT -----\n");
-	int i;
-	i = -1;
-	while (++i < input->n_cmd)
-		printf("| COMMANDE[%d] = %d\n", i, input->last_output_redir_tab[i]);
-	printf("----------------------------------------------\n");
 	malloc_redir_tab(input);
 	malloc_redir_subdiv(input);
 	malloc_input_redir_tab(input);
@@ -47,6 +41,22 @@ void	lexer(t_input *input)
 	// printf("----------------------------------------------\n");
 	// /* =====		END OF TEST		===== */
 
+	// /* =====	TEST OUTPUT TYPE	===== */
+	// printf("\n----- TESTEUR DU DETECTEUR DE TYPE D'OUTPUT -----\n");
+	// int	i;
+	// i = -1;
+	// while (++i < input->n_cmd)
+	// 	printf("| COMMANDE[%d] = %d\n", i, input->last_output_redir_tab[i]);
+	// printf("----------------------------------------------\n");
+	// /* =====		END OF TEST		===== */
+
+	/* ===== TEST REDIR MANAGER ===== */
+	// int	i;
+	// i = -1;
+	// while (++i)
+	// 	printf("%c\n", input->redir_tab[i]);
+	/* =====		END OF TEST		===== */
+
 	// ---------------- FINAL TEST ---------------- //
 	// int	i = -1;
 	// while(input->redir_tab[++i])
@@ -68,10 +78,3 @@ void	lexer(t_input *input)
 	// 	}
 	// }
 	// -------------------------------------------- //
-
-	/* ===== TEST REDIR MANAGER ===== */
-	// int	i;
-	// i = -1;
-	// while (++i)
-	// 	printf("%c\n", input->redir_tab[i]);
-	/* =====		END OF TEST		===== */

@@ -6,15 +6,13 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 16:58:42 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/03 17:15:59 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/07 13:53:36 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-static void	fill_quotes(char *buffer, int *i, int *j, t_input *input);
-
-void	parse_env(t_input *input)
+void	env_parser(t_input *input)
 {
 	char	*buffer;
 	int		size;
@@ -38,34 +36,6 @@ void	parse_env(t_input *input)
 	fill_buffer(buffer, input);
 	free(input->cmd_line);
 	input->cmd_line = buffer;
-}
-
-int	count_quotes(char *str, int *i, t_input *input)
-{
-	int		count;
-	char	c;
-
-	count = 0;
-	c = str[*i];
-	count++;
-	(*i)++;
-	while (str[*i] != c)
-	{
-		if (str[*i] == '$' && c == '\"')
-		{
-			count += count_env(str, i, 0, input);
-			if (str[*i] == c)
-				break ;
-		}
-		else
-		{
-			count++;
-			(*i)++;
-		}
-	}
-	count++;
-	(*i)++;
-	return (count);
 }
 
 void	fill_buffer(char *buffer, t_input *input)
@@ -113,7 +83,7 @@ void	fill_env(char *buffer, int *i, int *j, t_input *input)
 	free(key);
 }
 
-static void	fill_quotes(char *buffer, int *i, int *j, t_input *input)
+void	fill_quotes(char *buffer, int *i, int *j, t_input *input)
 {
 	char	c;
 

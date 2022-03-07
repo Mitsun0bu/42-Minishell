@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 13:23:14 by llethuil          #+#    #+#             */
-/*   Updated: 2022/02/17 18:04:24 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/07 14:13:13 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,12 @@ int	parser(t_input *input)
 	// while (input->cmd_exec_tab[++i])
 	// {
 	// 	j = -1;
-	// 	printf("\nTEST with : %s\n", input->cmd_tab[i]);
-	// 	printf("\nARG NUM : %d\n", get_arg_num(input->cmd_tab[i]));
+	// 	printf("\n- - - - - - - - PARSER - - - - - - - -\n");
+	// 	printf("| TEST with : %s\n", input->cmd_tab[i]);
+	// 	printf("| ARG NUM : %d\n", get_arg_num(input->cmd_tab[i]));
 	// 	while (input->cmd_exec_tab[i][++j])
-	// 	{
-	// 		printf("[%d] %s\n", j, input->cmd_exec_tab[i][j]);
-	// 	}
-	// 	printf("\n\n-------------------------------\n\n");
+	// 		printf("| CMD_EXEC_TAB[%d][%d] %s\n",i, j, input->cmd_exec_tab[i][j]);
+	// 	printf("- - - - - - - - - - - - - - - - - - - - -\n");
 	// }
 	// -------------------------------------- //
 	return (1);
