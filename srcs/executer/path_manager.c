@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 14:58:04 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/07 11:39:01 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/07 15:22:49 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	get_paths_tab(char **envp, t_input	*input)
 	{
 		buff = input->paths_tab[i];
 		input->paths_tab[i] = ft_strjoin(input->paths_tab[i], "/");
-		free (buff);
+		ft_free (buff);
 	}
 	ft_free(paths_line);
 }

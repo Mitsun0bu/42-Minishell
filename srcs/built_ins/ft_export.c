@@ -6,20 +6,19 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 15:10:44 by agirardi          #+#    #+#             */
-/*   Updated: 2022/03/03 16:35:47 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/07 16:38:31 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-int	ft_export(t_input *input)
+int	ft_export(t_input *input, t_cmd_lst *lst_node)
 {
 	char	*var;
 	int		res;
 	int		i;
 
-	printf("hello from export\n");
-	if (input->n_cmd > 1)
+	if (input->n_cmd > 1 && lst_node->n_args > 1)
 		return (0);
 	i = 0;
 	while (input->cmd_exec_tab[0][++i])

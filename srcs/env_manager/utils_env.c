@@ -6,21 +6,21 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 09:43:38 by agirardi          #+#    #+#             */
-/*   Updated: 2022/03/07 11:32:41 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/07 14:46:23 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-char	*get_value(char *str, t_input *input)
+char	*get_value(char *key, t_input *input)
 {
 	int	i;
 
 	i = -1;
 	while (++i < input->n_env)
 	{
-		if (ft_strncmp(str, input->env_tab[i].key, ft_strlen(str)) == 0)
-			if (ft_strlen(str) == ft_strlen(input->env_tab[i].key))
+		if (ft_strncmp(key, input->env_tab[i].key, ft_strlen(key)) == 0)
+			if (ft_strlen(key) == ft_strlen(input->env_tab[i].key))
 				return (input->env_tab[i].value);
 	}
 	return (0);

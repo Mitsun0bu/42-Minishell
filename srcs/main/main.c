@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 17:07:38 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/07 14:14:48 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/07 16:24:11 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	main(int ac, char **av, char **envp)
 		parser(&input);
 		cmd_lst_init(&input, &lst_node);
 		executer(envp, &input, &lst_node);
-		free_lst(&input, &lst_node);
+		free_lst(&lst_node);
 		free_input_struct(&input);
 	}
 	free_env_struct(&input);

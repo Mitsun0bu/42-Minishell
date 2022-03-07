@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 10:22:00 by agirardi          #+#    #+#             */
-/*   Updated: 2022/03/07 11:14:31 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/07 15:23:22 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void	change_value(t_input *input, char *key, char *value)
 		{
 			if (ft_strlen(key) == ft_strlen(input->env_tab[i].key))
 			{
-				free(input->env_tab[i].value);
+				ft_free(input->env_tab[i].value);
 				input->env_tab[i].value = value;
 				if (!value)
 					input->env_tab[i].is_global = 2;
@@ -82,7 +82,7 @@ void	change_value(t_input *input, char *key, char *value)
 			}
 		}
 	}
-	free(key);
+	ft_free(key);
 }
 
 // check nom variable -> 1?\*"'

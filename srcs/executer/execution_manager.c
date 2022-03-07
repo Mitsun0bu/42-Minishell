@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 10:41:38 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/07 13:52:32 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/07 17:20:26 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ void	exec_last_cmd(char **envp, t_input *input, t_cmd_lst *lst_node)
 void	exec_single_cmd(char **envp, t_input *input, t_cmd_lst *lst_node)
 {
 	if (ft_strncmp(lst_node->cmd_name, "cd", 2) == 0)
-		exit(ft_cd(lst_node));
+		exit(ft_cd(input, lst_node));
 	else if (ft_strncmp(lst_node->cmd_name, "echo", 4) == 0)
 		exit(ft_echo(lst_node));
 	else if (ft_strncmp(lst_node->cmd_name, "pwd", 3) == 0)
@@ -116,7 +116,7 @@ void	exec_single_cmd(char **envp, t_input *input, t_cmd_lst *lst_node)
 	else if (ft_strncmp(lst_node->cmd_name, "exit", 4) == 0)
 		exit(ft_exit());
 	else if (ft_strncmp(lst_node->cmd_name, "export", 6) == 0)
-		exit(ft_export(input));
+		exit(ft_export(input, lst_node));
 	else if (ft_strncmp(lst_node->cmd_name, "unset", 5) == 0)
 		exit(ft_unset(input));
 	else

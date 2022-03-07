@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 16:58:42 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/07 13:53:36 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/07 15:23:37 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	env_parser(t_input *input)
 	}
 	buffer = ft_calloc(size + 1, sizeof(char));
 	fill_buffer(buffer, input);
-	free(input->cmd_line);
+	ft_free(input->cmd_line);
 	input->cmd_line = buffer;
 }
 
@@ -80,7 +80,7 @@ void	fill_env(char *buffer, int *i, int *j, t_input *input)
 			buffer[(*j)++] = value[k++];
 		}
 	}
-	free(key);
+	ft_free(key);
 }
 
 void	fill_quotes(char *buffer, int *i, int *j, t_input *input)

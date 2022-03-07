@@ -758,3 +758,55 @@ export
 export test=machin
 export
 export | grep test
+cd srcs
+env | rev
+export
+export | rev
+export | grep
+export | grep de
+export
+export | grep de
+export | grep de
+env | rev
+export | grep de
+export | grep ex
+export
+export
+export | env
+export | rev
+export test=truc
+export
+export
+export | rev
+export test=123
+env
+export
+export | rev
+export test=truc
+export test=truc
+export
+cd srcs 
+ls -la
+pwd
+pwd
+cd srcs
+ll
+ls -la
+cd srcs
+ls -la
+pwd
+cd ..
+ls -la
+cd srcs
+cd srcs
+ls
+cd srcs | ls
+cd srcs | ls
+cd srcs
+ls
+env
+cd srcs
+exit
+cd srcs 
+cd srcs
+ls -la
