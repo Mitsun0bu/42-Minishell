@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 11:46:00 by llethuil          #+#    #+#             */
-/*   Updated: 2022/02/21 14:17:08 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/08 14:25:03 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,5 @@ char	*ft_strjoin(char *s1, char *s2)
 	while (s2[i_2])
 		joined[j++] = s2[i_2++];
 	joined[j] = '\0';
-	// ft_free(s1);
 	return (joined);
 }

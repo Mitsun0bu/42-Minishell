@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 10:41:38 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/08 12:08:33 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/08 18:24:50 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	exec_first_cmd(char **envp, t_input *input, t_cmd_lst *lst_node)
 			dup2(lst_node->pipe_fd_tab[1], STDOUT_FILENO);
 	close_all_pipes(lst_node);
 	if (ft_strncmp(lst_node->cmd_name, "./minishell", 11) == 0)
-		printf("failed\n");
+		execve("/Users/llethuil/Documents/LEVEL_3/minishell", lst_node->cmd_args, envp);
 	if (lst_node->valid_path)
 		exit(exec_single_cmd(envp, input, lst_node));
 }
@@ -119,7 +119,7 @@ int	exec_single_cmd(char **envp, t_input *input, t_cmd_lst *lst_node)
 	else if (!ft_strncmp(lst_node->cmd_name, "env", 3) && !lst_node->cmd_name[3])
 		status = ft_env(input);
 	else if (!ft_strncmp(lst_node->cmd_name, "exit", 4) && !lst_node->cmd_name[4])
-		status = ft_exit();
+		status = ft_exit(input);
 	else if (!ft_strncmp(lst_node->cmd_name, "export", 6) && !lst_node->cmd_name[6])
 		status = ft_export(input, lst_node);
 	else if (!ft_strncmp(lst_node->cmd_name, "unset", 5) && !lst_node->cmd_name[5])
@@ -127,4 +127,17 @@ int	exec_single_cmd(char **envp, t_input *input, t_cmd_lst *lst_node)
 	else
 		execve(lst_node->valid_path, lst_node->cmd_args, envp);
 	return (status);
+}
+
+int	exec_minishell(char **envp, t_input *input, t_cmd_lst *lst_node)
+{
+	char *value;
+	int	level;
+
+	value = ft_strdup(get_value("SHLVL", input));
+	level = ft_atoi(value);
+	value = ft_itoa(level + 1);
+	change_value(input, "SHLVL", value);
+	execve("/Users/llethuil/Documents/LEVEL_3/minishell", lst_node->cmd_args, envp);
+	return (0);
 }

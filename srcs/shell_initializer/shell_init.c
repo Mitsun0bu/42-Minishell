@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 13:21:26 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/07 14:18:25 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/08 17:37:53 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,8 @@ void	init_message(void)
 
 void	init_env(t_input *input, char **envp)
 {
-	int	i;
+	int		i;
+	char	*value;
 
 	i = 0;
 	while (envp[i])
@@ -59,6 +60,9 @@ void	init_env(t_input *input, char **envp)
 		input->env_tab[i].value = find_value(envp[i]);
 		input->env_tab[i].is_global = 1;
 	}
+	value = ft_strdup(get_value("SHLVL", input));
+	input->start_shlvl = ft_atoi(value);
+	ft_free(value);
 }
 
 int	init_history(t_input *input)

@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 12:09:40 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/08 12:08:56 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/08 17:55:51 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,14 +36,13 @@
 
 /* executer/executer.c */
 int		executer(char **envp, t_input *input, t_cmd_lst **lst_node);
-int		exec_minishell(t_input *input);
-
 
 /* executer/execution_manager.c */
 void	exec_first_cmd(char **envp, t_input *input, t_cmd_lst *lst_node);
 void	exec_mid_cmd(char **envp, t_input *input, t_cmd_lst *lst_node);
 void	exec_last_cmd(char **envp, t_input *input, t_cmd_lst *lst_node);
 int		exec_single_cmd(char **envp, t_input *input, t_cmd_lst *lst_node);
+int		exec_minishell(char **envp, t_input *input, t_cmd_lst *lst_node);
 
 /* executer/file_manager.c */
 int		open_files(t_cmd_lst **lst_node);

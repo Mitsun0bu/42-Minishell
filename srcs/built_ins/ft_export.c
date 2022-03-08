@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 15:10:44 by agirardi          #+#    #+#             */
-/*   Updated: 2022/03/07 16:38:31 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/08 13:27:28 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ int	parse_key(char	*str, t_input *input, int type)
 	if (check_dubble(key, input))
 	{
 		change_value(input, key, find_value(str));
+		ft_free(key);
 		return (0);
 	}
 	ft_free(key);

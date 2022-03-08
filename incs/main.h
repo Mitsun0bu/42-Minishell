@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 17:07:56 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/08 12:08:55 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/08 17:37:51 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@
 
 typedef struct s_input
 {
+	int				start_shlvl;
 	char			*cmd_line;
 	struct s_env	*env_tab;
 	int				n_env;
