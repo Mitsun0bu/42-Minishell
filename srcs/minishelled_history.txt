@@ -1,9 +1,0 @@
-ls 
-cd lexer 
-ls -la
-cd lexer 
-ls -la
-cd ..
-ls -la
-ll
-ls

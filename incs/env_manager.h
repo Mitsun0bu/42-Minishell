@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 10:21:58 by agirardi          #+#    #+#             */
-/*   Updated: 2022/03/07 11:19:43 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/08 12:00:07 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ char	*find_key(char *str);
 char	*find_value(char *str);
 
 /* env_manager/utils_env.c */
-char	*get_value(char *str, t_input *input);
+char	*get_value(char *key, t_input *input);
 int		search_key(const char *str, const char *key);
 int		check_dubble(char *str, t_input *input);
 

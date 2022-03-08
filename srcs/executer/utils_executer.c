@@ -1,16 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils_pipex.c                                      :+:      :+:    :+:   */
+/*   utils_executer.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 17:32:59 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/07 13:52:35 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/08 12:08:25 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
+
+int	find_built_in(char *cmd_name)
+{
+	if (!ft_strncmp(cmd_name, "./minishell", 11) && !cmd_name[11])
+		return (2);
+	if (!ft_strncmp(cmd_name, "cd", 2) && !cmd_name[2])
+		return (BUILT_IN);
+	else if (!ft_strncmp(cmd_name, "echo", 4) && !cmd_name[4])
+		return (BUILT_IN);
+	else if (!ft_strncmp(cmd_name, "pwd", 3) && !cmd_name[3])
+		return (BUILT_IN);
+	else if (!ft_strncmp(cmd_name, "env", 3) && !cmd_name[3])
+		return (BUILT_IN);
+	else if (!ft_strncmp(cmd_name, "exit", 4) && !cmd_name[4])
+		return (BUILT_IN);
+	else if (!ft_strncmp(cmd_name, "export", 6) && !cmd_name[6])
+		return (BUILT_IN);
+	else if (!ft_strncmp(cmd_name, "unset", 5) && !cmd_name[5])
+		return (BUILT_IN);
+	else
+		return (0);
+}
 
 void	check_fork_error(pid_t	process)
 {
@@ -36,26 +58,3 @@ int	wait_all_processes(t_input *input)
 	return (status);
 }
 
-// int	wait_all_processes(t_input *input, t_cmd_lst **lst_node)
-// {
-// 	t_cmd_lst	*start;
-// 	int			status;
-// 	int			i;
-
-// 	start = *lst_node;
-// 	status = 0;
-// 	i = -1;
-// 	while (++i < input->n_cmd)
-// 	{
-// 		printf("| NODE #%d\n", (*lst_node)->cmd_index);
-// 		if(input->process[i] == 0)
-// 			printf("I AM A CHILD\n");
-// 		if(input->process[i] > 0)
-// 			printf("I AM A PARENT\n");
-// 		waitpid(input->process[i], &status, 0);
-// 		printf("| STATUS PROCESS %d = %d\n", i, status);
-// 		*lst_node = (*lst_node)->next;
-// 	}
-// 	*lst_node = start;
-// 	return (status);
-// }

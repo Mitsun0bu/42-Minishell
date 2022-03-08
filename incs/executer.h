@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 12:09:40 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/07 18:42:31 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/08 12:08:56 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@
 
 /* executer/executer.c */
 int		executer(char **envp, t_input *input, t_cmd_lst **lst_node);
-int		check_built_in(char *cmd_name);
+int		exec_minishell(t_input *input);
+
 
 /* executer/execution_manager.c */
 void	exec_first_cmd(char **envp, t_input *input, t_cmd_lst *lst_node);
@@ -69,9 +70,9 @@ int		redir_input(t_cmd_lst *lst_node);
 int		redir_output(t_cmd_lst *lst_node);
 int		redir_app_output(t_cmd_lst *lst_node);
 
-/* executer/utils_pipex.c */
+/* executer/utils_executer.c */
+int		find_built_in(char *cmd_name);
 void	check_fork_error(pid_t	process);
 int		wait_all_processes(t_input *input);
-// int		wait_all_processes(t_input *input, t_cmd_lst **lst_node);
 
 #endif

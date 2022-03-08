@@ -1,0 +1,179 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+				built_ins/ft_echo.c					\
+				built_ins/ft_env.c					\
+				built_ins/ft_exit.c					\
+				built_ins/ft_export.c				\
+				built_ins/ft_pwd.c					\
+				built_ins/ft_unset.c				\
+				cmd_line_manager					\
+				cmd_line_manager.h					\
+				cmd_line_manager/cmd_line_manager.c	\
+				cmd_line_manager/get_cmd_line.c		\
+				cmd_lst_init						\
+				cmd_lst_init.h						\
+				cmd_lst_init/cmd_lst_init.c			\
+				cmd_lst_init/node_manager.c			\
+				cmd_lst_init/utils_linked_lst.c		\
+				env_manager							\
+				env_manager.h						\
+				env_manager/env_manager.c			\
+				env_manager/utils_env.c				\
+				env_manager/utils_env_counter.c		\
+				env_manager/utils_env_finder.c		\
+				env_parser							\
+				env_parser/env_parser.c				\
+				executer							\
+				executer.h							\
+				executer/executer.c					\
+				executer/execution_manager.c		\
+				executer/file_manager.c				\
+				executer/path_manager.c				\
+				executer/pipe_manager.c				\
+				executer/pipex.c					\
+				executer/redir_manager.c			\
+				executer/utils_executer.c				\
+				lexer								\
+				lexer.h								\
+				lexer/cmd_separator.c				\
+				lexer/fill_last_output_redir_tab.c	\
+				lexer/fill_redir_tab_app_output.c	\
+				lexer/fill_redir_tab_heredoc.c		\
+				lexer/fill_redir_tab_input.c		\
+				lexer/fill_redir_tab_output.c		\
+				lexer/lexer.c						\
+				lexer/redir_manager_app_output.c	\
+				lexer/redir_manager_heredoc.c		\
+				lexer/redir_manager_input.c			\
+				lexer/redir_manager_output.c		\
+				lexer/redir_tab_memory_manager.c	\
+				lexer/utils_other_lexer.c			\
+				lexer/utils_quotes_lexer.c			\
+				main								\
+				main.h								\
+				main/main.c							\
+				parser								\
+				parser.h							\
+				parser/arg_length.c					\
+				parser/arg_number.c					\
+				parser/checker.c					\
+				parser/cleaner.c					\
+				parser/parser.c						\
+				parser/utils_parser.c				\
+				shell_initializer					\
+				shell_initializer/shell_init.c		\
+				utils								\
+				utils.h								\
+				utils/utils.c						\
+				utils/utils_error_manager.c			\
+				utils/utils_free.c					\
+				utils/utils_free_lst.c				\
+				utils/utils_free_struct.c			\
+				utils/utils_history.c				\
+	$(CC) $(CFLAGS) -I $(INCS_DIR) -c $< -o $@
+	$(CC) $(OBJS) $(LIBFT_AR) -lreadline -o $(NAME)
+	$(RM) $(LIBFT_AR)
+	$(RM) $(NAME)
+	$(RM) $(OBJS)
+	make -C $(LIBFT_DIR)
+	make clean -C $(LIBFT_DIR)
+	mkdir -p $(addprefix $(OBJS_DIR)/, $(SUBDIRS_LST))
+	printf "$(BLUE)> Compiling :$(END) $<\n"
+	printf "$(BLUE)> Creating the executable file :$(END) $@\n"
+	printf "$(GREEN)> All the .o files have been removed successfully !$(END)\n"
+	printf "$(GREEN)> Executable file has been created successfully !$(END)\n"
+	printf "$(GREEN)> Libft archive and minishell executable files have been removed successfully !$(END)\n"
+	printf "$(PINK)> Removing .objs directory ...$(END)\n"
+	printf "$(PINK)> Removing libft archive file ...$(END)\n"
+	printf "$(PINK)> Removing minishell .o files ...$(END)\n"
+	printf "$(PINK)> Removing minishell executable file ...$(END)\n"
+	rm -rf $(OBJS_DIR)
+	test -z '$(filter %.o,$?)' || printf "$(GREEN)> All the .c files from minishell have been compiled successfully !$(END)\n"
+#                                                                              #
+#                                                                              #
+#                                                                              #
+#                                                                              #
+#                                                                              #
+#                                                                              #
+#                                                                            #
+#                                                                            #
+#                                                         :::      ::::::::    #
+#                                                     +:+ +:+         +:+      #
+#                                                 +#+#+#+#+#+   +#+            #
+#                              ~~~ COLOR CODES ~~~                             #
+#                              ~~~ RULES & COMMANDS ~~~                      #
+#                              ~~~ VARIABLES ~~~                               #
+#    By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+         #
+#    Created: 2022/01/25 15:43:51 by llethuil          #+#    #+#              #
+#    Makefile                                           :+:      :+:    :+:    #
+#    Updated: 2022/03/08 10:44:15 by llethuil         ###   ########lyon.fr    #
+# ************************************************************************** #
+# ************************************************************************** #
+# **************************************************************************** #
+# **************************************************************************** #
+# **************************************************************************** #
+# **************************************************************************** #
+# **************************************************************************** #
+# **************************************************************************** #
+$(NAME): $(OBJS) $(LIBFT_AR)
+$(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c $(INCS) Makefile | $(OBJS_DIR)
+$(OBJS_DIR):
+.PHONY: all clean fclean libft re
+.SILENT:
+BLUE	:=	\033[34m
+BOLD	:=	\033[1m
+BOLD	:=	\033[1m
+CC			:= gcc
+CFLAGS		:= -Wall -Wextra -Werror #-g
+END		=	\033[0m
+ERASE	:=	\033[2K\r
+GREEN	:=	\033[32m
+INCS		:= $(addprefix $(INCS_DIR)/, $(INCS_LST))
+INCS_DIR	:= incs
+INCS_LST	:=	built_ins.h							\
+LIBFT_AR	:= $(LIBFT_DIR)/libft.a
+LIBFT_DIR	:= libft
+NAME		:= minishell
+OBJS		:= $(addprefix $(OBJS_DIR)/, $(OBJS_LST))
+OBJS_DIR	:= .objs
+OBJS_LST	:=	$(SRCS_LST:.c=.o)
+PINK	:=	\033[35m
+RED		:=	\033[31m
+RM			:= rm -f
+SRCS		:= $(addprefix $(SRCS_DIR)/, $(SRCS_LST))
+SRCS_DIR	:= srcs
+SRCS_LST	:=	built_ins/ft_cd.c					\
+SUBDIRS_LST	:=	built_ins							\
+all: libft $(NAME)
+clean:
+fclean: clean
+libft:
+re: fclean all

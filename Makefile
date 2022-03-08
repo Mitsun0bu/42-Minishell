@@ -6,7 +6,7 @@
 #    By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/25 15:43:51 by llethuil          #+#    #+#              #
-#    Updated: 2022/03/07 11:22:43 by llethuil         ###   ########lyon.fr    #
+#    Updated: 2022/03/08 10:44:15 by llethuil         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -81,7 +81,7 @@ SRCS_LST	:=	built_ins/ft_cd.c					\
 				executer/pipe_manager.c				\
 				executer/pipex.c					\
 				executer/redir_manager.c			\
-				executer/utils_pipex.c				\
+				executer/utils_executer.c				\
 				lexer/cmd_separator.c				\
 				lexer/fill_last_output_redir_tab.c	\
 				lexer/fill_redir_tab_input.c		\

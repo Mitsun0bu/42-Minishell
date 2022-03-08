@@ -858,3 +858,50 @@ cat Makefile
 echo hello
 echo hello | grep h
 echo hello | cat Makefile 
+echo hello 
+echo hello | rev
+echo hello
+echop
+echop
+echop
+echop
+echo hello
+echo hello | rev
+echo hello | rev
+echo hello
+echo ./minishell
+./minishell
+./minishell
+./minishell
+./minishell
+echo hello
+echo hello | rev
+echo hello | rev
+echo hello | rev
+echo hello | rev
+echo hello | rev
+echo hello | rev
+echo hello | rev
+echo hello | rev
+echo hello | rev
+echo hello | rev
+echo hello | rev
+echo hello | rev
+echo hello | rev > outfile >> outfile_1 < infile_1 > outfile_3 | rev
+env | sort > outfile
+env | sort > outfile | cat outfile
+echo hello | rev | rev > outfile >> outfile_1 < infile_1 > outfile_3
+env | sort > outfile
+cat Makefile | sort > outfile
+cat Makefile | cat > outfile
+cat Makefile | sort > outfile
+env | sort > outfile
+cat Makefile | sort > outfile
+echo hello
+echo hello | rev
+./minishell
+./minishell
+./minishell
+./minishell
+./minishell
+./minishell
