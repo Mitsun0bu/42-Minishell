@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 10:21:58 by agirardi          #+#    #+#             */
-/*   Updated: 2022/03/08 12:00:07 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/09 17:01:32 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@
 /* ************************************************************************** */
 
 /* env_manager/env_manager.c */
-void	add_to_env(t_input *input, char *str, int is_global);
+void	add_to_env(t_input *input, char *str, int type);
 void	remove_from_env(t_input *input, char *key);
 void	change_value(t_input *input, char *key, char *value);
 

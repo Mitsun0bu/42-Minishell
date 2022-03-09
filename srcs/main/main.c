@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 17:07:38 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/08 18:24:37 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/09 17:10:48 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,5 @@ int	main(int ac, char **av, char **envp)
 		free_input_struct(&input);
 	}
 	free_env_struct(&input);
-	return (0);
+	exit (0);
 }

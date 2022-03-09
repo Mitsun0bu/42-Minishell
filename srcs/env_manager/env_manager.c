@@ -6,13 +6,13 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 10:22:00 by agirardi          #+#    #+#             */
-/*   Updated: 2022/03/08 13:27:50 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/09 17:01:10 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-void	add_to_env(t_input *input, char *str, int is_global)
+void	add_to_env(t_input *input, char *str, int type)
 {
 	t_env	*buffer;
 	int		i;
@@ -24,11 +24,11 @@ void	add_to_env(t_input *input, char *str, int is_global)
 	{
 		buffer[i].key = input->env_tab[i].key;
 		buffer[i].value = input->env_tab[i].value;
-		buffer[i].is_global = input->env_tab[i].is_global;
+		buffer[i].type = input->env_tab[i].type;
 	}
 	buffer[i].key = find_key(str);
 	buffer[i].value = find_value(str);
-	buffer[i].is_global = is_global;
+	buffer[i].type = type;
 	ft_free(input->env_tab);
 	input->env_tab = buffer;
 }
@@ -49,7 +49,7 @@ void	remove_from_env(t_input *input, char *key)
 		{
 			buffer[j].key = input->env_tab[i].key;
 			buffer[j].value = input->env_tab[i].value;
-			buffer[j].is_global = input->env_tab[i].is_global;
+			buffer[j].type = input->env_tab[i].type;
 			j++;
 		}
 		else
@@ -76,9 +76,9 @@ void	change_value(t_input *input, char *key, char *value)
 				ft_free(input->env_tab[i].value);
 				input->env_tab[i].value = value;
 				if (!value)
-					input->env_tab[i].is_global = 2;
+					input->env_tab[i].type = 2;
 				else
-					input->env_tab[i].is_global = 1;
+					input->env_tab[i].type = 1;
 			}
 		}
 	}

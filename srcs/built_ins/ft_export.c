@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 15:10:44 by agirardi          #+#    #+#             */
-/*   Updated: 2022/03/08 13:27:28 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/09 17:01:28 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ int	ft_export(t_input *input, t_cmd_lst *lst_node)
 	if (input->n_cmd > 1 && lst_node->n_args > 1)
 		return (0);
 	i = 0;
-	while (input->cmd_exec_tab[0][++i])
+	while (input->cmd_exec_tab[lst_node->cmd_index][++i])
 	{
-		var = del_quotes(input->cmd_exec_tab[0][i]);
+		var = del_quotes(input->cmd_exec_tab[lst_node->cmd_index][i]);
 		res = parse_var(var, input);
 		if (res == 1)
 			add_to_env(input, var, 1);
@@ -124,10 +124,10 @@ void	print_export(t_input *input)
 		if (ft_strncmp(input->env_tab[i].key, "_",
 				ft_strlen(input->env_tab[i].key)) != 0)
 		{
-			if (input->env_tab[i].value && input->env_tab[i].is_global != 2)
+			if (input->env_tab[i].value && input->env_tab[i].type != 2)
 				printf("declare -x %s=\"%s\"\n", input->env_tab[i].key,
 					input->env_tab[i].value);
-			else if (input->env_tab[i].is_global == 2)
+			else if (input->env_tab[i].type == 2)
 				printf("declare -x %s=\"\"\n", input->env_tab[i].key);
 			else
 				printf("declare -x %s\n", input->env_tab[i].key);

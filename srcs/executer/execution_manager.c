@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 10:41:38 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/08 18:24:50 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/09 17:46:35 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,98 +14,55 @@
 
 void	exec_first_cmd(char **envp, t_input *input, t_cmd_lst *lst_node)
 {
-	int	redir;
-
 	printf("| \n");
 	printf("| EXEC FIRST CMD\n");
-	redir = 0;
-	if (lst_node->n_input_redir)
-		redir = redir_input(lst_node);
-	if (input->last_output_redir_tab[0] == TRUNC_OUTPUT)
-	{
-		if (lst_node->n_app_output_redir)
-			redir = redir_app_output(lst_node);
-		redir = redir_output(lst_node);
-	}
-	else if (input->last_output_redir_tab[0] == APP_OUTPUT)
-	{
-		if (lst_node->n_app_output_redir)
-			redir = redir_output(lst_node);
-		redir = redir_app_output(lst_node);
-	}
-	if (!redir)
+	handle_input_redir(lst_node);
+	if (!handle_output_redir(input, lst_node))
 		if (lst_node->next != NULL)
 			dup2(lst_node->pipe_fd_tab[1], STDOUT_FILENO);
 	close_all_pipes(lst_node);
-	if (ft_strncmp(lst_node->cmd_name, "./minishell", 11) == 0)
-		execve("/Users/llethuil/Documents/LEVEL_3/minishell", lst_node->cmd_args, envp);
-	if (lst_node->valid_path)
-		exit(exec_single_cmd(envp, input, lst_node));
+	if (find_built_in(lst_node->cmd_name) == BUILT_IN)
+		exit(exec_built_in(input, lst_node));
+	else if (find_built_in(lst_node->cmd_name) == PROGRAM)
+		exit(exec_program(envp, lst_node));
+	else
+		execve(lst_node->valid_path, lst_node->cmd_args, envp);
 }
 
 void	exec_mid_cmd(char **envp, t_input *input, t_cmd_lst *lst_node)
 {
-	int	redir_in;
-	int	redir_out;
-
 	printf("| \n");
 	printf("| EXEC A CMD\n");
-	redir_in = 0;
-	redir_out = 0;
-	if (lst_node->n_input_redir)
-		redir_in = redir_input(lst_node);
-	if (input->last_output_redir_tab[lst_node->cmd_index] == TRUNC_OUTPUT)
-	{
-		if (lst_node->n_app_output_redir)
-			redir_out = redir_app_output(lst_node);
-		redir_out = redir_output(lst_node);
-	}
-	else if (input->last_output_redir_tab[lst_node->cmd_index] == APP_OUTPUT)
-	{
-		if (lst_node->n_app_output_redir)
-			redir_out = redir_output(lst_node);
-		redir_out = redir_app_output(lst_node);
-	}
-	if (!redir_in)
+	if (!handle_input_redir(lst_node))
 		dup2(lst_node->previous->pipe_fd_tab[0], STDIN_FILENO);
-	if (!redir_out)
+	if (!handle_output_redir(input, lst_node))
 		dup2(lst_node->pipe_fd_tab[1], STDOUT_FILENO);
 	close_all_pipes(lst_node);
-	if (lst_node->valid_path)
-		exit(exec_single_cmd(envp, input, lst_node));
+	if (find_built_in(lst_node->cmd_name) == BUILT_IN)
+		exit(exec_built_in(input, lst_node));
+	else if (find_built_in(lst_node->cmd_name) == PROGRAM)
+		exit(exec_program(envp, lst_node));
+	else
+		execve(lst_node->valid_path, lst_node->cmd_args, envp);
 }
 
 void	exec_last_cmd(char **envp, t_input *input, t_cmd_lst *lst_node)
 {
-	int	redir_in;
-	int	redir_out;
-
 	printf("| \n");
 	printf("| EXEC LAST CMD\n");
-	redir_in = 0;
-	redir_out = 0;
-	if (lst_node->n_input_redir)
-		redir_in = redir_input(lst_node);
-	if (input->last_output_redir_tab[lst_node->cmd_index] == TRUNC_OUTPUT)
-	{
-		if (lst_node->n_app_output_redir)
-			redir_out = redir_app_output(lst_node);
-		redir_out = redir_output(lst_node);
-	}
-	else if (input->last_output_redir_tab[lst_node->cmd_index] == APP_OUTPUT)
-	{
-		if (lst_node->n_app_output_redir)
-			redir_out= redir_output(lst_node);
-		redir_out = redir_app_output(lst_node);
-	}
-	if (!redir_in)
+	handle_output_redir(input, lst_node);
+	if (!handle_input_redir(lst_node))
 		dup2(lst_node->previous->pipe_fd_tab[0], STDIN_FILENO);
 	close_all_pipes(lst_node);
-	if (lst_node->valid_path)
-		exit(exec_single_cmd(envp, input, lst_node));
+	if (find_built_in(lst_node->cmd_name) == BUILT_IN)
+		exit(exec_built_in(input, lst_node));
+	else if (find_built_in(lst_node->cmd_name) == PROGRAM)
+		exit(exec_program(envp, lst_node));
+	else
+		execve(lst_node->valid_path, lst_node->cmd_args, envp);
 }
 
-int	exec_single_cmd(char **envp, t_input *input, t_cmd_lst *lst_node)
+int	exec_built_in(t_input *input, t_cmd_lst *lst_node)
 {
 	int	status;
 
@@ -124,20 +81,64 @@ int	exec_single_cmd(char **envp, t_input *input, t_cmd_lst *lst_node)
 		status = ft_export(input, lst_node);
 	else if (!ft_strncmp(lst_node->cmd_name, "unset", 5) && !lst_node->cmd_name[5])
 		status = ft_unset(input);
-	else
-		execve(lst_node->valid_path, lst_node->cmd_args, envp);
 	return (status);
 }
 
-int	exec_minishell(char **envp, t_input *input, t_cmd_lst *lst_node)
+int	exec_program(char **envp, t_cmd_lst *lst_node)
 {
-	char *value;
-	int	level;
+	char	*cwd;
+	char	*program_name;
+	char	*program_path;
+	int		len;
+	unsigned long i;
 
-	value = ft_strdup(get_value("SHLVL", input));
-	level = ft_atoi(value);
-	value = ft_itoa(level + 1);
-	change_value(input, "SHLVL", value);
-	execve("/Users/llethuil/Documents/LEVEL_3/minishell", lst_node->cmd_args, envp);
+	i = -1;
+	cwd = getcwd(NULL, 0);
+	len = ft_strlen(lst_node->cmd_name) - 1;
+	program_name = safe_malloc(sizeof(char), len);
+	while(lst_node->cmd_name[++i])
+		program_name[i] = lst_node->cmd_name[i + 1];
+	program_path = ft_strjoin(cwd, program_name);
+	ft_free (cwd);
+	ft_free (program_name);
+	execve(program_path, lst_node->cmd_args, envp);
 	return (0);
+}
+
+char	**convert_env_tab(t_input *input)
+{
+	char	**env_list;
+	char	*buffer;
+	char	*env_str;
+	int		i_list;
+	int		i;
+	int		j;
+
+	i_list = 0;
+	i = -1;
+	while (++i < input->n_env)
+	{
+		if (input->env_tab[i].type == ENV || input->env_tab[i].type == EXPORT_EMPTY)
+			i_list ++;
+	}
+	env_list = safe_malloc(sizeof(char), i_list);
+	env_list[i_list] = 0;
+	printf("i_list = %d\n", i_list);
+	i = -1;
+	while(env_list[++i])
+	{
+		if (input->env_tab[i].type == ENV || input->env_tab[i].type == EXPORT_EMPTY)
+		{
+			buffer = ft_strjoin(input->env_tab[i].key, "=");
+			env_str = ft_strjoin(buffer, input->env_tab[i].value);
+			ft_free(buffer);
+		}
+		env_list[i] = safe_malloc(sizeof(char), ft_strlen(env_str) + 1);
+		j = -1;
+		while (env_str[++j])
+			env_list[i][j] = env_str[j];
+		env_list[i][j] = '\0';
+		ft_free(env_str);
+	}
+	return (env_list);
 }

@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 17:32:59 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/08 12:08:25 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/09 17:47:00 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 int	find_built_in(char *cmd_name)
 {
-	if (!ft_strncmp(cmd_name, "./minishell", 11) && !cmd_name[11])
-		return (2);
 	if (!ft_strncmp(cmd_name, "cd", 2) && !cmd_name[2])
 		return (BUILT_IN);
 	else if (!ft_strncmp(cmd_name, "echo", 4) && !cmd_name[4])
@@ -30,6 +28,8 @@ int	find_built_in(char *cmd_name)
 		return (BUILT_IN);
 	else if (!ft_strncmp(cmd_name, "unset", 5) && !cmd_name[5])
 		return (BUILT_IN);
+	else if (!ft_strncmp(cmd_name, "./", 2))
+		return (PROGRAM);
 	else
 		return (0);
 }

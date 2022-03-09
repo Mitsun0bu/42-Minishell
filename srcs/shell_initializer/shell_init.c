@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 13:21:26 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/08 17:37:53 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/09 17:01:22 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,16 @@ void	shell_init(int ac, char **envp, t_input *input, t_cmd_lst **lst_node)
 		printf("To start our shell, use : ./minishell !\n");
 		exit(0);
 	}
+	if (isatty(STDIN_FILENO) == 0)
+	{
+		perror("");
+		exit (0);
+	}
 	ft_memset(input, 0, sizeof(input));
 	ft_memset(lst_node, 0, sizeof(lst_node));
 	init_message();
 	init_env(input, envp);
+	init_shlvl(input);
 	init_history(input);
 }
 
@@ -46,7 +52,6 @@ void	init_message(void)
 void	init_env(t_input *input, char **envp)
 {
 	int		i;
-	char	*value;
 
 	i = 0;
 	while (envp[i])
@@ -58,11 +63,19 @@ void	init_env(t_input *input, char **envp)
 	{
 		input->env_tab[i].key = find_key(envp[i]);
 		input->env_tab[i].value = find_value(envp[i]);
-		input->env_tab[i].is_global = 1;
+		input->env_tab[i].type = 1;
 	}
+}
+
+void	init_shlvl(t_input *input)
+{
+	char	*value;
+
 	value = ft_strdup(get_value("SHLVL", input));
 	input->start_shlvl = ft_atoi(value);
-	ft_free(value);
+	input->start_shlvl ++;
+	value = ft_itoa(input->start_shlvl);
+	change_value(input, "SHLVL", value);
 }
 
 int	init_history(t_input *input)

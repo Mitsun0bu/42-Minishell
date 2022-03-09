@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 11:56:09 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/08 17:20:16 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/09 12:03:23 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@
 
 /* built_ins/ft_cd.c */
 int		ft_cd(t_input *input, t_cmd_lst *lst_node);
+void	update_oldpwd(t_input *input);
 
 /* built_ins/ft_echo.c */
 int		ft_echo(t_cmd_lst *lst_node);

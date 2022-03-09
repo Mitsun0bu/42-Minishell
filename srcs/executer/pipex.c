@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 17:31:40 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/08 18:25:02 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/09 17:49:31 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 int	pipex(char **envp, t_input *input, t_cmd_lst **lst_node)
 {
 	int			i;
-	t_cmd_lst	*start;
 	int			status;
+	t_cmd_lst	*start;
 
 	printf(" - - - - - - - - PIPEX - - - - - - - - \n");
 	input->process = safe_malloc(sizeof(pid_t), input->n_cmd);
