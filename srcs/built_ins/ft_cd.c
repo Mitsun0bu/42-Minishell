@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 10:56:25 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/09 14:49:23 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/10 17:06:52 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,14 @@ int	ft_cd(t_input *input, t_cmd_lst *lst_node)
 	{
 		update_oldpwd(input);
 		chdir(get_value("HOME", input));
+
 	}
 	if (lst_node->cmd_index == 0 && access(lst_node->cmd_args[1], F_OK) == 0)
 	{
 		update_oldpwd(input);
 		chdir(lst_node->cmd_args[1]);
 	}
-	else if (access(lst_node->cmd_args[1], F_OK) != 0)
+	else if (lst_node->cmd_args[1] && access(lst_node->cmd_args[1], F_OK) != 0)
 	{
 		perror(error);
 		ft_free(error);

@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 13:21:26 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/10 11:12:45 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/10 15:15:34 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,13 +77,12 @@ void	init_env(t_input *input, char **envp)
 
 void	init_shlvl(t_input *input)
 {
-	char	*value;
+	char	*new_value;
 
-	value = ft_strdup(get_value("SHLVL", input));
-	input->start_shlvl = ft_atoi(value);
+	input->start_shlvl = ft_atoi(get_value("SHLVL", input));
 	input->start_shlvl ++;
-	value = ft_itoa(input->start_shlvl);
-	change_value(input, "SHLVL", value);
+	new_value = ft_itoa(input->start_shlvl);
+	change_value(input, "SHLVL", new_value);
 }
 
 int	init_history(t_input *input)

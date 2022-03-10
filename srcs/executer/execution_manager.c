@@ -6,13 +6,13 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 10:41:38 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/10 11:12:49 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/10 18:27:38 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-void	exec_first_cmd(char **envp, t_input *input, t_cmd_lst *lst_node)
+void	exec_first_cmd(t_input *input, t_cmd_lst *lst_node)
 {
 	printf("| \n");
 	printf("| EXEC FIRST CMD\n");
@@ -24,12 +24,12 @@ void	exec_first_cmd(char **envp, t_input *input, t_cmd_lst *lst_node)
 	if (find_built_in(lst_node->cmd_name) == BUILT_IN)
 		exit(exec_built_in(input, lst_node));
 	else if (find_built_in(lst_node->cmd_name) == PROGRAM)
-		exit(exec_program(envp, lst_node));
+		exit(exec_program(input, lst_node));
 	else
-		execve(lst_node->valid_path, lst_node->cmd_args, envp);
+		execve(lst_node->valid_path, lst_node->cmd_args, convert_env_tab(input));
 }
 
-void	exec_mid_cmd(char **envp, t_input *input, t_cmd_lst *lst_node)
+void	exec_mid_cmd(t_input *input, t_cmd_lst *lst_node)
 {
 	printf("| \n");
 	printf("| EXEC A CMD\n");
@@ -41,12 +41,12 @@ void	exec_mid_cmd(char **envp, t_input *input, t_cmd_lst *lst_node)
 	if (find_built_in(lst_node->cmd_name) == BUILT_IN)
 		exit(exec_built_in(input, lst_node));
 	else if (find_built_in(lst_node->cmd_name) == PROGRAM)
-		exit(exec_program(envp, lst_node));
+		exit(exec_program(input, lst_node));
 	else
-		execve(lst_node->valid_path, lst_node->cmd_args, envp);
+		execve(lst_node->valid_path, lst_node->cmd_args, convert_env_tab(input));
 }
 
-void	exec_last_cmd(char **envp, t_input *input, t_cmd_lst *lst_node)
+void	exec_last_cmd(t_input *input, t_cmd_lst *lst_node)
 {
 	printf("| \n");
 	printf("| EXEC LAST CMD\n");
@@ -57,9 +57,9 @@ void	exec_last_cmd(char **envp, t_input *input, t_cmd_lst *lst_node)
 	if (find_built_in(lst_node->cmd_name) == BUILT_IN)
 		exit(exec_built_in(input, lst_node));
 	else if (find_built_in(lst_node->cmd_name) == PROGRAM)
-		exit(exec_program(envp, lst_node));
+		exit(exec_program(input, lst_node));
 	else
-		execve(lst_node->valid_path, lst_node->cmd_args, envp);
+		execve(lst_node->valid_path, lst_node->cmd_args, convert_env_tab(input));
 }
 
 int	exec_built_in(t_input *input, t_cmd_lst *lst_node)
@@ -84,7 +84,7 @@ int	exec_built_in(t_input *input, t_cmd_lst *lst_node)
 	return (status);
 }
 
-int	exec_program(char **envp, t_cmd_lst *lst_node)
+int	exec_program(t_input *input, t_cmd_lst *lst_node)
 {
 	char	*cwd;
 	char	*program_name;
@@ -101,6 +101,6 @@ int	exec_program(char **envp, t_cmd_lst *lst_node)
 	program_path = ft_strjoin(cwd, program_name);
 	ft_free (cwd);
 	ft_free (program_name);
-	execve(program_path, lst_node->cmd_args, envp);
+	printf("ret = %d\n", execve(program_path, lst_node->cmd_args, convert_env_tab(input)));
 	return (0);
 }

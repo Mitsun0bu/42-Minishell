@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 13:23:23 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/03 10:23:38 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/10 13:14:39 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,19 +48,19 @@ void	back_skip_quotes(char *str, int *i);
 
 /* lexer/fill_redir_tab_app_output.c */
 int		fill_redir_tab_app_output(t_input *input);
-int		cp_app_output_name(t_input *input, char *cmd, int *i_cmd, int *i_red);
+void	cp_app_output_name(t_input *input, char *cmd, int *i_cmd, int *i_red);
 
 /* lexer/fill_redir_tab_heredoc */
 int		fill_redir_tab_heredoc(t_input *input);
-int		cp_heredoc_name(t_input *input, char *cmd, int *i_cmd, int *i_red);
+void	cp_heredoc_name(t_input *input, char *cmd, int *i_cmd, int *i_red);
 
 /* lexer/fill_redir_tab_input.c */
 int		fill_redir_tab_input(t_input *input);
-int		cp_input_name(t_input *input, char *cmd, int *i_cmd, int *i_red);
+void	cp_input_name(t_input *input, char *cmd, int *i_cmd, int *i_red);
 
 /* lexer/fill_redir_tab_output.c */
 int		fill_redir_tab_output(t_input *input);
-int		cp_output_name(t_input *input, char *cmd, int *i_cmd, int *i_red);
+void	cp_output_name(t_input *input, char *cmd, int *i_cmd, int *i_red);
 
 /* lexer/redir_manager_app_output.c */
 int		malloc_app_output_redir_tab(t_input *input);

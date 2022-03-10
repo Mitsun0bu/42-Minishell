@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 13:52:08 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/02 18:48:20 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/10 13:13:45 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,9 @@ int	fill_redir_tab_input(t_input *input)
 	return (0);
 }
 
-int	cp_input_name(t_input *input, char *cmd, int *i_cmd, int *i_red)
+void	cp_input_name(t_input *input, char *cmd, int *i_cmd, int *i_red)
 {
-	static int	i;
+	static int	i = -1;
 	int			j;
 
 	if (*i_red == 0)
@@ -45,18 +45,20 @@ int	cp_input_name(t_input *input, char *cmd, int *i_cmd, int *i_red)
 	{
 		if (cmd[i] == '\'' || cmd[i] == '"')
 			skip_quotes(cmd, &i);
-		if (cmd[i] == '<' && cmd[i + 1] != '<' && (i != 0 && cmd[i - 1] != '<'))
+		if (cmd[i] == '<' && cmd[i + 1] != '<')
 		{
-			skip_space(cmd, &i);
-			while (cmd[i] && !ft_strchr(" \"\'<>", cmd[i]))
-				cp_out_quotes(input->redir_tab[*i_cmd][0][*i_red], cmd, &i, &j);
-			if (cmd[i] == '\'' || cmd[i] == '"')
-				cp_in_quotes(input->redir_tab[*i_cmd][0][*i_red], cmd, &i, &j);
-			while (cmd[i] && !ft_strchr(" <>", cmd[i]))
-				cp_out_quotes(input->redir_tab[*i_cmd][0][*i_red], cmd, &i, &j);
-			i --;
-			return (0);
+			if (i == 0 || (i != 0 && cmd[i - 1] != '<'))
+			{
+				skip_space(cmd, &i);
+				while (cmd[i] && !ft_strchr(" \"\'<>", cmd[i]))
+					cp_out_quotes(input->redir_tab[*i_cmd][0][*i_red], cmd, &i, &j);
+				if (cmd[i] == '\'' || cmd[i] == '"')
+					cp_in_quotes(input->redir_tab[*i_cmd][0][*i_red], cmd, &i, &j);
+				while (cmd[i] && !ft_strchr(" <>", cmd[i]))
+					cp_out_quotes(input->redir_tab[*i_cmd][0][*i_red], cmd, &i, &j);
+				i --;
+				return ;
+			}
 		}
 	}
-	return (0);
 }

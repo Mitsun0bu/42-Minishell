@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 18:48:00 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/07 11:41:50 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/10 11:47:00 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	fill_last_output_redir_type_tab(t_input *input)
 
 int	find_output_type(char *str, int *i)
 {
-	while (*i != 0)
+	while (*i >= 0)
 	{
 		if (str[*i] == '\'' || str[*i] == '"')
 			back_skip_quotes(str, i);
