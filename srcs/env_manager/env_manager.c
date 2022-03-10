@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 10:22:00 by agirardi          #+#    #+#             */
-/*   Updated: 2022/03/09 17:01:10 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/10 11:07:30 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,21 +76,10 @@ void	change_value(t_input *input, char *key, char *value)
 				ft_free(input->env_tab[i].value);
 				input->env_tab[i].value = value;
 				if (!value)
-					input->env_tab[i].type = 2;
+					input->env_tab[i].type = EXPORT_EMPTY;
 				else
-					input->env_tab[i].type = 1;
+					input->env_tab[i].type = ENV;
 			}
 		}
 	}
 }
-
-// check nom variable -> 1?\*"'
-
-/* ========= DEBUG ========= */
-//
-// int h = -1;
-// while (++h != input->n_env)
-// {
-// 	printf("%s=%s\n", input->env[h].key, input->env[h].value);
-// }
-//

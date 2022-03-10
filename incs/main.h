@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 17:07:56 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/09 17:46:38 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/10 11:06:02 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@
 # define APP_OUTPUT 43
 # define BUILT_IN 44
 # define PROGRAM 45
-# define ENV 1
-# define EXPORT_EMPTY 2
-# define EXPORT_NULL 3
+# define ENV 46
+# define EXPORT_EMPTY 47
+# define EXPORT_NULL 48
 
 /* ************************************************************************** */
 /*                                                                            */

@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 10:41:38 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/09 17:46:35 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/10 11:12:49 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,42 +103,4 @@ int	exec_program(char **envp, t_cmd_lst *lst_node)
 	ft_free (program_name);
 	execve(program_path, lst_node->cmd_args, envp);
 	return (0);
-}
-
-char	**convert_env_tab(t_input *input)
-{
-	char	**env_list;
-	char	*buffer;
-	char	*env_str;
-	int		i_list;
-	int		i;
-	int		j;
-
-	i_list = 0;
-	i = -1;
-	while (++i < input->n_env)
-	{
-		if (input->env_tab[i].type == ENV || input->env_tab[i].type == EXPORT_EMPTY)
-			i_list ++;
-	}
-	env_list = safe_malloc(sizeof(char), i_list);
-	env_list[i_list] = 0;
-	printf("i_list = %d\n", i_list);
-	i = -1;
-	while(env_list[++i])
-	{
-		if (input->env_tab[i].type == ENV || input->env_tab[i].type == EXPORT_EMPTY)
-		{
-			buffer = ft_strjoin(input->env_tab[i].key, "=");
-			env_str = ft_strjoin(buffer, input->env_tab[i].value);
-			ft_free(buffer);
-		}
-		env_list[i] = safe_malloc(sizeof(char), ft_strlen(env_str) + 1);
-		j = -1;
-		while (env_str[++j])
-			env_list[i][j] = env_str[j];
-		env_list[i][j] = '\0';
-		ft_free(env_str);
-	}
-	return (env_list);
 }

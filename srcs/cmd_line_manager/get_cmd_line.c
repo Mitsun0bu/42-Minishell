@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 16:38:19 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/07 11:28:21 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/10 11:16:27 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,17 @@
 int	get_cmd_line(t_input *input)
 {
 	char	*buff;
+	char	*path;
 
+	path = get_history_path(input);
 	buff = readline("minishelled > ");
 	while (!ft_strncmp(buff, "", ft_strlen(buff)))
 		buff = readline("minishelled > ");
 	if (ft_strlen(buff))
 	{
 		add_history(buff);
-		input->fd_history = open("minishelled_history.txt", O_CREAT | O_RDWR | O_APPEND, 0644);
+		input->fd_history = open(path, O_CREAT | O_RDWR | O_APPEND, 0644);
+		ft_free(path);
 		if (input->fd_history < 0)
 		{
 			printf("Couldn't open history file");
@@ -35,5 +38,6 @@ int	get_cmd_line(t_input *input)
 		return (0);
 	}
 	close (input->fd_history);
+	ft_free(path);
 	return (1);
 }

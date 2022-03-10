@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 13:21:26 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/09 17:01:22 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/10 11:12:45 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,19 +51,27 @@ void	init_message(void)
 
 void	init_env(t_input *input, char **envp)
 {
-	int		i;
+	int	i;
+	int	j;
 
-	i = 0;
-	while (envp[i])
-		i++;
-	input->env_tab = safe_malloc(sizeof(t_env), i);
-	input->n_env = i;
+	j = 0;
 	i = -1;
 	while (envp[++i])
+		if (ft_strncmp(envp[i], "OLDPWD=", 7) != 0)
+			j++;
+	input->env_tab = safe_malloc(sizeof(t_env), i);
+	input->n_env = j;
+	i = -1;
+	j = -1;
+	while (envp[++i])
 	{
-		input->env_tab[i].key = find_key(envp[i]);
-		input->env_tab[i].value = find_value(envp[i]);
-		input->env_tab[i].type = 1;
+		if (ft_strncmp(envp[i], "OLDPWD=", 7) != 0)
+		{
+			++j;
+			input->env_tab[j].key = find_key(envp[i]);
+			input->env_tab[j].value = find_value(envp[i]);
+			input->env_tab[j].type = ENV;
+		}
 	}
 }
 
@@ -81,8 +89,11 @@ void	init_shlvl(t_input *input)
 int	init_history(t_input *input)
 {
 	char	*cmd_line_history;
+	char	*path;
 
-	input->fd_history = open("minishelled_history.txt", O_CREAT | O_RDWR | O_APPEND, 0644);
+	path = get_history_path(input);
+	input->fd_history = open(path, O_CREAT | O_RDWR | O_APPEND, 0644);
+	ft_free(path);
 	if (input->fd_history < 0)
 	{
 		printf("Couldn't open history file");

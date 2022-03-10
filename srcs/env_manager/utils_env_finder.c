@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 11:11:10 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/07 11:33:20 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/10 11:04:00 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,7 @@ char	*find_value(char *str)
 	if (!str[i + 1])
 		return (0);
 	if (key_count == (int)ft_strlen(str))
-	{
-		printf("!\n");
 		return (0);
-	}
 	while (str[i])
 		i++;
 	value = ft_substr(str, key_count + 1, i);

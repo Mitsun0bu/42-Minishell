@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 15:15:24 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/09 17:01:35 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/10 11:19:02 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,12 @@ int	ft_env(t_input *input)
 	i = -1;
 	while (++i < input->n_env)
 	{
-		if (input->env_tab[i].type == 1)
+		if (input->env_tab[i].type == ENV)
 		{
 			printf("%s=", input->env_tab[i].key);
 			printf("%s\n", input->env_tab[i].value);
 		}
-		else if (input->env_tab[i].type == 2)
+		else if (input->env_tab[i].type == EXPORT_EMPTY)
 		{
 			printf("%s=\n", input->env_tab[i].key);
 		}

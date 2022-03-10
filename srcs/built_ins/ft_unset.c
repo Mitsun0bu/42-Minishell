@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 11:40:20 by agirardi          #+#    #+#             */
-/*   Updated: 2022/03/07 11:26:59 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/10 11:22:18 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ int	ft_unset(t_input *input)
 			remove_from_env(input, key);
 		ft_free(key);
 	}
-	print_export(input);
 	return (0);
 }
 

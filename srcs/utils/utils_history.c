@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 10:22:49 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/07 11:47:46 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/10 11:12:44 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,4 +98,12 @@ char	*strjoin_gnl(char *line, char *buff)
 	}
 	joined[i_l] = '\0';
 	return (joined);
+}
+
+char	*get_history_path(t_input *input)
+{
+	char	*path;
+
+	path = ft_strjoin(get_value("HOME", input), "/.minishelled_history");
+	return(path);
 }

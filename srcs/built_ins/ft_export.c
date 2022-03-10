@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 15:10:44 by agirardi          #+#    #+#             */
-/*   Updated: 2022/03/09 17:01:28 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/10 11:10:38 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,11 @@ int	ft_export(t_input *input, t_cmd_lst *lst_node)
 		var = del_quotes(input->cmd_exec_tab[lst_node->cmd_index][i]);
 		res = parse_var(var, input);
 		if (res == 1)
-			add_to_env(input, var, 1);
+			add_to_env(input, var, ENV);
 		else if (res == 2)
-			add_to_env(input, var, 0);
+			add_to_env(input, var, EXPORT_NULL);
 		else if (res == 3)
-			add_to_env(input, var, 2);
+			add_to_env(input, var, EXPORT_EMPTY);
 		ft_free(var);
 	}
 	if (i == 1)
@@ -124,16 +124,14 @@ void	print_export(t_input *input)
 		if (ft_strncmp(input->env_tab[i].key, "_",
 				ft_strlen(input->env_tab[i].key)) != 0)
 		{
-			if (input->env_tab[i].value && input->env_tab[i].type != 2)
-				printf("declare -x %s=\"%s\"\n", input->env_tab[i].key,
-					input->env_tab[i].value);
-			else if (input->env_tab[i].type == 2)
+			if (input->env_tab[i].value && input->env_tab[i].type != EXPORT_EMPTY)
+				printf("declare -x %s=\"%s\"\n", input->env_tab[i].key, input->env_tab[i].value);
+			else if (input->env_tab[i].type == EXPORT_EMPTY)
 				printf("declare -x %s=\"\"\n", input->env_tab[i].key);
 			else
 				printf("declare -x %s\n", input->env_tab[i].key);
 		}
-		if (ft_strncmp(input->env_tab[i].key, "OLDPWD",
-				ft_strlen(input->env_tab[i].key)) == 0)
+		if (ft_strncmp(input->env_tab[i].key, "OLDPWD", 6) == 0)
 			check_oldpwd = 1;
 	}
 	if (check_oldpwd == 0)
