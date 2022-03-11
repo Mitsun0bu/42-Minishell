@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 12:09:40 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/10 18:27:36 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/11 19:33:16 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,15 +34,21 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-/* executer/executer.c */
-int		executer(char **envp, t_input *input, t_cmd_lst **lst_node);
+/* executer/dup_manager.c */
+void	dup_heredoc(char *heredoc_str);
+int		dup_redir_input(t_cmd_lst *lst_node);
+int		dup_redir_output(t_cmd_lst *lst_node);
+int		dup_redir_app_output(t_cmd_lst *lst_node);
 
-/* executer/execution_manager.c */
+/* executer/exec_manager.c */
 void	exec_first_cmd(t_input *input, t_cmd_lst *lst_node);
 void	exec_mid_cmd(t_input *input, t_cmd_lst *lst_node);
 void	exec_last_cmd(t_input *input, t_cmd_lst *lst_node);
 int		exec_built_in(t_input *input, t_cmd_lst *lst_node);
 int		exec_program(t_input *input, t_cmd_lst *lst_node);
+
+/* executer/executer.c */
+int		executer(char **envp, t_input *input, t_cmd_lst **lst_node);
 
 /* executer/file_manager.c */
 int		open_files(t_cmd_lst **lst_node);
@@ -65,11 +71,12 @@ void	close_single_pipe(int *fd_tab);
 int		pipex(t_input *input, t_cmd_lst **lst_node);
 
 /*executer/redir_manager.c */
+int		handle_heredoc(t_input *input, t_cmd_lst *lst_node);
 int		handle_input_redir(t_cmd_lst *lst_node);
 int		handle_output_redir(t_input *input, t_cmd_lst *lst_node);
-int		dup_redir_input(t_cmd_lst *lst_node);
-int		dup_redir_output(t_cmd_lst *lst_node);
-int		dup_redir_app_output(t_cmd_lst *lst_node);
+char	**find_delimiters(t_cmd_lst *lst_node, char ****redir_tab, int cmd_index);
+void	read_first_heredoc_line(char **line, char **buffer, char **heredoc_str);
+void	read_heredoc(char * del, char **line, char **buffer, char **heredoc_str);
 
 /* executer/utils_executer.c */
 int		find_built_in(char *cmd_name);

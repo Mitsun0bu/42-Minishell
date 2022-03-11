@@ -6,13 +6,12 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 17:31:40 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/10 18:27:50 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/11 15:03:53 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-// int	pipex(char **envp, t_input *input, t_cmd_lst **lst_node)
 int	pipex(t_input *input, t_cmd_lst **lst_node)
 {
 	int			i;

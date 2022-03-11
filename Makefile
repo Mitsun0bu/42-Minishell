@@ -6,7 +6,7 @@
 #    By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/25 15:43:51 by llethuil          #+#    #+#              #
-#    Updated: 2022/03/08 10:44:15 by llethuil         ###   ########lyon.fr    #
+#    Updated: 2022/03/11 16:43:55 by llethuil         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -74,14 +74,15 @@ SRCS_LST	:=	built_ins/ft_cd.c					\
 				env_manager/utils_env_finder.c		\
 				env_manager/utils_env.c				\
 				env_parser/env_parser.c				\
+				executer/dup_manager.c				\
+				executer/exec_manager.c				\
 				executer/executer.c					\
-				executer/execution_manager.c		\
 				executer/file_manager.c				\
 				executer/path_manager.c				\
 				executer/pipe_manager.c				\
 				executer/pipex.c					\
 				executer/redir_manager.c			\
-				executer/utils_executer.c				\
+				executer/utils_executer.c			\
 				lexer/cmd_separator.c				\
 				lexer/fill_last_output_redir_tab.c	\
 				lexer/fill_redir_tab_input.c		\
@@ -149,7 +150,7 @@ libft:
 $(NAME): $(OBJS) $(LIBFT_AR)
 	test -z '$(filter %.o,$?)' || printf "$(GREEN)> All the .c files from minishell have been compiled successfully !$(END)\n"
 	printf "$(BLUE)> Creating the executable file :$(END) $@\n"
-	$(CC) $(OBJS) $(LIBFT_AR) -lreadline -o $(NAME)
+	$(CC) $(OBJS) $(LIBFT_AR) -lreadline -g3 -o $(NAME)
 	printf "$(GREEN)> Executable file has been created successfully !$(END)\n"
 
 $(OBJS_DIR):
