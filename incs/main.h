@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 17:07:56 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/10 11:06:02 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/14 19:29:39 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ typedef struct s_cmd_lst
 	int					*fd_output;
 	int					*fd_app_output;
 	int					pipe_fd_tab[2];
+	int					pipe_fd_heredoc[2];
 	struct s_cmd_lst	*next;
 	struct s_cmd_lst	*previous;
 }	t_cmd_lst;

@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 12:09:40 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/11 19:33:16 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/14 16:42:27 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,13 @@ int		open_infiles(t_cmd_lst *lst_node);
 int		open_outfiles(t_cmd_lst *lst_node);
 int		open_app_outfiles(t_cmd_lst *lst_node);
 
+/* executer/heredoc_manager.c */
+int		handle_heredoc(t_input *input, t_cmd_lst *lst_node);
+char	**find_del(t_cmd_lst *lst_node, char ****redir_tab, int cmd_index);
+char	*read_heredocs(t_cmd_lst *lst_node, char **del);
+char	*read_heredoc_line(void);
+char	*append_heredoc_line(char *line, char *heredoc_str);
+
 /* executer/path_manager.c */
 void	path_manager(char **envp, t_input *input, t_cmd_lst **lst_node);
 void	get_paths_tab(char **envp, t_input	*input);
@@ -71,12 +78,8 @@ void	close_single_pipe(int *fd_tab);
 int		pipex(t_input *input, t_cmd_lst **lst_node);
 
 /*executer/redir_manager.c */
-int		handle_heredoc(t_input *input, t_cmd_lst *lst_node);
 int		handle_input_redir(t_cmd_lst *lst_node);
 int		handle_output_redir(t_input *input, t_cmd_lst *lst_node);
-char	**find_delimiters(t_cmd_lst *lst_node, char ****redir_tab, int cmd_index);
-void	read_first_heredoc_line(char **line, char **buffer, char **heredoc_str);
-void	read_heredoc(char * del, char **line, char **buffer, char **heredoc_str);
 
 /* executer/utils_executer.c */
 int		find_built_in(char *cmd_name);

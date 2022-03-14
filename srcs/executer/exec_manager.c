@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 10:41:38 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/11 19:33:23 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/14 19:19:39 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 void	exec_first_cmd(t_input *input, t_cmd_lst *lst_node)
 {
-	printf("| \n");
-	printf("| EXEC FIRST CMD\n");
-	if (lst_node->n_heredoc)
-		handle_heredoc(input, lst_node);
+	// printf("| \n");
+	// printf("| EXEC FIRST CMD\n");
+	// if (lst_node->n_heredoc)
+	// 	handle_heredoc(input, lst_node);
 	handle_input_redir(lst_node);
 	if (!handle_output_redir(input, lst_node))
 		if (lst_node->next != NULL)
@@ -33,9 +33,11 @@ void	exec_first_cmd(t_input *input, t_cmd_lst *lst_node)
 
 void	exec_mid_cmd(t_input *input, t_cmd_lst *lst_node)
 {
-	printf("| \n");
-	printf("| EXEC A CMD\n");
-	if (!handle_input_redir(lst_node))
+	// printf("| \n");
+	// printf("| EXEC A CMD\n");
+	// if (lst_node->n_heredoc)
+	// 	handle_heredoc(input, lst_node);
+	if (!handle_input_redir(lst_node) && !lst_node->n_heredoc)
 		dup2(lst_node->previous->pipe_fd_tab[0], STDIN_FILENO);
 	if (!handle_output_redir(input, lst_node))
 		dup2(lst_node->pipe_fd_tab[1], STDOUT_FILENO);
@@ -50,10 +52,12 @@ void	exec_mid_cmd(t_input *input, t_cmd_lst *lst_node)
 
 void	exec_last_cmd(t_input *input, t_cmd_lst *lst_node)
 {
-	printf("| \n");
-	printf("| EXEC LAST CMD\n");
+	// printf("| \n");
+	// printf("| EXEC LAST CMD\n");
+	if (lst_node->n_heredoc)
+		handle_heredoc(input, lst_node);
 	handle_output_redir(input, lst_node);
-	if (!handle_input_redir(lst_node))
+	if (!handle_input_redir(lst_node) && !lst_node->n_heredoc)
 		dup2(lst_node->previous->pipe_fd_tab[0], STDIN_FILENO);
 	close_all_pipes(lst_node);
 	if (find_built_in(lst_node->cmd_name) == BUILT_IN)

@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 14:51:13 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/11 12:21:10 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/14 19:23:45 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,10 @@ int	executer(char **envp, t_input *input, t_cmd_lst **lst_node)
 	open_files(lst_node);
 	open_all_pipes(lst_node);
 	convert_env_tab(input);
+	handle_heredocs(input, *lst_node);
 	if (input->n_cmd == 1 && find_built_in((*lst_node)->cmd_name) == BUILT_IN)
 	{
+
 		handle_output_redir(input, *lst_node);
 		status = exec_built_in(input, *lst_node);
 		dup2(STDIN_FILENO, STDOUT_FILENO);

@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 16:37:51 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/10 13:30:23 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/14 14:02:42 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ int	malloc_output_name(t_input *input, int *i_cmd)
 	while (++i_red < count_output_redir(input->cmd_tab[*i_cmd]))
 	{
 		len = count_output_name_len(input->cmd_tab[*i_cmd], &i_red);
+		printf("len = %d\n", len);
 		input->redir_tab[*i_cmd][1][i_red] = safe_malloc(sizeof(char), (len + 1));
 		input->redir_tab[*i_cmd][1][i_red][len] = '\0';
 	}

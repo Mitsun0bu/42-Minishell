@@ -6,7 +6,7 @@
 #    By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/25 15:43:51 by llethuil          #+#    #+#              #
-#    Updated: 2022/03/11 16:43:55 by llethuil         ###   ########lyon.fr    #
+#    Updated: 2022/03/14 16:45:42 by llethuil         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -78,6 +78,7 @@ SRCS_LST	:=	built_ins/ft_cd.c					\
 				executer/exec_manager.c				\
 				executer/executer.c					\
 				executer/file_manager.c				\
+				executer/heredoc_manager.c			\
 				executer/path_manager.c				\
 				executer/pipe_manager.c				\
 				executer/pipex.c					\
