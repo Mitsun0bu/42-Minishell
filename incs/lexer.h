@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 13:23:23 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/10 13:14:39 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/15 18:05:53 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,10 @@
 void	lexer(t_input *input);
 
 /* lexer/cmd_separator.c */
-int		single_cmd(t_input *input);
+void	single_cmd(t_input *input);
 int		split_multi_cmd(t_input *input);
-int		final_pipe_case(t_input *input);
+int		final_letter_is_pipe(char *str);
+void	fill_last_pipe(t_input *input);
 
 /*lexer/fill_last_output_redir_tab.c */
 int		fill_last_output_redir_type_tab(t_input *input);

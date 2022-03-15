@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 14:58:04 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/15 11:26:04 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/15 15:36:07 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,15 @@ void	path_manager(char **envp, t_input *input, t_cmd_lst **cmd)
 	get_paths_tab(envp, input);
 	while (*cmd)
 	{
-		// Reflechir à l'utilite du premier parametre de la fonction assign_path dans minishell
-		if (ft_strncmp((*cmd)->name, "export", 6) == 0)
+		if (!(*cmd)->name)
+			(*cmd)->valid_path = NULL;
+		else if (ft_strncmp((*cmd)->name, "export", 6) == 0)
 			(*cmd)->valid_path = ft_strdup("export");
 		else if (ft_strncmp((*cmd)->name, "unset", 5) == 0)
 			(*cmd)->valid_path = ft_strdup("unset");
 		else
 			(*cmd)->valid_path = assign_path("test", input, *cmd);
+		// 1st param of assign_path should be cmd_exec_tab[cmd_index][1] ??
 		*cmd = (*cmd)->next;
 	}
 	*cmd = start;

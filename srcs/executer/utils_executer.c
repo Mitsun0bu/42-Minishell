@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 17:32:59 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/15 14:14:31 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/15 16:00:56 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,9 @@
 
 int	find_built_in(char *name)
 {
-	if (!ft_strncmp(name, "cd", 2) && !name[2])
+	if (!name)
+		return (0);
+	else if (!ft_strncmp(name, "cd", 2) && !name[2])
 		return (BUILT_IN);
 	else if (!ft_strncmp(name, "echo", 4) && !name[4])
 		return (BUILT_IN);

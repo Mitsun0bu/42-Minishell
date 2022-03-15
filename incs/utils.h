@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 11:29:37 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/15 11:33:57 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/15 17:31:38 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ char	*strjoin_gnl(char *line, char *buff);
 char	*get_history_path(t_input *input);
 
 /* utils.c */
+int		is_isspace(char c);
 void	skip_quotes(char *str, int *i);
 void	*safe_malloc(size_t size, size_t count);
 

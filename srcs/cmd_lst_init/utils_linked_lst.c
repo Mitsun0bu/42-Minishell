@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 15:25:12 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/15 11:34:58 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/15 15:27:01 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,11 @@ t_cmd_lst	*create_new_cmd(int *i, t_input *input)
 
 	new_cmd = safe_malloc(sizeof(t_cmd_lst), 1);
 	new_cmd->index = *i;
-	new_cmd->name = ft_strdup(input->cmd_exec_tab[*i][0]);
+	printf("cmd_name = %s\n", input->cmd_exec_tab[*i][0]);
+	if(input->cmd_exec_tab[*i][0])
+		new_cmd->name = ft_strdup(input->cmd_exec_tab[*i][0]);
+	else
+		new_cmd->name = NULL;
 	cmd_args_manager(i, new_cmd, input);
 	// valid path init ???
 	cmd_input_redir_manager(i, new_cmd, input);
