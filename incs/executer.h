@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 12:09:40 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/14 16:42:27 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/15 11:28:34 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,55 +34,53 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-/* executer/dup_manager.c */
-void	dup_heredoc(char *heredoc_str);
-int		dup_redir_input(t_cmd_lst *lst_node);
-int		dup_redir_output(t_cmd_lst *lst_node);
-int		dup_redir_app_output(t_cmd_lst *lst_node);
-
 /* executer/exec_manager.c */
-void	exec_first_cmd(t_input *input, t_cmd_lst *lst_node);
-void	exec_mid_cmd(t_input *input, t_cmd_lst *lst_node);
-void	exec_last_cmd(t_input *input, t_cmd_lst *lst_node);
-int		exec_built_in(t_input *input, t_cmd_lst *lst_node);
-int		exec_program(t_input *input, t_cmd_lst *lst_node);
+void	exec_first_cmd(t_input *input, t_cmd_lst *cmd);
+void	exec_mid_cmd(t_input *input, t_cmd_lst *cmd);
+void	exec_last_cmd(t_input *input, t_cmd_lst *cmd);
+int		exec_built_in(t_input *input, t_cmd_lst *cmd);
+int		exec_program(t_input *input, t_cmd_lst *cmd);
 
 /* executer/executer.c */
-int		executer(char **envp, t_input *input, t_cmd_lst **lst_node);
+int		executer(char **envp, t_input *input, t_cmd_lst **cmd);
 
 /* executer/file_manager.c */
-int		open_files(t_cmd_lst **lst_node);
-int		open_infiles(t_cmd_lst *lst_node);
-int		open_outfiles(t_cmd_lst *lst_node);
-int		open_app_outfiles(t_cmd_lst *lst_node);
+int		open_files(t_cmd_lst **cmd);
+int		open_infiles(t_cmd_lst *cmd);
+int		open_outfiles(t_cmd_lst *cmd);
+int		open_app_outfiles(t_cmd_lst *cmd);
 
 /* executer/heredoc_manager.c */
-int		handle_heredoc(t_input *input, t_cmd_lst *lst_node);
-char	**find_del(t_cmd_lst *lst_node, char ****redir_tab, int cmd_index);
-char	*read_heredocs(t_cmd_lst *lst_node, char **del);
+int		handle_heredocs_pipes(t_cmd_lst **cmd);
+char	*read_cmd_heredocs(t_cmd_lst *cmd);
 char	*read_heredoc_line(void);
 char	*append_heredoc_line(char *line, char *heredoc_str);
 
 /* executer/path_manager.c */
-void	path_manager(char **envp, t_input *input, t_cmd_lst **lst_node);
+void	path_manager(char **envp, t_input *input, t_cmd_lst **cmd);
 void	get_paths_tab(char **envp, t_input	*input);
-char	*assign_path(char *arg, t_input *input, t_cmd_lst *lst_node);
+char	*assign_path(char *arg, t_input *input, t_cmd_lst *cmd);
 
 /* executer/pipe_manager.c */
-void	open_all_pipes(t_cmd_lst **lst_node);
+void	open_all_pipes(t_cmd_lst **cmd);
 void	open_single_pipe(int *fd_tab);
-void	close_all_pipes(t_cmd_lst *lst_node);
+void	close_all_pipes(t_cmd_lst *cmd);
 void	close_single_pipe(int *fd_tab);
 
 /* executer/pipex.c */
-int		pipex(t_input *input, t_cmd_lst **lst_node);
+int		pipex(t_input *input, t_cmd_lst **cmd);
 
-/*executer/redir_manager.c */
-int		handle_input_redir(t_cmd_lst *lst_node);
-int		handle_output_redir(t_input *input, t_cmd_lst *lst_node);
+/*executer/input_redir_manager.c */
+int		handle_input_redir(t_cmd_lst *cmd);
+int		dup_redir_input(t_cmd_lst *cmd);
+
+/*executer/output_redir_manager.c */
+int		handle_output_redir(t_input *input, t_cmd_lst *cmd);
+int		dup_redir_output(t_cmd_lst *cmd);
+int		dup_redir_app_output(t_cmd_lst *cmd);
 
 /* executer/utils_executer.c */
-int		find_built_in(char *cmd_name);
+int		find_built_in(char *name);
 void	check_fork_error(pid_t	process);
 int		wait_all_processes(t_input *input);
 char	**convert_env_tab(t_input *input);

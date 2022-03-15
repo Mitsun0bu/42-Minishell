@@ -6,13 +6,13 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 13:21:26 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/10 15:15:34 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/15 11:25:37 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-void	shell_init(int ac, char **envp, t_input *input, t_cmd_lst **lst_node)
+void	shell_init(int ac, char **envp, t_input *input, t_cmd_lst **cmd)
 {
 	if (ac > 1)
 	{
@@ -25,7 +25,7 @@ void	shell_init(int ac, char **envp, t_input *input, t_cmd_lst **lst_node)
 		exit (0);
 	}
 	ft_memset(input, 0, sizeof(input));
-	ft_memset(lst_node, 0, sizeof(lst_node));
+	ft_memset(cmd, 0, sizeof(cmd));
 	init_message();
 	init_env(input, envp);
 	init_shlvl(input);

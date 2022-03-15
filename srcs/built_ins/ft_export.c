@@ -6,24 +6,24 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 15:10:44 by agirardi          #+#    #+#             */
-/*   Updated: 2022/03/10 11:10:38 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/15 11:30:14 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-int	ft_export(t_input *input, t_cmd_lst *lst_node)
+int	ft_export(t_input *input, t_cmd_lst *cmd)
 {
 	char	*var;
 	int		res;
 	int		i;
 
-	if (input->n_cmd > 1 && lst_node->n_args > 1)
+	if (input->n_cmd > 1 && cmd->n_args > 1)
 		return (0);
 	i = 0;
-	while (input->cmd_exec_tab[lst_node->cmd_index][++i])
+	while (input->cmd_exec_tab[cmd->index][++i])
 	{
-		var = del_quotes(input->cmd_exec_tab[lst_node->cmd_index][i]);
+		var = del_quotes(input->cmd_exec_tab[cmd->index][i]);
 		res = parse_var(var, input);
 		if (res == 1)
 			add_to_env(input, var, ENV);

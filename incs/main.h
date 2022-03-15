@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 17:07:56 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/14 19:29:39 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/15 11:30:14 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,9 @@ typedef struct s_input
 
 typedef struct s_cmd_lst
 {
-	int					cmd_index;
-	char				*cmd_name;
-	char				**cmd_args;
+	int					index;
+	char				*name;
+	char				**args;
 	char				*valid_path;
 	int					n_args;
 	int					n_input_redir;
@@ -63,13 +63,14 @@ typedef struct s_cmd_lst
 	char				**input_redir;
 	char				**output_redir;
 	char				**app_output_redir;
-	char				**heredoc;
+	char				**del;
 	int					last_output_redir;
 	int					*fd_input;
 	int					*fd_output;
 	int					*fd_app_output;
-	int					pipe_fd_tab[2];
-	int					pipe_fd_heredoc[2];
+	int					cmd_pipe[2];
+	int					heredoc_pipe[2];
+	char				*heredoc_str;
 	struct s_cmd_lst	*next;
 	struct s_cmd_lst	*previous;
 }	t_cmd_lst;

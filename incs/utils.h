@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 11:29:37 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/10 11:12:42 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/15 11:33:57 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@
 /* ************************************************************************** */
 
 /* utils/utils_free_lst */
-void	free_lst(t_cmd_lst	**lst_node);
-void	free_node(t_cmd_lst *lst_node);
+void	free_lst(t_cmd_lst	**cmd);
+void	free_cmd(t_cmd_lst *cmd);
 
 /* utils/utils_free.c */
 void	free_input_struct(t_input *input);

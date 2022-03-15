@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 11:56:09 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/09 12:03:23 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/15 11:28:34 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,14 +34,14 @@
 /* ************************************************************************** */
 
 /* built_ins/ft_cd.c */
-int		ft_cd(t_input *input, t_cmd_lst *lst_node);
+int		ft_cd(t_input *input, t_cmd_lst *cmd);
 void	update_oldpwd(t_input *input);
 
 /* built_ins/ft_echo.c */
-int		ft_echo(t_cmd_lst *lst_node);
-char	*join_message(t_cmd_lst *lst_node, char *message);
-void	add_first_word_to_message(t_cmd_lst *lst_node, char **message, int *i);
-void	add_next_words_to_message(t_cmd_lst *lst_node, char **message, int *i);
+int		ft_echo(t_cmd_lst *cmd);
+char	*join_message(t_cmd_lst *cmd, char *message);
+void	add_first_word_to_message(t_cmd_lst *cmd, char **message, int *i);
+void	add_next_words_to_message(t_cmd_lst *cmd, char **message, int *i);
 void	print_message(char *message);
 
 /* built_ins/ft_env.c */
@@ -51,10 +51,10 @@ int		ft_env(t_input *input);
 int		ft_exit(t_input *input);
 
 /* built_ins/ft_pwd.c */
-int		ft_pwd(t_cmd_lst *lst_node);
+int		ft_pwd(t_cmd_lst *cmd);
 
 /* built_ins/ft_export.c */
-int		ft_export(t_input *input, t_cmd_lst *lst_node);
+int		ft_export(t_input *input, t_cmd_lst *cmd);
 int		parse_var(char *str, t_input *input);
 int		parse_key(char	*str, t_input *input, int type);
 char	*del_quotes(char	*str);

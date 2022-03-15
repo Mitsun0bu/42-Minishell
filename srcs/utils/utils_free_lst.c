@@ -6,45 +6,46 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 12:09:53 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/07 16:23:37 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/15 11:33:57 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-void	free_lst(t_cmd_lst	**lst_node)
+void	free_lst(t_cmd_lst	**cmd)
 {
 	t_cmd_lst	*current;
 	t_cmd_lst	*next;
 
-	if (!lst_node)
+	if (!cmd)
 		return ;
-	current = *lst_node;
+	current = *cmd;
 	while (current)
 	{
 		next = current->next;
-		free_node(current);
+		free_cmd(current);
 		current = next;
 	}
-	*lst_node = NULL;
+	*cmd = NULL;
 }
 
-void	free_node(t_cmd_lst *lst_node)
+void	free_cmd(t_cmd_lst *cmd)
 {
-	if (!lst_node)
+	if (!cmd)
 		return ;
-	ft_free (lst_node->cmd_name);
-	free_double (lst_node->cmd_args);
-	ft_free (lst_node->valid_path);
-	free_double (lst_node->input_redir);
-	free_double (lst_node->output_redir);
-	free_double (lst_node->app_output_redir);
-	free_double (lst_node->heredoc);
-	if (lst_node->n_input_redir > 0)
-		ft_free(lst_node->fd_input);
-	if (lst_node->n_output_redir > 0)
-		ft_free(lst_node->fd_output);
-	if (lst_node->n_app_output_redir > 0)
-		ft_free(lst_node->fd_app_output);
-	ft_free (lst_node);
+	ft_free (cmd->name);
+	free_double (cmd->args);
+	ft_free (cmd->valid_path);
+	free_double (cmd->input_redir);
+	free_double (cmd->output_redir);
+	free_double (cmd->app_output_redir);
+	free_double (cmd->del);
+	if (cmd->n_input_redir > 0)
+		ft_free(cmd->fd_input);
+	if (cmd->n_output_redir > 0)
+		ft_free(cmd->fd_output);
+	if (cmd->n_app_output_redir > 0)
+		ft_free(cmd->fd_app_output);
+	ft_free(cmd->heredoc_str);
+	ft_free (cmd);
 }

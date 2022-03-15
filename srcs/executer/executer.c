@@ -6,31 +6,30 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 14:51:13 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/14 19:23:45 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/15 11:26:04 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-int	executer(char **envp, t_input *input, t_cmd_lst **lst_node)
+int	executer(char **envp, t_input *input, t_cmd_lst **cmd)
 {
 	int	status;
 
 	status = 0;
-	path_manager(envp, input, lst_node);
-	open_files(lst_node);
-	open_all_pipes(lst_node);
+	path_manager(envp, input, cmd);
+	open_files(cmd);
+	open_all_pipes(cmd);
 	convert_env_tab(input);
-	handle_heredocs(input, *lst_node);
-	if (input->n_cmd == 1 && find_built_in((*lst_node)->cmd_name) == BUILT_IN)
+	handle_heredocs_pipes(cmd);
+	if (input->n_cmd == 1 && find_built_in((*cmd)->name) == BUILT_IN)
 	{
-
-		handle_output_redir(input, *lst_node);
-		status = exec_built_in(input, *lst_node);
+		handle_output_redir(input, *cmd);
+		status = exec_built_in(input, *cmd);
 		dup2(STDIN_FILENO, STDOUT_FILENO);
 	}
 	else
-		status = pipex(input, lst_node);
+		status = pipex(input, cmd);
 	printf(" - - - - - - - - - - - - - - - - - - - \n");
 	return (status);
 }

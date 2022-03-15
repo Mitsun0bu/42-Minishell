@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 10:52:09 by llethuil          #+#    #+#             */
-/*   Updated: 2022/02/16 18:27:25 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/15 11:33:57 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,26 +27,26 @@ void	ft_lstadd_front(t_list **lst, t_list *new)
 
 int	main()
 {
-	t_list	*node;
+	t_list	*cmd;
 	int		i = 0;
 
-	node = NULL;
+	cmd = NULL;
 	while (i < 10)
 	{
-		ft_lstadd_front(&node, ft_lstnew(&i));
+		ft_lstadd_front(&cmd, ft_lstnew(&i));
 		printf("==========================================================\n");
 		printf("Iteration #%d\n", i);
-		printf("The node is a pointer, containing the address : %p\n", node);
-		printf("The structure content is %d\n", *(int *)node->content);
+		printf("The cmd is a pointer, containing the address : %p\n", cmd);
+		printf("The structure content is %d\n", *(int *)cmd->content);
 		if (i == 0)
-			printf("The next address pointed by the struct : %p\n", node->next);
+			printf("The next address pointed by the struct : %p\n", cmd->next);
 		else
-			printf("The next address pointed by the struct : %p\n", node->next);
+			printf("The next address pointed by the struct : %p\n", cmd->next);
 
 		printf("=======================================================\n\n\n");
 		i ++;
 	}
-	free(node);
+	free(cmd);
 }
 
 // === END OF MY TEST ===

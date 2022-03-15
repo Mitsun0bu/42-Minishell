@@ -6,27 +6,27 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 10:32:58 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/07 11:39:38 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/15 11:41:57 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-void	open_all_pipes(t_cmd_lst **lst_node)
+void	open_all_pipes(t_cmd_lst **cmd)
 {
 	t_cmd_lst	*start;
 	int			i;
 
 	i = -1;
-	start = *lst_node;
-	while (*lst_node)
+	start = *cmd;
+	while (*cmd)
 	{
-		open_single_pipe((*lst_node)->pipe_fd_tab);
-		if ((*lst_node)->next == NULL)
+		open_single_pipe((*cmd)->cmd_pipe);
+		if ((*cmd)->next == NULL)
 			break ;
-		*lst_node = (*lst_node)->next;
+		*cmd = (*cmd)->next;
 	}
-	*lst_node = start;
+	*cmd = start;
 }
 
 void	open_single_pipe(int *fd_tab)
@@ -38,17 +38,19 @@ void	open_single_pipe(int *fd_tab)
 	}
 }
 
-void	close_all_pipes(t_cmd_lst *lst_node)
+void	close_all_pipes(t_cmd_lst *cmd)
 {
 	int	i;
 
 	i = -1;
-	while (lst_node->previous)
-		lst_node = lst_node->previous;
-	while (lst_node)
+	while (cmd->previous)
+		cmd = cmd->previous;
+	while (cmd)
 	{
-		close_single_pipe(lst_node->pipe_fd_tab);
-		lst_node = lst_node->next;
+		close_single_pipe(cmd->cmd_pipe);
+		if (cmd->n_heredoc)
+			close_single_pipe(cmd->heredoc_pipe);
+		cmd = cmd->next;
 	}
 }
 

@@ -6,30 +6,30 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 14:58:04 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/10 17:44:39 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/15 11:26:04 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-void	path_manager(char **envp, t_input *input, t_cmd_lst **lst_node)
+void	path_manager(char **envp, t_input *input, t_cmd_lst **cmd)
 {
 	t_cmd_lst	*start;
 
-	start = *lst_node;
+	start = *cmd;
 	get_paths_tab(envp, input);
-	while (*lst_node)
+	while (*cmd)
 	{
 		// Reflechir à l'utilite du premier parametre de la fonction assign_path dans minishell
-		if (ft_strncmp((*lst_node)->cmd_name, "export", 6) == 0)
-			(*lst_node)->valid_path = ft_strdup("export");
-		else if (ft_strncmp((*lst_node)->cmd_name, "unset", 5) == 0)
-			(*lst_node)->valid_path = ft_strdup("unset");
+		if (ft_strncmp((*cmd)->name, "export", 6) == 0)
+			(*cmd)->valid_path = ft_strdup("export");
+		else if (ft_strncmp((*cmd)->name, "unset", 5) == 0)
+			(*cmd)->valid_path = ft_strdup("unset");
 		else
-			(*lst_node)->valid_path = assign_path("test", input, *lst_node);
-		*lst_node = (*lst_node)->next;
+			(*cmd)->valid_path = assign_path("test", input, *cmd);
+		*cmd = (*cmd)->next;
 	}
-	*lst_node = start;
+	*cmd = start;
 }
 
 void	get_paths_tab(char **envp, t_input	*input)
@@ -59,7 +59,7 @@ void	get_paths_tab(char **envp, t_input	*input)
 	ft_free(paths_line);
 }
 
-char	*assign_path(char *arg, t_input *input, t_cmd_lst *lst_node)
+char	*assign_path(char *arg, t_input *input, t_cmd_lst *cmd)
 {
 	int		i;
 	char	*path;
@@ -70,14 +70,14 @@ char	*assign_path(char *arg, t_input *input, t_cmd_lst *lst_node)
 		(void)arg;
 		// if (access(arg, F_OK) == 0)
 		// 	return (arg);
-		path = ft_strjoin(input->paths_tab[i], lst_node->cmd_name);
+		path = ft_strjoin(input->paths_tab[i], cmd->name);
 		if (access(path, F_OK) == 0)
 			return (path);
 		ft_free(path);
 	}
-	// if (access(path, F_OK) == -1 && cmd_name == cmd->name_1[0])
+	// if (access(path, F_OK) == -1 && name == cmd->name_1[0])
 	// 	error_handler(av, ERR_CMD_1);
-	// if (access(path, F_OK) == -1 && cmd_name == cmd->name_2[0])
+	// if (access(path, F_OK) == -1 && name == cmd->name_2[0])
 	// 	error_handler(av, ERR_CMD_2);
 	return (NULL);
 }

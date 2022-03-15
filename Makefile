@@ -6,7 +6,7 @@
 #    By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/25 15:43:51 by llethuil          #+#    #+#              #
-#    Updated: 2022/03/14 16:45:42 by llethuil         ###   ########lyon.fr    #
+#    Updated: 2022/03/15 11:37:02 by llethuil         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -67,22 +67,22 @@ SRCS_LST	:=	built_ins/ft_cd.c					\
 				cmd_line_manager/get_cmd_line.c		\
 				cmd_line_manager/cmd_line_manager.c	\
 				cmd_lst_init/cmd_lst_init.c			\
-				cmd_lst_init/node_manager.c			\
+				cmd_lst_init/cmd_lst_manager.c		\
 				cmd_lst_init/utils_linked_lst.c		\
 				env_manager/env_manager.c			\
 				env_manager/utils_env_counter.c		\
 				env_manager/utils_env_finder.c		\
 				env_manager/utils_env.c				\
 				env_parser/env_parser.c				\
-				executer/dup_manager.c				\
 				executer/exec_manager.c				\
 				executer/executer.c					\
 				executer/file_manager.c				\
 				executer/heredoc_manager.c			\
+				executer/input_redir_manager.c		\
+				executer/output_redir_manager.c		\
 				executer/path_manager.c				\
 				executer/pipe_manager.c				\
 				executer/pipex.c					\
-				executer/redir_manager.c			\
 				executer/utils_executer.c			\
 				lexer/cmd_separator.c				\
 				lexer/fill_last_output_redir_tab.c	\
