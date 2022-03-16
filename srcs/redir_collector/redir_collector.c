@@ -26,6 +26,36 @@ void	redir_collector(t_input *input)
 		malloc_any_filename_in_redir_tab(input, type);
 		write_any_redir_in_redir_tab(input, type);
 	}
+	// ---------------- FINAL TEST ---------------- //
+	printf("===================== redir_collector =====================\n");
+	printf("|\t\t~~~~~ REDIR TAB ~~~~~\n");
+	int	i = -1;
+	while(input->redir_tab[++i])
+	{
+		printf("| COMMAND #%d\n", i);
+		int j = -1;
+		while (input->redir_tab[i][++j])
+		{
+			printf("|\t-------------------------------------\n");
+			printf("|\tREDIRECTION TYPE : %d\n", j);
+			int	k = -1;
+			while(input->redir_tab[i][j][++k])
+			{
+				printf("|\t\t-----------------------------\n");
+				printf("|\t\tREDIRECTION INDEX : %d\n", k);
+				printf("|\t\t\tREDIRECTION FILE NAME : %s\n",input->redir_tab[i][j][k]);
+			}
+		}
+	}
+	printf("\n|\t\t~~~~~ REDIR TAB ~~~~~\n");
+	i = -1;
+	while(input->redir_tab[++i])
+	{
+		printf("| COMMAND #%d\n", i);
+		printf("| LAST_OUTPUT_REDIR_TYPE : %d\n", input->last_output_redir_tab[i]);
+	}
+	printf("=================================================\n");
+	// -------------------------------------------- //
 }
 
 	// /* =====	TEST CMD SEPARATOR	===== */
@@ -53,34 +83,3 @@ void	redir_collector(t_input *input)
 	// while (++i)
 	// 	printf("%c\n", input->redir_tab[i]);
 	/* =====		END OF TEST		===== */
-
-	// // ---------------- FINAL TEST ---------------- //
-	// printf("===================== redir_collector =====================\n");
-	// printf("|\t\t~~~~~ REDIR TAB ~~~~~\n");
-	// int	i = -1;
-	// while(input->redir_tab[++i])
-	// {
-	// 	printf("| COMMAND #%d\n", i);
-	// 	int j = -1;
-	// 	while (input->redir_tab[i][++j])
-	// 	{
-	// 		printf("|\t-------------------------------------\n");
-	// 		printf("|\tREDIRECTION TYPE : %d\n", j);
-	// 		int	k = -1;
-	// 		while(input->redir_tab[i][j][++k])
-	// 		{
-	// 			printf("|\t\t-----------------------------\n");
-	// 			printf("|\t\tREDIRECTION INDEX : %d\n", k);
-	// 			printf("|\t\t\tREDIRECTION FILE NAME : %s\n",input->redir_tab[i][j][k]);
-	// 		}
-	// 	}
-	// }
-	// printf("\n|\t\t~~~~~ REDIR TAB ~~~~~\n");
-	// i = -1;
-	// while(input->redir_tab[++i])
-	// {
-	// 	printf("| COMMAND #%d\n", i);
-	// 	printf("| LAST_OUTPUT_REDIR_TYPE : %d\n", input->last_output_redir_tab[i]);
-	// }
-	// printf("=================================================\n");
-	// // -------------------------------------------- //

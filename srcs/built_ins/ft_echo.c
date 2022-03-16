@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 10:55:57 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/15 11:27:19 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/16 17:39:04 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	ft_echo(t_cmd_lst *cmd)
 	{
 		message = join_message(cmd, message);
 		print_message(message);
-		ft_free(message);
+		ft_free((void *)&message);
 		if (ft_strncmp(cmd->args[1], "-n", 2))
 			printf("\n");
 	}
@@ -58,7 +58,7 @@ void	add_first_word_to_message(t_cmd_lst *cmd, char **message, int *i)
 	*message = ft_strdup(cmd->args[*i]);
 	buffer = *message;
 	*message = ft_strjoin(buffer, " ");
-	ft_free(buffer);
+	ft_free((void *)&buffer);
 	if (*i == 2)
 		(*i)++;
 }
@@ -69,12 +69,12 @@ void	add_next_words_to_message(t_cmd_lst *cmd, char **message, int *i)
 
 	buffer = *message;
 	*message = ft_strjoin(buffer, cmd->args[*i]);
-	ft_free(buffer);
+	ft_free((void *)&buffer);
 	if (*i != cmd->n_args - 1)
 	{
 		buffer = *message;
 		*message = ft_strjoin(buffer, " ");
-		ft_free(buffer);
+		ft_free((void *)&buffer);
 	}
 }
 

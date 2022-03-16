@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 11:29:37 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/15 17:31:38 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/16 17:39:52 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	free_input_struct(t_input *input);
 void	free_env_struct(t_input *input);
 
 /* utils/utils_free.c */
-void	ft_free(void *ptr);
+void	ft_free(void **ptr);
 void	free_double(char **array);
 void	free_quad(char ****array);
 void	free_triple(char ***array);

@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 16:38:12 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/15 11:38:49 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/16 17:39:04 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ char	*read_heredoc_line(void)
 	line = readline("> ");
 	buffer = line;
 	line = ft_strjoin(buffer, "\n");
-	ft_free(buffer);
+	ft_free((void *)&buffer);
 	return (line);
 }
 
@@ -75,7 +75,7 @@ char	*append_heredoc_line(char *line, char *heredoc_str)
 	char	*buffer;
 
 	buffer = heredoc_str;
-	ft_free(heredoc_str);
+	ft_free((void *)&heredoc_str);
 	new_heredoc_str = ft_strjoin(buffer, line);
 	return (new_heredoc_str);
 }

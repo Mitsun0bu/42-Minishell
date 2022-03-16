@@ -6,38 +6,38 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 11:25:47 by llethuil          #+#    #+#             */
-/*   Updated: 2021/12/15 13:54:34 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/16 17:44:39 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include "../incs/main.h"
 
 static int		ft_count_words(char const *s, char c);
-static void		ft_free(char **tab);
-static int		ft_calloc_strs(char const *s, char c, char **tab);
-static void		ft_fill_tab(char const *s, char c, char **tab);
+static int		ft_calloc_strs(char const *s, char c, char **table);
+static void		ft_fill_table(char const *s, char c, char **table);
 
 char	**ft_split(char const *s, char c)
 {
 	int		words;
-	char	**tab;
+	char	**table;
 
 	if (!s)
 		return (NULL);
 	words = ft_count_words(s, c);
-	tab = ft_calloc(words + 1, sizeof(char *));
-	if (!tab)
+	table = ft_calloc(words + 1, sizeof(char *));
+	if (!table)
 	{
-		free(tab);
+		free_double((void *)&table);
 		return (NULL);
 	}
-	if (!ft_calloc_strs(s, c, tab))
+	if (!ft_calloc_strs(s, c, table))
 	{
-		ft_free(tab);
+		free_double((void *)&table);
 		return (NULL);
 	}
-	ft_fill_tab(s, c, tab);
-	return (tab);
+	ft_fill_table(s, c, table);
+	return (table);
 }
 
 static int	ft_count_words(char const *s, char c)
@@ -58,67 +58,54 @@ static int	ft_count_words(char const *s, char c)
 	return (word);
 }
 
-static void	ft_free(char **tab)
+static int	ft_calloc_strs(char const *s, char c, char **table)
 {
 	int	i;
+	int	i_table;
+	int	j_table;
 
 	i = 0;
-	while (tab[i])
-	{
-		free(tab[i]);
-		i++;
-	}
-	free(tab);
-}
-
-static int	ft_calloc_strs(char const *s, char c, char **tab)
-{
-	int	i;
-	int	i_tab;
-	int	j_tab;
-
-	i = 0;
-	i_tab = 0;
-	while (s[i] && i_tab < ft_count_words(s, c))
+	i_table = 0;
+	while (s[i] && i_table < ft_count_words(s, c))
 	{
 		while (s[i] == c)
 			i ++;
-		j_tab = 0;
+		j_table = 0;
 		while (s[i] != c && s[i + 1] != '\0')
 		{
-			j_tab ++;
+			j_table ++;
 			i ++;
 		}
 		if (s[i] != c && s[i + 1] == '\0')
-			j_tab ++;
-		tab[i_tab] = ft_calloc(j_tab + 1, sizeof(char));
-		if (!tab[i_tab])
+			j_table ++;
+		table[i_table] = ft_calloc(j_table + 1, sizeof(char));
+		if (!table[i_table])
 			return (0);
-		i_tab ++;
+		i_table ++;
 		i ++;
 	}
 	return (1);
 }
 
-static void	ft_fill_tab(char const *s, char c, char **tab)
+static void	ft_fill_table(char const *s, char c, char **table)
 {
 	int	i;
-	int	i_tab;
-	int	j_tab;
+	int	i_table;
+	int	j_table;
 
 	i = 0;
-	i_tab = 0;
-	while (s[i] && i_tab < ft_count_words(s, c))
+	i_table = 0;
+	while (s[i] && i_table < ft_count_words(s, c))
 	{
-		j_tab = 0;
+		j_table = 0;
 		while (s[i] == c)
 			i ++;
 		while (s[i] != c && s[i + 1] != '\0')
-			tab[i_tab][j_tab++] = s[i++];
+			table[i_table][j_table++] = s[i++];
 		if (s[i] != c && s[i + 1] == '\0')
-			tab[i_tab][j_tab++] = s[i];
-		tab[i_tab][j_tab] = '\0';
-		i_tab ++;
+			table[i_table][j_table++] = s[i];
+		table[i_table][j_table] = '\0';
+		i_table ++;
 		i ++;
 	}
 }

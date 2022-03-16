@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 13:18:59 by agirardi          #+#    #+#             */
-/*   Updated: 2022/02/15 15:55:56 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/16 18:08:42 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,9 @@ int	check_basics(t_input *input)
 
 	i = -1;
 	while (++i < input->n_cmd)
-	{
-		if (!input->cmd_tab[i][0])
+		if (!check_quotes(input->cmd_tab[i])
+			|| !check_redirections(input->cmd_tab[i]))
 			return (0);
-		if (!check_quotes(input->cmd_tab[i]))
-			return (0);
-		if (!check_redirections(input->cmd_tab[i]))
-			return (0);
-	}
 	return (1);
 }
 
@@ -46,7 +41,10 @@ int	check_quotes(char *str)
 			if (str[i] == c)
 				i++;
 			else
+			{
+				printf("minishelled: syntax error unclosed quote\n");
 				return (0);
+			}
 		}
 	}
 	return (1);
@@ -62,19 +60,52 @@ int	check_redirections(char *str)
 		if (ft_strchr("\"\'", str[i]))
 			skip_quotes(str, &i);
 		if (ft_strchr("<>", str[i]) && !str[i + 1])
-			return (0);
+			return (print_red_error_message(str, i, 0));
 		if (ft_strchr("<>", str[i]))
 		{
 			if (ft_strchr("<>", str[i + 1]))
-			{
-				if (str[i + 1] != str[i])
-					return (0);
-				if (ft_strchr("<>", str[i + 2]))
-					return (0);
-			}
+				if (str[i + 1] != str[i] || ft_strchr("<>", str[i + 2]))
+					return (print_red_error_message(str, i, 1));
 			if (!check_next_arg(str, i))
 				return (0);
 		}
+	}
+	return (1);
+}
+
+int	print_red_error_message(char *str, int i, int type)
+{
+	if (type == 0)
+		printf("minishelled: syntax error near unexpected token `newline'\n");
+	else
+	{
+		if (str[i] == '>')
+			printf("bash: syntax error near unexpected token `<'\n");
+		else
+			printf("bash: syntax error near unexpected token `>'\n");
+	}
+	return (0);
+}
+
+int	check_pipe(t_input *input)
+{
+	char	last_letter;
+	int		i;
+
+	last_letter = 0;
+	i = -1;
+	while (input->cmd_line[++i])
+	{
+		while (is_isspace(input->cmd_line[i]) && input->cmd_line[i + 1])
+			i++;
+		if ((i == 0 && input->cmd_line[i] == '|')
+			|| (input->cmd_line[i] == '|' && input->cmd_line[i + 1] == '|')
+			|| (input->cmd_line[i] == '|' && last_letter == '|'))
+		{
+			printf("minishelled: syntax error near unexpected token `|'\n");
+			return (0);
+		}
+		last_letter = input->cmd_line[i];
 	}
 	return (1);
 }

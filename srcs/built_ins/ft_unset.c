@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 11:40:20 by agirardi          #+#    #+#             */
-/*   Updated: 2022/03/10 11:22:18 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/16 17:39:04 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	ft_unset(t_input *input)
 		key = del_quotes(input->cmd_exec_tab[0][i]);
 		if (parse_arg(key) && check_dubble(key, input))
 			remove_from_env(input, key);
-		ft_free(key);
+		ft_free((void *)&key);
 	}
 	return (0);
 }

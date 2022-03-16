@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 10:41:38 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/15 16:00:59 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/16 17:39:04 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,8 +116,8 @@ int	exec_program(t_input *input, t_cmd_lst *cmd)
 	while(cmd->name[++i])
 		program_name[i] = cmd->name[i + 1];
 	program_path = ft_strjoin(cwd, program_name);
-	ft_free (cwd);
-	ft_free (program_name);
+	ft_free((void *)&cwd);
+	ft_free((void *)&program_name);
 	printf("ret = %d\n", execve(program_path, cmd->args, convert_env_tab(input)));
 	return (0);
 }

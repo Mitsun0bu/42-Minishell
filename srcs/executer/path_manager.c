@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 14:58:04 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/15 15:36:07 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/16 17:39:04 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,9 @@ void	get_paths_tab(char **envp, t_input	*input)
 	{
 		buff = input->paths_tab[i];
 		input->paths_tab[i] = ft_strjoin(input->paths_tab[i], "/");
-		ft_free (buff);
+		ft_free((void *)&buff);
 	}
-	ft_free(paths_line);
+	ft_free((void *)&paths_line);
 }
 
 char	*assign_path(char *arg, t_input *input, t_cmd_lst *cmd)
@@ -75,7 +75,7 @@ char	*assign_path(char *arg, t_input *input, t_cmd_lst *cmd)
 		path = ft_strjoin(input->paths_tab[i], cmd->name);
 		if (access(path, F_OK) == 0)
 			return (path);
-		ft_free(path);
+		ft_free((void *)&path);
 	}
 	// if (access(path, F_OK) == -1 && name == cmd->name_1[0])
 	// 	error_handler(av, ERR_CMD_1);

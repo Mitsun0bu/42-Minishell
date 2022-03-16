@@ -35,7 +35,6 @@
 
 /*redir_collector/fill_last_output_redir_tab.c */
 int		fill_last_output_redir_type_tab(t_input *input);
-int		find_output_type(char *str, int *i);
 void	back_skip_quotes(char *str, int *i);
 
 /* redir_collector/redir_collector.c */

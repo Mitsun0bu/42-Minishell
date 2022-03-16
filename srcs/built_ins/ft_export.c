@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 15:10:44 by agirardi          #+#    #+#             */
-/*   Updated: 2022/03/15 11:30:14 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/16 17:39:04 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	ft_export(t_input *input, t_cmd_lst *cmd)
 			add_to_env(input, var, EXPORT_NULL);
 		else if (res == 3)
 			add_to_env(input, var, EXPORT_EMPTY);
-		ft_free(var);
+		ft_free((void *)&var);
 	}
 	if (i == 1)
 		print_export(input);
@@ -70,7 +70,7 @@ int	parse_key(char	*str, t_input *input, int type)
 	{
 		if ((!ft_isalnum(key[i]) && key[i] != '_') || ft_isdigit(key[0]))
 		{
-			ft_free(key);
+			ft_free((void *)&key);
 			return (0);
 		}
 	}
@@ -79,10 +79,10 @@ int	parse_key(char	*str, t_input *input, int type)
 	if (check_dubble(key, input))
 	{
 		change_value(input, key, find_value(str));
-		ft_free(key);
+		ft_free((void *)&key);
 		return (0);
 	}
-	ft_free(key);
+	ft_free((void *)&key);
 	if (!str[i + 1])
 		return (3);
 	return (1);

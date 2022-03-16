@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 17:32:59 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/15 16:00:56 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/16 17:39:04 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,9 +78,9 @@ char	**convert_env_tab(t_input *input)
 		{
 			buffer = ft_strjoin(input->env_tab[i].key, "=");
 			env_str = ft_strjoin(buffer, input->env_tab[i].value);
-			ft_free(buffer);
+			ft_free((void *)&buffer);
 			env_list[i] = ft_strdup(env_str);
-			ft_free(env_str);
+			ft_free((void *)&env_str);
 		}
 		else
 			i ++;

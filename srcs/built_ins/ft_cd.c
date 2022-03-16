@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 10:56:25 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/15 11:30:14 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/16 17:39:04 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,12 @@ int	ft_cd(t_input *input, t_cmd_lst *cmd)
 	else if (cmd->args[1] && access(cmd->args[1], F_OK) != 0)
 	{
 		perror(error);
-		ft_free(error);
+		ft_free((void *)&error);
 		return (1);
 	}
 	pwd = getcwd(NULL, 0);
 	change_value(input, "PWD", pwd);
-	ft_free(error);
+	ft_free((void *)&error);
 	return (0);
 }
 

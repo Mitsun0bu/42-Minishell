@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 10:09:31 by llethuil          #+#    #+#             */
-/*   Updated: 2022/02/14 11:55:00 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/16 18:09:26 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ int		create_arg_tab(t_input *input, int i);
 int		check_basics(t_input *input);
 int		check_quotes(char *str);
 int		check_redirections(char *str);
+int		print_red_error_message(char *str, int i, int type);
+int		check_pipe(t_input *input);
 
 /* parser/cleaner.c */
 int		clean_command(t_input *input);

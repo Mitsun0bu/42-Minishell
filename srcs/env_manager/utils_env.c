@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 09:43:38 by agirardi          #+#    #+#             */
-/*   Updated: 2022/03/10 15:11:20 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/16 17:39:04 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int	check_dubble(char *str, t_input *input)
 			if (ft_strlen(key) == ft_strlen(input->env_tab[i].key))
 				check = 1;
 	}
-	ft_free(key);
+	ft_free((void *)&key);
 	if (check == 1)
 		return (1);
 	return (0);

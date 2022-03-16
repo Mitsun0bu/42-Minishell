@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 10:22:49 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/10 11:12:44 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/16 17:39:04 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ char	*get_next_line(int fd)
 	line = ft_get_line(line, buff, fd);
 	if (line && ft_strlen(line))
 		return (line);
-	ft_free (line);
+	ft_free((void *)&line);
 	return (NULL);
 }
 
@@ -49,7 +49,7 @@ char	*ft_get_line(char *line, char *buff, int fd)
 		}
 		read_ret = read(fd, buff, BUFFER_SIZE);
 		if (read_ret == -1)
-			ft_free (line);
+			ft_free((void *)&line);
 		if (read_ret == -1)
 			return (NULL);
 		buff[read_ret] = '\0';
@@ -88,7 +88,7 @@ char	*strjoin_gnl(char *line, char *buff)
 	i_l = -1;
 	while (line[++i_l])
 		joined[i_l] = line[i_l];
-	ft_free(line);
+	ft_free((void *)&line);
 	i_b = 0;
 	while (buff[i_b])
 	{

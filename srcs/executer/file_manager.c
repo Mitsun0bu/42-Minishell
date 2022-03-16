@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 12:14:03 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/15 16:02:11 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/16 18:56:52 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,13 +58,17 @@ int	open_outfiles(t_cmd_lst *cmd)
 
 	cmd->fd_output = safe_malloc(sizeof(int), cmd->n_output_redir);
 	i = -1;
-	while (++i < cmd->n_output_redir)
+	while (++i < cmd->n_output_redir - 1)
 	{
-		cmd->fd_output[i] = open(cmd->output_redir[i], O_CREAT | O_RDWR | O_TRUNC, 0644);
+		cmd->fd_output[i] = open(cmd->output_redir[i],
+			O_CREAT | O_RDWR | O_TRUNC, 0644);
 		if (cmd->fd_output[i] < 0)
 		{
 			perror(cmd->output_redir[i]);
-			exit(0);
+			if (cmd->next == NULL)
+				exit(0);
+			else
+				break ;
 		}
 	}
 	return (0);
@@ -78,11 +82,15 @@ int	open_app_outfiles(t_cmd_lst *cmd)
 	i = -1;
 	while (++i < cmd->n_app_output_redir)
 	{
-		cmd->fd_app_output[i] = open(cmd->app_output_redir[i], O_CREAT | O_RDWR | O_APPEND, 0644);
+		cmd->fd_app_output[i] = open(cmd->app_output_redir[i],
+			O_CREAT | O_RDWR | O_APPEND, 0644);
 		if (cmd->fd_app_output[i] < 0)
 		{
 			perror(cmd->app_output_redir[i]);
-			exit(0);
+			if (cmd->next == NULL)
+				exit(0);
+			else
+				break ;
 		}
 	}
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 13:21:26 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/15 11:25:37 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/16 17:39:04 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,24 +87,28 @@ void	init_shlvl(t_input *input)
 
 int	init_history(t_input *input)
 {
-	char	*cmd_line_history;
 	char	*path;
+	char	*cmd_line_history;
 
 	path = get_history_path(input);
 	input->fd_history = open(path, O_CREAT | O_RDWR | O_APPEND, 0644);
-	ft_free(path);
+	ft_free((void *)&path);
 	if (input->fd_history < 0)
 	{
 		printf("Couldn't open history file");
 		exit(0);
 	}
-	cmd_line_history = "init";
-	while (cmd_line_history)
+	while (1)
 	{
 		cmd_line_history = get_next_line(input->fd_history);
 		add_history(cmd_line_history);
-		ft_free(cmd_line_history);
+		if (cmd_line_history)
+			ft_free((void *)&cmd_line_history);
+		else
+			break ;
 	}
+	if (cmd_line_history)
+		ft_free((void *)&cmd_line_history);
 	close (input->fd_history);
 	return (0);
 }

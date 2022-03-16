@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 16:58:42 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/16 15:31:39 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/16 17:46:40 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ void	env_parser(char *str, t_input *input)
 	int		size;
 	int		i;
 
-	if (input->processed_line)
-		ft_free(input->processed_line);
+	// if (input->processed_line)
+	// 	ft_free((void *)&input->processed_line);
 	size = 0;
 	i = 0;
 	while (str[i])
@@ -79,7 +79,7 @@ void	fill_env(char *str, int *i, int *j, t_input *input)
 			input->processed_line[(*j)++] = value[k++];
 		}
 	}
-	ft_free(key);
+	ft_free((void *)&key);
 }
 
 void	fill_quotes(char *str, int *i, int *j, t_input *input)
