@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 18:48:00 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/10 11:47:00 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/16 11:04:15 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,5 @@ void	back_skip_quotes(char *str, int *i)
 	c = str[*i];
 	(*i)--;
 	while (str[*i] != 0 && str[*i] != c)
-	{
 		(*i)--;
-	}
 }

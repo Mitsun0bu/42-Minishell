@@ -6,7 +6,7 @@
 #    By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/25 15:43:51 by llethuil          #+#    #+#              #
-#    Updated: 2022/03/15 15:47:39 by llethuil         ###   ########lyon.fr    #
+#    Updated: 2022/03/16 15:22:27 by llethuil         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,82 +47,77 @@ SRCS_DIR	:= srcs
 
 OBJS_DIR	:= .objs
 
-INCS_LST	:=	built_ins.h							\
-				cmd_line_manager.h					\
-				cmd_lst_init.h						\
-				env_manager.h						\
-				executer.h							\
-				lexer.h								\
-				main.h								\
-				parser.h							\
-				utils.h								\
+INCS_LST	:=	built_ins.h			\
+				cmd_line_manager.h	\
+				cmd_lst_init.h		\
+				cmd_separator.h		\
+				env_manager.h		\
+				executer.h			\
+				redir_collector.h	\
+				main.h				\
+				parser.h			\
+				utils.h				\
 
-SRCS_LST	:=	built_ins/ft_cd.c					\
-				built_ins/ft_echo.c					\
-				built_ins/ft_env.c					\
-				built_ins/ft_exit.c					\
-				built_ins/ft_export.c				\
-				built_ins/ft_pwd.c					\
-				built_ins/ft_unset.c				\
-				cmd_line_manager/get_cmd_line.c		\
-				cmd_line_manager/cmd_line_manager.c	\
-				cmd_lst_init/cmd_lst_init.c			\
-				cmd_lst_init/cmd_lst_manager.c		\
-				cmd_lst_init/utils_linked_lst.c		\
-				env_manager/env_manager.c			\
-				env_manager/utils_env_counter.c		\
-				env_manager/utils_env_finder.c		\
-				env_manager/utils_env.c				\
-				env_parser/env_parser.c				\
-				executer/basic_redir_manager.c		\
-				executer/exec_manager.c				\
-				executer/executer.c					\
-				executer/file_manager.c				\
-				executer/heredoc_manager.c			\
-				executer/path_manager.c				\
-				executer/pipe_manager.c				\
-				executer/pipex.c					\
-				executer/utils_executer.c			\
-				lexer/cmd_separator.c				\
-				lexer/fill_last_output_redir_tab.c	\
-				lexer/fill_redir_tab_input.c		\
-				lexer/fill_redir_tab_output.c		\
-				lexer/fill_redir_tab_heredoc.c		\
-				lexer/fill_redir_tab_app_output.c	\
-				lexer/lexer.c						\
-				lexer/redir_manager_app_output.c	\
-				lexer/redir_manager_heredoc.c		\
-				lexer/redir_manager_input.c			\
-				lexer/redir_manager_output.c		\
-				lexer/redir_tab_memory_manager.c	\
-				lexer/utils_other_lexer.c			\
-				lexer/utils_quotes_lexer.c			\
-				main/main.c							\
-				parser/arg_length.c					\
-				parser/arg_number.c					\
-				parser/checker.c					\
-				parser/cleaner.c					\
-				parser/parser.c						\
-				parser/utils_parser.c				\
-				shell_initializer/shell_init.c		\
-				utils/utils_error_manager.c			\
-				utils/utils_free_lst.c				\
-				utils/utils_free_struct.c			\
-				utils/utils_free.c					\
-				utils/utils_history.c				\
-				utils/utils.c						\
+SRCS_LST	:=	built_ins/ft_cd.c											\
+				built_ins/ft_echo.c											\
+				built_ins/ft_env.c											\
+				built_ins/ft_exit.c											\
+				built_ins/ft_export.c										\
+				built_ins/ft_pwd.c											\
+				built_ins/ft_unset.c										\
+				cmd_line_manager/get_cmd_line.c								\
+				cmd_line_manager/cmd_line_manager.c							\
+				cmd_lst_init/cmd_lst_init.c									\
+				cmd_lst_init/cmd_lst_manager.c								\
+				cmd_lst_init/utils_linked_lst.c								\
+				cmd_separator/cmd_separator.c								\
+				env_manager/env_manager.c									\
+				env_manager/env_parser.c									\
+				env_manager/utils_env_counter.c								\
+				env_manager/utils_env_finder.c								\
+				env_manager/utils_env.c										\
+				executer/basic_redir_manager.c								\
+				executer/exec_manager.c										\
+				executer/executer.c											\
+				executer/file_manager.c										\
+				executer/heredoc_manager.c									\
+				executer/path_manager.c										\
+				executer/pipe_manager.c										\
+				executer/pipex.c											\
+				executer/utils_executer.c									\
+				redir_collector/fill_last_output_redir_tab.c				\
+				redir_collector/redir_collector.c							\
+				redir_collector/redir_tab_memory_manager.c					\
+				redir_collector/utils_counter_redir_collector.c				\
+				redir_collector/utils_other_redir_collector.c				\
+				redir_collector/utils_quotes_redir_collector.c				\
+				redir_collector/write_any_redir_in_redir_tab.c				\
+				main/main.c													\
+				parser/arg_length.c											\
+				parser/arg_number.c											\
+				parser/checker.c											\
+				parser/cleaner.c											\
+				parser/parser.c												\
+				parser/utils_parser.c										\
+				shell_initializer/shell_init.c								\
+				utils/utils_error_manager.c									\
+				utils/utils_free_lst.c										\
+				utils/utils_free_struct.c									\
+				utils/utils_free.c											\
+				utils/utils_history.c										\
+				utils/utils.c												\
 
-SUBDIRS_LST	:=	built_ins							\
-				cmd_line_manager					\
-				cmd_lst_init						\
-				env_manager							\
-				env_parser							\
-				executer							\
-				lexer								\
-				main								\
-				parser								\
-				shell_initializer					\
-				utils								\
+SUBDIRS_LST	:=	built_ins			\
+				cmd_line_manager	\
+				cmd_lst_init		\
+				cmd_separator		\
+				env_manager			\
+				executer			\
+				redir_collector		\
+				main				\
+				parser				\
+				shell_initializer	\
+				utils				\
 
 OBJS_LST	:=	$(SRCS_LST:.c=.o)
 

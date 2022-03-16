@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 17:07:56 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/15 11:30:14 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/16 15:21:03 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ typedef struct s_input
 {
 	int				start_shlvl;
 	char			*cmd_line;
+	char			*processed_line;
 	struct s_env	*env_tab;
 	int				n_env;
 	char			**cmd_tab;
@@ -92,10 +93,10 @@ typedef struct s_env
 # include "built_ins.h"
 # include "cmd_line_manager.h"
 # include "cmd_lst_init.h"
+# include "cmd_separator.h"
 # include "env_manager.h"
-# include "env_parser.h"
 # include "executer.h"
-# include "lexer.h"
+# include "redir_collector.h"
 # include "parser.h"
 # include "shell_initializer.h"
 # include "utils.h"

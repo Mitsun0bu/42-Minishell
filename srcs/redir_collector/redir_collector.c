@@ -1,36 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lexer.c                                            :+:      :+:    :+:   */
+/*   redir_collector.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 11:26:57 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/14 14:41:11 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/16 10:16:02 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-void	lexer(t_input *input)
+void	redir_collector(t_input *input)
 {
-	if (!ft_strchr(input->cmd_line, '|'))
-		single_cmd(input);
-	else
-		split_multi_cmd(input);
+	int	type;
+
 	fill_last_output_redir_type_tab(input);
-	malloc_redir_tab(input);
-	malloc_redir_subdiv(input);
-	malloc_input_redir_tab(input);
-	malloc_output_redir_tab(input);
-	malloc_heredoc_redir_tab(input);
-	malloc_app_output_redir_tab(input);
-	malloc_redir_solo(input);
-	fill_redir_tab_input(input);
-	fill_redir_tab_output(input);
-	fill_redir_tab_heredoc(input);
-	fill_redir_tab_app_output(input);
+	malloc_all_cmd_in_redir_tab(input);
+	malloc_redir_types_in_redir_tab(input);
+	type = -1;
+	while (++type < 4)
+	{
+		malloc_any_redir_in_redir_tab(input, type);
+		malloc_any_filename_in_redir_tab(input, type);
+		write_any_redir_in_redir_tab(input, type);
+	}
 }
+
 	// /* =====	TEST CMD SEPARATOR	===== */
 	// int i;
 	// i = -1;
@@ -58,7 +55,7 @@ void	lexer(t_input *input)
 	/* =====		END OF TEST		===== */
 
 	// // ---------------- FINAL TEST ---------------- //
-	// printf("===================== LEXER =====================\n");
+	// printf("===================== redir_collector =====================\n");
 	// printf("|\t\t~~~~~ REDIR TAB ~~~~~\n");
 	// int	i = -1;
 	// while(input->redir_tab[++i])
