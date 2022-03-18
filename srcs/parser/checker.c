@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 13:18:59 by agirardi          #+#    #+#             */
-/*   Updated: 2022/03/16 18:08:42 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/18 14:32:26 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,15 +32,14 @@ int	check_quotes(char *str)
 	i = -1;
 	while (str[++i])
 	{
+
 		if (ft_strchr("\"\'", str[i]))
 		{
 			c = str[i];
 			i++;
 			while (str[i] != c && str[i])
 				i++;
-			if (str[i] == c)
-				i++;
-			else
+			if (!str[i])
 			{
 				printf("minishelled: syntax error unclosed quote\n");
 				return (0);

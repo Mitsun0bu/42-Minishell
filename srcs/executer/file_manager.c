@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 12:14:03 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/16 18:56:52 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/17 10:12:45 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int	open_outfiles(t_cmd_lst *cmd)
 
 	cmd->fd_output = safe_malloc(sizeof(int), cmd->n_output_redir);
 	i = -1;
-	while (++i < cmd->n_output_redir - 1)
+	while (++i < cmd->n_output_redir)
 	{
 		cmd->fd_output[i] = open(cmd->output_redir[i],
 			O_CREAT | O_RDWR | O_TRUNC, 0644);

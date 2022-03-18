@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 16:38:12 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/16 17:39:04 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/18 12:43:57 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ char	*read_cmd_heredocs(t_cmd_lst *cmd)
 	char	*line;
 	char	*heredoc_str;
 
-	heredoc_str = ft_calloc(0, 0);
+	heredoc_str = NULL;
 	i = -1;
 	while (++i < cmd->n_heredoc)
 	{
@@ -75,7 +75,7 @@ char	*append_heredoc_line(char *line, char *heredoc_str)
 	char	*buffer;
 
 	buffer = heredoc_str;
-	ft_free((void *)&heredoc_str);
 	new_heredoc_str = ft_strjoin(buffer, line);
+	ft_free((void *)&heredoc_str);
 	return (new_heredoc_str);
 }

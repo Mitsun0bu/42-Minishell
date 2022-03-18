@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 18:48:00 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/16 19:11:12 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/18 13:20:59 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@ int	fill_last_output_redir_type_tab(t_input *input)
 	int	i_cmd;
 	int	i_start;
 
-	input->last_output_redir_tab = safe_malloc(sizeof(int), input->n_cmd);
+	input->last_output_redir_tab = ft_calloc(input->n_cmd, sizeof(int));
 	i_cmd = -1;
 	while (++i_cmd < input->n_cmd)
 	{
-		i_start = ft_strlen(input->cmd_tab[i_cmd]) - 1;
+		i_start = ft_strlen(input->cmd_tab[i_cmd]);
 		while (--i_start >= 0)
 		{
 			if (input->cmd_tab[i_cmd][i_start] == '\''
@@ -33,10 +33,10 @@ int	fill_last_output_redir_type_tab(t_input *input)
 			else if (input->cmd_tab[i_cmd][i_start] == '>'
 				&& input->cmd_tab[i_cmd][i_start - 1] == '>')
 				input->last_output_redir_tab[i_cmd] = APP_OUTPUT;
+			if (input->last_output_redir_tab[i_cmd] == TRUNC_OUTPUT
+				|| input->last_output_redir_tab[i_cmd] == APP_OUTPUT)
+				break ;
 		}
-		if (input->last_output_redir_tab[i_cmd] != TRUNC_OUTPUT
-			&& input->last_output_redir_tab[i_cmd] != APP_OUTPUT)
-			input->last_output_redir_tab[i_cmd] = 0;
 	}
 	return (0);
 }

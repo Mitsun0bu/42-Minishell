@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 15:25:12 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/16 15:28:42 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/18 13:32:46 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ t_cmd_lst	*create_new_cmd(int *i, t_input *input)
 	cmd_output_redir_manager(i, new_cmd, input);
 	cmd_heredoc_manager(i, new_cmd, input);
 	cmd_app_output_redir_manager(i, new_cmd, input);
-	new_cmd->heredoc_str = ft_calloc(0, 0);
+	new_cmd->heredoc_str = NULL;
 	new_cmd->next = NULL;
 	return (new_cmd);
 }

@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 10:31:30 by agirardi          #+#    #+#             */
-/*   Updated: 2022/02/15 15:55:57 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/18 15:20:59 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,16 +60,18 @@ void	copy_quote(char *cmd, char *exec_cmd, int *i, int *j)
 	char	c;
 
 	c = cmd[*i];
-	exec_cmd[*j] = cmd[*i];
-	*j = *j + 1;
-	while (cmd[++ *i] != c)
+	exec_cmd[(*j)++] = cmd[(*i)++];
+	while (cmd[(*i)])
 	{
-		exec_cmd[*j] = cmd[*i];
-		*j = *j + 1;
+		if (cmd[*i] == c)
+		{
+			exec_cmd[*j] = cmd[*i];
+			break ;
+		}
+		exec_cmd[(*j)++] = cmd[(*i)++];
 	}
-	exec_cmd[*j] = cmd[*i];
-	*j = *j + 1;
-	*i = *i + 1;
+	(*j)++;
+	(*i)++;
 }
 
 void	fill_tab(char *cmd, char *exec_cmd, int i)
@@ -88,7 +90,10 @@ void	fill_tab(char *cmd, char *exec_cmd, int i)
 				if (red == 1)
 					skip_quotes(cmd, &i);
 				else
+				{
 					copy_quote(cmd, exec_cmd, &i, &j);
+					printf("cmd[%d] = %c\n",i, cmd[i]);
+				}
 				if (!cmd[i] || ft_strchr("\t\n\v\f\r <>", cmd[i]))
 					return ;
 			}

@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 10:55:57 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/16 17:39:04 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/18 14:54:02 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int	ft_echo(t_cmd_lst *cmd)
 	else
 	{
 		message = join_message(cmd, message);
+		printf("message = %s\n", message);
 		print_message(message);
 		ft_free((void *)&message);
 		if (ft_strncmp(cmd->args[1], "-n", 2))
@@ -38,8 +39,9 @@ char	*join_message(t_cmd_lst *cmd, char *message)
 	int		i;
 
 	i = 0;
-	if (!ft_strncmp(cmd->args[1], "-n", 2))
+	if (!ft_strncmp(cmd->args[1], "-n", 2) && ft_strlen(cmd->args[1]) == 2)
 		i++;
+	printf("i = %d\n", i);
 	while (++i < cmd->n_args)
 	{
 		if ((i == 1 && ft_strncmp(cmd->args[1], "-n", 2) != 0)
@@ -81,24 +83,18 @@ void	add_next_words_to_message(t_cmd_lst *cmd, char **message, int *i)
 void	print_message(char *message)
 {
 	size_t	i;
+	char	c;
 
 	i = -1;
 	while (++i < ft_strlen(message))
 	{
-		if (message[i] == '\'')
+		if (ft_strchr("\'\"", message[i]))
 		{
-			while (message[++i] != '\'')
+			c = message[i];
+			while (message[i] && message[++i] != c)
 				write(1, &message[i], 1);
-			if (message[i] == '\'')
-				i ++;
 		}
-		else if (message[i] == '\"')
-		{
-			while (message[++i] != '\"')
-				write(1, &message[i], 1);
-			if (message[i] == '\"')
-				i ++;
-		}
-		write(1, &message[i], 1);
+		if (!ft_strchr("\'\"", message[i]))
+			write(1, &message[i], 1);
 	}
 }

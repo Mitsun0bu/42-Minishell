@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils_other_redir_collector.c                                :+:      :+:    :+:   */
+/*   redir_collector_utils_other.c                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/02 11:29:34 by llethuil          #+#    #+#             */
-/*   Updated: 2022/02/15 15:56:05 by llethuil         ###   ########lyon.fr   */
+/*   Created: 2022/03/18 11:12:39 by llethuil          #+#    #+#             */
+/*   Updated: 2022/03/18 11:12:44 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,11 @@ int	bidim_tab_size(char **table)
 
 int	skip_space(char *cmd, int *i)
 {
-	*i = *i + 1;
+	(*i)++;
 	if (cmd[*i] == '<' || cmd[*i] == '>')
-		*i = *i + 1;
+		(*i)++;
 	while (is_space(cmd[*i]) == 1)
-				*i = *i + 1;
+				(*i)++;
 	return (0);
 }
 

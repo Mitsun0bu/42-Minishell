@@ -6,20 +6,20 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 15:14:37 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/16 14:30:44 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/18 13:35:03 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-int	malloc_all_cmd_in_redir_tab(t_input *input)
+int	malloc_cmd_dimension(t_input *input)
 {
 	input->redir_tab = safe_malloc(sizeof(char ***), (input->n_cmd + 1));
 	input->redir_tab[input->n_cmd] = NULL;
 	return (0);
 }
 
-int	malloc_redir_types_in_redir_tab(t_input *input)
+int	malloc_types_dimension_for_each_cmd(t_input *input)
 {
 	int	i_cmd;
 
@@ -32,53 +32,41 @@ int	malloc_redir_types_in_redir_tab(t_input *input)
 	return (0);
 }
 
-int	malloc_any_redir_in_redir_tab(t_input *input, int type)
+int	malloc_n_file_dimension_for_each_type(t_input *input, int i_cmd, int type)
 {
-	int	i_cmd;
-	int	n_red;
+	int	n_file;
+	int	i_malloc;
 
-	i_cmd = -1;
-	while (input->cmd_tab[++i_cmd])
+	n_file = count_n_file(input->cmd_tab[i_cmd], type);
+	i_malloc = n_file + 1;
+	if (n_file == 0)
 	{
-		n_red = count_any_redir (input->cmd_tab[i_cmd], type);
-		if (!n_red)
-		{
-			input->redir_tab[i_cmd][type] = safe_malloc(sizeof(char *), 2);
-			input->redir_tab[i_cmd][type][0] = NULL;
-		}
-		else
-		{
-			input->redir_tab[i_cmd][type] = safe_malloc(sizeof(char *), (n_red + 1));
-			input->redir_tab[i_cmd][type][n_red] = NULL;
-		}
+		input->redir_tab[i_cmd][type] = safe_malloc(sizeof(char *), 1);
+		input->redir_tab[i_cmd][type][0] = NULL;
+	}
+	else
+	{
+		input->redir_tab[i_cmd][type] = safe_malloc(sizeof(char *), (i_malloc));
+		input->redir_tab[i_cmd][type][n_file] = NULL;
 	}
 	return (0);
 }
 
-int	malloc_any_filename_in_redir_tab(t_input *input, int type)
+int	malloc_name_for_each_file(t_input *input, int i_cmd, int type, int i_file)
 {
-	int	i_cmd;
-	int	i_red;
 	int	len;
 
-	i_cmd = -1;
-	while (input->redir_tab[++i_cmd])
-	{
-		len = 0;
-		i_red = -1;
-		while (++i_red < count_any_redir(input->cmd_tab[i_cmd], type))
-		{
-			if (type == 0)
-				len = count_input_name_len(input->cmd_tab[i_cmd], &i_red);
-			if (type == 1)
-				len = count_output_name_len(input->cmd_tab[i_cmd], &i_red);
-			if (type == 2)
-				len = count_delimiter_len(input->cmd_tab[i_cmd], &i_red);
-			if (type == 0)
-				len = count_app_output_name_len(input->cmd_tab[i_cmd], &i_red);
-			input->redir_tab[i_cmd][type][i_red] = safe_malloc(sizeof(char), (len + 1));
-			input->redir_tab[i_cmd][type][i_red][len] = '\0';
-		}
-	}
+	len = 0;
+	if (type == 0)
+		len = count_infile_name_len(input->cmd_tab[i_cmd], i_file);
+	if (type == 1)
+		len = count_output_name_len(input->cmd_tab[i_cmd], i_file);
+	if (type == 2)
+		len = count_delimiter_len(input->cmd_tab[i_cmd], i_file);
+	if (type == 3)
+		len = count_app_output_name_len(input->cmd_tab[i_cmd], i_file);
+	len ++;
+	input->redir_tab[i_cmd][type][i_file] = safe_malloc(sizeof(char), len);
+	input->redir_tab[i_cmd][type][i_file][len - 1] = '\0';
 	return (0);
 }

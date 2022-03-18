@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 11:51:38 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/09 16:26:09 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/18 13:38:00 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	ft_exit(t_input *input)
 	char	*value;
 	int		level;
 
-	value = ft_strdup(get_value("SHLVL", input));
+	value = get_value("SHLVL", input);
 	level = ft_atoi(value);
 	if(level > input->start_shlvl)
 	{

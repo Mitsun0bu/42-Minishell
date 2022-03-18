@@ -6,25 +6,35 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 11:29:56 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/16 17:39:04 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/18 14:24:17 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-void	cmd_separator (t_input *input)
+int	cmd_separator (t_input *input)
 {
 	if (!ft_strchr(input->cmd_line, '|'))
 		single_cmd(input);
 	else
+	{
+		if (check_pipe(input) == 0)
+			return (0);
 		split_multi_cmd(input);
+	}
+	if (check_basics(input) == 0)
+		return (0);
+	input->free_all = 1;
+	return (1);
 }
 
 void	single_cmd(t_input *input)
 {
+	char	*buffer;
+
 	input->cmd_tab = safe_malloc (sizeof(char *), 2);
-	input->cmd_tab[0] = ft_strdup(input->cmd_line);
-	input->cmd_tab[0] = ft_strtrim(input->cmd_tab[0], " \t\n\v\f\r");
+	buffer = ft_strdup(input->cmd_line);
+	input->cmd_tab[0] = ft_strtrim(buffer, " \t\n\v\f\r");
 	input->cmd_tab[1] = 0;
 	input->n_cmd = 1;
 }

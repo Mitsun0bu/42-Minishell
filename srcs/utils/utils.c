@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 11:12:43 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/15 17:30:33 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/18 10:28:58 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,7 @@ void	skip_quotes(char *str, int *i)
 	c = str[*i];
 	(*i)++;
 	while (str[*i] && str[*i] != c)
-	{
 		(*i)++;
-	}
 }
 
 void	*safe_malloc(size_t size, size_t count)

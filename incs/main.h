@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 17:07:56 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/16 18:06:31 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/18 14:20:43 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ typedef struct s_input
 	int				n_cmd;
 	int				fd_history;
 	int				*process;
+	int				free_all;
 }	t_input;
 
 typedef struct s_cmd_lst

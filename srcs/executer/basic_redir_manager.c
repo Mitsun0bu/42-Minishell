@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 10:07:06 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/16 19:10:22 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/17 10:13:39 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	handle_output_redir(t_input *input, t_cmd_lst *cmd)
 			while (++i < cmd->n_app_output_redir)
 				dup2(cmd->fd_app_output[i], STDOUT_FILENO);
 		i = -1;
-		while (++i < cmd->n_output_redir - 1)
+		while (++i < cmd->n_output_redir)
 			dup2(cmd->fd_output[i], STDOUT_FILENO);
 	}
 	else if (input->last_output_redir_tab[cmd->index] == APP_OUTPUT)

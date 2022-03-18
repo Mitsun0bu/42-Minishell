@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 17:07:38 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/16 17:38:08 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/18 15:21:50 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,14 @@ int	main(int ac, char **av, char **envp)
 	while (1)
 	{
 		cmd_line_manager(&input);
-		cmd_separator(&input);
-		redir_collector(&input);
-		parser(&input);
-		cmd_lst_init(&input, &cmd);
-		executer(envp, &input, &cmd);
-		free_lst(&cmd);
+		if (cmd_separator(&input) == 1)
+		{
+			redir_collector(&input);
+			parser(&input);
+			cmd_lst_init(&input, &cmd);
+			executer(envp, &input, &cmd);
+			free_lst(&cmd);
+		}
 		free_input_struct(&input);
 	}
 	free_env_struct(&input);
