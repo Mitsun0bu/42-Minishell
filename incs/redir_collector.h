@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 11:15:36 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/18 13:29:02 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/21 13:05:45 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,9 @@ int		copy_outfile(char *outfile, char *cmd, int i_file);
 int		copy_delimiter(char *delimiter, char *cmd, int i_file);
 int		copy_app_outfile(char *app_outfile, char *cmd, int i_file);
 
-/* redir_collector/fill_last_output_redir_tab.c */
-int		fill_last_output_redir_type_tab(t_input *input);
+/* redir_collector/get_last_redir_type_tab.c */
+void	get_last_redir_type_tab(t_input *input);
+void	get_last_types(t_input *input, char *cmd, int i_cmd, int *i_start);
 void	back_skip_quotes(char *str, int *i);
 
 /* redir_collector/redir_collector_utils_counter.c */

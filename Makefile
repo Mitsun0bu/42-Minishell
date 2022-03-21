@@ -6,7 +6,7 @@
 #    By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/25 15:43:51 by llethuil          #+#    #+#              #
-#    Updated: 2022/03/18 13:29:22 by llethuil         ###   ########lyon.fr    #
+#    Updated: 2022/03/21 12:03:23 by llethuil         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -72,7 +72,7 @@ SRCS_LST	:=	built_ins/ft_cd.c								\
 				cmd_lst_init/utils_linked_lst.c					\
 				cmd_separator/cmd_separator.c					\
 				env_manager/env_manager.c						\
-				env_manager/env_parser.c						\
+				env_manager/env_converter.c						\
 				env_manager/utils_env_counter.c					\
 				env_manager/utils_env_finder.c					\
 				env_manager/utils_env.c							\
@@ -86,7 +86,7 @@ SRCS_LST	:=	built_ins/ft_cd.c								\
 				executer/pipex.c								\
 				executer/utils_executer.c						\
 				redir_collector/copy_name_in_redir_tab.c		\
-				redir_collector/fill_last_output_redir_tab.c	\
+				redir_collector/get_last_redir_type_tab.c		\
 				redir_collector/redir_collector_utils_counter.c	\
 				redir_collector/redir_collector_utils_other.c	\
 				redir_collector/redir_collector_utils_quotes.c	\

@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 11:29:56 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/18 14:24:17 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/21 13:08:10 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,15 @@ void	fill_last_pipe(t_input *input)
 	line = readline("> ");
 	filled_cmd = ft_strjoin(input->cmd_line, line);
 	ft_free((void *)&input->cmd_line);
-	input->cmd_line = ft_strdup(filled_cmd);
+	env_converter (filled_cmd, input);
+	ft_free((void *)&filled_cmd);
+	ft_free((void *)&input->cmd_line);
+	input->cmd_line = ft_strdup(input->processed_line);
+	ft_free((void *)&input->processed_line);
 	if (final_letter_is_pipe(line) == 1)
+	{
+		ft_free((void *)&line);
 		fill_last_pipe(input);
+	}
+	ft_free((void *)&line);
 }

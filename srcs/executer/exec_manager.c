@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 10:41:38 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/16 17:39:04 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/21 13:27:53 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,7 @@ void	exec_first_cmd(t_input *input, t_cmd_lst *cmd)
 {
 	printf("| \n");
 	printf("| EXEC FIRST CMD\n");
-	if (cmd->n_heredoc)
-	{
-		dup2(cmd->heredoc_pipe[0], STDIN_FILENO);
-		close_single_pipe(cmd->heredoc_pipe);
-	}
-	handle_input_redir(cmd);
+	handle_input_redir(input, cmd);
 	if (handle_output_redir(input, cmd) == -1)
 		if (cmd->next != NULL)
 			dup2(cmd->cmd_pipe[1], STDOUT_FILENO);
@@ -38,12 +33,7 @@ void	exec_mid_cmd(t_input *input, t_cmd_lst *cmd)
 {
 	printf("| \n");
 	printf("| EXEC A CMD\n");
-	if (cmd->n_heredoc)
-	{
-		dup2(cmd->heredoc_pipe[0], STDIN_FILENO);
-		close_single_pipe(cmd->heredoc_pipe);
-	}
-	if (handle_input_redir(cmd) == -1 && !cmd->n_heredoc)
+	if (handle_input_redir(input, cmd) == -1)
 		dup2(cmd->previous->cmd_pipe[0], STDIN_FILENO);
 	if (handle_output_redir(input, cmd) == -1)
 		dup2(cmd->cmd_pipe[1], STDOUT_FILENO);
@@ -60,13 +50,8 @@ void	exec_last_cmd(t_input *input, t_cmd_lst *cmd)
 {
 	printf("| \n");
 	printf("| EXEC LAST CMD\n");
-	if (cmd->n_heredoc)
-	{
-		dup2(cmd->heredoc_pipe[0], STDIN_FILENO);
-		close_single_pipe(cmd->heredoc_pipe);
-	}
 	handle_output_redir(input, cmd);
-	if (handle_input_redir(cmd) == -1 && !cmd->n_heredoc)
+	if (handle_input_redir(input, cmd) == -1)
 		dup2(cmd->previous->cmd_pipe[0], STDIN_FILENO);
 	close_all_pipes(cmd);
 	if (find_built_in(cmd->name) == BUILT_IN)

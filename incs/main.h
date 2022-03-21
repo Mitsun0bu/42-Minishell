@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 17:07:56 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/18 14:20:43 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/21 15:35:02 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,13 @@
 
 # define TRUNC_OUTPUT 42
 # define APP_OUTPUT 43
-# define BUILT_IN 44
-# define PROGRAM 45
-# define ENV 46
-# define EXPORT_EMPTY 47
-# define EXPORT_NULL 48
+# define INPUT 44
+# define HEREDOC 45
+# define BUILT_IN 46
+# define PROGRAM 47
+# define ENV 48
+# define EXPORT_EMPTY 49
+# define EXPORT_NULL 50
 
 /* ************************************************************************** */
 /*                                                                            */
@@ -41,12 +43,14 @@ typedef struct s_input
 	struct s_env	*env_tab;
 	int				n_env;
 	char			**cmd_tab;
-	int				*last_output_redir_tab;
+	int				*last_input_type_tab;
+	int				*last_output_type_tab;
 	char			****redir_tab;
 	char			***cmd_exec_tab;
 	char			**paths_tab;
 	int				n_cmd;
 	int				fd_history;
+	int				status;
 	int				*process;
 	int				free_all;
 }	t_input;
@@ -66,7 +70,6 @@ typedef struct s_cmd_lst
 	char				**output_redir;
 	char				**app_output_redir;
 	char				**del;
-	int					last_output_redir;
 	int					*fd_input;
 	int					*fd_output;
 	int					*fd_app_output;

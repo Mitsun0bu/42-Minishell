@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 16:33:25 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/16 18:06:39 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/21 10:29:05 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,9 @@
 void	cmd_line_manager(t_input *input)
 {
 	get_cmd_line(input);
-	env_parser(input->cmd_line, input);
+	env_converter(input->cmd_line, input);
 	ft_free((void *)&input->cmd_line);
-	input->cmd_line = input->processed_line;
+	input->cmd_line = ft_strdup(input->processed_line);
+	ft_free((void *)&input->processed_line);
 	return ;
 }

@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 09:36:30 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/18 13:25:29 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/21 13:06:14 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	redir_collector(t_input *input)
 	int	type;
 	int	i_file;
 
-	fill_last_output_redir_type_tab(input);
+	get_last_redir_type_tab(input);
 	malloc_cmd_dimension(input);
 	malloc_types_dimension_for_each_cmd(input);
 	i_cmd = -1;
@@ -83,7 +83,7 @@ void	redir_collector(t_input *input)
 	// while(input->redir_tab[++i])
 	// {
 	// 	printf("| COMMAND #%d\n", i);
-	// 	printf("| LAST_OUTPUT_REDIR_TYPE : %d\n", input->last_output_redir_tab[i]);
+	// 	printf("| LAST_OUTPUT_REDIR_TYPE : %d\n", input->last_output_type_tab[i]);
 	// }
 	// printf("=================================================\n");
 	// // -------------------------------------------- //
@@ -93,6 +93,9 @@ void	redir_collector(t_input *input)
 	// int	i;
 	// i = -1;
 	// while (++i < input->n_cmd)
-	// 	printf("| COMMANDE[%d] = %d\n", i, input->last_output_redir_tab[i]);
+	// {
+	// 	printf("| COMMANDE[%d] = %d\n", i, input->last_input_type_tab[i]);
+	// 	printf("| COMMANDE[%d] = %d\n", i, input->last_output_type_tab[i]);
+	// }
 	// printf("----------------------------------------------\n");
 	// /* =====		END OF TEST		===== */

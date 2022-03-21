@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 10:55:57 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/18 14:54:02 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/18 16:05:07 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ int	ft_echo(t_cmd_lst *cmd)
 	else
 	{
 		message = join_message(cmd, message);
-		printf("message = %s\n", message);
 		print_message(message);
 		ft_free((void *)&message);
 		if (ft_strncmp(cmd->args[1], "-n", 2))
@@ -41,7 +40,6 @@ char	*join_message(t_cmd_lst *cmd, char *message)
 	i = 0;
 	if (!ft_strncmp(cmd->args[1], "-n", 2) && ft_strlen(cmd->args[1]) == 2)
 		i++;
-	printf("i = %d\n", i);
 	while (++i < cmd->n_args)
 	{
 		if ((i == 1 && ft_strncmp(cmd->args[1], "-n", 2) != 0)

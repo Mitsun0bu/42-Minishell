@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 10:38:38 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/18 14:21:14 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/21 15:08:50 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,15 @@ void	free_input_struct(t_input *input)
 	free_double(input->cmd_tab);
 	if (input->free_all == 1)
 	{
-		ft_free((void *)&input->last_output_redir_tab);
+		ft_free((void *)&input->last_input_type_tab);
+		ft_free((void *)&input->last_output_type_tab);
 		free_quad(input->redir_tab);
-		free_triple(input->cmd_exec_tab);
 		free_double(input->paths_tab);
-		if (input->n_cmd > 1)
+		if ((input->n_cmd > 1)
+			|| (input->n_cmd == 1
+				&& find_built_in(input->cmd_exec_tab[0][0]) != BUILT_IN))
 			ft_free((void *)&input->process);
+		free_triple(input->cmd_exec_tab);
 	}
 }
 
