@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cmd_line_manager.h                                 :+:      :+:    :+:   */
+/*   garbage_collector.h                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/10 16:36:06 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/22 10:53:14 by llethuil         ###   ########lyon.fr   */
+/*   Created: 2022/03/22 13:51:26 by llethuil          #+#    #+#             */
+/*   Updated: 2022/03/22 19:33:04 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CMD_LINE_MANAGER_H
-# define CMD_LINE_MANAGER_H
-
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 1024
-# endif
+#ifndef GRABAGE_COLLECTOR_H
+# define GRABAGE_COLLECTOR_H
 
 /* ************************************************************************** */
 /*                                                                            */
@@ -37,10 +33,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-/* cmd_line_manager/cmd_line_manager.c */
-void	cmd_line_manager(t_input *input);
-
-/* cmd_line_manager/get_cmd_line.c */
-int	get_cmd_line(t_input *input);
+/* garbage_collector/garbage_collector.c */
+t_garbage_lst	*create_new_garbage(void *ptr, int type);
+void			add_garbage_front(t_garbage_lst **gc, t_garbage_lst *new);
+void			clear_all_garbage(t_garbage_lst **garbage);
+void			clear_one_garbage_type(t_garbage_lst **garbage, int type);
 
 #endif

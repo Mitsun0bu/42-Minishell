@@ -6,19 +6,14 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 13:21:26 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/16 17:39:04 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/22 11:32:09 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-void	shell_init(int ac, char **envp, t_input *input, t_cmd_lst **cmd)
+void	shell_init(char **envp, t_input *input, t_cmd_lst **cmd)
 {
-	if (ac > 1)
-	{
-		printf("To start our shell, use : ./minishell !\n");
-		exit(0);
-	}
 	if (isatty(STDIN_FILENO) == 0)
 	{
 		perror("");

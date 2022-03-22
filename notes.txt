@@ -1,0 +1,2 @@
+passer input dans tous les safe_malloc
+modifier error_exit

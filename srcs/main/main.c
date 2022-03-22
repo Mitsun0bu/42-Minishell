@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 17:07:38 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/21 15:04:28 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/22 19:33:20 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,12 @@
 
 int	main(int ac, char **av, char **envp)
 {
-	t_input		input;
-	t_cmd_lst	*cmd;
+	t_input			input;
+	t_cmd_lst		*cmd;
 
-	(void)av;
-	shell_init(ac, envp, &input, &cmd);
+	if (ac > 1 || av[1])
+		return (print_stderror(127, av[1], ": invalid option"));
+	shell_init(envp, &input, &cmd);
 	while (1)
 	{
 		cmd_line_manager(&input);
@@ -34,4 +35,22 @@ int	main(int ac, char **av, char **envp)
 	}
 	free_env_struct(&input);
 	exit (0);
+}
+
+int	stderror_print_return(int error, char *problem, char *err_message)
+{
+	ft_putstr_fd("minishell: ", 2);
+	ft_putstr_fd(problem, 2);
+	ft_putstr_fd(err_message, 2);
+	ft_putstr_fd("\n", 2);
+	return (error);
+}
+
+int	stderror_print_exit(t_input *input, char *problem, char *err_message)
+{
+	ft_putstr_fd("minishell: ", 2);
+	ft_putstr_fd(problem, 2);
+	ft_putstr_fd(err_message, 2);
+	ft_putstr_fd("\n", 2);
+	exit(-1);
 }

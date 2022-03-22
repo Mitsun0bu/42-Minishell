@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 17:07:56 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/21 15:35:02 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/22 19:12:56 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,10 @@
 # define ENV 48
 # define EXPORT_EMPTY 49
 # define EXPORT_NULL 50
+# define CMD_LST 51
+# define ENV_LST 52
+# define INPUT_STRUCT 53
+# define GARBAGE 54
 
 /* ************************************************************************** */
 /*                                                                            */
@@ -37,22 +41,23 @@
 
 typedef struct s_input
 {
-	int				start_shlvl;
-	char			*cmd_line;
-	char			*processed_line;
-	struct s_env	*env_tab;
-	int				n_env;
-	char			**cmd_tab;
-	int				*last_input_type_tab;
-	int				*last_output_type_tab;
-	char			****redir_tab;
-	char			***cmd_exec_tab;
-	char			**paths_tab;
-	int				n_cmd;
-	int				fd_history;
-	int				status;
-	int				*process;
-	int				free_all;
+	struct s_garbage_lst	*garbage;
+	int						start_shlvl;
+	char					*cmd_line;
+	char					*processed_line;
+	struct s_env			*env_tab;
+	int						n_env;
+	char					**cmd_tab;
+	int						*last_input_type_tab;
+	int						*last_output_type_tab;
+	char					****redir_tab;
+	char					***cmd_exec_tab;
+	char					**paths_tab;
+	int						n_cmd;
+	int						fd_history;
+	int						status;
+	int						*process;
+	int						free_all;
 }	t_input;
 
 typedef struct s_cmd_lst
@@ -87,6 +92,14 @@ typedef struct s_env
 	int		type;
 }	t_env;
 
+typedef struct s_garbage_lst
+{
+	void					*ptr;
+	int						type;
+	struct s_garbage_lst	*next;
+	struct s_garbage_lst	*previous;
+} t_garbage_lst;
+
 /* ************************************************************************** */
 /*                                                                            */
 /*                               ~~~ INCLUDES ~~~                             */
@@ -100,8 +113,9 @@ typedef struct s_env
 # include "cmd_separator.h"
 # include "env_manager.h"
 # include "executer.h"
-# include "redir_collector.h"
+# include "garbage_collector.h"
 # include "parser.h"
+# include "redir_collector.h"
 # include "shell_initializer.h"
 # include "utils.h"
 
@@ -169,5 +183,7 @@ typedef struct s_env
 
 /* main/main.c */
 int	main(int ac, char **av, char **envp);
+int	stderror_print_return(int error, char *problem, char *err_message);
+int	stderror_print_exit(t_input *input, char *problem, char *err_message);
 
 #endif
