@@ -6,35 +6,33 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 17:02:15 by llethuil          #+#    #+#             */
-/*   Updated: 2021/12/15 15:05:06 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/23 14:58:53 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_get_line(char *line, char *buff, int fd);
-char	*ft_strjoin_gnl(char *line, char *buff);
-int		ft_position_nl(char *str);
+static char	*ft_get_line(t_input *input, char *line, char *buff, int fd);
+static char	*ft_strjoin_gnl(t_input *input, char *line, char *buff);
+static int	ft_position_nl(char *str);
 
-char	*ft_get_next_line(int fd)
+char	*ft_get_next_line(t_input *input, int fd)
 {
 	static char	buff[BUFFER_SIZE + 1] = {};
 	char		*line;
 
 	if (fd < 0 || fd > OPEN_MAX || BUFFER_SIZE <= 0)
 		return (NULL);
-	line = malloc(sizeof(char) * 1);
-	if (!line)
-		return (NULL);
+	line = ft_malloc(input, sizeof(char), 1);
+	input->garbage->type = GARBAGE;
 	line[0] = 0;
-	line = ft_get_line(line, buff, fd);
+	line = ft_get_line(input, line, buff, fd);
 	if (line && ft_strlen(line))
 		return (line);
-	free (line);
 	return (NULL);
 }
 
-char	*ft_get_line(char *line, char *buff, int fd)
+static char	*ft_get_line(t_input *input, char *line, char *buff, int fd)
 {
 	int		read_ret;
 	char	*buff_rest;
@@ -42,12 +40,11 @@ char	*ft_get_line(char *line, char *buff, int fd)
 	read_ret = 1;
 	while (read_ret > 0)
 	{
-		line = ft_strjoin_gnl(line, buff);
-		if (!line)
-			return (NULL);
-		if (ft_position_nl(buff) != -1)
+		line = ft_strjoin_gnl(input, line, buff);
+		input->garbage->type = GARBAGE;
+		if (position_nl(buff) != -1)
 		{
-			buff_rest = &buff[ft_position_nl(buff) + 1];
+			buff_rest = &buff[position_nl(buff) + 1];
 			while (*buff_rest)
 				*buff++ = *buff_rest++;
 			*buff = '\0';
@@ -55,7 +52,7 @@ char	*ft_get_line(char *line, char *buff, int fd)
 		}
 		read_ret = read(fd, buff, BUFFER_SIZE);
 		if (read_ret == -1)
-			free (line);
+			ft_free((void *)&line);
 		if (read_ret == -1)
 			return (NULL);
 		buff[read_ret] = '\0';
@@ -63,24 +60,21 @@ char	*ft_get_line(char *line, char *buff, int fd)
 	return (line);
 }
 
-char	*ft_strjoin_gnl(char *line, char *buff)
+static char	*ft_strjoin_gnl(t_input *input, char *line, char *buff)
 {
 	char	*joined;
 	int		buff_size;
 	int		i_l;
 	int		i_b;
 
-	if (ft_position_nl(buff) != -1)
-		buff_size = ft_position_nl(buff) + 1;
+	if (position_nl(buff) != -1)
+		buff_size = position_nl(buff) + 1;
 	else
 		buff_size = ft_strlen(buff);
-	joined = malloc(sizeof(char) * (ft_strlen(line) + buff_size + 1));
-	if (!joined)
-		return (NULL);
+	joined = ft_malloc(input, sizeof(char), ft_strlen(line) + buff_size + 1);
 	i_l = -1;
 	while (line[++i_l])
 		joined[i_l] = line[i_l];
-	free(line);
 	i_b = 0;
 	while (buff[i_b])
 	{
@@ -92,7 +86,7 @@ char	*ft_strjoin_gnl(char *line, char *buff)
 	return (joined);
 }
 
-int	ft_position_nl(char *str)
+static int	ft_position_nl(char *str)
 {
 	int	i;
 

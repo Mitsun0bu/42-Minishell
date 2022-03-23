@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 13:23:14 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/18 15:22:25 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/23 18:59:36 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,8 @@
 
 int	parser(t_input *input)
 {
-
-	if (!clean_command(input))
-	{
-		free_triple(input->cmd_exec_tab);
+	if (!clean_cmd(input))
 		return (0);
-	}
 	return (1);
 }
 

@@ -6,13 +6,13 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 16:58:42 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/21 10:01:29 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/23 17:27:07 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-void	env_converter(char *str, t_input *input)
+void	env_converter(t_input *input, char *str)
 {
 	int		size;
 	int		i;
@@ -22,20 +22,21 @@ void	env_converter(char *str, t_input *input)
 	while (str[i])
 	{
 		if (str[i] == '$' && str[i])
-			size += count_env(str, &i, 0, input);
+			size += count_env(input, str, &i, 0);
 		if (ft_strchr("\'\"", str[i]) && str[i])
-			size += count_quotes(str, &i, input);
+			size += count_quotes(input, str, &i);
 		if (!ft_strchr("$\'\"", str[i]) && str[i])
 		{
 			size++;
 			i++;
 		}
 	}
-	input->processed_line = ft_calloc(size + 1, sizeof(char));
-	fill_buffer(str, input);
+	input->processed_line = ft_calloc(input, sizeof(char), size + 1);
+	input->garbage->type = INPUT_STRUCT;
+	fill_buffer(input, str);
 }
 
-void	fill_buffer(char *str, t_input *input)
+void	fill_buffer(t_input *input, char *str)
 {
 	int	i;
 	int	j;
@@ -45,15 +46,15 @@ void	fill_buffer(char *str, t_input *input)
 	while (str[i])
 	{
 		if (str[i] == '$' && str[i])
-			fill_env(str, &i, &j, input);
+			fill_env(input, str, &i, &j);
 		if (ft_strchr("\'\"", str[i]) && str[i])
-			fill_quotes(str, &i, &j, input);
+			fill_quotes(input, str, &i, &j);
 		if (!ft_strchr("$\'\"", str[i]) && str[i])
 			input->processed_line[j++] = str[i++];
 	}
 }
 
-void	fill_env(char *str, int *i, int *j, t_input *input)
+void	fill_env(t_input *input, char *str, int *i, int *j)
 {
 	char	*key;
 	char	*value;
@@ -62,25 +63,18 @@ void	fill_env(char *str, int *i, int *j, t_input *input)
 
 	start = (*i) + 1;
 	(*i)++;
-	while (!ft_strchr("$<>=\'\"", str[*i])
-		&& !is_isspace(str[*i]) && str[*i])
-	{
+	while (!ft_strchr("$<>=\'\"", str[*i]) && !is_isspace(str[*i]) && str[*i])
 		(*i)++;
-	}
-	key = ft_substr(str, start, *i - start);
-	value = get_value(key, input);
+	key = ft_substr(input, str, start, *i - start);
+	input->garbage->type = GARBAGE;
+	value = get_value(input, key);
 	k = 0;
 	if (value)
-	{
 		while (value[k])
-		{
 			input->processed_line[(*j)++] = value[k++];
-		}
-	}
-	ft_free((void *)&key);
 }
 
-void	fill_quotes(char *str, int *i, int *j, t_input *input)
+void	fill_quotes(t_input *input, char *str, int *i, int *j)
 {
 	char	c;
 
@@ -94,14 +88,10 @@ void	fill_quotes(char *str, int *i, int *j, t_input *input)
 		{
 			fill_env(str, i, j, input);
 			if (str[*i] == c)
-			{
 				break ;
-			}
 		}
 		else
-		{
 			input->processed_line[(*j)++] = str[(*i)++];
-		}
 	}
 	input->processed_line[(*j)++] = str[(*i)++];
 }

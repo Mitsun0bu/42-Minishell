@@ -1,22 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils_history.c                                    :+:      :+:    :+:   */
+/*   ft_create_new_garbage.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/15 10:22:49 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/23 14:39:13 by llethuil         ###   ########lyon.fr   */
+/*   Created: 2022/03/22 13:47:32 by llethuil          #+#    #+#             */
+/*   Updated: 2022/03/23 15:25:48 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "main.h"
+#include "libft.h"
 
-char	*get_history_path(t_input *input)
+t_garbage_lst	*ft_create_new_garbage(void *ptr)
 {
-	char	*path;
+	t_garbage_lst	*new_garbage;
 
-	path = ft_strjoin(input, get_value("HOME", input), "/.minishelled_history");
-	input->garbage->type = GARBAGE;
-	return(path);
+	new_garbage = malloc(sizeof(t_garbage_lst));
+	if (!new_garbage)
+		return (NULL);
+	new_garbage->ptr = ptr;
+	new_garbage->type = 0;
+	new_garbage->next = NULL;
+	new_garbage->previous = NULL;
+	return (new_garbage);
 }
+

@@ -1,22 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils_history.c                                    :+:      :+:    :+:   */
+/*   ft_add_garbage_front.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/15 10:22:49 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/23 14:39:13 by llethuil         ###   ########lyon.fr   */
+/*   Created: 2022/03/23 15:24:45 by llethuil          #+#    #+#             */
+/*   Updated: 2022/03/23 15:26:11 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "main.h"
+#include "libft.h"
 
-char	*get_history_path(t_input *input)
+void	ft_add_garbage_front(t_garbage_lst **garbage, t_garbage_lst *new_garbage)
 {
-	char	*path;
-
-	path = ft_strjoin(input, get_value("HOME", input), "/.minishelled_history");
-	input->garbage->type = GARBAGE;
-	return(path);
+	if (!new_garbage)
+		return ;
+	new_garbage->next = *garbage;
+	(*garbage)->previous = new_garbage;
+	*garbage = new_garbage;
 }

@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 10:21:58 by agirardi          #+#    #+#             */
-/*   Updated: 2022/03/21 10:02:26 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/23 16:09:53 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,23 +39,23 @@ void	remove_from_env(t_input *input, char *key);
 void	change_value(t_input *input, char *key, char *value);
 
 /* env_manager/env_converter.c */
-void	env_converter(char *str, t_input *input);
-void	fill_buffer(char *buffer, t_input *input);
-void	fill_env(char *buffer, int *i, int *j, t_input *input);
-void	fill_quotes(char *buffer, int *i, int *j, t_input *input);
+void	env_converter(t_input *input, char *str);
+void	fill_buffer(t_input *input, char *buffer);
+void	fill_env(t_input *input, char *str, int *i, int *j);
+void	fill_quotes(t_input *input, char *str, int *i, int *j);
 
 /* env_manager/utils_env_counter.c */
-int		count_env(char *str, int *i, int red, t_input *input);
-int		count_quotes(char *str, int *i, t_input *input);
+int		count_env(t_input *input, char *str, int *i, int red);
+int		count_quotes(t_input *input, char *str, int *i);
 
 /* env_manager/utils_env_finder.c */
-char	*find_key(char *str);
-char	*find_value(char *str);
+char	*find_key(t_input *input, char *str);
+char	*find_value(t_input *input, char *str);
 
 /* env_manager/utils_env.c */
-char	*get_value(char *key, t_input *input);
+char	*get_value(t_input *input, char *key);
 int		search_key(const char *str, const char *key);
-int		check_dubble(char *str, t_input *input);
+int		check_dubble(t_input *input, char *str);
 
 
 #endif

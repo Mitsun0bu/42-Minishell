@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 17:07:56 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/22 19:12:56 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/23 19:04:59 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,10 @@
 # define EXPORT_EMPTY 49
 # define EXPORT_NULL 50
 # define CMD_LST 51
-# define ENV_LST 52
+# define ENV_STRUCT 52
 # define INPUT_STRUCT 53
 # define GARBAGE 54
+# define COLLECTOR_LST 55
 
 /* ************************************************************************** */
 /*                                                                            */
@@ -42,18 +43,18 @@
 typedef struct s_input
 {
 	struct s_garbage_lst	*garbage;
+	struct s_env			*env_tab;
 	int						start_shlvl;
 	char					*cmd_line;
 	char					*processed_line;
-	struct s_env			*env_tab;
 	int						n_env;
 	char					**cmd_tab;
+	int						n_cmd;
 	int						*last_input_type_tab;
 	int						*last_output_type_tab;
 	char					****redir_tab;
 	char					***cmd_exec_tab;
 	char					**paths_tab;
-	int						n_cmd;
 	int						fd_history;
 	int						status;
 	int						*process;
@@ -92,14 +93,6 @@ typedef struct s_env
 	int		type;
 }	t_env;
 
-typedef struct s_garbage_lst
-{
-	void					*ptr;
-	int						type;
-	struct s_garbage_lst	*next;
-	struct s_garbage_lst	*previous;
-} t_garbage_lst;
-
 /* ************************************************************************** */
 /*                                                                            */
 /*                               ~~~ INCLUDES ~~~                             */
@@ -107,13 +100,13 @@ typedef struct s_garbage_lst
 /* ************************************************************************** */
 
 /* our headers */
+# include "../libft/libft.h"
 # include "built_ins.h"
 # include "cmd_line_manager.h"
 # include "cmd_lst_init.h"
 # include "cmd_separator.h"
 # include "env_manager.h"
 # include "executer.h"
-# include "garbage_collector.h"
 # include "parser.h"
 # include "redir_collector.h"
 # include "shell_initializer.h"

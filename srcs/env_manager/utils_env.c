@@ -6,13 +6,13 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 09:43:38 by agirardi          #+#    #+#             */
-/*   Updated: 2022/03/16 17:39:04 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/23 16:09:45 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-char	*get_value(char *key, t_input *input)
+char	*get_value(t_input *input, char *key)
 {
 	int	i;
 
@@ -41,14 +41,14 @@ int	search_key(const char *str, const char *key)
 	return (1);
 }
 
-int	check_dubble(char *str, t_input *input)
+int	check_dubble(t_input *input, char *str)
 {
 	char	*key;
 	int		check;
 	int		i;
 
 	check = 0;
-	key = find_key(str);
+	key = find_key(input, str);
 	i = -1;
 	while (++i < input->n_env)
 	{

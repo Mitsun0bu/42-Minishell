@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 18:48:00 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/21 13:05:20 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/23 17:40:17 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,10 @@ void	get_last_redir_type_tab(t_input *input)
 	int	i_cmd;
 	int	i_start;
 
-	input->last_input_type_tab = ft_calloc(input->n_cmd, sizeof(int));
-	input->last_output_type_tab = ft_calloc(input->n_cmd, sizeof(int));
+	input->last_input_type_tab = ft_calloc(input, sizeof(int), input->n_cmd);
+	input->garbage->type = INPUT_STRUCT;
+	input->last_output_type_tab = ft_calloc(input, sizeof(int), input->n_cmd);
+	input->garbage->type = INPUT_STRUCT;
 	i_cmd = -1;
 	while (++i_cmd < input->n_cmd)
 	{

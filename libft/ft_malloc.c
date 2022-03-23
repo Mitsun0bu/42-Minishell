@@ -1,22 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils_history.c                                    :+:      :+:    :+:   */
+/*   ft_malloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/15 10:22:49 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/23 14:39:13 by llethuil         ###   ########lyon.fr   */
+/*   Created: 2022/03/23 15:17:18 by llethuil          #+#    #+#             */
+/*   Updated: 2022/03/23 15:19:05 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "main.h"
+#include "libft.h"
 
-char	*get_history_path(t_input *input)
+void	*ft_malloc(t_input *input, size_t size, size_t count)
 {
-	char	*path;
+	void	*ptr;
 
-	path = ft_strjoin(input, get_value("HOME", input), "/.minishelled_history");
-	input->garbage->type = GARBAGE;
-	return(path);
+	ptr = malloc(size * count);
+	if (!ptr)
+	{
+		perror("malloc");
+		exit (0);
+	}
+	ft_add_garbage_front(&input->garbage, ft_create_new_garbage(ptr));
+	return (ptr);
 }

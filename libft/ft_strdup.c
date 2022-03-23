@@ -6,19 +6,18 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/19 14:49:31 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/10 15:29:07 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/23 15:12:23 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "../incs/utils.h"
 
-char	*ft_strdup(char *s1)
+char	*ft_strdup(t_input *input, char *s1)
 {
 	char	*str;
 	int		i;
 
-	str = safe_malloc(sizeof(char), (ft_strlen(s1) + 1));
+	str = ft_malloc(input, sizeof(char), ft_strlen(s1) + 1);
 	i = 0;
 	while (s1[i])
 	{

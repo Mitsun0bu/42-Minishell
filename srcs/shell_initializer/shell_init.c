@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 13:21:26 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/22 11:32:09 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/23 15:08:21 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ void	shell_init(char **envp, t_input *input, t_cmd_lst **cmd)
 		exit (0);
 	}
 	ft_memset(input, 0, sizeof(input));
+	input->garbage = ft_malloc(input, sizeof(t_garbage_lst), 1);
+	input->garbage->type = COLLECTOR_LST;
 	ft_memset(cmd, 0, sizeof(cmd));
 	init_message();
 	init_env(input, envp);
@@ -54,7 +56,8 @@ void	init_env(t_input *input, char **envp)
 	while (envp[++i])
 		if (ft_strncmp(envp[i], "OLDPWD=", 7) != 0)
 			j++;
-	input->env_tab = safe_malloc(sizeof(t_env), i);
+	input->env_tab = ft_malloc(input, sizeof(t_env), i);
+	input->garbage->type = ENV_STRUCT;
 	input->n_env = j;
 	i = -1;
 	j = -1;
@@ -63,8 +66,8 @@ void	init_env(t_input *input, char **envp)
 		if (ft_strncmp(envp[i], "OLDPWD=", 7) != 0)
 		{
 			++j;
-			input->env_tab[j].key = find_key(envp[i]);
-			input->env_tab[j].value = find_value(envp[i]);
+			input->env_tab[j].key = find_key(input, envp[i]);
+			input->env_tab[j].value = find_value(input, envp[i]);
 			input->env_tab[j].type = ENV;
 		}
 	}
@@ -72,12 +75,13 @@ void	init_env(t_input *input, char **envp)
 
 void	init_shlvl(t_input *input)
 {
-	char	*new_value;
+	char	*value;
 
 	input->start_shlvl = ft_atoi(get_value("SHLVL", input));
 	input->start_shlvl ++;
-	new_value = ft_itoa(input->start_shlvl);
-	change_value(input, "SHLVL", new_value);
+	value = ft_itoa(input, input->start_shlvl);
+	change_value(input, "SHLVL", value);
+	input->garbage->type = ENV_STRUCT;
 }
 
 int	init_history(t_input *input)
@@ -87,7 +91,6 @@ int	init_history(t_input *input)
 
 	path = get_history_path(input);
 	input->fd_history = open(path, O_CREAT | O_RDWR | O_APPEND, 0644);
-	ft_free((void *)&path);
 	if (input->fd_history < 0)
 	{
 		printf("Couldn't open history file");
@@ -95,15 +98,11 @@ int	init_history(t_input *input)
 	}
 	while (1)
 	{
-		cmd_line_history = get_next_line(input->fd_history);
+		cmd_line_history = ft_get_next_line(input, input->fd_history);
 		add_history(cmd_line_history);
-		if (cmd_line_history)
-			ft_free((void *)&cmd_line_history);
-		else
+		if (!cmd_line_history)
 			break ;
 	}
-	if (cmd_line_history)
-		ft_free((void *)&cmd_line_history);
 	close (input->fd_history);
 	return (0);
 }

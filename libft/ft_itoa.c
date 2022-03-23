@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 08:48:23 by llethuil          #+#    #+#             */
-/*   Updated: 2021/12/15 13:51:36 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/23 14:21:48 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static int	len_to_malloc(long int nbr_int, int sign);
 
-char	*ft_itoa(int n)
+char	*ft_itoa(t_input *input, int n)
 {
 	long int	nbr_int;
 	int			sign;
@@ -28,10 +28,8 @@ char	*ft_itoa(int n)
 		nbr_int = nbr_int * -1;
 		sign = -1;
 	}
-	nbr_str = malloc(sizeof(char) * (len_to_malloc(nbr_int, sign) + 1));
-	if (nbr_str == NULL)
-		return (0);
 	i = len_to_malloc(nbr_int, sign);
+	nbr_str = ft_malloc(input, sizeof(char), i + 1);
 	nbr_str[i] = '\0';
 	while (--i >= 0)
 	{

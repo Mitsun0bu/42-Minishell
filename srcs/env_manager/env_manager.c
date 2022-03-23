@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 10:22:00 by agirardi          #+#    #+#             */
-/*   Updated: 2022/03/16 17:39:04 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/23 14:16:55 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ void	add_to_env(t_input *input, char *str, int type)
 		buffer[i].value = input->env_tab[i].value;
 		buffer[i].type = input->env_tab[i].type;
 	}
-	buffer[i].key = find_key(str);
-	buffer[i].value = find_value(str);
+	buffer[i].key = find_key(input, str);
+	buffer[i].value = find_value(input, str);
 	buffer[i].type = type;
 	ft_free((void *)&input->env_tab);
 	input->env_tab = buffer;
@@ -73,7 +73,6 @@ void	change_value(t_input *input, char *key, char *value)
 		{
 			if (ft_strlen(key) == ft_strlen(input->env_tab[i].key))
 			{
-				ft_free((void *)&input->env_tab[i].value);
 				input->env_tab[i].value = value;
 				if (!value)
 					input->env_tab[i].type = EXPORT_EMPTY;

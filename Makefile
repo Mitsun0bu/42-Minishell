@@ -6,7 +6,7 @@
 #    By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/25 15:43:51 by llethuil          #+#    #+#              #
-#    Updated: 2022/03/22 13:53:18 by llethuil         ###   ########lyon.fr    #
+#    Updated: 2022/03/23 15:36:21 by llethuil         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,7 +53,6 @@ INCS_LST	:=	built_ins.h			\
 				cmd_separator.h		\
 				env_manager.h		\
 				executer.h			\
-				garbage_collector.h	\
 				main.h				\
 				parser.h			\
 				redir_collector.h	\
@@ -115,7 +114,6 @@ SUBDIRS_LST	:=	built_ins			\
 				cmd_separator		\
 				env_manager			\
 				executer			\
-				garbage_collector	\
 				main				\
 				parser				\
 				redir_collector		\

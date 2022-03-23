@@ -1,22 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils_history.c                                    :+:      :+:    :+:   */
+/*   ft_clear_one_garbage.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/15 10:22:49 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/23 14:39:13 by llethuil         ###   ########lyon.fr   */
+/*   Created: 2022/03/23 15:25:38 by llethuil          #+#    #+#             */
+/*   Updated: 2022/03/23 15:26:00 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "main.h"
+#include "libft.h"
 
-char	*get_history_path(t_input *input)
+void	ft_clear_one_garbage_type(t_garbage_lst **garbage, int type)
 {
-	char	*path;
+	t_garbage_lst	*current;
+	t_garbage_lst	*next;
 
-	path = ft_strjoin(input, get_value("HOME", input), "/.minishelled_history");
-	input->garbage->type = GARBAGE;
-	return(path);
+	if (!*garbage)
+		return ;
+	current = *garbage;
+	while (current)
+	{
+		next = current->next;
+		if (current->type == type && (*garbage)->ptr)
+		{
+			current->previous->next = next;
+			free((*garbage)->ptr);
+			free(*garbage);
+		}
+		current = next;
+	}
+	*garbage = NULL;
 }

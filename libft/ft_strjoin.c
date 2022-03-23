@@ -6,14 +6,13 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 11:46:00 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/08 14:25:03 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/23 14:25:52 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "../incs/utils.h"
 
-char	*ft_strjoin(char *s1, char *s2)
+char	*ft_strjoin(t_input *input, char *s1, char *s2)
 {
 	int		len;
 	char	*joined;
@@ -24,7 +23,7 @@ char	*ft_strjoin(char *s1, char *s2)
 	if (!s1 || !s2)
 		return (NULL);
 	len = ft_strlen(s1) + ft_strlen(s2);
-	joined = safe_malloc(sizeof(char), (len + 1));
+	joined = ft_malloc(input, sizeof(char), len + 1);
 	j = 0;
 	i_1 = 0;
 	while (s1[i_1])

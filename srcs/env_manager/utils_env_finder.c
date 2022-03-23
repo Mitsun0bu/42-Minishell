@@ -6,13 +6,13 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 11:11:10 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/10 11:04:00 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/23 13:58:03 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-char	*find_key(char *str)
+char	*find_key(t_input *input, char *str)
 {
 	char	*key;
 	int		i;
@@ -20,11 +20,12 @@ char	*find_key(char *str)
 	i = 0;
 	while (str[i] != '=' && str[i])
 		i++;
-	key = ft_substr(str, 0, i);
+	key = ft_substr(input, str, 0, i);
+	input->garbage->type = ENV_STRUCT;
 	return (key);
 }
 
-char	*find_value(char *str)
+char	*find_value(t_input *input, char *str)
 {
 	char	*value;
 	int		key_count;
@@ -40,6 +41,7 @@ char	*find_value(char *str)
 		return (0);
 	while (str[i])
 		i++;
-	value = ft_substr(str, key_count + 1, i);
+	value = ft_substr(input, str, key_count + 1, i);
+	input->garbage->type = ENV_STRUCT;
 	return (value);
 }
