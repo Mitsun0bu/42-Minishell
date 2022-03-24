@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 17:07:56 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/23 19:04:59 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/24 12:00:16 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,32 +56,32 @@ typedef struct s_input
 	char					***cmd_exec_tab;
 	char					**paths_tab;
 	int						fd_history;
-	int						status;
-	int						*process;
 	int						free_all;
+	int						*process;
+	int						status;
 }	t_input;
 
 typedef struct s_cmd_lst
 {
 	int					index;
 	char				*name;
-	char				**args;
-	char				*valid_path;
 	int					n_args;
+	char				**args;
 	int					n_input_redir;
-	int					n_output_redir;
-	int					n_app_output_redir;
-	int					n_heredoc;
 	char				**input_redir;
+	int					n_output_redir;
 	char				**output_redir;
-	char				**app_output_redir;
+	int					n_heredoc;
 	char				**del;
+	int					n_app_output_redir;
+	char				**app_output_redir;
+	char				*valid_path; // pas mis a NULL dans cmd_list_init.c --> new_cmd
 	int					*fd_input;
 	int					*fd_output;
 	int					*fd_app_output;
-	int					cmd_pipe[2];
+	char				*heredoc_str; // mis a NULL dans cmd_list_init.c --> new_cmd
 	int					heredoc_pipe[2];
-	char				*heredoc_str;
+	int					cmd_pipe[2];
 	struct s_cmd_lst	*next;
 	struct s_cmd_lst	*previous;
 }	t_cmd_lst;
@@ -103,7 +103,7 @@ typedef struct s_env
 # include "../libft/libft.h"
 # include "built_ins.h"
 # include "cmd_line_manager.h"
-# include "cmd_lst_init.h"
+# include "cmd_lst_manager.h"
 # include "cmd_separator.h"
 # include "env_manager.h"
 # include "executer.h"

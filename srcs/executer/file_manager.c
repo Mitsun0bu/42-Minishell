@@ -6,13 +6,13 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 12:14:03 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/17 10:12:45 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/24 11:35:31 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-int	open_files(t_cmd_lst **cmd)
+int	open_files(t_input *input, t_cmd_lst **cmd)
 {
 	t_cmd_lst	*start;
 
@@ -20,22 +20,23 @@ int	open_files(t_cmd_lst **cmd)
 	while (*cmd)
 	{
 		if ((*cmd)->n_input_redir > 0)
-			open_infiles(*cmd);
+			open_infiles(input, *cmd);
 		if ((*cmd)->n_output_redir > 0)
-			open_outfiles(*cmd);
+			open_outfiles(input, *cmd);
 		if ((*cmd)->n_app_output_redir > 0)
-			open_app_outfiles(*cmd);
+			open_app_outfiles(input, *cmd);
 		*cmd = (*cmd)->next;
 	}
 	*cmd = start;
 	return (0);
 }
 
-int	open_infiles(t_cmd_lst *cmd)
+int	open_infiles(t_input *input, t_cmd_lst *cmd)
 {
 	int	i;
 
-	cmd->fd_input = safe_malloc(sizeof(int), cmd->n_input_redir);
+	cmd->fd_input = ft_malloc(input, sizeof(int), cmd->n_input_redir);
+	input->garbage->type = CMD_LST;
 	i = -1;
 	while (++i < cmd->n_input_redir)
 	{
@@ -52,11 +53,12 @@ int	open_infiles(t_cmd_lst *cmd)
 	return (0);
 }
 
-int	open_outfiles(t_cmd_lst *cmd)
+int	open_outfiles(t_input *input, t_cmd_lst *cmd)
 {
 	int	i;
 
-	cmd->fd_output = safe_malloc(sizeof(int), cmd->n_output_redir);
+	cmd->fd_output = ft_malloc(input, sizeof(int), cmd->n_output_redir);
+	input->garbage->type = CMD_LST;
 	i = -1;
 	while (++i < cmd->n_output_redir)
 	{
@@ -74,11 +76,12 @@ int	open_outfiles(t_cmd_lst *cmd)
 	return (0);
 }
 
-int	open_app_outfiles(t_cmd_lst *cmd)
+int	open_app_outfiles(t_input *input, t_cmd_lst *cmd)
 {
 	int	i;
 
-	cmd->fd_app_output = safe_malloc(sizeof(int), cmd->n_app_output_redir);
+	cmd->fd_app_output = ft_malloc(input, sizeof(int), cmd->n_app_output_redir);
+	input->garbage->type = CMD_LST;
 	i = -1;
 	while (++i < cmd->n_app_output_redir)
 	{

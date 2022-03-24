@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 10:31:04 by agirardi          #+#    #+#             */
-/*   Updated: 2022/03/23 19:02:29 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/24 10:15:52 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,7 @@
 void	handle_quote(char *str, int *i, int *count, int *red)
 {
 	if (*i > 0 && str[*i - 1] == ' ' && *red == 0)
-	{
 		*count = *count + 1;
-	}
 	if (*red == 1)
 		*red = 0;
 	skip_quotes(str, i);

@@ -6,13 +6,13 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 16:38:12 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/21 14:01:43 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/24 11:54:31 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-int	handle_heredocs_pipes(t_cmd_lst **cmd)
+int	handle_heredocs_pipes(t_input *input, t_cmd_lst **cmd)
 {
 	t_cmd_lst	*start;
 
@@ -21,7 +21,7 @@ int	handle_heredocs_pipes(t_cmd_lst **cmd)
 	{
 		if ((*cmd)->n_heredoc)
 		{
-			(*cmd)->heredoc_str = read_cmd_heredocs(*cmd);
+			(*cmd)->heredoc_str = read_cmd_heredocs(input, *cmd);
 			open_single_pipe((*cmd)->heredoc_pipe);
 			ft_putstr_fd((*cmd)->heredoc_str, (*cmd)->heredoc_pipe[1]);
 		}
@@ -31,7 +31,7 @@ int	handle_heredocs_pipes(t_cmd_lst **cmd)
 	return (0);
 }
 
-char	*read_cmd_heredocs(t_cmd_lst *cmd)
+char	*read_cmd_heredocs(t_input *input, t_cmd_lst *cmd)
 {
 	int		i;
 	int		j;
@@ -44,42 +44,42 @@ char	*read_cmd_heredocs(t_cmd_lst *cmd)
 	while (++i < cmd->n_heredoc - 1)
 		while (ft_strncmp(line, cmd->del[i], ft_strlen(cmd->del[i])) != 0
 			|| ft_strlen(line) - 1 != ft_strlen(cmd->del[i]))
-			line = read_heredoc_line(line);
+			line = read_heredoc_line(input, line);
 	j = 0;
 	while (ft_strncmp(line, cmd->del[i], ft_strlen(cmd->del[i])) != 0
 		|| ft_strlen(line) - 1 != ft_strlen(cmd->del[i]))
 	{
-		line = read_heredoc_line(line);
+		line = read_heredoc_line(input, line);
 		if (j++ == 0)
-			heredoc_str = ft_strdup(line);
+			heredoc_str = ft_strdup(input, line);
 		else if (ft_strncmp(line, cmd->del[i], ft_strlen(cmd->del[i])) != 0
 			|| ft_strlen(line) - 1 != ft_strlen(cmd->del[i]))
-			heredoc_str = append_heredoc_line(line, heredoc_str);
+			heredoc_str = append_heredoc_line(input, line, heredoc_str);
+		input->garbage->type = CMD_LST;
 	}
-	ft_free((void *)&line);
 	return (heredoc_str);
 }
 
-char	*read_heredoc_line(char *line)
+char	*read_heredoc_line(t_input *input, char *line)
 {
 	char	*new_line;
 	char	*buffer;
 
-	ft_free((void *)&line);
 	new_line = readline("> ");
-	buffer = new_line;
-	new_line = ft_strjoin(buffer, "\n");
-	ft_free((void *)&buffer);
+	buffer = ft_strdup(input, new_line);
+	input->garbage->type = GARBAGE;
+	ft_free((void *)&new_line);
+	new_line = ft_strjoin(input, buffer, "\n");
+	input->garbage->type = GARBAGE;
 	return (new_line);
 }
 
-char	*append_heredoc_line(char *line, char *heredoc_str)
+char	*append_heredoc_line(t_input *input, char *line, char *heredoc_str)
 {
 	char	*new_heredoc_str;
 	char	*buffer;
 
 	buffer = heredoc_str;
-	new_heredoc_str = ft_strjoin(buffer, line);
-	ft_free((void *)&heredoc_str);
+	new_heredoc_str = ft_strjoin(input, buffer, line);
 	return (new_heredoc_str);
 }

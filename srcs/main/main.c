@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 17:07:38 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/23 17:52:42 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/24 10:24:23 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	main(int ac, char **av, char **envp)
 	t_cmd_lst		*cmd;
 
 	if (ac > 1 || av[1])
-		return (print_stderror(127, av[1], ": invalid option"));
+		return (stderror_print_return(127, av[1], ": invalid option"));
 	shell_init(envp, &input, &cmd);
 	while (1)
 	{

@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 17:32:59 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/16 17:39:04 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/24 12:15:45 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,25 +62,26 @@ int	wait_all_processes(t_input *input)
 
 char	**convert_env_tab(t_input *input)
 {
-	char	**env_list;
-	char	*buffer;
-	char	*env_str;
 	int		i_list;
+	char	**env_list;
 	int		i;
+	char	*env_str;
 
 	i_list = count_env_to_convert(input);
-	env_list = safe_malloc(sizeof(char *), i_list + 1);
+	env_list = ft_malloc(input, sizeof(char *), i_list + 1);
+	input->garbage->type = GARBAGE;
 	env_list[i_list] = NULL;
 	i = -1;
 	while(++i < i_list)
 	{
 		if (input->env_tab[i].type == ENV || input->env_tab[i].type == EXPORT_EMPTY)
 		{
-			buffer = ft_strjoin(input->env_tab[i].key, "=");
-			env_str = ft_strjoin(buffer, input->env_tab[i].value);
-			ft_free((void *)&buffer);
-			env_list[i] = ft_strdup(env_str);
-			ft_free((void *)&env_str);
+			env_str = ft_strjoin(input, input->env_tab[i].key, "=");
+			input->garbage->type = GARBAGE;
+			env_str = ft_strjoin(input, env_str, input->env_tab[i].value);
+			input->garbage->type = GARBAGE;
+			env_list[i] = ft_strdup(input, env_str);
+			input->garbage->type = GARBAGE;
 		}
 		else
 			i ++;

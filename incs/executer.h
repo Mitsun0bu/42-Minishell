@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 12:09:40 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/21 15:37:01 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/24 11:52:10 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,21 +45,21 @@ int		exec_program(t_input *input, t_cmd_lst *cmd);
 void	executer(char **envp, t_input *input, t_cmd_lst **cmd);
 
 /* executer/file_manager.c */
-int		open_files(t_cmd_lst **cmd);
-int		open_infiles(t_cmd_lst *cmd);
-int		open_outfiles(t_cmd_lst *cmd);
-int		open_app_outfiles(t_cmd_lst *cmd);
+int		open_files(t_input *input, t_cmd_lst **cmd);
+int		open_infiles(t_input *input, t_cmd_lst *cmd);
+int		open_outfiles(t_input *input, t_cmd_lst *cmd);
+int		open_app_outfiles(t_input *input, t_cmd_lst *cmd);
 
 /* executer/heredoc_manager.c */
-int		handle_heredocs_pipes(t_cmd_lst **cmd);
-char	*read_cmd_heredocs(t_cmd_lst *cmd);
-char	*read_heredoc_line(char *line);
-char	*append_heredoc_line(char *line, char *heredoc_str);
+int		handle_heredocs_pipes(t_input *input, t_cmd_lst **cmd);
+char	*read_cmd_heredocs(t_input *input, t_cmd_lst *cmd);
+char	*read_heredoc_line(t_input *input, char *line);
+char	*append_heredoc_line(t_input *input, char *line, char *heredoc_str);
 
 /* executer/path_manager.c */
 void	path_manager(char **envp, t_input *input, t_cmd_lst **cmd);
 void	get_paths_tab(char **envp, t_input	*input);
-char	*assign_path(char *arg, t_input *input, t_cmd_lst *cmd);
+char	*assign_path(t_input *input, t_cmd_lst *cmd, char *arg);
 
 /* executer/pipe_manager.c */
 void	open_all_pipes(t_cmd_lst **cmd);

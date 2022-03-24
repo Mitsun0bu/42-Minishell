@@ -6,7 +6,7 @@
 #    By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/25 15:43:51 by llethuil          #+#    #+#              #
-#    Updated: 2022/03/23 15:36:21 by llethuil         ###   ########lyon.fr    #
+#    Updated: 2022/03/24 10:30:46 by llethuil         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,7 +49,7 @@ OBJS_DIR	:= .objs
 
 INCS_LST	:=	built_ins.h			\
 				cmd_line_manager.h	\
-				cmd_lst_init.h		\
+				cmd_lst_manager.h	\
 				cmd_separator.h		\
 				env_manager.h		\
 				executer.h			\
@@ -68,9 +68,9 @@ SRCS_LST	:=	built_ins/ft_cd.c								\
 				built_ins/ft_unset.c							\
 				cmd_line_manager/get_cmd_line.c					\
 				cmd_line_manager/cmd_line_manager.c				\
-				cmd_lst_init/cmd_lst_init.c						\
-				cmd_lst_init/cmd_lst_manager.c					\
-				cmd_lst_init/utils_linked_lst.c					\
+				cmd_lst_manager/cmd_lst_init.c					\
+				cmd_lst_manager/cmd_lst_manager.c				\
+				cmd_lst_manager/utils_linked_lst.c				\
 				cmd_separator/cmd_separator.c					\
 				env_manager/env_manager.c						\
 				env_manager/env_converter.c						\
@@ -110,7 +110,7 @@ SRCS_LST	:=	built_ins/ft_cd.c								\
 
 SUBDIRS_LST	:=	built_ins			\
 				cmd_line_manager	\
-				cmd_lst_init		\
+				cmd_lst_manager		\
 				cmd_separator		\
 				env_manager			\
 				executer			\

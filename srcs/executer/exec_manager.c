@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 10:41:38 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/21 13:27:53 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/24 12:20:56 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,12 +97,12 @@ int	exec_program(t_input *input, t_cmd_lst *cmd)
 	i = -1;
 	cwd = getcwd(NULL, 0);
 	len = ft_strlen(cmd->name) - 1;
-	program_name = safe_malloc(sizeof(char), len);
+	program_name = ft_malloc(input, sizeof(char), len);
+	input->garbage->type = GARBAGE;
 	while(cmd->name[++i])
 		program_name[i] = cmd->name[i + 1];
-	program_path = ft_strjoin(cwd, program_name);
+	program_path = ft_strjoin(input, cwd, program_name);
+	input->garbage->type = GARBAGE;
 	ft_free((void *)&cwd);
-	ft_free((void *)&program_name);
-	printf("ret = %d\n", execve(program_path, cmd->args, convert_env_tab(input)));
 	return (0);
 }
