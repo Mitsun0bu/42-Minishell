@@ -1,14 +1,14 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   notes.c                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/23 16:27:19 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/24 12:19:41 by llethuil         ###   ########lyon.fr   */
-/*                                                                            */
-/* ************************************************************************** */
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    notes.txt                                          :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2022/03/23 16:27:19 by llethuil          #+#    #+#              #
+#    Updated: 2022/03/25 10:49:26 by llethuil         ###   ########lyon.fr    #
+#                                                                              #
+# **************************************************************************** #
 
 # include "incs/main.h"
 # include "/libft/libft.h"
@@ -352,6 +352,70 @@ NOEUD 52 :	handle_heredocs_pipes(input, cmd);
 						new_line = ft_strjoin(input, buffer, "\n");
 						input->garbage->type = GARBAGE;
 
+NOEUD 53 :	exec_built_in(input, *cmd);
+				ft_cd(input, cmd);
+					update_oldpwd(input);
+						add_to_env(input, "OLDPWD", 1);
+							new_env_tab = ft_malloc(input, sizeof(t_env), input->n_env);
+							input->garbage->type = INPUT_STRUCT;
+
+NOEUD 54 :	exec_built_in(input, *cmd);
+				ft_echo(cmd);
+					join_message(input, cmd);
+						add_first_word_to_message(input, cmd, message, &i);
+							message = ft_strdup(input, cmd->args[*i]);
+							input->garbage->type = GARBAGE;
+
+NOEUD 55 :	exec_built_in(input, *cmd);
+				ft_echo(cmd);
+					join_message(input, cmd);
+						add_first_word_to_message(input, cmd, message, &i);
+							message = ft_strjoin(input, message, " ");
+							input->garbage->type = GARBAGE;
+
+NOEUD 56 :	exec_built_in(input, *cmd);
+				ft_echo(cmd);
+					join_message(input, cmd);
+						add_next_words_to_message(input, cmd, &i);
+							message = ft_strjoin(input, message, cmd->args[*i]);
+							input->garbage->type = GARBAGE;
+
+NOEUD 57 :	exec_built_in(input, *cmd);
+				ft_echo(cmd);
+					join_message(input, cmd);
+						add_next_words_to_message(input, cmd, &i);
+						message = ft_strjoin(input, message, " ");
+						input->garbage->type = GARBAGE;
+
+NOEUD 58 :	exec_built_in(input, *cmd);
+				ft_exit(input);
+					value = ft_itoa(input, level - 1);
+					input->garbage->type = ENV_STRUCT;
+
+NOEUD 59 :	exec_built_in(input, *cmd);
+				ft_export(input, cmd);
+					var = del_quotes(input, input->cmd_exec_tab[cmd->index][i]);
+						var = ft_calloc(input, sizeof(char), count + 1);
+						input->garbage->type = GARBAGE;
+
+NOEUD 60 :	exec_built_in(input, *cmd);
+				ft_export(input, cmd);
+					res = parse_var(input, var);
+						check_dubble(input, str)
+							key = find_key(input, str);
+								key = ft_substr(input, str, 0, i);
+								input->garbage->type = ENV_STRUCT;
+							input->garbage->type = GARBAGE;
+
+NOEUD 61 :	exec_built_in(input, *cmd);
+				ft_export(input, cmd);
+					res = parse_var(input, var);
+						parse_key(input, str, 2)
+							key = find_key(input, str);
+								key = ft_substr(input, str, 0, i);
+								input->garbage->type = ENV_STRUCT;
+							input->garbage->type = GARBAGE;
+
 NOEUD 53 :	pipex(input, cmd);
 				input->process = ft_malloc(input, sizeof(pid_t), input->n_cmd);
 
@@ -393,16 +457,15 @@ NOEUD 58 :	pipex(input, cmd);
 
 
 Fonctions de la libft réellement utilisées :
+	ft_atoi
 	ft_strlen
 	ft_substr	(modifiée pour ft_malloc)
-	ft_atoi
 	ft_itoa		(modifiée pour ft_malloc)
 	ft_strjoin	(modifiée pour ft_malloc)
 	ft_strdup	(modifiée pour ft_malloc)
 	ft_calloc	(modifiée pour ft_malloc)
 	ft_strtrim	(modifiée pour ft_malloc)
 	ft_split	(modifiée pour ft_malloc)
-
 
 2) modifier error_exit
 

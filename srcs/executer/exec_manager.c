@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 10:41:38 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/24 12:20:56 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/25 15:25:11 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,10 @@ void	exec_first_cmd(t_input *input, t_cmd_lst *cmd)
 			dup2(cmd->cmd_pipe[1], STDOUT_FILENO);
 	close_all_pipes(cmd);
 	if (find_built_in(cmd->name) == BUILT_IN)
+	{
+		printf("here\n");
 		exit(exec_built_in(input, cmd));
+	}
 	else if (find_built_in(cmd->name) == PROGRAM)
 		exit(exec_program(input, cmd));
 	else if (cmd->name)
@@ -72,9 +75,9 @@ int	exec_built_in(t_input *input, t_cmd_lst *cmd)
 	if (!ft_strncmp(cmd->name, "cd", 2) && !cmd->name[2])
 		status = ft_cd(input, cmd);
 	else if (!ft_strncmp(cmd->name, "echo", 4) && !cmd->name[4])
-		status = ft_echo(cmd);
+		status = ft_echo(input, cmd);
 	else if (!ft_strncmp(cmd->name, "pwd", 3) && !cmd->name[3])
-		status = ft_pwd(cmd);
+		status = ft_pwd();
 	else if (!ft_strncmp(cmd->name, "env", 3) && !cmd->name[3])
 		status = ft_env(input);
 	else if (!ft_strncmp(cmd->name, "exit", 4) && !cmd->name[4])

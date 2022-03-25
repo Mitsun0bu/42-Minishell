@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 15:21:56 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/23 17:16:47 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/25 10:18:47 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,8 @@ typedef struct s_list
 
 typedef struct s_garbage_lst
 {
-	void					*ptr;
+	int						index;
+	void					**ptr;
 	int						type;
 	struct s_garbage_lst	*next;
 	struct s_garbage_lst	*previous;
@@ -64,6 +65,7 @@ typedef struct s_garbage_lst
 /*                                                                            */
 /* ************************************************************************** */
 
+void			ft_add_garbage(t_garbage_lst **garbage, void *ptr);
 void			ft_add_garbage_front(t_garbage_lst **garbage, t_garbage_lst *new_garbage);
 int				ft_atoi(const char *str);
 void			ft_bzero(void *s, size_t n);
@@ -97,7 +99,7 @@ void			ft_putchar_fd(char c, int fd);
 void			ft_putendl_fd(char *s, int fd);
 void			ft_putnbr_fd(int n, int fd);
 void			ft_putstr_fd(char *s, int fd);
-char			**ft_split(t_input *input, char const *s, char c);
+char			**ft_split(t_input *input, char *s, char c);
 char			*ft_strchr(const char *s, int c);
 char			*ft_strdup(t_input *input, char *s1);
 void			ft_striteri(char *s, void (*f)(unsigned int, char*));

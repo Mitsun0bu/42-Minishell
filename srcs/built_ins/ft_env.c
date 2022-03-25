@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 15:15:24 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/10 11:35:00 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/24 14:34:18 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,7 @@ int	ft_env(t_input *input)
 			printf("%s\n", input->env_tab[i].value);
 		}
 		else if (input->env_tab[i].type == EXPORT_EMPTY)
-		{
 			printf("%s=\n", input->env_tab[i].key);
-		}
 	}
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 13:47:32 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/23 15:25:48 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/25 11:40:47 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,13 @@
 
 t_garbage_lst	*ft_create_new_garbage(void *ptr)
 {
+	static int		i = 0;
 	t_garbage_lst	*new_garbage;
 
 	new_garbage = malloc(sizeof(t_garbage_lst));
 	if (!new_garbage)
 		return (NULL);
+	new_garbage->index = i++;
 	new_garbage->ptr = ptr;
 	new_garbage->type = 0;
 	new_garbage->next = NULL;

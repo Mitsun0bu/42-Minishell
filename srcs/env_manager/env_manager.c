@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 10:22:00 by agirardi          #+#    #+#             */
-/*   Updated: 2022/03/23 14:16:55 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/24 16:45:26 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,52 +14,47 @@
 
 void	add_to_env(t_input *input, char *str, int type)
 {
-	t_env	*buffer;
+	t_env	*new_env_tab;
 	int		i;
 
 	input->n_env += 1;
-	buffer = safe_malloc(sizeof(t_env), input->n_env);
+	new_env_tab = ft_malloc(input, sizeof(t_env), input->n_env);
+	input->garbage->type = INPUT_STRUCT;
 	i = -1;
 	while (++i < input->n_env - 1)
 	{
-		buffer[i].key = input->env_tab[i].key;
-		buffer[i].value = input->env_tab[i].value;
-		buffer[i].type = input->env_tab[i].type;
+		new_env_tab[i].key = input->env_tab[i].key;
+		new_env_tab[i].value = input->env_tab[i].value;
+		new_env_tab[i].type = input->env_tab[i].type;
 	}
-	buffer[i].key = find_key(input, str);
-	buffer[i].value = find_value(input, str);
-	buffer[i].type = type;
-	ft_free((void *)&input->env_tab);
-	input->env_tab = buffer;
+	new_env_tab[i].key = find_key(input, str);
+	new_env_tab[i].value = find_value(input, str);
+	new_env_tab[i].type = type;
+	input->env_tab = new_env_tab;
 }
 
 void	remove_from_env(t_input *input, char *key)
 {
-	t_env	*buffer;
+	t_env	*new_env_tab;
 	int		i;
 	int		j;
 
 	input->n_env -= 1;
-	buffer = safe_malloc(sizeof(t_env), input->n_env);
+	new_env_tab = ft_malloc(input, sizeof(t_env), input->n_env);
+	input->garbage->type = ENV_STRUCT;
 	i = -1;
 	j = 0;
 	while (++i < input->n_env + 1)
 	{
 		if (!search_key(input->env_tab[i].key, key))
 		{
-			buffer[j].key = input->env_tab[i].key;
-			buffer[j].value = input->env_tab[i].value;
-			buffer[j].type = input->env_tab[i].type;
+			new_env_tab[j].key = input->env_tab[i].key;
+			new_env_tab[j].value = input->env_tab[i].value;
+			new_env_tab[j].type = input->env_tab[i].type;
 			j++;
 		}
-		else
-		{
-			ft_free((void *)&input->env_tab[i].key);
-			ft_free((void *)&input->env_tab[i].value);
-		}
 	}
-	ft_free((void *)&input->env_tab);
-	input->env_tab = buffer;
+	input->env_tab = new_env_tab;
 }
 
 void	change_value(t_input *input, char *key, char *value)

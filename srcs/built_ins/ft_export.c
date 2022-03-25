@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 15:10:44 by agirardi          #+#    #+#             */
-/*   Updated: 2022/03/16 17:39:04 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/24 16:45:26 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,22 +23,21 @@ int	ft_export(t_input *input, t_cmd_lst *cmd)
 	i = 0;
 	while (input->cmd_exec_tab[cmd->index][++i])
 	{
-		var = del_quotes(input->cmd_exec_tab[cmd->index][i]);
-		res = parse_var(var, input);
+		var = del_quotes(input, input->cmd_exec_tab[cmd->index][i]);
+		res = parse_var(input, var);
 		if (res == 1)
 			add_to_env(input, var, ENV);
 		else if (res == 2)
 			add_to_env(input, var, EXPORT_NULL);
 		else if (res == 3)
 			add_to_env(input, var, EXPORT_EMPTY);
-		ft_free((void *)&var);
 	}
 	if (i == 1)
 		print_export(input);
 	return (0);
 }
 
-int	parse_var(char *str, t_input *input)
+int	parse_var(t_input *input, char *str)
 {
 	int	equal;
 	int	i;
@@ -46,49 +45,41 @@ int	parse_var(char *str, t_input *input)
 	equal = 0;
 	i = -1;
 	while (str[++i])
-	{
 		if (str[i] == '=')
 			equal = 1;
-	}
 	if (equal == 0)
 	{
-		if (check_dubble(str, input))
+		if (check_dubble(input, str))
 			return (0);
-		return (parse_key(str, input, 2));
+		return (parse_key(input, str, 2));
 	}
-	return (parse_key(str, input, 1));
+	return (parse_key(input, str, 1));
 }
 
-int	parse_key(char	*str, t_input *input, int type)
+int	parse_key(t_input *input, char	*str, int type)
 {
 	char	*key;
 	int		i;
 
 	i = -1;
-	key = find_key(str);
+	key = find_key(input, str);
+	input->garbage->type = GARBAGE;
 	while (key[++i])
-	{
 		if ((!ft_isalnum(key[i]) && key[i] != '_') || ft_isdigit(key[0]))
-		{
-			ft_free((void *)&key);
 			return (0);
-		}
-	}
 	if (type == 2)
 		return (2);
-	if (check_dubble(key, input))
+	if (check_dubble(input, key))
 	{
-		change_value(input, key, find_value(str));
-		ft_free((void *)&key);
+		change_value(input, key, find_value(input, str));
 		return (0);
 	}
-	ft_free((void *)&key);
 	if (!str[i + 1])
 		return (3);
 	return (1);
 }
 
-char	*del_quotes(char	*str)
+char	*del_quotes(t_input *input, char *str)
 {
 	char	*var;
 	int		count;
@@ -100,7 +91,8 @@ char	*del_quotes(char	*str)
 	while (str[++i])
 		if (!ft_strchr("\'\"", str[i]))
 			count++;
-	var = ft_calloc(count + 1, sizeof(char));
+	var = ft_calloc(input, sizeof(char), count + 1);
+	input->garbage->type = GARBAGE;
 	i = 0;
 	j = 0;
 	while (j < count && str[i])

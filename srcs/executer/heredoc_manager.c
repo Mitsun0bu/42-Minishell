@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 16:38:12 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/24 11:54:31 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/24 16:45:26 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,12 @@ char	*read_cmd_heredocs(t_input *input, t_cmd_lst *cmd)
 	while (++i < cmd->n_heredoc - 1)
 		while (ft_strncmp(line, cmd->del[i], ft_strlen(cmd->del[i])) != 0
 			|| ft_strlen(line) - 1 != ft_strlen(cmd->del[i]))
-			line = read_heredoc_line(input, line);
+			line = read_heredoc_line(input);
 	j = 0;
 	while (ft_strncmp(line, cmd->del[i], ft_strlen(cmd->del[i])) != 0
 		|| ft_strlen(line) - 1 != ft_strlen(cmd->del[i]))
 	{
-		line = read_heredoc_line(input, line);
+		line = read_heredoc_line(input);
 		if (j++ == 0)
 			heredoc_str = ft_strdup(input, line);
 		else if (ft_strncmp(line, cmd->del[i], ft_strlen(cmd->del[i])) != 0
@@ -60,7 +60,7 @@ char	*read_cmd_heredocs(t_input *input, t_cmd_lst *cmd)
 	return (heredoc_str);
 }
 
-char	*read_heredoc_line(t_input *input, char *line)
+char	*read_heredoc_line(t_input *input)
 {
 	char	*new_line;
 	char	*buffer;

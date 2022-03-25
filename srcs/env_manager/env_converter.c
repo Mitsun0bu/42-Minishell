@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 16:58:42 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/23 17:27:07 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/24 16:45:26 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ void	fill_quotes(t_input *input, char *str, int *i, int *j)
 	{
 		if (str[*i] == '$' && c == '\"')
 		{
-			fill_env(str, i, j, input);
+			fill_env(input, str, i, j);
 			if (str[*i] == c)
 				break ;
 		}

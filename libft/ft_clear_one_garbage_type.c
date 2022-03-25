@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_clear_one_garbage.c                             :+:      :+:    :+:   */
+/*   ft_clear_one_garbage_type.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 15:25:38 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/23 15:26:00 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/25 16:29:55 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,23 @@
 
 void	ft_clear_one_garbage_type(t_garbage_lst **garbage, int type)
 {
-	t_garbage_lst	*current;
+	t_garbage_lst	*start;
 	t_garbage_lst	*next;
 
 	if (!*garbage)
 		return ;
-	current = *garbage;
-	while (current)
+	start = *garbage;
+	while (*garbage)
 	{
-		next = current->next;
-		if (current->type == type && (*garbage)->ptr)
+		next = (*garbage)->next;
+		if ((*garbage)->type == type)
 		{
-			current->previous->next = next;
 			free((*garbage)->ptr);
-			free(*garbage);
+			(*garbage)->ptr = NULL;
 		}
-		current = next;
+		// if (!next)
+		// 	break;
+		*garbage = next;
 	}
-	*garbage = NULL;
+	*garbage = start;
 }

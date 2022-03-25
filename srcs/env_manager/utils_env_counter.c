@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 10:58:45 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/23 15:54:19 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/24 16:45:26 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	count_env(t_input *input, char *str, int *i, int red)
 	j = -1;
 	while (!ft_strchr("$<>\'\"", str[++ *i]) && !is_isspace(str[*i]) && str[*i])
 		key[++j] = str[*i];
-	count = ft_strlen(get_value(key, input));
+	count = ft_strlen(get_value(input, key));
 	if (red == 0)
 		return (count);
 	return (0);
@@ -47,7 +47,7 @@ int	count_quotes(t_input *input, char *str, int *i)
 	{
 		if (str[*i] == '$' && c == '\"')
 		{
-			count += count_env(str, i, 0, input);
+			count += count_env(input, str, i, 0);
 			if (str[*i] == c)
 				break ;
 		}

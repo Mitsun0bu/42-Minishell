@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 17:02:15 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/23 14:58:53 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/25 11:49:21 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,9 @@ static char	*ft_get_line(t_input *input, char *line, char *buff, int fd)
 	{
 		line = ft_strjoin_gnl(input, line, buff);
 		input->garbage->type = GARBAGE;
-		if (position_nl(buff) != -1)
+		if (ft_position_nl(buff) != -1)
 		{
-			buff_rest = &buff[position_nl(buff) + 1];
+			buff_rest = &buff[ft_position_nl(buff) + 1];
 			while (*buff_rest)
 				*buff++ = *buff_rest++;
 			*buff = '\0';
@@ -67,8 +67,8 @@ static char	*ft_strjoin_gnl(t_input *input, char *line, char *buff)
 	int		i_l;
 	int		i_b;
 
-	if (position_nl(buff) != -1)
-		buff_size = position_nl(buff) + 1;
+	if (ft_position_nl(buff) != -1)
+		buff_size = ft_position_nl(buff) + 1;
 	else
 		buff_size = ft_strlen(buff);
 	joined = ft_malloc(input, sizeof(char), ft_strlen(line) + buff_size + 1);

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_add_garbage_front.c                             :+:      :+:    :+:   */
+/*   ft_add_front_2.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/23 15:24:45 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/23 15:26:11 by llethuil         ###   ########lyon.fr   */
+/*   Created: 2022/03/24 19:00:41 by llethuil          #+#    #+#             */
+/*   Updated: 2022/03/25 10:15:33 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 void	ft_add_garbage_front(t_garbage_lst **garbage, t_garbage_lst *new_garbage)
 {
-	if (!new_garbage)
-		return ;
 	new_garbage->next = *garbage;
 	(*garbage)->previous = new_garbage;
 	*garbage = new_garbage;

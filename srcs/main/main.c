@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 17:07:38 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/24 10:24:23 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/25 15:49:04 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,15 @@ int	main(int ac, char **av, char **envp)
 			parser(&input);
 			cmd_lst_init(&input, &cmd);
 			executer(envp, &input, &cmd);
-			free_lst(&cmd);
+			ft_clear_one_garbage_type(&input.garbage, CMD_LST);
+			ft_clear_one_garbage_type(&input.garbage, CMD_LINE);
+			ft_clear_one_garbage_type(&input.garbage, CMD_TAB);
 		}
-		free_input_struct(&input);
+		ft_clear_one_garbage_type(&input.garbage, INPUT_STRUCT);
+		ft_clear_one_garbage_type(&input.garbage, GARBAGE);
 	}
-	free_env_struct(&input);
+	ft_clear_one_garbage_type(&input.garbage, ENV_STRUCT);
+	ft_clear_all_garbage(&input.garbage);
 	exit (0);
 }
 
@@ -48,6 +52,7 @@ int	stderror_print_return(int error, char *problem, char *err_message)
 
 int	stderror_print_exit(t_input *input, char *problem, char *err_message)
 {
+	(void)input;
 	ft_putstr_fd("minishell: ", 2);
 	ft_putstr_fd(problem, 2);
 	ft_putstr_fd(err_message, 2);

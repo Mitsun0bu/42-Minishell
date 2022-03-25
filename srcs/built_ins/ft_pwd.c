@@ -6,19 +6,17 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 10:55:23 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/16 17:44:59 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/24 14:32:58 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-int	ft_pwd(t_cmd_lst *cmd)
+int	ft_pwd(void)
 {
-	(void)cmd;
 	char	*cwd;
 
 	cwd = getcwd(NULL, 0);
-
 	printf("%s\n", cwd);
 	ft_free((void*)&cwd);
 	return (0);

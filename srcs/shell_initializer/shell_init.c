@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 13:21:26 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/23 15:08:21 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/25 16:09:12 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,20 @@ void	shell_init(char **envp, t_input *input, t_cmd_lst **cmd)
 		exit (0);
 	}
 	ft_memset(input, 0, sizeof(input));
-	input->garbage = ft_malloc(input, sizeof(t_garbage_lst), 1);
-	input->garbage->type = COLLECTOR_LST;
 	ft_memset(cmd, 0, sizeof(cmd));
 	init_message();
 	init_env(input, envp);
 	init_shlvl(input);
 	init_history(input);
+	// ---------------- FINAL TEST ---------------- //
+	printf("======================== SHELL_INIT ========================\n");
+	int	i;
+	i = -1;
+	while (input->env_tab[++i].value)
+		printf("env_tab[%d] = %s\n", i, input->env_tab[i].value);
+	printf("starting shlvl = %d\n", input->start_shlvl);
+	printf("============================================================\n");
+	// -------------------------------------------- //
 }
 
 void	init_message(void)
@@ -56,7 +63,7 @@ void	init_env(t_input *input, char **envp)
 	while (envp[++i])
 		if (ft_strncmp(envp[i], "OLDPWD=", 7) != 0)
 			j++;
-	input->env_tab = ft_malloc(input, sizeof(t_env), i);
+	input->env_tab = ft_calloc(input, sizeof(t_env), i);
 	input->garbage->type = ENV_STRUCT;
 	input->n_env = j;
 	i = -1;
@@ -77,7 +84,8 @@ void	init_shlvl(t_input *input)
 {
 	char	*value;
 
-	input->start_shlvl = ft_atoi(get_value("SHLVL", input));
+	value = NULL;
+	input->start_shlvl = ft_atoi(get_value(input, "SHLVL"));
 	input->start_shlvl ++;
 	value = ft_itoa(input, input->start_shlvl);
 	change_value(input, "SHLVL", value);
@@ -99,9 +107,9 @@ int	init_history(t_input *input)
 	while (1)
 	{
 		cmd_line_history = ft_get_next_line(input, input->fd_history);
-		add_history(cmd_line_history);
 		if (!cmd_line_history)
 			break ;
+		add_history(cmd_line_history);
 	}
 	close (input->fd_history);
 	return (0);

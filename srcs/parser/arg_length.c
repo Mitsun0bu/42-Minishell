@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 10:31:30 by agirardi          #+#    #+#             */
-/*   Updated: 2022/03/18 15:20:59 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/25 15:12:36 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,10 +90,7 @@ void	fill_tab(char *cmd, char *exec_cmd, int i)
 				if (red == 1)
 					skip_quotes(cmd, &i);
 				else
-				{
 					copy_quote(cmd, exec_cmd, &i, &j);
-					printf("cmd[%d] = %c\n",i, cmd[i]);
-				}
 				if (!cmd[i] || ft_strchr("\t\n\v\f\r <>", cmd[i]))
 					return ;
 			}

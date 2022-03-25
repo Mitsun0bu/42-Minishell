@@ -6,76 +6,58 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 10:55:57 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/24 12:21:59 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/25 15:16:48 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-int	ft_echo(t_cmd_lst *cmd)
+int	ft_echo(t_input *input, t_cmd_lst *cmd)
 {
 	char	*message;
 
 	message = NULL;
 	if (!cmd->args[1])
 		printf("\n");
-	else if (!cmd->args[2]
-		&& !ft_strncmp(cmd->args[1], "-n", 2))
+	else if (!cmd->args[2] && !ft_strncmp(cmd->args[1], "-n", 2))
 		return (0);
 	else
 	{
-		message = join_message(cmd, message);
+		message = join_message(input, cmd);
 		print_message(message);
-		ft_free((void *)&message);
 		if (ft_strncmp(cmd->args[1], "-n", 2))
 			printf("\n");
 	}
 	return (0);
 }
 
-char	*join_message(t_cmd_lst *cmd, char *message)
+char	*join_message(t_input *input, t_cmd_lst *cmd)
 {
 	int		i;
+	int		option;
+	char	*message;
 
 	i = 0;
+	option = 0;
+	message = NULL;
+	if (!ft_strncmp(cmd->args[1], "-n", 2) && ft_strlen(cmd->args[1]) == 2)
+		option ++;
 	if (!ft_strncmp(cmd->args[1], "-n", 2) && ft_strlen(cmd->args[1]) == 2)
 		i++;
 	while (++i < cmd->n_args)
 	{
-		if ((i == 1 && ft_strncmp(cmd->args[1], "-n", 2) != 0)
-			|| (i == 2 && !ft_strncmp(cmd->args[1], "-n", 2)))
-			add_first_word_to_message(cmd, &message, &i);
-		if (i != 1 || (i != 2 && !ft_strncmp(cmd->args[1], "-n", 2)))
-			add_next_words_to_message(cmd, &message, &i);
+		if (i == 1 || option == 1)
+			message = ft_strdup(input, cmd->args[i]);
+		else
+			message = ft_strjoin(input, message, cmd->args[i]);
+		input->garbage->type = GARBAGE;
+		if (option != 1 && i != cmd->n_args - 1)
+		{
+			message = ft_strjoin(input, message, " ");
+			input->garbage->type = GARBAGE;
+		}
 	}
 	return (message);
-}
-
-void	add_first_word_to_message(t_cmd_lst *cmd, char **message, int *i)
-{
-	char	*buffer;
-
-	*message = ft_strdup(cmd->args[*i]);
-	buffer = *message;
-	*message = ft_strjoin(buffer, " ");
-	ft_free((void *)&buffer);
-	if (*i == 2)
-		(*i)++;
-}
-
-void	add_next_words_to_message(t_cmd_lst *cmd, char **message, int *i)
-{
-	char	*buffer;
-
-	buffer = *message;
-	*message = ft_strjoin(buffer, cmd->args[*i]);
-	ft_free((void *)&buffer);
-	if (*i != cmd->n_args - 1)
-	{
-		buffer = *message;
-		*message = ft_strjoin(buffer, " ");
-		ft_free((void *)&buffer);
-	}
 }
 
 void	print_message(char *message)

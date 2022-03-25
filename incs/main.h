@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 17:07:56 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/24 12:00:16 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/25 14:36:38 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,20 +19,22 @@
 #ifndef MAIN_H
 # define MAIN_H
 
-# define TRUNC_OUTPUT 42
-# define APP_OUTPUT 43
-# define INPUT 44
-# define HEREDOC 45
+# define INPUT 42
+# define TRUNC_OUTPUT 43
+# define HEREDOC 44
+# define APP_OUTPUT 45
 # define BUILT_IN 46
 # define PROGRAM 47
 # define ENV 48
 # define EXPORT_EMPTY 49
 # define EXPORT_NULL 50
-# define CMD_LST 51
-# define ENV_STRUCT 52
-# define INPUT_STRUCT 53
-# define GARBAGE 54
-# define COLLECTOR_LST 55
+# define INPUT_STRUCT 51
+# define CMD_LINE 52
+# define CMD_TAB 53
+# define ENV_STRUCT 54
+# define CMD_LST 55
+# define GARBAGE 56
+# define COLLECTOR_LST 57
 
 /* ************************************************************************** */
 /*                                                                            */
@@ -68,12 +70,12 @@ typedef struct s_cmd_lst
 	int					n_args;
 	char				**args;
 	int					n_input_redir;
-	char				**input_redir;
 	int					n_output_redir;
-	char				**output_redir;
 	int					n_heredoc;
-	char				**del;
 	int					n_app_output_redir;
+	char				**input_redir;
+	char				**output_redir;
+	char				**del;
 	char				**app_output_redir;
 	char				*valid_path; // pas mis a NULL dans cmd_list_init.c --> new_cmd
 	int					*fd_input;
