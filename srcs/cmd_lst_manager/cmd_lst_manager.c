@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 11:36:41 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/25 16:28:17 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/28 15:20:29 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	cmd_args_manager(t_input *input, int *i, t_cmd_lst *new_cmd)
 	while (input->cmd_exec_tab[*i][i_arg])
 		i_arg ++;
 	new_cmd->n_args = i_arg;
-	new_cmd->args = ft_calloc(input, sizeof(char *), i_arg + 1);
+	new_cmd->args = ft_malloc(input, sizeof(char *), i_arg + 1);
 	input->garbage->type = CMD_LST;
 	i_arg = -1;
 	while (++i_arg < new_cmd->n_args)

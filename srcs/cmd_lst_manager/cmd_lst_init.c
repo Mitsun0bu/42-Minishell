@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 15:23:59 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/25 16:24:48 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/28 16:13:47 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,17 @@ int	cmd_lst_init(t_input *input, t_cmd_lst **cmd)
 {
 	int	i;
 
-	i = -1;
+	i = 0;
+	*cmd = create_new_cmd(input, &i);
 	while (++i < input->n_cmd)
 		add_cmd_back(cmd, create_new_cmd(input, &i));
 
 	// ---------------- FINAL TEST ---------------- //
 	printf("======================= CMD_LST_INIT =======================\n");
+	printf("-------------------------------------------\n");
 	t_cmd_lst	*start;
 	start = *cmd;
-	printf("-------------------------------------------\n");
+	*cmd = start;
 	while(*cmd)
 	{
 		printf("| cmd index\t\t=\t%d\n", (*cmd)->index);
@@ -69,6 +71,7 @@ t_cmd_lst	*create_new_cmd(t_input *input, int *i)
 	if(input->cmd_exec_tab[*i][0])
 	{
 		new_cmd->name = ft_strdup(input, input->cmd_exec_tab[*i][0]);
+		printf("new_cmd->name = %s\n", new_cmd->name);
 		input->garbage->type = CMD_LST;
 	}
 	else

@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 15:21:56 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/25 10:18:47 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/28 13:34:15 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ void			ft_bzero(void *s, size_t n);
 void			*ft_calloc(t_input *input, size_t size, size_t count);
 void			ft_clear_all_garbage(t_garbage_lst **garbage);
 void			ft_clear_one_garbage_type(t_garbage_lst **garbage, int type);
+int				ft_count_garbage_type(t_garbage_lst **garbage, int type);
 t_garbage_lst	*ft_create_new_garbage(void *ptr);
 char			*ft_get_next_line(t_input *input, int fd);
 int				ft_isalnum(int c);

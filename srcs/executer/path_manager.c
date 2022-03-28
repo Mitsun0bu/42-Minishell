@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 14:58:04 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/24 16:45:26 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/28 14:27:43 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,9 +73,9 @@ char	*assign_path(t_input *input, t_cmd_lst *cmd, char *arg)
 			return (path);
 		}
 		path = ft_strjoin(input, input->paths_tab[i], cmd->name);
+		input->garbage->type = GARBAGE;
 		if (access(path, F_OK) == 0)
 			return (path);
-		input->garbage->type = GARBAGE;
 	}
 	if (access(path, F_OK) == -1 && cmd->index != input->n_cmd - 1)
 	{
