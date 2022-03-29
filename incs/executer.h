@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 12:09:40 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/24 15:29:00 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/29 10:52:45 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,12 +70,12 @@ void	close_single_pipe(int *fd_tab);
 /* executer/pipex.c */
 int		pipex(t_input *input, t_cmd_lst **cmd);
 
-/*executer/input_redir_manager.c */
-int		handle_input_redir(t_input *input, t_cmd_lst *cmd);
+/*executer/infile_manager.c */
+int		handle_infile(t_input *input, t_cmd_lst *cmd);
 int		dup_redir_input(t_cmd_lst *cmd);
 
-/*executer/output_redir_manager.c */
-int		handle_output_redir(t_input *input, t_cmd_lst *cmd);
+/*executer/outfile_manager.c */
+int		handle_outfile(t_input *input, t_cmd_lst *cmd);
 int		dup_redir_output(t_cmd_lst *cmd);
 int		dup_redir_app_output(t_cmd_lst *cmd);
 

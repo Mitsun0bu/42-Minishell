@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 17:07:38 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/28 14:44:20 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/29 11:02:54 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,39 +29,15 @@ int	main(int ac, char **av, char **envp)
 			parser(&input);
 			cmd_lst_init(&input, &cmd);
 			executer(envp, &input, &cmd);
-			while (ft_count_garbage_type(&input.garbage, CMD_LST) != 0)
-			{
-				// printf("ENTRER CLEAR FOR TYPE #55\n");
-				ft_clear_one_garbage_type(&input.garbage, CMD_LST);
-			}
-			while (ft_count_garbage_type(&input.garbage, CMD_LINE) != 0)
-			{
-				// printf("ENTRER CLEAR FOR TYPE #52\n");
-				ft_clear_one_garbage_type(&input.garbage, CMD_LINE);
-			}
-			while (ft_count_garbage_type(&input.garbage, CMD_TAB) != 0)
-			{
-				// printf("ENTRER CLEAR FOR TYPE #53\n");
-				ft_clear_one_garbage_type(&input.garbage, CMD_TAB);
-			}
+			clear_one_garbage_type(&input.garbage, CMD_LST);
+			clear_one_garbage_type(&input.garbage, CMD_LINE);
+			clear_one_garbage_type(&input.garbage, CMD_TAB);
 		}
-		while (ft_count_garbage_type(&input.garbage, INPUT_STRUCT) != 0)
-		{
-			// printf("ENTRER CLEAR FOR TYPE #51\n");
-			ft_clear_one_garbage_type(&input.garbage, INPUT_STRUCT);
-		}
-		while (ft_count_garbage_type(&input.garbage, GARBAGE) != 0)
-		{
-			// printf("ENTRER CLEAR FOR TYPE #56\n");
-			ft_clear_one_garbage_type(&input.garbage, GARBAGE);
-		}
+		clear_one_garbage_type(&input.garbage, INPUT_STRUCT);
+		clear_one_garbage_type(&input.garbage, GARBAGE);
 	}
-	while (ft_count_garbage_type(&input.garbage, ENV_STRUCT) != 0)
-	{
-		// printf("ENTRER CLEAR FOR TYPE #54\n");
-		ft_clear_one_garbage_type(&input.garbage, ENV_STRUCT);
-	}
-	ft_clear_all_garbage(&input.garbage);
+	clear_one_garbage_type(&input.garbage, ENV_STRUCT);
+	clear_all_garbage(&input.garbage);
 	exit (0);
 }
 

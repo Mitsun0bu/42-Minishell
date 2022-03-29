@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 17:32:59 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/24 16:45:26 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/29 11:01:48 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,9 +72,9 @@ char	**convert_env_tab(t_input *input)
 	input->garbage->type = GARBAGE;
 	env_list[i_list] = NULL;
 	i = -1;
-	while(++i < i_list)
+	while (++i < i_list)
 	{
-		if (input->env_tab[i].type == ENV || input->env_tab[i].type == EXPORT_EMPTY)
+		if (input->env_tab[i].type == ENV || input->env_tab[i].type == EXP_EMPTY)
 		{
 			env_str = ft_strjoin(input, input->env_tab[i].key, "=");
 			input->garbage->type = GARBAGE;
@@ -97,8 +97,7 @@ int	count_env_to_convert(t_input *input)
 	i = -1;
 	i_list = 0;
 	while (++i < input->n_env)
-		if (input->env_tab[i].type == ENV || input->env_tab[i].type == EXPORT_EMPTY)
+		if (input->env_tab[i].type == ENV || input->env_tab[i].type == EXP_EMPTY)
 			i_list ++;
 	return (i_list);
 }
-

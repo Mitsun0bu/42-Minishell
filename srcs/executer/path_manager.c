@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 14:58:04 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/28 14:27:43 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/29 11:10:34 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ void	path_manager(char **envp, t_input *input, t_cmd_lst **cmd)
 		else if (find_built_in((*cmd)->name) == BUILT_IN)
 			(*cmd)->valid_path = ft_strdup(input, "built-in");
 		else
-			(*cmd)->valid_path = assign_path(input, *cmd, input->cmd_exec_tab[(*cmd)->index][0]);
+			(*cmd)->valid_path = assign_path(input, *cmd,
+					input->cmd_exec_tab[(*cmd)->index][0]);
 		input->garbage->type = CMD_LST;
 		*cmd = (*cmd)->next;
 	}

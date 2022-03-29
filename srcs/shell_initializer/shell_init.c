@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 13:21:26 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/25 16:09:12 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/29 11:07:07 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,6 @@ void	shell_init(char **envp, t_input *input, t_cmd_lst **cmd)
 	init_env(input, envp);
 	init_shlvl(input);
 	init_history(input);
-	// ---------------- FINAL TEST ---------------- //
-	printf("======================== SHELL_INIT ========================\n");
-	int	i;
-	i = -1;
-	while (input->env_tab[++i].value)
-		printf("env_tab[%d] = %s\n", i, input->env_tab[i].value);
-	printf("starting shlvl = %d\n", input->start_shlvl);
-	printf("============================================================\n");
-	// -------------------------------------------- //
 }
 
 void	init_message(void)

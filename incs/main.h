@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 17:07:56 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/28 10:37:20 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/29 11:00:22 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@
 # define BUILT_IN 46
 # define PROGRAM 47
 # define ENV 48
-# define EXPORT_EMPTY 49
-# define EXPORT_NULL 50
+# define EXP_EMPTY 49
+# define EXP_NULL 50
 # define INPUT_STRUCT 51
 # define CMD_LINE 52
 # define CMD_TAB 53
@@ -63,20 +63,36 @@ typedef struct s_input
 	int						status;
 }	t_input;
 
+typedef struct s_env
+{
+	char	*key;
+	char	*value;
+	int		type;
+}	t_env;
+
+typedef struct s_garbage_lst
+{
+	int						index;
+	void					**ptr;
+	int						type;
+	struct s_garbage_lst	*next;
+	struct s_garbage_lst	*previous;
+}	t_garbage_lst;
+
 typedef struct s_cmd_lst
 {
 	int					index;
 	char				*name;
 	int					n_args;
 	char				**args;
-	int					n_input_redir;
-	int					n_output_redir;
+	int					n_infile;
+	int					n_outfile;
 	int					n_heredoc;
-	int					n_app_output_redir;
-	char				**input_redir;
-	char				**output_redir;
+	int					n_app_outfile;
+	char				**infile;
+	char				**outfile;
 	char				**del;
-	char				**app_output_redir;
+	char				**app_outfile;
 	char				*valid_path; // pas mis a NULL dans cmd_list_init.c --> new_cmd
 	int					*fd_input;
 	int					*fd_output;
@@ -88,12 +104,6 @@ typedef struct s_cmd_lst
 	struct s_cmd_lst	*previous;
 }	t_cmd_lst;
 
-typedef struct s_env
-{
-	char	*key;
-	char	*value;
-	int		type;
-}	t_env;
 
 /* ************************************************************************** */
 /*                                                                            */
@@ -109,6 +119,7 @@ typedef struct s_env
 # include "cmd_separator.h"
 # include "env_manager.h"
 # include "executer.h"
+# include "garbage_collector.h"
 # include "parser.h"
 # include "redir_collector.h"
 # include "shell_initializer.h"

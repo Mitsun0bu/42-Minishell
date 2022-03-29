@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 10:41:38 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/25 15:25:11 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/29 10:55:26 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,13 @@ void	exec_first_cmd(t_input *input, t_cmd_lst *cmd)
 {
 	printf("| \n");
 	printf("| EXEC FIRST CMD\n");
-	handle_input_redir(input, cmd);
-	if (handle_output_redir(input, cmd) == -1)
+	handle_infile(input, cmd);
+	if (handle_outfile(input, cmd) == -1)
 		if (cmd->next != NULL)
 			dup2(cmd->cmd_pipe[1], STDOUT_FILENO);
 	close_all_pipes(cmd);
 	if (find_built_in(cmd->name) == BUILT_IN)
-	{
-		printf("here\n");
 		exit(exec_built_in(input, cmd));
-	}
 	else if (find_built_in(cmd->name) == PROGRAM)
 		exit(exec_program(input, cmd));
 	else if (cmd->name)
@@ -36,9 +33,9 @@ void	exec_mid_cmd(t_input *input, t_cmd_lst *cmd)
 {
 	printf("| \n");
 	printf("| EXEC A CMD\n");
-	if (handle_input_redir(input, cmd) == -1)
+	if (handle_infile(input, cmd) == -1)
 		dup2(cmd->previous->cmd_pipe[0], STDIN_FILENO);
-	if (handle_output_redir(input, cmd) == -1)
+	if (handle_outfile(input, cmd) == -1)
 		dup2(cmd->cmd_pipe[1], STDOUT_FILENO);
 	close_all_pipes(cmd);
 	if (find_built_in(cmd->name) == BUILT_IN)
@@ -53,8 +50,8 @@ void	exec_last_cmd(t_input *input, t_cmd_lst *cmd)
 {
 	printf("| \n");
 	printf("| EXEC LAST CMD\n");
-	handle_output_redir(input, cmd);
-	if (handle_input_redir(input, cmd) == -1)
+	handle_outfile(input, cmd);
+	if (handle_infile(input, cmd) == -1)
 		dup2(cmd->previous->cmd_pipe[0], STDIN_FILENO);
 	close_all_pipes(cmd);
 	if (find_built_in(cmd->name) == BUILT_IN)
@@ -91,18 +88,18 @@ int	exec_built_in(t_input *input, t_cmd_lst *cmd)
 
 int	exec_program(t_input *input, t_cmd_lst *cmd)
 {
-	char	*cwd;
-	char	*program_name;
-	char	*program_path;
-	int		len;
-	unsigned long i;
+	char			*cwd;
+	char			*program_name;
+	char			*program_path;
+	int				len;
+	unsigned long	i;
 
 	i = -1;
 	cwd = getcwd(NULL, 0);
 	len = ft_strlen(cmd->name) - 1;
 	program_name = ft_malloc(input, sizeof(char), len);
 	input->garbage->type = GARBAGE;
-	while(cmd->name[++i])
+	while (cmd->name[++i])
 		program_name[i] = cmd->name[i + 1];
 	program_path = ft_strjoin(input, cwd, program_name);
 	input->garbage->type = GARBAGE;

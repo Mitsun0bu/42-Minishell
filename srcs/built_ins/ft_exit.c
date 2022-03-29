@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 11:51:38 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/24 16:45:26 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/29 10:35:11 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	ft_exit(t_input *input)
 
 	value = get_value(input, "SHLVL");
 	level = ft_atoi(value);
-	if(level > input->start_shlvl)
+	if (level > input->start_shlvl)
 	{
 		value = ft_itoa(input, level - 1);
 		input->garbage->type = ENV_STRUCT;

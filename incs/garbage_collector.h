@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cmd_lst_manager.h                                  :+:      :+:    :+:   */
+/*   garbage_collector.h                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/17 15:32:59 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/29 10:52:45 by llethuil         ###   ########lyon.fr   */
+/*   Created: 2022/03/29 10:02:50 by llethuil          #+#    #+#             */
+/*   Updated: 2022/03/29 10:17:55 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CMD_LST_MANAGER_H
-# define CMD_LST_MANAGER_H
+#ifndef GARBAGE_COLLECTOR_H
+# define GARBAGE_COLLECTOR_H
 
 /* ************************************************************************** */
 /*                                                                            */
@@ -33,19 +33,14 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-/* cmd_lst_manager/cmd_lst_init.c */
-int			cmd_lst_init(t_input *input, t_cmd_lst **cmd);
-t_cmd_lst	*create_new_cmd(t_input *input, int *i);
+/* garbage collector/add_garbage.c */
+void			add_garbage(t_garbage_lst **garbage, void *ptr);
+void			add_garbage_front(t_garbage_lst **garbage, t_garbage_lst *new_garbage);
+t_garbage_lst	*create_new_garbage(void *ptr);
 
-/* cmd_lst_manager/cmd_manager.c */
-int			cmd_args_manager(t_input *input, int *i, t_cmd_lst *new_cmd);
-int			cmd_infile_manager(t_input *input, int *i, t_cmd_lst *new_cmd);
-int			cmd_outfile_manager(t_input *input, int *i, t_cmd_lst *new_cmd);
-int			cmd_app_outfile_manager(t_input *input, int *i, t_cmd_lst *new_cmd);
-int			cmd_heredoc_manager(t_input *input, int *i, t_cmd_lst *new_cmd);
-
-/* cmd_lst_manager/utils_linked_lst.c */
-void		add_cmd_back(t_cmd_lst **cmd, t_cmd_lst *new_cmd);
-t_cmd_lst	*find_last_cmd(t_cmd_lst *cmd);
+/* garbage collector/clear_garbage.c */
+void			clear_all_garbage(t_garbage_lst **garbage);
+void			clear_one_garbage_type(t_garbage_lst **garbage, int type);
+int				count_garbage_type(t_garbage_lst **garbage, int type);
 
 #endif

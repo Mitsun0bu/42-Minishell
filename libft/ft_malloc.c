@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 15:17:18 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/25 11:40:41 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/29 09:49:52 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,6 @@ void	*ft_malloc(t_input *input, size_t size, size_t count)
 		perror("malloc");
 		exit (0);
 	}
-	ft_add_garbage(&input->garbage, ptr);
+	add_garbage(&input->garbage, ptr);
 	return (ptr);
 }

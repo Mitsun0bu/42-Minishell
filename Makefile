@@ -6,7 +6,7 @@
 #    By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/25 15:43:51 by llethuil          #+#    #+#              #
-#    Updated: 2022/03/24 10:30:46 by llethuil         ###   ########lyon.fr    #
+#    Updated: 2022/03/29 10:45:13 by llethuil         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,6 +53,7 @@ INCS_LST	:=	built_ins.h			\
 				cmd_separator.h		\
 				env_manager.h		\
 				executer.h			\
+				garbage_collector.h	\
 				main.h				\
 				parser.h			\
 				redir_collector.h	\
@@ -70,7 +71,6 @@ SRCS_LST	:=	built_ins/ft_cd.c								\
 				cmd_line_manager/cmd_line_manager.c				\
 				cmd_lst_manager/cmd_lst_init.c					\
 				cmd_lst_manager/cmd_lst_manager.c				\
-				cmd_lst_manager/utils_linked_lst.c				\
 				cmd_separator/cmd_separator.c					\
 				env_manager/env_manager.c						\
 				env_manager/env_converter.c						\
@@ -86,6 +86,8 @@ SRCS_LST	:=	built_ins/ft_cd.c								\
 				executer/pipe_manager.c							\
 				executer/pipex.c								\
 				executer/utils_executer.c						\
+				garbage_collector/add_garbage.c					\
+				garbage_collector/clear_garbage.c				\
 				redir_collector/copy_name_in_redir_tab.c		\
 				redir_collector/get_last_redir_type_tab.c		\
 				redir_collector/redir_collector_utils_counter.c	\
@@ -114,6 +116,7 @@ SUBDIRS_LST	:=	built_ins			\
 				cmd_separator		\
 				env_manager			\
 				executer			\
+				garbage_collector	\
 				main				\
 				parser				\
 				redir_collector		\
