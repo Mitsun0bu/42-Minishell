@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 16:38:12 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/24 16:45:26 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/29 16:02:17 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ int	handle_heredocs_pipes(t_input *input, t_cmd_lst **cmd)
 		if ((*cmd)->n_heredoc)
 		{
 			(*cmd)->heredoc_str = read_cmd_heredocs(input, *cmd);
-			open_single_pipe((*cmd)->heredoc_pipe);
+			if (!open_single_pipe((*cmd)->heredoc_pipe))
+				return (-1);
 			ft_putstr_fd((*cmd)->heredoc_str, (*cmd)->heredoc_pipe[1]);
 		}
 		*cmd = (*cmd)->next;

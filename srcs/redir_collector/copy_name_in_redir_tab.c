@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   copy_filename_in_redir_tab.c                       :+:      :+:    :+:   */
+/*   copy_name_in_redir_tab.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 13:52:08 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/18 13:25:42 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/29 14:47:54 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-int	copy_name_for_each_file(t_input *input, int i_cmd, int type, int i_file)
+void	copy_name_for_each_file(t_input *input, int i_cmd, int type, int i_file)
 {
 	int	c;
 	int	t;
@@ -29,10 +29,9 @@ int	copy_name_for_each_file(t_input *input, int i_cmd, int type, int i_file)
 		copy_delimiter(input->redir_tab[c][t][f], input->cmd_tab[c], f);
 	if (t == 3)
 		copy_app_outfile(input->redir_tab[c][t][f], input->cmd_tab[c], f);
-	return (0);
 }
 
-int	copy_infile(char *infile, char *cmd, int i_file)
+void	copy_infile(char *infile, char *cmd, int i_file)
 {
 	static int	cursor = -1;
 	int			file_cursor;
@@ -54,13 +53,12 @@ int	copy_infile(char *infile, char *cmd, int i_file)
 				if (cmd[cursor] == '\'' || cmd[cursor] == '"')
 					copy_in_quotes(infile, &file_cursor, cmd, &cursor);
 			}
-			return (0);
+			return ;
 		}
 	}
-	return (0);
 }
 
-int	copy_outfile(char *outfile, char *cmd, int i_file)
+void	copy_outfile(char *outfile, char *cmd, int i_file)
 {
 	static int	cursor = -1;
 	int			file_cursor;
@@ -82,13 +80,12 @@ int	copy_outfile(char *outfile, char *cmd, int i_file)
 				if (cmd[cursor] == '\'' || cmd[cursor] == '"')
 					copy_in_quotes(outfile, &file_cursor, cmd, &cursor);
 			}
-			return (0);
+			return ;
 		}
 	}
-	return (0);
 }
 
-int	copy_delimiter(char *delimiter, char *cmd, int i_file)
+void	copy_delimiter(char *delimiter, char *cmd, int i_file)
 {
 	static int	cursor = -1;
 	int			file_cursor;
@@ -109,13 +106,12 @@ int	copy_delimiter(char *delimiter, char *cmd, int i_file)
 				if (cmd[cursor] == '\'' || cmd[cursor] == '"')
 					copy_in_quotes(delimiter, &file_cursor, cmd, &cursor);
 			}
-			return (0);
+			return ;
 		}
 	}
-	return (0);
 }
 
-int	copy_app_outfile(char *app_outfile, char *cmd, int i_file)
+void	copy_app_outfile(char *app_outfile, char *cmd, int i_file)
 {
 	static int	cursor = -1;
 	int			file_cursor;
@@ -136,8 +132,7 @@ int	copy_app_outfile(char *app_outfile, char *cmd, int i_file)
 				if (cmd[cursor] == '\'' || cmd[cursor] == '"')
 					copy_in_quotes(app_outfile, &file_cursor, cmd, &cursor);
 			}
-			return (0);
+			return ;
 		}
 	}
-	return (0);
 }

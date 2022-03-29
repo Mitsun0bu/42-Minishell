@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 11:12:39 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/18 11:12:44 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/29 14:48:00 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,13 @@ int	bidim_tab_size(char **table)
 	return (tab_size);
 }
 
-int	skip_space(char *cmd, int *i)
+void	skip_space(char *cmd, int *i)
 {
 	(*i)++;
 	if (cmd[*i] == '<' || cmd[*i] == '>')
 		(*i)++;
 	while (is_space(cmd[*i]) == 1)
 				(*i)++;
-	return (0);
 }
 
 int	is_space(char c)

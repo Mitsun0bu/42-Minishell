@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 12:09:40 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/29 10:52:45 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/29 16:00:23 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,8 @@ void	get_paths_tab(char **envp, t_input	*input);
 char	*assign_path(t_input *input, t_cmd_lst *cmd, char *arg);
 
 /* executer/pipe_manager.c */
-void	open_all_pipes(t_cmd_lst **cmd);
-void	open_single_pipe(int *fd_tab);
+int		open_all_pipes(t_cmd_lst **cmd);
+int		open_single_pipe(int *fd_tab);
 void	close_all_pipes(t_cmd_lst *cmd);
 void	close_single_pipe(int *fd_tab);
 

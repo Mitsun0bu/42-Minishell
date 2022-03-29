@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 13:21:26 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/29 11:07:07 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/29 15:07:04 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 void	shell_init(char **envp, t_input *input, t_cmd_lst **cmd)
 {
-	if (isatty(STDIN_FILENO) == 0)
-	{
-		perror("");
-		exit (0);
-	}
+	// if (isatty(STDIN_FILENO) == 0)
+	// {
+	// 	return (stderror_return(127, "", ""));
+	// 	exit (0);
+	// }
 	ft_memset(input, 0, sizeof(input));
 	ft_memset(cmd, 0, sizeof(cmd));
 	init_message();
@@ -83,7 +83,7 @@ void	init_shlvl(t_input *input)
 	input->garbage->type = ENV_STRUCT;
 }
 
-int	init_history(t_input *input)
+void	init_history(t_input *input)
 {
 	char	*path;
 	char	*cmd_line_history;
@@ -91,10 +91,7 @@ int	init_history(t_input *input)
 	path = get_history_path(input);
 	input->fd_history = open(path, O_CREAT | O_RDWR | O_APPEND, 0644);
 	if (input->fd_history < 0)
-	{
-		printf("Couldn't open history file");
-		exit(0);
-	}
+		stderror_exit(input, -1, "error", ": couldn't open history file");
 	while (1)
 	{
 		cmd_line_history = ft_get_next_line(input, input->fd_history);
@@ -103,5 +100,4 @@ int	init_history(t_input *input)
 		add_history(cmd_line_history);
 	}
 	close (input->fd_history);
-	return (0);
 }

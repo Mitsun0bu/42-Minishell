@@ -6,13 +6,13 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 11:36:41 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/29 10:52:45 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/29 14:48:49 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-int	cmd_args_manager(t_input *input, int *i, t_cmd_lst *new_cmd)
+void	cmd_args_manager(t_input *input, int *i, t_cmd_lst *new_cmd)
 {
 	int	i_arg;
 
@@ -29,10 +29,9 @@ int	cmd_args_manager(t_input *input, int *i, t_cmd_lst *new_cmd)
 		input->garbage->type = CMD_LST;
 	}
 	new_cmd->args[i_arg] = NULL;
-	return (0);
 }
 
-int	cmd_infile_manager(t_input *input, int *i, t_cmd_lst *new_cmd)
+void	cmd_infile_manager(t_input *input, int *i, t_cmd_lst *new_cmd)
 {
 	int	j;
 
@@ -49,10 +48,9 @@ int	cmd_infile_manager(t_input *input, int *i, t_cmd_lst *new_cmd)
 		new_cmd->infile[j] = ft_strdup(input, input->redir_tab[*i][0][j]);
 		input->garbage->type = CMD_LST;
 	}
-	return (0);
 }
 
-int	cmd_outfile_manager(t_input *input, int *i, t_cmd_lst *new_cmd)
+void	cmd_outfile_manager(t_input *input, int *i, t_cmd_lst *new_cmd)
 {
 	int	j;
 
@@ -69,10 +67,9 @@ int	cmd_outfile_manager(t_input *input, int *i, t_cmd_lst *new_cmd)
 		new_cmd->outfile[j] = ft_strdup(input, input->redir_tab[*i][1][j]);
 		input->garbage->type = CMD_LST;
 	}
-	return (0);
 }
 
-int	cmd_heredoc_manager(t_input *input, int *i, t_cmd_lst *new_cmd)
+void	cmd_heredoc_manager(t_input *input, int *i, t_cmd_lst *new_cmd)
 {
 	int	j;
 
@@ -89,10 +86,9 @@ int	cmd_heredoc_manager(t_input *input, int *i, t_cmd_lst *new_cmd)
 		new_cmd->del[j] = ft_strdup(input, input->redir_tab[*i][2][j]);
 		input->garbage->type = CMD_LST;
 	}
-	return (0);
 }
 
-int	cmd_app_outfile_manager(t_input *input, int *i, t_cmd_lst *new_cmd)
+void	cmd_app_outfile_manager(t_input *input, int *i, t_cmd_lst *new_cmd)
 {
 	int	j;
 
@@ -109,5 +105,4 @@ int	cmd_app_outfile_manager(t_input *input, int *i, t_cmd_lst *new_cmd)
 		new_cmd->app_outfile[j] = ft_strdup(input, input->redir_tab[*i][3][j]);
 		input->garbage->type = CMD_LST;
 	}
-	return (0);
 }

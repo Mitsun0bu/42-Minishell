@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 11:29:56 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/29 10:54:28 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/29 14:31:32 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	single_cmd(t_input *input)
 	input->n_cmd = 1;
 }
 
-int	split_multi_cmd(t_input *input)
+void	split_multi_cmd(t_input *input)
 {
 	int		i;
 
@@ -54,7 +54,6 @@ int	split_multi_cmd(t_input *input)
 		input->garbage->type = CMD_TAB;
 		input->n_cmd ++;
 	}
-	return (0);
 }
 
 int	final_letter_is_pipe(char *str)

@@ -6,13 +6,13 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 15:23:59 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/29 10:52:45 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/29 14:44:48 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-int	cmd_lst_init(t_input *input, t_cmd_lst **cmd)
+void	cmd_lst_init(t_input *input, t_cmd_lst **cmd)
 {
 	int	i;
 
@@ -20,7 +20,6 @@ int	cmd_lst_init(t_input *input, t_cmd_lst **cmd)
 	*cmd = create_new_cmd(input, &i);
 	while (++i < input->n_cmd)
 		add_cmd_back(cmd, create_new_cmd(input, &i));
-	return (0);
 }
 
 void	add_cmd_back(t_cmd_lst **cmd, t_cmd_lst *new_cmd)
@@ -52,7 +51,6 @@ t_cmd_lst	*create_new_cmd(t_input *input, int *i)
 	if (input->cmd_exec_tab[*i][0])
 	{
 		new_cmd->name = ft_strdup(input, input->cmd_exec_tab[*i][0]);
-		printf("new_cmd->name = %s\n", new_cmd->name);
 		input->garbage->type = CMD_LST;
 	}
 	else

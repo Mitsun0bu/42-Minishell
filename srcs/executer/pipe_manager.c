@@ -6,13 +6,13 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 10:32:58 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/15 11:41:57 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/29 17:03:03 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-void	open_all_pipes(t_cmd_lst **cmd)
+int	open_all_pipes(t_cmd_lst **cmd)
 {
 	t_cmd_lst	*start;
 	int			i;
@@ -21,21 +21,21 @@ void	open_all_pipes(t_cmd_lst **cmd)
 	start = *cmd;
 	while (*cmd)
 	{
-		open_single_pipe((*cmd)->cmd_pipe);
+		if (!open_single_pipe((*cmd)->cmd_pipe))
+			return (-1);
 		if ((*cmd)->next == NULL)
 			break ;
 		*cmd = (*cmd)->next;
 	}
 	*cmd = start;
+	return (0);
 }
 
-void	open_single_pipe(int *fd_tab)
+int	open_single_pipe(int *fd_tab)
 {
 	if (pipe(fd_tab) == -1)
-	{
-		perror("");
-		exit (1);
-	}
+		return (stderror_return(0, "minishelled", "pipe", "open pipe failed"));
+	return (1);
 }
 
 void	close_all_pipes(t_cmd_lst *cmd)

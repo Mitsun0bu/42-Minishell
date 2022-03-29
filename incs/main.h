@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 17:07:56 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/29 11:00:22 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/03/29 15:20:20 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,11 +93,11 @@ typedef struct s_cmd_lst
 	char				**outfile;
 	char				**del;
 	char				**app_outfile;
-	char				*valid_path; // pas mis a NULL dans cmd_list_init.c --> new_cmd
+	char				*valid_path;
 	int					*fd_input;
 	int					*fd_output;
 	int					*fd_app_output;
-	char				*heredoc_str; // mis a NULL dans cmd_list_init.c --> new_cmd
+	char				*heredoc_str;
 	int					heredoc_pipe[2];
 	int					cmd_pipe[2];
 	struct s_cmd_lst	*next;
@@ -118,6 +118,7 @@ typedef struct s_cmd_lst
 # include "cmd_lst_manager.h"
 # include "cmd_separator.h"
 # include "env_manager.h"
+# include "error_manager.h"
 # include "executer.h"
 # include "garbage_collector.h"
 # include "parser.h"
@@ -189,7 +190,5 @@ typedef struct s_cmd_lst
 
 /* main/main.c */
 int	main(int ac, char **av, char **envp);
-int	stderror_print_return(int error, char *problem, char *err_message);
-int	stderror_print_exit(t_input *input, char *problem, char *err_message);
 
 #endif

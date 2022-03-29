@@ -6,7 +6,7 @@
 #    By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/25 15:43:51 by llethuil          #+#    #+#              #
-#    Updated: 2022/03/29 10:45:13 by llethuil         ###   ########lyon.fr    #
+#    Updated: 2022/03/29 16:59:18 by llethuil         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,6 +52,7 @@ INCS_LST	:=	built_ins.h			\
 				cmd_lst_manager.h	\
 				cmd_separator.h		\
 				env_manager.h		\
+				error_manager.h		\
 				executer.h			\
 				garbage_collector.h	\
 				main.h				\
@@ -77,6 +78,7 @@ SRCS_LST	:=	built_ins/ft_cd.c								\
 				env_manager/utils_env_counter.c					\
 				env_manager/utils_env_finder.c					\
 				env_manager/utils_env.c							\
+				error_manager/error_manager.c					\
 				executer/basic_redir_manager.c					\
 				executer/exec_manager.c							\
 				executer/executer.c								\
@@ -103,10 +105,6 @@ SRCS_LST	:=	built_ins/ft_cd.c								\
 				parser/parser.c									\
 				parser/utils_parser.c							\
 				shell_initializer/shell_init.c					\
-				utils/utils_error_manager.c						\
-				utils/utils_free_lst.c							\
-				utils/utils_free_struct.c						\
-				utils/utils_free.c								\
 				utils/utils_history.c							\
 				utils/utils.c									\
 
@@ -115,6 +113,7 @@ SUBDIRS_LST	:=	built_ins			\
 				cmd_lst_manager		\
 				cmd_separator		\
 				env_manager			\
+				error_manager		\
 				executer			\
 				garbage_collector	\
 				main				\
