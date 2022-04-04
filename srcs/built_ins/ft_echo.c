@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 10:55:57 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/25 15:16:48 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/04 11:22:03 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	ft_echo(t_input *input, t_cmd_lst *cmd)
 	message = NULL;
 	if (!cmd->args[1])
 		printf("\n");
-	else if (!cmd->args[2] && !ft_strncmp(cmd->args[1], "-n", 2))
+	else if (!cmd->args[2] && !ft_strncmp(cmd->args[1], "-n", 2) && ft_strlen(cmd->args[1]) == 2)
 		return (0);
 	else
 	{
@@ -44,19 +44,21 @@ char	*join_message(t_input *input, t_cmd_lst *cmd)
 		option ++;
 	if (!ft_strncmp(cmd->args[1], "-n", 2) && ft_strlen(cmd->args[1]) == 2)
 		i++;
+	printf("i = %d\n", i);
 	while (++i < cmd->n_args)
 	{
-		if (i == 1 || option == 1)
+		if (i == 1 || (i == 2 && option == 1))
 			message = ft_strdup(input, cmd->args[i]);
 		else
 			message = ft_strjoin(input, message, cmd->args[i]);
 		input->garbage->type = GARBAGE;
-		if (option != 1 && i != cmd->n_args - 1)
+		if (i != cmd->n_args - 1)
 		{
 			message = ft_strjoin(input, message, " ");
 			input->garbage->type = GARBAGE;
 		}
 	}
+	printf("message = %s\n", message);
 	return (message);
 }
 

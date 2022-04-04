@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 11:29:37 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/29 16:58:08 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/04 14:59:35 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,5 +41,6 @@ char	*get_history_path(t_input *input);
 int		is_isspace(char c);
 void	skip_quotes(char *str, int *i);
 void	ft_free(void **ptr);
+void	assign_garbage_type(t_input *input, char **table, int garbage_type);
 
 #endif

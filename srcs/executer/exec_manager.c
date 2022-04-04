@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 10:41:38 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/29 16:16:27 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/04 10:49:58 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ int	exec_built_in(t_input *input, t_cmd_lst *cmd)
 	int	status;
 
 	status = 0;
-	if (!ft_strncmp(cmd->name, "cd", 2) && !cmd->name[2])
+	if (!ft_strncmp(cmd->name, "cd", 2) /*&& !cmd->name[2]*/)
 		status = ft_cd(input, cmd);
 	else if (!ft_strncmp(cmd->name, "echo", 4) && !cmd->name[4])
 		status = ft_echo(input, cmd);

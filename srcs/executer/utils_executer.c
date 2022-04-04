@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 17:32:59 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/29 11:01:48 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/04 16:08:15 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,8 +83,8 @@ char	**convert_env_tab(t_input *input)
 			env_list[i] = ft_strdup(input, env_str);
 			input->garbage->type = GARBAGE;
 		}
-		else
-			i ++;
+		// else
+		// 	i ++;
 	}
 	return (env_list);
 }

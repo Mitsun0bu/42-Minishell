@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 17:07:38 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/29 17:01:02 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/04 17:08:42 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,10 @@ int	main(int ac, char **av, char **envp)
 	t_input			input;
 	t_cmd_lst		*cmd;
 
+	cmd = NULL;
 	if (ac > 1 || av[1])
 		return (stderror_return(127, "minishelled", av[1], "invalid option"));
-	shell_init(envp, &input, &cmd);
+	shell_init(envp, &input);
 	while (1)
 	{
 		cmd_line_manager(&input);
@@ -28,7 +29,7 @@ int	main(int ac, char **av, char **envp)
 			redir_collector(&input);
 			parser(&input);
 			cmd_lst_init(&input, &cmd);
-			executer(envp, &input, &cmd);
+			executer(&input, cmd);
 			clear_one_garbage_type(&input.garbage, CMD_LST);
 			clear_one_garbage_type(&input.garbage, CMD_LINE);
 			clear_one_garbage_type(&input.garbage, CMD_TAB);

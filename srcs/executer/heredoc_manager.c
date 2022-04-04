@@ -6,29 +6,29 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 16:38:12 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/29 16:02:17 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/04 16:03:40 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-int	handle_heredocs_pipes(t_input *input, t_cmd_lst **cmd)
+int	handle_heredocs_pipes(t_input *input, t_cmd_lst *cmd)
 {
 	t_cmd_lst	*start;
 
-	start = *cmd;
-	while (*cmd)
+	start = cmd;
+	while (cmd)
 	{
-		if ((*cmd)->n_heredoc)
+		if (cmd->n_heredoc)
 		{
-			(*cmd)->heredoc_str = read_cmd_heredocs(input, *cmd);
-			if (!open_single_pipe((*cmd)->heredoc_pipe))
+			cmd->heredoc_str = read_cmd_heredocs(input, cmd);
+			if (!open_single_pipe(cmd->heredoc_pipe))
 				return (-1);
-			ft_putstr_fd((*cmd)->heredoc_str, (*cmd)->heredoc_pipe[1]);
+			ft_putstr_fd(cmd->heredoc_str, cmd->heredoc_pipe[1]);
 		}
-		*cmd = (*cmd)->next;
+		cmd = cmd->next;
 	}
-	*cmd = start;
+	cmd = start;
 	return (0);
 }
 

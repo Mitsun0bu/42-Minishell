@@ -6,25 +6,33 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 13:21:26 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/29 15:07:04 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/04 15:42:52 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-void	shell_init(char **envp, t_input *input, t_cmd_lst **cmd)
+void	shell_init(char **envp, t_input *input)
 {
 	// if (isatty(STDIN_FILENO) == 0)
 	// {
 	// 	return (stderror_return(127, "", ""));
 	// 	exit (0);
 	// }
-	ft_memset(input, 0, sizeof(input));
-	ft_memset(cmd, 0, sizeof(cmd));
+	ft_memset(input, 0, sizeof(t_input));
 	init_message();
 	init_env(input, envp);
 	init_shlvl(input);
 	init_history(input);
+	// // ---------------- FINAL TEST ---------------- //
+	// printf("======================== SHELL_INIT ========================\n");
+	// int	i;
+	// i = -1;
+	// while (input->env_tab[++i].value)
+	// 	printf("env_tab[%d] = %s\n", i, input->env_tab[i].value);
+	// printf("starting shlvl = %d\n", input->start_shlvl);
+	// printf("============================================================\n");
+	// // -------------------------------------------- //
 }
 
 void	init_message(void)

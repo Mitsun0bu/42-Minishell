@@ -6,33 +6,33 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 12:14:03 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/29 16:50:38 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/04 15:56:30 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-int	open_files(t_input *input, t_cmd_lst **cmd)
+int	open_files(t_input *input, t_cmd_lst *cmd)
 {
 	t_cmd_lst	*start;
 
-	start = *cmd;
-	while (*cmd)
+	start = cmd;
+	while (cmd)
 	{
-		if ((*cmd)->n_infile > 0)
-			if (!open_infiles(input, *cmd))
+		if (cmd->n_infile > 0)
+			if (!open_infiles(input, cmd))
 				return (-1);
-		if ((*cmd)->n_outfile > 0)
-			if (!open_outfiles(input, *cmd))
+		if (cmd->n_outfile > 0)
+			if (!open_outfiles(input, cmd))
 				return (-1);
-		if ((*cmd)->n_app_outfile > 0)
-			if(!open_app_outfiles(input, *cmd))
+		if (cmd->n_app_outfile > 0)
+			if(!open_app_outfiles(input, cmd))
 				return (-1);
-		if ((*cmd)->next == NULL)
+		if (cmd->next == NULL)
 			break ;
-		*cmd = (*cmd)->next;
+		cmd = cmd->next;
 	}
-	*cmd = start;
+	cmd = start;
 	return (0);
 }
 
@@ -43,7 +43,7 @@ int	open_infiles(t_input *input, t_cmd_lst *cmd)
 	cmd->fd_input = ft_malloc(input, sizeof(int), cmd->n_infile);
 	input->garbage->type = CMD_LST;
 	i = -1;
-	while (++i < cmd->n_infile)
+	while (++i < cmd->n_infile - 1)
 	{
 		cmd->fd_input[i] = open(cmd->infile[i], O_RDONLY);
 		if (cmd->fd_input[i] < 0)
@@ -59,7 +59,7 @@ int	open_outfiles(t_input *input, t_cmd_lst *cmd)
 	cmd->fd_output = ft_malloc(input, sizeof(int), cmd->n_outfile);
 	input->garbage->type = CMD_LST;
 	i = -1;
-	while (++i < cmd->n_outfile)
+	while (++i < cmd->n_outfile - 1)
 	{
 		cmd->fd_output[i] = open(cmd->outfile[i],
 				O_CREAT | O_RDWR | O_TRUNC, 0644);
@@ -76,7 +76,7 @@ int	open_app_outfiles(t_input *input, t_cmd_lst *cmd)
 	cmd->fd_app_output = ft_malloc(input, sizeof(int), cmd->n_app_outfile);
 	input->garbage->type = CMD_LST;
 	i = -1;
-	while (++i < cmd->n_app_outfile)
+	while (++i < cmd->n_app_outfile - 1)
 	{
 		cmd->fd_app_output[i] = open(cmd->app_outfile[i],
 				O_CREAT | O_RDWR | O_APPEND, 0644);

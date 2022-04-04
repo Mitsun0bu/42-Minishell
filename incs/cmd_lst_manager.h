@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 15:32:59 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/29 14:49:08 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/04 17:04:47 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,9 @@ void		cmd_outfile_manager(t_input *input, int *i, t_cmd_lst *new_cmd);
 void		cmd_app_outfile_manager(t_input *input, int *i, t_cmd_lst *new_cmd);
 void		cmd_heredoc_manager(t_input *input, int *i, t_cmd_lst *new_cmd);
 
-/* cmd_lst_manager/utils_linked_lst.c */
-void		add_cmd_back(t_cmd_lst **cmd, t_cmd_lst *new_cmd);
+/* cmd_lst_manager/utils_cmd_lst_manager.c */
+void		add_cmd_back(t_cmd_lst *cmd, t_cmd_lst *new_cmd);
 t_cmd_lst	*find_last_cmd(t_cmd_lst *cmd);
+char		*clean_cmd_name(t_input *input, char *str);
 
 #endif

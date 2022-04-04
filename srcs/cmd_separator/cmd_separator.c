@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 11:29:56 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/29 14:31:32 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/04 16:33:59 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,15 @@ int	cmd_separator(t_input *input)
 	if (check_basics(input) == 0)
 		return (0);
 	input->free_all = 1;
+	// ---------------- FINAL TEST ---------------- //
+	printf("====================== CMD_SEPARATOR =======================");
+	int i;
+	i = -1;
+	printf("\n| NOMBRE DE COMMANDES = %d\n", input->n_cmd);
+	while (++i < input->n_cmd)
+		printf("| COMMANDE[%d] = %s\n", i, input->cmd_tab[i]);
+	printf("============================================================\n");
+	// ----------------- END OF TEST ---------------//
 	return (1);
 }
 
@@ -46,7 +55,7 @@ void	split_multi_cmd(t_input *input)
 	if (final_letter_is_pipe(input->cmd_line) == 1)
 		fill_last_pipe(input);
 	input->cmd_tab = ft_split(input, input->cmd_line, '|');
-	input->garbage->type = CMD_TAB;
+	assign_garbage_type(input, input->cmd_tab, CMD_TAB);
 	input->n_cmd = 0;
 	while (input->cmd_tab[++i])
 	{

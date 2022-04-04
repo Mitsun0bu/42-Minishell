@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 10:22:00 by agirardi          #+#    #+#             */
-/*   Updated: 2022/03/29 11:00:06 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/04 13:56:42 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	add_to_env(t_input *input, char *str, int type)
 
 	input->n_env += 1;
 	new_env_tab = ft_malloc(input, sizeof(t_env), input->n_env);
-	input->garbage->type = INPUT_STRUCT;
+	input->garbage->type = ENV_STRUCT;
 	i = -1;
 	while (++i < input->n_env - 1)
 	{

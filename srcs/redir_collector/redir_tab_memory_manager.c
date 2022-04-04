@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 15:14:37 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/29 14:34:38 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/04 10:19:58 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,11 +51,11 @@ void	malloc_name_for_each_file(t_input *input, int i_cmd, int type, int i_file)
 	len = 0;
 	if (type == 0)
 		len = count_infile_name_len(input->cmd_tab[i_cmd], i_file);
-	if (type == 1)
+	else if (type == 1)
 		len = count_output_name_len(input->cmd_tab[i_cmd], i_file);
-	if (type == 2)
+	else if (type == 2)
 		len = count_delimiter_len(input->cmd_tab[i_cmd], i_file);
-	if (type == 3)
+	else if (type == 3)
 		len = count_app_output_name_len(input->cmd_tab[i_cmd], i_file);
 	len ++;
 	input->redir_tab[i_cmd][type][i_file] = ft_malloc(input, sizeof(char), len);

@@ -6,7 +6,7 @@
 #    By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/25 15:43:51 by llethuil          #+#    #+#              #
-#    Updated: 2022/03/29 16:59:18 by llethuil         ###   ########lyon.fr    #
+#    Updated: 2022/04/04 11:39:44 by llethuil         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -72,6 +72,7 @@ SRCS_LST	:=	built_ins/ft_cd.c								\
 				cmd_line_manager/cmd_line_manager.c				\
 				cmd_lst_manager/cmd_lst_init.c					\
 				cmd_lst_manager/cmd_lst_manager.c				\
+				cmd_lst_manager/utils_cmd_lst_manager.c			\
 				cmd_separator/cmd_separator.c					\
 				env_manager/env_manager.c						\
 				env_manager/env_converter.c						\
