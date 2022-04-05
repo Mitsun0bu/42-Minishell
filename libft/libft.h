@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 15:21:56 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/29 10:23:07 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/05 16:23:55 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ char	*ft_itoa(t_input *input, int n);
 void	*ft_malloc(t_input *input, size_t size, size_t count);
 void	*ft_memset(void *b, int c, size_t len);
 void	ft_putstr_fd(char *s, int fd);
+char	**ft_mini_split(t_input *input, char *s, char c);
 char	**ft_split(t_input *input, char *s, char c);
 char	*ft_strchr(const char *s, int c);
 char	*ft_strdup(t_input *input, char *s1);

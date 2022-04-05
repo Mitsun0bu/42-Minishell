@@ -67,11 +67,12 @@ env -i
 OLDPWD
 
 
-Probleme :
+Problemes :
 
-leaks quand on a un pipe (peut etrre du aux chagements dans split)
+1) CTRL+C quand cat tourne en boucle
 
-J'ai changé :
+2) echo $? doit etre remis en place (apres ca, refaire le test "return value of a process")
 
-la ligne 30 de redir_tab_memory_manager : input->redir_tab[i_cmd][5] = NULL; ( [0][1][2][3][/0] )
+3) echo "cat lol.c | cat>lol.c"
 
+4) unset HOME segfault

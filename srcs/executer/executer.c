@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 14:51:13 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/05 11:39:47 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/05 15:48:59 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,5 @@ void	executer(t_input *input, t_cmd_lst *cmd)
 	}
 	else
 		input->status = pipex(input, cmd);
-	printf("- - - - - - - - - - - - - - - - - - - \n");
+	// printf("- - - - - - - - - - - - - - - - - - - \n");
 }

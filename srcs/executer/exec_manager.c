@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 10:41:38 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/05 11:40:45 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/05 15:26:46 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 void	exec_first_cmd(t_input *input, t_cmd_lst *cmd)
 {
-	printf("| \n");
-	printf("| EXEC FIRST CMD\n");
-	printf("| cmd index = %d\n", cmd->index);
+	// printf("| \n");
+	// printf("| EXEC FIRST CMD\n");
+	// printf("| cmd index = %d\n", cmd->index);
 	handle_infile(input, cmd);
 	if (handle_outfile(input, cmd) == -1)
 		if (cmd->next != NULL)
@@ -34,9 +34,9 @@ void	exec_first_cmd(t_input *input, t_cmd_lst *cmd)
 
 void	exec_mid_cmd(t_input *input, t_cmd_lst *cmd)
 {
-	printf("| \n");
-	printf("| EXEC A CMD\n");
-	printf("| cmd index = %d\n", cmd->index);
+	// printf("| \n");
+	// printf("| EXEC A CMD\n");
+	// printf("| cmd index = %d\n", cmd->index);
 	if (handle_infile(input, cmd) == -1)
 		dup2(cmd->previous->cmd_pipe[0], STDIN_FILENO);
 	if (handle_outfile(input, cmd) == -1)
@@ -54,8 +54,8 @@ void	exec_mid_cmd(t_input *input, t_cmd_lst *cmd)
 
 void	exec_last_cmd(t_input *input, t_cmd_lst *cmd)
 {
-	printf("| \n");
-	printf("| EXEC LAST CMD\n");
+	// printf("| \n");
+	// printf("| EXEC LAST CMD\n");
 	handle_outfile(input, cmd);
 	if (handle_infile(input, cmd) == -1)
 		dup2(cmd->previous->cmd_pipe[0], STDIN_FILENO);

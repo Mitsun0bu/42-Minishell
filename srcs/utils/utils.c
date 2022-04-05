@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 11:12:43 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/04 15:08:44 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/05 16:15:34 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,3 +55,4 @@ void	assign_garbage_type(t_input *input, char **table, int garbage_type)
 	}
 	input->garbage = start;
 }
+

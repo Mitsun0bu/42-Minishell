@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 17:32:59 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/04 16:08:15 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/05 15:34:49 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	wait_all_processes(t_input *input)
 	while (++i < input->n_cmd)
 	{
 		waitpid(input->process[i], &status, 0);
-		printf("| STATUS PROCESS %d = %d\n", i, status);
+		// printf("| STATUS PROCESS %d = %d\n", i, status);
 	}
 	return (status);
 }
@@ -83,8 +83,6 @@ char	**convert_env_tab(t_input *input)
 			env_list[i] = ft_strdup(input, env_str);
 			input->garbage->type = GARBAGE;
 		}
-		// else
-		// 	i ++;
 	}
 	return (env_list);
 }

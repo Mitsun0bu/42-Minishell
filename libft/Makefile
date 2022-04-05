@@ -6,7 +6,7 @@
 #    By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/05 14:36:18 by llethuil          #+#    #+#              #
-#    Updated: 2022/03/29 10:24:15 by llethuil         ###   ########lyon.fr    #
+#    Updated: 2022/04/05 16:29:23 by llethuil         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,6 +51,7 @@ SRCS =	ft_atoi.c			\
 		ft_itoa.c			\
 		ft_malloc.c			\
 		ft_memset.c			\
+		ft_mini_split.c		\
 		ft_putstr_fd.c		\
 		ft_split.c			\
 		ft_strchr.c			\

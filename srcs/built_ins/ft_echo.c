@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 10:55:57 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/05 09:45:51 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/05 15:25:12 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ char	*join_message(t_input *input, t_cmd_lst *cmd)
 		option ++;
 	if (!ft_strncmp(cmd->args[1], "-n", 2) && ft_strlen(cmd->args[1]) == 2)
 		i++;
-	printf("i = %d\n", i);
 	while (++i < cmd->n_args)
 	{
 		if (i == 1 || (i == 2 && option == 1))
