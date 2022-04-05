@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 16:38:19 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/04 11:30:03 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/05 14:19:02 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	get_cmd_line(t_input *input)
 	char	*buff;
 
 	path = get_history_path(input);
+	buff = NULL;
 	while (1)
 	{
 		buff = readline("minishelled > ");

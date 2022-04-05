@@ -6,13 +6,13 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 16:38:12 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/04 16:03:40 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/05 10:14:05 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-int	handle_heredocs_pipes(t_input *input, t_cmd_lst *cmd)
+int	handle_heredocs(t_input *input, t_cmd_lst *cmd)
 {
 	t_cmd_lst	*start;
 

@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 14:51:13 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/04 16:51:55 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/05 11:39:47 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	executer(t_input *input, t_cmd_lst *cmd)
 		return ;
 	if (open_all_pipes(cmd) == -1)
 		return ;
-	if (handle_heredocs_pipes(input, cmd) == -1)
+	if (handle_heredocs(input, cmd) == -1)
 		return ;
 	if (input->n_cmd == 1 && find_built_in(cmd->name) == BUILT_IN)
 	{

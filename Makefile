@@ -6,7 +6,7 @@
 #    By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/25 15:43:51 by llethuil          #+#    #+#              #
-#    Updated: 2022/04/04 11:39:44 by llethuil         ###   ########lyon.fr    #
+#    Updated: 2022/04/05 14:01:02 by llethuil         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,6 +58,7 @@ INCS_LST	:=	built_ins.h			\
 				main.h				\
 				parser.h			\
 				redir_collector.h	\
+				signal_manager.h	\
 				shell_initializer.h	\
 				utils.h				\
 
@@ -106,6 +107,7 @@ SRCS_LST	:=	built_ins/ft_cd.c								\
 				parser/parser.c									\
 				parser/utils_parser.c							\
 				shell_initializer/shell_init.c					\
+				signal_manager/signal_handler.c					\
 				utils/utils_history.c							\
 				utils/utils.c									\
 
@@ -121,17 +123,22 @@ SUBDIRS_LST	:=	built_ins			\
 				parser				\
 				redir_collector		\
 				shell_initializer	\
+				signal_manager		\
 				utils				\
 
 OBJS_LST	:=	$(SRCS_LST:.c=.o)
 
-LIBFT_AR	:= $(LIBFT_DIR)/libft.a
+LIBFT_AR	:=	$(LIBFT_DIR)/libft.a
 
-INCS		:= $(addprefix $(INCS_DIR)/, $(INCS_LST))
+RL_LIB		:=	-L$(shell brew --prefix readline)/lib
 
-SRCS		:= $(addprefix $(SRCS_DIR)/, $(SRCS_LST))
+RL_INC		:=	-I$(shell brew --prefix readline)/include
 
-OBJS		:= $(addprefix $(OBJS_DIR)/, $(OBJS_LST))
+INCS		:=	$(addprefix $(INCS_DIR)/, $(INCS_LST))
+
+SRCS		:=	$(addprefix $(SRCS_DIR)/, $(SRCS_LST))
+
+OBJS		:=	$(addprefix $(OBJS_DIR)/, $(OBJS_LST))
 
 # ************************************************************************** #
 #                                                                            #
@@ -149,7 +156,7 @@ libft:
 $(NAME): $(OBJS) $(LIBFT_AR)
 	test -z '$(filter %.o,$?)' || printf "$(GREEN)> All the .c files from minishell have been compiled successfully !$(END)\n"
 	printf "$(BLUE)> Creating the executable file :$(END) $@\n"
-	$(CC) $(OBJS) $(LIBFT_AR) -lreadline -o $(NAME)
+	$(CC) $(OBJS) $(LIBFT_AR) $(RL_INC) $(RL_LIB) -lreadline -o $(NAME)
 	printf "$(GREEN)> Executable file has been created successfully !$(END)\n"
 
 $(OBJS_DIR):
@@ -157,7 +164,7 @@ $(OBJS_DIR):
 
 $(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c $(INCS) Makefile | $(OBJS_DIR)
 	printf "$(BLUE)> Compiling :$(END) $<\n"
-	$(CC) $(CFLAGS) -I $(INCS_DIR) -c $< -o $@
+	$(CC) $(CFLAGS) -I $(INCS_DIR) $(RL_INC) -c $< -o $@
 
 clean:
 	make clean -C $(LIBFT_DIR)

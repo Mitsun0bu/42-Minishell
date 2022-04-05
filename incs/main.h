@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 17:07:56 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/29 15:20:20 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/05 14:18:26 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,10 @@
 # define GARBAGE 56
 # define COLLECTOR_LST 57
 
+
+/* tcsetattr, tcgetattr */
+# include <termios.h>
+
 /* ************************************************************************** */
 /*                                                                            */
 /*                              ~~~ TYPEDEFS ~~~                              */
@@ -44,6 +48,8 @@
 
 typedef struct s_input
 {
+	struct termios old_term;
+	struct termios new_term;
 	struct s_garbage_lst	*garbage;
 	struct s_env			*env_tab;
 	int						start_shlvl;
@@ -104,7 +110,6 @@ typedef struct s_cmd_lst
 	struct s_cmd_lst	*previous;
 }	t_cmd_lst;
 
-
 /* ************************************************************************** */
 /*                                                                            */
 /*                               ~~~ INCLUDES ~~~                             */
@@ -112,7 +117,6 @@ typedef struct s_cmd_lst
 /* ************************************************************************** */
 
 /* our headers */
-# include "../libft/libft.h"
 # include "built_ins.h"
 # include "cmd_line_manager.h"
 # include "cmd_lst_manager.h"
@@ -124,6 +128,7 @@ typedef struct s_cmd_lst
 # include "parser.h"
 # include "redir_collector.h"
 # include "shell_initializer.h"
+# include "signal_manager.h"
 # include "utils.h"
 
 /* opendir, readdir, closedir */
@@ -135,11 +140,11 @@ typedef struct s_cmd_lst
 /* open */
 # include <fcntl.h>
 
-/* libft */
-# include "../libft/libft.h"
-
 /* get_next_line */
 # include <limits.h>
+
+/* printf */
+# include <stdio.h>
 
 /* add_history, readline, rl_clear_history,			*/
 /* rl_on_new_line, rl_replace_line, rl_redisplay	*/
@@ -149,8 +154,6 @@ typedef struct s_cmd_lst
 /* signal, kill */
 # include <signal.h>
 
-/* printf */
-# include <stdio.h>
 
 /* malloc, free, getenv, exit */
 # include <stdlib.h>
@@ -161,6 +164,9 @@ typedef struct s_cmd_lst
 /* ioctl */
 # include <sys/ioctl.h>
 
+/* libft */
+# include "../libft/libft.h"
+
 /* stat */
 # include <sys/stat.h>
 
@@ -170,9 +176,6 @@ typedef struct s_cmd_lst
 # include <sys/types.h>
 # include <sys/wait.h>
 
-/* tcsetattr, tcgetattr */
-# include <termios.h>
-
 /* access, chdir, close, dup, dup2, execve, fork, getcwd,	*/
 /* isatty, pipe, read, ttyname, ttyslot, unlink, write		*/
 # include <unistd.h>
@@ -180,7 +183,6 @@ typedef struct s_cmd_lst
 /* tgetent, tgetflag, tgetnum, tgetstr, tgoto, tputs */
 # include <curses.h>
 # include <term.h>
-
 
 /* ************************************************************************** */
 /*                                                                            */

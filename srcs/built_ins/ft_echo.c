@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 10:55:57 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/04 11:22:03 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/05 09:45:51 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ char	*join_message(t_input *input, t_cmd_lst *cmd)
 			input->garbage->type = GARBAGE;
 		}
 	}
-	printf("message = %s\n", message);
 	return (message);
 }
 

@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 10:15:45 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/29 11:02:45 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/05 10:06:06 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ void	clear_all_garbage(t_garbage_lst **garbage)
 			break ;
 		}
 		*garbage = next;
-		if ((*garbage)->previous)
-			free((*garbage)->previous);
+		// if ((*garbage)->previous)
+		// 	free((*garbage)->previous);
 	}
 	*garbage = NULL;
 }

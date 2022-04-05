@@ -1,21 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cmd_line_manager.c                                 :+:      :+:    :+:   */
+/*   signal_handler.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/10 16:33:25 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/05 09:37:49 by llethuil         ###   ########lyon.fr   */
+/*   Created: 2022/04/05 13:35:01 by llethuil          #+#    #+#             */
+/*   Updated: 2022/04/05 14:31:18 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-void	cmd_line_manager(t_input *input)
+void	signal_handler(int signal)
 {
-	get_cmd_line(input);
-	env_converter(input, input->cmd_line);
-	input->cmd_line = ft_strdup(input, input->processed_line);
-	input->garbage->type = CMD_LINE;
+	if (signal == SIGINT)
+	{
+		printf("\n");
+		rl_replace_line("", 0);
+		rl_on_new_line();
+		rl_redisplay();
+	}
+	if (signal == SIGQUIT)
+	{
+		rl_on_new_line();
+		rl_redisplay();
+	}
 }
