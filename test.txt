@@ -69,10 +69,4 @@ OLDPWD
 
 Problemes :
 
-1) CTRL+C quand cat tourne en boucle
-
-2) echo $? doit etre remis en place (apres ca, refaire le test "return value of a process")
-
-3) echo "cat lol.c | cat>lol.c"
-
-4) unset HOME segfault
+1) echo $? doit etre remis en place (apres ca, refaire le test "return value of a process")

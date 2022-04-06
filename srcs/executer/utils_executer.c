@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 17:32:59 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/05 15:34:49 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/06 17:10:44 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ int	wait_all_processes(t_input *input)
 	while (++i < input->n_cmd)
 	{
 		waitpid(input->process[i], &status, 0);
+		signal(SIGINT, signal_handler_parent);
 		// printf("| STATUS PROCESS %d = %d\n", i, status);
 	}
 	return (status);
@@ -74,7 +75,7 @@ char	**convert_env_tab(t_input *input)
 	i = -1;
 	while (++i < i_list)
 	{
-		if (input->env_tab[i].type == ENV || input->env_tab[i].type == EXP_EMPTY)
+		if (input->env_tab[i].type == ENV || input->env_tab[i].type == ENV_EMPTY)
 		{
 			env_str = ft_strjoin(input, input->env_tab[i].key, "=");
 			input->garbage->type = GARBAGE;
@@ -95,7 +96,7 @@ int	count_env_to_convert(t_input *input)
 	i = -1;
 	i_list = 0;
 	while (++i < input->n_env)
-		if (input->env_tab[i].type == ENV || input->env_tab[i].type == EXP_EMPTY)
+		if (input->env_tab[i].type == ENV || input->env_tab[i].type == ENV_EMPTY)
 			i_list ++;
 	return (i_list);
 }

@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 10:22:00 by agirardi          #+#    #+#             */
-/*   Updated: 2022/04/04 13:56:42 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/06 17:10:44 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void	change_value(t_input *input, char *key, char *value)
 			{
 				input->env_tab[i].value = value;
 				if (!value)
-					input->env_tab[i].type = EXP_EMPTY;
+					input->env_tab[i].type = ENV_EMPTY;
 				else
 					input->env_tab[i].type = ENV;
 			}

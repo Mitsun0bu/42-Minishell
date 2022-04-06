@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 13:21:26 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/05 14:36:41 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/06 14:17:13 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,11 @@ void	init_shlvl(t_input *input)
 	char	*value;
 
 	value = NULL;
+	if (!get_value(input, "SHLVL"))
+	{
+		add_to_env(input, "SHLVL=1", ENV);
+		return ;
+	}
 	input->start_shlvl = ft_atoi(get_value(input, "SHLVL"));
 	input->start_shlvl ++;
 	value = ft_itoa(input, input->start_shlvl);
@@ -87,6 +92,8 @@ void	init_history(t_input *input)
 	char	*cmd_line_history;
 
 	path = get_history_path(input);
+	if (!path)
+		return ;
 	input->fd_history = open(path, O_CREAT | O_RDWR | O_APPEND, 0644);
 	if (input->fd_history < 0)
 		stderror_exit(input, -1, "error", ": couldn't open history file");

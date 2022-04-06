@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 13:36:43 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/05 13:38:38 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/06 16:15:31 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-void	signal_handler(int signal);
+void	signal_handler_parent(int signal);
+void	signal_handler_child(int signal);
 
 # endif

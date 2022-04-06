@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 10:41:38 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/05 15:26:46 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/06 17:05:53 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	exec_first_cmd(t_input *input, t_cmd_lst *cmd)
 	// printf("| \n");
 	// printf("| EXEC FIRST CMD\n");
 	// printf("| cmd index = %d\n", cmd->index);
+	signal(SIGINT, signal_handler_child);
 	handle_infile(input, cmd);
 	if (handle_outfile(input, cmd) == -1)
 		if (cmd->next != NULL)
@@ -24,10 +25,18 @@ void	exec_first_cmd(t_input *input, t_cmd_lst *cmd)
 	close_all_pipes(cmd);
 	if (find_built_in(cmd->name) == BUILT_IN)
 		exit(exec_built_in(input, cmd));
-	else if (find_built_in(cmd->name) == PROGRAM)
-		exit(exec_program(input, cmd));
+	// else if (find_built_in(cmd->name) == PROGRAM)
+	// 	exit(exec_program(input, cmd));
+	else if (!input->paths_tab)
+		exit(stderror_return(1, NULL, cmd->name, "No such file or directory"));
 	else if (cmd->name)
+	{
+		printf("valid path = %s\n", cmd->valid_path);
+		int i = -1;
+		while (++i < cmd->n_args)
+			printf("cmd->args[i] = %s\n", cmd->args[i]);
 		execve(cmd->valid_path, cmd->args, convert_env_tab(input));
+	}
 	else
 		exit(0);
 }
@@ -37,6 +46,7 @@ void	exec_mid_cmd(t_input *input, t_cmd_lst *cmd)
 	// printf("| \n");
 	// printf("| EXEC A CMD\n");
 	// printf("| cmd index = %d\n", cmd->index);
+	signal(SIGINT, signal_handler_child);
 	if (handle_infile(input, cmd) == -1)
 		dup2(cmd->previous->cmd_pipe[0], STDIN_FILENO);
 	if (handle_outfile(input, cmd) == -1)
@@ -46,6 +56,8 @@ void	exec_mid_cmd(t_input *input, t_cmd_lst *cmd)
 		exit(exec_built_in(input, cmd));
 	else if (find_built_in(cmd->name) == PROGRAM)
 		exit(exec_program(input, cmd));
+	else if (!input->paths_tab)
+		exit(stderror_return(1, NULL, cmd->name, "No such file or directory"));
 	else if (cmd->name)
 		execve(cmd->valid_path, cmd->args, convert_env_tab(input));
 	else
@@ -56,6 +68,7 @@ void	exec_last_cmd(t_input *input, t_cmd_lst *cmd)
 {
 	// printf("| \n");
 	// printf("| EXEC LAST CMD\n");
+	signal(SIGINT, signal_handler_child);
 	handle_outfile(input, cmd);
 	if (handle_infile(input, cmd) == -1)
 		dup2(cmd->previous->cmd_pipe[0], STDIN_FILENO);
@@ -64,6 +77,8 @@ void	exec_last_cmd(t_input *input, t_cmd_lst *cmd)
 		exit(exec_built_in(input, cmd));
 	else if (find_built_in(cmd->name) == PROGRAM)
 		exit(exec_program(input, cmd));
+	else if (!input->paths_tab)
+		exit(stderror_return(1, NULL, cmd->name, "No such file or directory"));
 	else if (cmd->name)
 		execve(cmd->valid_path, cmd->args, convert_env_tab(input));
 	else
@@ -108,6 +123,7 @@ int	exec_program(t_input *input, t_cmd_lst *cmd)
 	while (cmd->name[++i])
 		program_name[i] = cmd->name[i + 1];
 	program_path = ft_strjoin(input, cwd, program_name);
+	printf("program path = %s\n", program_path);
 	input->garbage->type = GARBAGE;
 	ft_free((void *)&cwd);
 	return (0);

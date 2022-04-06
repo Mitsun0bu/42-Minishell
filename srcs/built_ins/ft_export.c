@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 15:10:44 by agirardi          #+#    #+#             */
-/*   Updated: 2022/03/29 11:00:22 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/06 17:10:44 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ int	ft_export(t_input *input, t_cmd_lst *cmd)
 		if (res == 1)
 			add_to_env(input, var, ENV);
 		else if (res == 2)
-			add_to_env(input, var, EXP_NULL);
+			add_to_env(input, var, ENV_NULL);
 		else if (res == 3)
-			add_to_env(input, var, EXP_EMPTY);
+			add_to_env(input, var, ENV_EMPTY);
 	}
 	if (i == 1)
 		print_export(input);
@@ -117,10 +117,10 @@ void	print_export(t_input *input)
 				ft_strlen(input->env_tab[i].key)) != 0)
 		{
 			if (input->env_tab[i].value
-				&& input->env_tab[i].type != EXP_EMPTY)
+				&& input->env_tab[i].type != ENV_EMPTY)
 				printf("declare -x %s=\"%s\"\n",
 					input->env_tab[i].key, input->env_tab[i].value);
-			else if (input->env_tab[i].type == EXP_EMPTY)
+			else if (input->env_tab[i].type == ENV_EMPTY)
 				printf("declare -x %s=\"\"\n", input->env_tab[i].key);
 			else
 				printf("declare -x %s\n", input->env_tab[i].key);

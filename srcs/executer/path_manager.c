@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 14:58:04 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/04 15:53:45 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/06 15:19:47 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,22 +17,26 @@ void	path_manager(t_input *input, t_cmd_lst *cmd)
 	t_cmd_lst	*start;
 
 	start = cmd;
-	get_paths_tab(input);
 	while (cmd)
 	{
 		if (!cmd->name)
 			cmd->valid_path = NULL;
 		else if (find_built_in(cmd->name) == BUILT_IN)
+		{
 			cmd->valid_path = ft_strdup(input, "built-in");
-		else
+			input->garbage->type = CMD_LST;
+		}
+		else if (get_paths_tab(input))
+		{
 			cmd->valid_path = assign_path(input, cmd, cmd->name);
-		input->garbage->type = CMD_LST;
+			input->garbage->type = CMD_LST;
+		}
 		cmd = cmd->next;
 	}
 	cmd = start;
 }
 
-void	get_paths_tab(t_input *input)
+int	get_paths_tab(t_input *input)
 {
 	int		i;
 	char	*paths_line;
@@ -48,6 +52,8 @@ void	get_paths_tab(t_input *input)
 			break ;
 		}
 	}
+	if (!paths_line)
+		return (0);
 	input->paths_tab = ft_split(input, paths_line, ':');
 	assign_garbage_type(input, input->paths_tab, GARBAGE);
 	i = -1;
@@ -56,6 +62,7 @@ void	get_paths_tab(t_input *input)
 		input->paths_tab[i] = ft_strjoin(input, input->paths_tab[i], "/");
 		input->garbage->type = CMD_LST;
 	}
+	return (1);
 }
 
 char	*assign_path(t_input *input, t_cmd_lst *cmd, char *arg)
@@ -70,7 +77,6 @@ char	*assign_path(t_input *input, t_cmd_lst *cmd, char *arg)
 		if (access(arg, F_OK) == 0)
 		{
 			path = ft_strdup(input, arg);
-			// ajouter un type ici pour eviter les leaks !
 			return (path);
 		}
 		path = ft_strjoin(input, input->paths_tab[i], cmd->name);

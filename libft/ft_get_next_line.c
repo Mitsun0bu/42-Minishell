@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 17:02:15 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/25 11:49:21 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/06 14:26:12 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,11 @@ char	*ft_get_next_line(t_input *input, int fd)
 	line[0] = 0;
 	line = ft_get_line(input, line, buff, fd);
 	if (line && ft_strlen(line))
+	{
+		line = ft_strtrim(input, line, "\n");
+		input->garbage->type = GARBAGE;
 		return (line);
+	}
 	return (NULL);
 }
 

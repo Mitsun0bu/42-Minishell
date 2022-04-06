@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 17:07:56 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/05 15:48:27 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/06 17:10:44 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@
 # define BUILT_IN 46
 # define PROGRAM 47
 # define ENV 48
-# define EXP_EMPTY 49
-# define EXP_NULL 50
+# define ENV_EMPTY 49
+# define ENV_NULL 50
 # define INPUT_STRUCT 51
 # define CMD_LINE 52
 # define CMD_TAB 53
@@ -64,7 +64,6 @@ typedef struct s_input
 	char					***cmd_exec_tab;
 	char					**paths_tab;
 	int						fd_history;
-	int						free_all;
 	int						*process;
 	int						status;
 }	t_input;

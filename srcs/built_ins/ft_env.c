@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 15:15:24 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/29 11:00:06 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/06 17:10:44 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	ft_env(t_input *input)
 			printf("%s=", input->env_tab[i].key);
 			printf("%s\n", input->env_tab[i].value);
 		}
-		else if (input->env_tab[i].type == EXP_EMPTY)
+		else if (input->env_tab[i].type == ENV_EMPTY)
 			printf("%s=\n", input->env_tab[i].key);
 	}
 	return (0);

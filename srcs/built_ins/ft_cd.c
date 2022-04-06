@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 10:56:25 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/29 10:34:54 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/06 17:10:33 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,15 @@
 int	ft_cd(t_input *input, t_cmd_lst *cmd)
 {
 	char	*pwd;
+	char	*home;
 
+	home = get_value(input, "HOME");
 	if (!cmd->args[1])
 	{
+		if (!home)
+			stderror_return(1, NULL, "cd", "HOME not set");
 		update_oldpwd(input);
-		chdir(get_value(input, "HOME"));
+		chdir(home);
 	}
 	if (cmd->index == 0 && access(cmd->args[1], F_OK) == 0)
 	{
@@ -40,7 +44,7 @@ void	update_oldpwd(t_input *input)
 	pwd = getcwd(NULL, 0);
 	if (!get_value(input, "OLDPWD"))
 	{
-		add_to_env(input, "OLDPWD", 1);
+		add_to_env(input, "OLDPWD", ENV_NULL);
 		change_value(input, "OLDPWD", pwd);
 	}
 	else
