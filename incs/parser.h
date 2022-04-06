@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 10:09:31 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/06 11:56:46 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/06 19:09:44 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int		clean_cmd(t_input *input);
 
 /* parser/utils_parser.c */
 void	check_red(int *red, char *cmd, int *i);
-int		is_isspace(char c);
+int		is_space(char c);
 int		check_next_arg(char *str, int i);
 int		end_check(char *cmd, int *i, int *red);
 

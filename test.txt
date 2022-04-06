@@ -70,3 +70,14 @@ OLDPWD
 Problemes :
 
 1) echo $? doit etre remis en place (apres ca, refaire le test "return value of a process")
+
+2) CTRL+D/CTRL+C dans les pipe finaux et heredoc
+
+3) echo hello |v| , puis rev. Comportement bizarre apres le message d'erreur (porbablement lié au signaux [voir 2)])
+
+4) ft_calloc_strs dans minisplit a re-checker :
+		if (ft_strchr("\"\'", s[i]) && quotes == 0)
+				quotes = 1;
+		else if ????
+
+5) checker skip_space et voir pour la mettre dans les utils

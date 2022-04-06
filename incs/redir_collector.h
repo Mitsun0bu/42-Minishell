@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 11:15:36 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/29 14:39:34 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/06 19:09:21 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ int		count_app_output_name_len(char *cmd, int i_file);
 /* redir_collector/redir_collector_utils_other.c */
 int		bidim_tab_size(char **table);
 void	skip_space(char *cmd, int *i);
-int		is_space(char c);
 
 /* redir_collector/utils_quotes_redir_collector.c */
 int		count_in_quotes(char *cmd, int *i, int *len, char c);

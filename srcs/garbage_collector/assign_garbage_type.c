@@ -1,34 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   redir_collector_utils_other.c                      :+:      :+:    :+:   */
+/*   assign_garbage_type.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/18 11:12:39 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/06 19:11:06 by llethuil         ###   ########lyon.fr   */
+/*   Created: 2022/04/06 19:03:37 by llethuil          #+#    #+#             */
+/*   Updated: 2022/04/06 19:03:51 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-int	bidim_tab_size(char **table)
+void	assign_garbage_type(t_input *input, char **table, int garbage_type)
 {
-	int	tab_size;
-	int	i_tab;
+	int	i;
+	int	j;
+	t_garbage_lst	*start;
 
-	tab_size = 0;
-	i_tab = -1;
-	while (table[++i_tab])
-		tab_size ++;
-	return (tab_size);
-}
-
-void	skip_space(char *cmd, int *i)
-{
-	(*i)++;
-	if (cmd[*i] == '<' || cmd[*i] == '>')
-		(*i)++;
-	while (is_space(cmd[*i]) == 1)
-		(*i)++;
+	i = 0;
+	j = -1;
+	while (table[i])
+		i ++;
+	i ++;
+	start = input->garbage;
+	while(++j < i)
+	{
+		input->garbage->type = garbage_type;
+		input->garbage = input->garbage->next;
+	}
+	input->garbage = start;
 }

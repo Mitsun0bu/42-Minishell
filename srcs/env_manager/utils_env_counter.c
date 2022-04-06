@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 10:58:45 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/24 16:45:26 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/06 19:09:44 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,13 @@ int	count_env(t_input *input, char *str, int *i, int red)
 	int		j;
 
 	key_len = 0;
-	while (!ft_strchr("$<>\'\"", str[++ *i]) && !is_isspace(str[*i]) && str[*i])
+	while (!ft_strchr("$<>\'\"", str[++ *i]) && !is_space(str[*i]) && str[*i])
 		key_len++;
 	key = ft_calloc(input, sizeof(char), key_len + 1);
 	input->garbage->type = GARBAGE;
 	*i -= key_len + 1;
 	j = -1;
-	while (!ft_strchr("$<>\'\"", str[++ *i]) && !is_isspace(str[*i]) && str[*i])
+	while (!ft_strchr("$<>\'\"", str[++ *i]) && !is_space(str[*i]) && str[*i])
 		key[++j] = str[*i];
 	count = ft_strlen(get_value(input, key));
 	if (red == 0)

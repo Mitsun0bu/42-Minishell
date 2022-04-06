@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 13:18:59 by agirardi          #+#    #+#             */
-/*   Updated: 2022/04/06 11:57:29 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/06 18:19:25 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,27 +82,4 @@ int	print_red_error_message(char *str, int i, int type)
 			printf("bash: syntax error near unexpected token `>'\n");
 	}
 	return (0);
-}
-
-int	check_pipe(t_input *input)
-{
-	char	last_letter;
-	int		i;
-
-	last_letter = 0;
-	i = -1;
-	while (input->cmd_line[++i])
-	{
-		while (is_isspace(input->cmd_line[i]) && input->cmd_line[i + 1])
-			i++;
-		if ((i == 0 && input->cmd_line[i] == '|')
-			|| (input->cmd_line[i] == '|' && input->cmd_line[i + 1] == '|')
-			|| (input->cmd_line[i] == '|' && last_letter == '|'))
-		{
-			printf("minishelled: syntax error near unexpected token `|'\n");
-			return (0);
-		}
-		last_letter = input->cmd_line[i];
-	}
-	return (1);
 }

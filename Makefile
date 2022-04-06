@@ -6,7 +6,7 @@
 #    By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/25 15:43:51 by llethuil          #+#    #+#              #
-#    Updated: 2022/04/05 14:01:02 by llethuil         ###   ########lyon.fr    #
+#    Updated: 2022/04/06 19:07:20 by llethuil         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -75,6 +75,8 @@ SRCS_LST	:=	built_ins/ft_cd.c								\
 				cmd_lst_manager/cmd_lst_manager.c				\
 				cmd_lst_manager/utils_cmd_lst_manager.c			\
 				cmd_separator/cmd_separator.c					\
+				cmd_separator/check_pipe.c						\
+				cmd_separator/split_cmd.c						\
 				env_manager/env_manager.c						\
 				env_manager/env_converter.c						\
 				env_manager/utils_env_counter.c					\
@@ -91,6 +93,7 @@ SRCS_LST	:=	built_ins/ft_cd.c								\
 				executer/pipex.c								\
 				executer/utils_executer.c						\
 				garbage_collector/add_garbage.c					\
+				garbage_collector/assign_garbage_type.c			\
 				garbage_collector/clear_garbage.c				\
 				redir_collector/copy_name_in_redir_tab.c		\
 				redir_collector/get_last_redir_type_tab.c		\
@@ -108,7 +111,7 @@ SRCS_LST	:=	built_ins/ft_cd.c								\
 				parser/utils_parser.c							\
 				shell_initializer/shell_init.c					\
 				signal_manager/signal_handler.c					\
-				utils/utils_history.c							\
+				utils/get_history_path.c						\
 				utils/utils.c									\
 
 SUBDIRS_LST	:=	built_ins			\

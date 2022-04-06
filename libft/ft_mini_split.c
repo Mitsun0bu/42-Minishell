@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 11:25:47 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/06 11:21:32 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/06 17:44:22 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,22 +59,22 @@ static int	ft_count_words(char *s, char c)
 static int	ft_calloc_strs(t_input *input, char *s, char c, char **table)
 {
 	int	i;
-	int	q_count;
+	int	quotes;
 	int	i_table;
 	int	j_table;
 
 	i = 0;
-	q_count = 0;
+	quotes = 0;
 	i_table = -1;
 	while (++i_table < ft_count_words(s, c))
 	{
 		j_table = 0;
 		while (s[i])
 		{
-			if (s[i] == c && q_count == 0)
+			if (s[i] == c && quotes == 0)
 				break;
-			if (ft_strchr("\"\'", s[i]) && q_count == 0)
-				q_count = 1;
+			if (ft_strchr("\"\'", s[i]) && quotes == 0)
+				quotes = 1;
 			j_table ++;
 			i ++;
 		}
@@ -88,25 +88,25 @@ static int	ft_calloc_strs(t_input *input, char *s, char c, char **table)
 static void	ft_fill_table(char *s, char c, char **table)
 {
 	int	i;
-	int	q_count;
+	int	quotes;
 	int	i_table;
 	int	j_table;
 
 	i = 0;
-	q_count = 0;
+	quotes = 0;
 	i_table = -1;
 	while (++i_table < ft_count_words(s, c))
 	{
 		j_table = 0;
 		while (s[i])
 		{
-			if (ft_strchr("\"\'", s[i]) && q_count == 0)
-				q_count = 1;
-			else if (ft_strchr("\"\'", s[i]) && q_count == 1)
-				q_count = 0;
-			if (s[i] != c || (s[i] == c && q_count == 1))
+			if (ft_strchr("\"\'", s[i]) && quotes == 0)
+				quotes = 1;
+			else if (ft_strchr("\"\'", s[i]) && quotes == 1)
+				quotes = 0;
+			if (s[i] != c || (s[i] == c && quotes == 1))
 				table[i_table][j_table++] = s[i++];
-			else if (s[i++] == c && q_count == 0)
+			else if (s[i++] == c && quotes == 0)
 				break;
 		}
 	}

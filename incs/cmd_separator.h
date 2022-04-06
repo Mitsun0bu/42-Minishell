@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 10:23:10 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/06 11:59:39 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/06 18:54:32 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,12 @@
 
 /* cmd_separator/cmd_separator.c */
 int		cmd_separator (t_input *input);
-void	single_cmd(t_input *input);
+
+/* cmd_separator/check_pipe.c */
+int		check_pipe(t_input *input);
+void	change_quote_state(int	*quote_state);
+
+/* cmd_separator/split_cmd.c */
 void	split_cmd(t_input *input);
 int		final_letter_is_pipe(char *str);
 void	fill_last_pipe(t_input *input);

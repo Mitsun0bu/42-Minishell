@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 16:58:42 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/24 16:45:26 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/06 19:09:44 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	fill_env(t_input *input, char *str, int *i, int *j)
 
 	start = (*i) + 1;
 	(*i)++;
-	while (!ft_strchr("$<>=\'\"", str[*i]) && !is_isspace(str[*i]) && str[*i])
+	while (!ft_strchr("$<>=\'\"", str[*i]) && !is_space(str[*i]) && str[*i])
 		(*i)++;
 	key = ft_substr(input, str, start, *i - start);
 	input->garbage->type = GARBAGE;

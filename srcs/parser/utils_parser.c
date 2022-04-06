@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/01 10:34:53 by agirardi          #+#    #+#             */
-/*   Updated: 2022/03/16 10:02:06 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/06 19:09:44 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	check_next_arg(char *str, int i)
 {
 	while (ft_strchr("<>", str[i]))
 		i++;
-	while (is_isspace(str[i]))
+	while (is_space(str[i]))
 		i++;
 	if (ft_strchr("<>", str[i]))
 		return (0);

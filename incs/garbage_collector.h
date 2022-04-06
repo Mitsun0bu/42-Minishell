@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 10:02:50 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/29 10:17:55 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/06 19:04:40 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,9 @@
 void			add_garbage(t_garbage_lst **garbage, void *ptr);
 void			add_garbage_front(t_garbage_lst **garbage, t_garbage_lst *new_garbage);
 t_garbage_lst	*create_new_garbage(void *ptr);
+
+/* garbage collector/assign_garbage_type.c */
+void	assign_garbage_type(t_input *input, char **table, int garbage_type);
 
 /* garbage collector/clear_garbage.c */
 void			clear_all_garbage(t_garbage_lst **garbage);
