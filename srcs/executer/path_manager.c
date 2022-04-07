@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 14:58:04 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/06 15:19:47 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/07 10:11:04 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,9 +84,9 @@ char	*assign_path(t_input *input, t_cmd_lst *cmd, char *arg)
 			return (path);
 		input->garbage->type = GARBAGE;
 	}
-	if (access(path, F_OK) == -1 && cmd->index != input->n_cmd - 1)
+	if (access(path, F_OK) == -1 && cmd->i != input->n_cmd - 1)
 		stderror_return(0, "minishelled", cmd->name, "command not found");
-	if (access(path, F_OK) == -1 && cmd->index == input->n_cmd - 1)
+	if (access(path, F_OK) == -1 && cmd->i == input->n_cmd - 1)
 		stderror_return(127, "minishelled", cmd->name, "command not found");
 	return (NULL);
 }

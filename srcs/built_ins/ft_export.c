@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 15:10:44 by agirardi          #+#    #+#             */
-/*   Updated: 2022/04/06 17:10:44 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/07 10:11:04 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ int	ft_export(t_input *input, t_cmd_lst *cmd)
 	if (input->n_cmd > 1 && cmd->n_args > 1)
 		return (0);
 	i = 0;
-	while (input->cmd_exec_tab[cmd->index][++i])
+	while (input->cmd_exec_tab[cmd->i][++i])
 	{
-		var = del_quotes(input, input->cmd_exec_tab[cmd->index][i]);
+		var = del_quotes(input, input->cmd_exec_tab[cmd->i][i]);
 		res = parse_var(input, var);
 		if (res == 1)
 			add_to_env(input, var, ENV);

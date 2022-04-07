@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 14:16:10 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/04 10:20:51 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/07 16:21:09 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,11 +55,12 @@ int	count_infile_name_len(char *cmd, int i_file)
 			&& cmd[cursor + 1] != '<' && cmd[cursor - 1] != '<')
 		{
 			skip_space(cmd, &cursor);
-			while (cmd[cursor] && !ft_strchr(" \"\'<>", cmd[cursor]))
+			while (cmd[cursor] && !ft_strchr(" <>", cmd[cursor]))
 			{
-				count_out_quotes(&cursor, &len);
 				if (cmd[cursor] == '\'' || cmd[cursor] == '"')
 					count_in_quotes(cmd, &cursor, &len, cmd[cursor]);
+				else
+					count_out_quotes(&cursor, &len);
 			}
 			return (len);
 		}
@@ -77,17 +78,16 @@ int	count_output_name_len(char *cmd, int i_file)
 	len = 0;
 	while (cmd[++cursor])
 	{
-		if (cmd[cursor] == '\'' || cmd[cursor] == '"')
-			skip_quotes(cmd, &cursor);
 		if (cmd[cursor] == '>'
 			&& cmd[cursor + 1] != '>' && cmd[cursor - 1] != '>')
 		{
 			skip_space(cmd, &cursor);
-			while (cmd[cursor] && !ft_strchr(" \"\'<>", cmd[cursor]))
+			while (cmd[cursor] && !ft_strchr(" <>", cmd[cursor]))
 			{
-				count_out_quotes(&cursor, &len);
 				if (cmd[cursor] == '\'' || cmd[cursor] == '"')
 					count_in_quotes(cmd, &cursor, &len, cmd[cursor]);
+				else
+					count_out_quotes(&cursor, &len);
 			}
 			return (len);
 		}
@@ -105,16 +105,15 @@ int	count_delimiter_len(char *cmd, int i_file)
 	len = 0;
 	while (cmd[++cursor])
 	{
-		if (cmd[cursor] == '\'' || cmd[cursor] == '"')
-			skip_quotes(cmd, &cursor);
 		if (cmd[cursor] == '<' && cmd[cursor + 1] == '<')
 		{
 			skip_space(cmd, &cursor);
-			while (cmd[cursor] && !ft_strchr(" \"\'<>", cmd[cursor]))
+			while (cmd[cursor] && !ft_strchr(" <>", cmd[cursor]))
 			{
-				count_out_quotes(&cursor, &len);
 				if (cmd[cursor] == '\'' || cmd[cursor] == '"')
 					count_in_quotes(cmd, &cursor, &len, cmd[cursor]);
+				else
+					count_out_quotes(&cursor, &len);
 			}
 			return (len);
 		}
@@ -139,9 +138,10 @@ int	count_app_output_name_len(char *cmd, int i_file)
 			skip_space(cmd, &cursor);
 			while (cmd[cursor] && !ft_strchr(" \"\'<>", cmd[cursor]))
 			{
-				count_out_quotes(&cursor, &len);
 				if (cmd[cursor] == '\'' || cmd[cursor] == '"')
 					count_in_quotes(cmd, &cursor, &len, cmd[cursor]);
+				else
+					count_out_quotes(&cursor, &len);
 			}
 			return (len);
 		}

@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 13:35:01 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/06 16:45:31 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/07 12:03:42 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ void	signal_handler_parent(int signal)
 		printf("\n");
 		rl_replace_line("", 0);
 		rl_on_new_line();
-		// printf("here_parent\n");
 		rl_redisplay();
 	}
 	if (signal == SIGQUIT)
@@ -31,7 +30,6 @@ void	signal_handler_parent(int signal)
 
 void	signal_handler_child(int signal)
 {
-	// printf("here_child\n");
 	if (signal == SIGINT)
 	{
 		rl_replace_line("", 0);

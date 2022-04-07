@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 10:07:06 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/06 13:27:04 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/07 11:40:30 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,18 +17,29 @@ int	handle_infile(t_input *input, t_cmd_lst *cmd)
 	int	i;
 
 	i = -1;
-	if (input->last_input_type_tab[cmd->index] == INPUT)
+	if (cmd->n_infile && input->last_infile_type[cmd->i] == INPUT)
 	{
-		if (cmd->n_infile)
-			while (++i < cmd->n_infile)
-				dup2(cmd->fd_input[i], STDIN_FILENO);
+		while (++i < cmd->n_infile)
+		{
+			if (cmd->fd_infile[i] > 0)
+				dup2(cmd->fd_infile[i], STDIN_FILENO);
+			else
+				return (FAILED);
+		}
 	}
-	else if (input->last_input_type_tab[cmd->index] == HEREDOC)
+	else if (input->last_infile_type[cmd->i] == HEREDOC)
 	{
+		if (!cmd->heredoc_str)
+		{
+			close_single_pipe(cmd->heredoc_pipe);
+			return (0);
+		}
 		dup2(cmd->heredoc_pipe[0], STDIN_FILENO);
 		close_single_pipe(cmd->heredoc_pipe);
 	}
-	return (i);
+	if (i == -1)
+		return (0);
+	return (1);
 }
 
 int	handle_outfile(t_input *input, t_cmd_lst *cmd)
@@ -36,23 +47,23 @@ int	handle_outfile(t_input *input, t_cmd_lst *cmd)
 	int	i;
 
 	i = -1;
-	if (input->last_output_type_tab[cmd->index] == TRUNC_OUTPUT)
+	if (cmd->n_app_outfile && input->last_outfile_type[cmd->i] == TRUNC_OUTPUT)
 	{
-		if (cmd->n_app_outfile)
-			while (++i < cmd->n_app_outfile)
-				dup2(cmd->fd_app_output[i], STDOUT_FILENO);
+		while (++i < cmd->n_app_outfile)
+			dup2(cmd->fd_app_outfile[i], STDOUT_FILENO);
 		i = -1;
 		while (++i < cmd->n_outfile)
-			dup2(cmd->fd_output[i], STDOUT_FILENO);
+			dup2(cmd->fd_outfile[i], STDOUT_FILENO);
 	}
-	else if (input->last_output_type_tab[cmd->index] == APP_OUTPUT)
+	else if (cmd->n_outfile && input->last_outfile_type[cmd->i] == APP_OUTPUT)
 	{
-		if (cmd->n_outfile)
-			while (++i < cmd->n_outfile)
-				dup2(cmd->fd_output[i], STDOUT_FILENO);
+		while (++i < cmd->n_outfile)
+			dup2(cmd->fd_outfile[i], STDOUT_FILENO);
 		i = -1;
 		while (++i < cmd->n_app_outfile)
-			dup2(cmd->fd_app_output[i], STDOUT_FILENO);
+			dup2(cmd->fd_app_outfile[i], STDOUT_FILENO);
 	}
-	return (i);
+	if (i == -1)
+		return (0);
+	return (1);
 }

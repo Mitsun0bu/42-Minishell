@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 17:07:56 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/06 17:10:44 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/07 10:11:09 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@
 # define CMD_LST 55
 # define GARBAGE 56
 # define COLLECTOR_LST 57
+# define FAILED 58
 
 
 /* tcsetattr, tcgetattr */
@@ -58,8 +59,8 @@ typedef struct s_input
 	int						n_env;
 	char					**cmd_tab;
 	int						n_cmd;
-	int						*last_input_type_tab;
-	int						*last_output_type_tab;
+	int						*last_infile_type;
+	int						*last_outfile_type;
 	char					****redir_tab;
 	char					***cmd_exec_tab;
 	char					**paths_tab;
@@ -86,7 +87,7 @@ typedef struct s_garbage_lst
 
 typedef struct s_cmd_lst
 {
-	int					index;
+	int					i;
 	char				*name;
 	int					n_args;
 	char				**args;
@@ -99,9 +100,9 @@ typedef struct s_cmd_lst
 	char				**del;
 	char				**app_outfile;
 	char				*valid_path;
-	int					*fd_input;
-	int					*fd_output;
-	int					*fd_app_output;
+	int					*fd_infile;
+	int					*fd_outfile;
+	int					*fd_app_outfile;
 	char				*heredoc_str;
 	int					heredoc_pipe[2];
 	int					cmd_pipe[2];

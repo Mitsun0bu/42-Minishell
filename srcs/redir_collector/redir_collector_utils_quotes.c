@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 11:12:55 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/18 13:24:04 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/07 16:07:55 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,12 @@
 
 int	count_in_quotes(char *cmd, int *i, int *len, char c)
 {
-	(*len)++;
-	(*i)++;
-	if (cmd[*i] == c && !ft_strchr(" <>", cmd[*i + 2]))
-		(*len)++;
+	if (cmd[*i] == c && cmd[*i + 1] == c)
+	{
+		(*len) += 2;
+		(*i) += 2;
+		return (*len);
+	}
 	while (cmd[*i])
 	{
 		if (cmd[*i] == c)
@@ -48,9 +50,12 @@ int	copy_in_quotes(char *file, int *file_cursor, char *cmd, int *cursor)
 	char	c;
 
 	c = cmd[*cursor];
-	file[(*file_cursor)++] = cmd[(*cursor)++];
-	if (cmd[*cursor] == c && !ft_strchr(" <>", cmd[*cursor + 2]))
-		file[*file_cursor] = cmd[*cursor];
+	if (cmd[*cursor] == c && cmd[(*cursor) + 1] == c)
+	{
+		file[(*file_cursor)++] = cmd[(*cursor)++];
+		file[(*file_cursor)++] = cmd[(*cursor)++];
+		return (0);
+	}
 	while (cmd[*cursor])
 	{
 		if (cmd[*cursor] == c)

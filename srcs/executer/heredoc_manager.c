@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 16:38:12 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/05 10:14:05 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/07 12:43:57 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ int	handle_heredocs(t_input *input, t_cmd_lst *cmd)
 		if (cmd->n_heredoc)
 		{
 			cmd->heredoc_str = read_cmd_heredocs(input, cmd);
-			if (!open_single_pipe(cmd->heredoc_pipe))
-				return (-1);
+			if (!cmd->heredoc_str || open_single_pipe(cmd->heredoc_pipe))
+				return (FAILED);
 			ft_putstr_fd(cmd->heredoc_str, cmd->heredoc_pipe[1]);
 		}
 		cmd = cmd->next;
@@ -42,10 +42,16 @@ char	*read_cmd_heredocs(t_input *input, t_cmd_lst *cmd)
 	line = NULL;
 	heredoc_str = NULL;
 	i = -1;
-	while (++i < cmd->n_heredoc - 1)
+	while (++i < cmd->n_heredoc)
+	{
 		while (ft_strncmp(line, cmd->del[i], ft_strlen(cmd->del[i])) != 0
 			|| ft_strlen(line) - 1 != ft_strlen(cmd->del[i]))
+		{
 			line = read_heredoc_line(input);
+			if (!line)
+				return (NULL);
+		}
+	}
 	j = 0;
 	while (ft_strncmp(line, cmd->del[i], ft_strlen(cmd->del[i])) != 0
 		|| ft_strlen(line) - 1 != ft_strlen(cmd->del[i]))
@@ -62,11 +68,14 @@ char	*read_cmd_heredocs(t_input *input, t_cmd_lst *cmd)
 }
 
 char	*read_heredoc_line(t_input *input)
-{
+ {
 	char	*new_line;
 	char	*buffer;
 
 	new_line = readline("> ");
+	printf("new_line = %s\n", new_line);
+	if (!new_line)
+		return (NULL);
 	buffer = ft_strdup(input, new_line);
 	input->garbage->type = GARBAGE;
 	ft_free((void *)&new_line);

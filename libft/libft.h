@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 15:21:56 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/05 16:23:55 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/07 10:11:33 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,15 +49,6 @@ typedef struct s_list
 	void			*content;
 	struct s_list	*next;
 }	t_list;
-
-// typedef struct s_garbage_lst
-// {
-// 	int						index;
-// 	void					**ptr;
-// 	int						type;
-// 	struct s_garbage_lst	*next;
-// 	struct s_garbage_lst	*previous;
-// } t_garbage_lst;
 
 /* ************************************************************************** */
 /*                                                                            */

@@ -25,8 +25,8 @@
 // while(input->redir_tab[++i])
 // {
 	// printf("| COMMAND #%d\n", i);
-	// printf("| LAST_infile_TYPE : %d\n", input->last_input_type_tab[i]);
-	// printf("| LAST_outfile_TYPE : %d\n", input->last_output_type_tab[i]);
+	// printf("| LAST_infile_TYPE : %d\n", input->last_infile_type[i]);
+	// printf("| LAST_outfile_TYPE : %d\n", input->last_outfile_type[i]);
 // }
 // printf("============================================================\n");
 	// -------------------------------------------- //

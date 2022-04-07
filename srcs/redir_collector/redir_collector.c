@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 09:36:30 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/06 13:29:54 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/07 16:26:51 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	redir_collector(t_input *input)
 			}
 		}
 	}
-// // ---------------- FINAL TEST ---------------- //
+// ---------------- FINAL TEST ---------------- //
 // printf("===================== REDIR_COLLECTOR ======================\n");
 // printf("|\t\t~~~~~ REDIR TAB ~~~~~\n");
 // int	i = -1;
@@ -65,8 +65,8 @@ void	redir_collector(t_input *input)
 // while(input->redir_tab[++i])
 // {
 // 	printf("| COMMAND #%d\n", i);
-// 	printf("| LAST_infile_TYPE : %d\n", input->last_input_type_tab[i]);
-// 	printf("| LAST_outfile_TYPE : %d\n", input->last_output_type_tab[i]);
+// 	printf("| LAST_infile_TYPE : %d\n", input->last_infile_type[i]);
+// 	printf("| LAST_outfile_TYPE : %d\n", input->last_outfile_type[i]);
 // }
 // printf("============================================================\n");
 // // -------------------------------------------- //

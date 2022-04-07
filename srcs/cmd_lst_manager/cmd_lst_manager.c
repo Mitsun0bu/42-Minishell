@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 11:36:41 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/29 14:48:49 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/07 17:14:08 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ void	cmd_args_manager(t_input *input, int *i, t_cmd_lst *new_cmd)
 	i_arg = -1;
 	while (++i_arg < new_cmd->n_args)
 	{
-		new_cmd->args[i_arg] = ft_strdup(input, input->cmd_exec_tab[*i][i_arg]);
+		// new_cmd->args[i_arg] = ft_strdup(input, input->cmd_exec_tab[*i][i_arg]);
+		new_cmd->args[i_arg] = clean_arg(input, input->cmd_exec_tab[*i][i_arg], i);
 		input->garbage->type = CMD_LST;
 	}
 	new_cmd->args[i_arg] = NULL;

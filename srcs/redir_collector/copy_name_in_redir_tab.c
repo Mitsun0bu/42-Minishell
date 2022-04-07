@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 13:52:08 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/29 14:47:54 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/07 16:12:30 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,17 +41,16 @@ void	copy_infile(char *infile, char *cmd, int i_file)
 	file_cursor = 0;
 	while (cmd[++cursor])
 	{
-		if (cmd[cursor] == '\'' || cmd[cursor] == '"')
-			skip_quotes(cmd, &cursor);
 		if (cmd[cursor] == '<'
 			&& cmd[cursor + 1] != '<' && cmd[cursor - 1] != '<')
 		{
 			skip_space(cmd, &cursor);
-			while (cmd[cursor] && !ft_strchr(" \"\'<>", cmd[cursor]))
+			while (cmd[cursor] && !ft_strchr(" <>", cmd[cursor]))
 			{
-				copy_out_quotes(infile, &file_cursor, cmd, &cursor);
 				if (cmd[cursor] == '\'' || cmd[cursor] == '"')
 					copy_in_quotes(infile, &file_cursor, cmd, &cursor);
+				else
+					copy_out_quotes(infile, &file_cursor, cmd, &cursor);
 			}
 			return ;
 		}
@@ -68,17 +67,16 @@ void	copy_outfile(char *outfile, char *cmd, int i_file)
 	file_cursor = 0;
 	while (cmd[++cursor])
 	{
-		if (cmd[cursor] == '\'' || cmd[cursor] == '"')
-			skip_quotes(cmd, &cursor);
 		if (cmd[cursor] == '>'
 			&& cmd[cursor + 1] != '>' && cmd[cursor - 1] != '>')
 		{
 			skip_space(cmd, &cursor);
-			while (cmd[cursor] && !ft_strchr(" \"\'<>", cmd[cursor]))
+			while (cmd[cursor] && !ft_strchr(" <>", cmd[cursor]))
 			{
-				copy_out_quotes(outfile, &file_cursor, cmd, &cursor);
 				if (cmd[cursor] == '\'' || cmd[cursor] == '"')
 					copy_in_quotes(outfile, &file_cursor, cmd, &cursor);
+				else
+					copy_out_quotes(outfile, &file_cursor, cmd, &cursor);
 			}
 			return ;
 		}
@@ -95,16 +93,15 @@ void	copy_delimiter(char *delimiter, char *cmd, int i_file)
 	file_cursor = 0;
 	while (cmd[++cursor])
 	{
-		if (cmd[cursor] == '\'' || cmd[cursor] == '"')
-			skip_quotes(cmd, &cursor);
 		if (cmd[cursor] == '<' && cmd[cursor + 1] == '<')
 		{
 			skip_space(cmd, &cursor);
-			while (cmd[cursor] && !ft_strchr(" \"\'<>", cmd[cursor]))
+			while (cmd[cursor] && !ft_strchr(" <>", cmd[cursor]))
 			{
-				copy_out_quotes(delimiter, &file_cursor, cmd, &cursor);
 				if (cmd[cursor] == '\'' || cmd[cursor] == '"')
 					copy_in_quotes(delimiter, &file_cursor, cmd, &cursor);
+				else
+					copy_out_quotes(delimiter, &file_cursor, cmd, &cursor);
 			}
 			return ;
 		}
@@ -121,16 +118,15 @@ void	copy_app_outfile(char *app_outfile, char *cmd, int i_file)
 	file_cursor = 0;
 	while (cmd[++cursor])
 	{
-		if (cmd[cursor] == '\'' || cmd[cursor] == '"')
-			skip_quotes(cmd, &cursor);
 		if (cmd[cursor] == '>' && cmd[cursor + 1] == '>')
 		{
 			skip_space(cmd, &cursor);
-			while (cmd[cursor] && !ft_strchr(" \"\'<>", cmd[cursor]))
+			while (cmd[cursor] && !ft_strchr(" <>", cmd[cursor]))
 			{
-				copy_out_quotes(app_outfile, &file_cursor, cmd, &cursor);
 				if (cmd[cursor] == '\'' || cmd[cursor] == '"')
 					copy_in_quotes(app_outfile, &file_cursor, cmd, &cursor);
+				else
+					copy_out_quotes(app_outfile, &file_cursor, cmd, &cursor);
 			}
 			return ;
 		}

@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 10:56:25 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/06 17:10:33 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/07 10:11:04 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	ft_cd(t_input *input, t_cmd_lst *cmd)
 		update_oldpwd(input);
 		chdir(home);
 	}
-	if (cmd->index == 0 && access(cmd->args[1], F_OK) == 0)
+	if (cmd->i == 0 && access(cmd->args[1], F_OK) == 0)
 	{
 		update_oldpwd(input);
 		chdir(cmd->args[1]);

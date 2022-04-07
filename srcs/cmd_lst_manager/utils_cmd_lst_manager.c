@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 11:35:14 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/04 16:48:04 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/07 17:27:33 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,4 +54,34 @@ char	*clean_cmd_name(t_input *input, char *str)
 		if (!ft_strchr("\'\"", str[i]))
 			cmd_name[++j] = str[i];
 	return (cmd_name);
+}
+
+char *clean_arg(t_input *input, char *str, int index)
+{
+	int	i;
+	int	len;
+	char *clean_str;
+
+	i = -1;
+	len = 0;
+	while (str[++i])
+	{
+		if (!ft_strchr("\'\"", str[i]))
+			len ++;
+		else
+			i ++;
+	}
+	clean_str = ft_malloc(input, sizeof(char), len + 1);
+	i = -1;
+	while (str[++i])
+	{
+		if (!ft_strchr("\'\"", str[i]))
+			clean_str[i] = str[i];
+		else
+			i ++;
+	}
+	// trim les quotes fermantes
+	// double quote supprimees
+	// simple quote gardees
+	return (clean_str);
 }
