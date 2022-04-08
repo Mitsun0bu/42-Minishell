@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 16:38:12 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/08 18:41:51 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/08 19:09:42 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,9 @@ int	handle_heredocs(t_input *input, t_cmd_lst *cmd)
 
 char	*get_heredoc_str(t_input *input, t_cmd_lst *cmd)
 {
-	int		i;
-	int		del_len;
-	char	*heredoc_str;
+	int				i;
+	unsigned int	del_len;
+	char			*heredoc_str;
 
 	i = -1;
 	heredoc_str = NULL;
@@ -48,12 +48,12 @@ char	*get_heredoc_str(t_input *input, t_cmd_lst *cmd)
 	return (heredoc_str);
 }
 
-char *build_heredoc_str(t_input *input, char *del, int del_len)
+char *build_heredoc_str(t_input *input, char *del, unsigned long del_len)
 {
 	char	*heredoc_str;
 	char	*line;
 	int		i;
-
+	// Apres le fork, faire signal(SIGINT, SIG_DFL)
 	line = NULL;
 	heredoc_str = NULL;
 	i = 0;

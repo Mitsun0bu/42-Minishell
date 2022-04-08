@@ -73,7 +73,9 @@ Problemes :
 
 1) echo $? doit etre remis en place (apres ca, refaire le test "return value of a process")
 
-2) CTRL+D/CTRL+C dans les pipe finaux et heredoc (CTRL D dans les heredoc fait)
+2) CTRL+D/CTRL+C dans les pipe finaux et heredoc
+	fork dans build_heredoc_str ?
+		signal(SIGINT, SIG_DFL)
 
 3) echo hello |v| , puis rev. Comportement bizarre apres le message d'erreur (porbablement lié au signaux [voir 2)])
 
