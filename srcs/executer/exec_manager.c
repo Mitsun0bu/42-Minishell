@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 10:41:38 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/07 16:34:50 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/08 17:29:52 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,17 @@ void	exec_first_cmd(t_input *input, t_cmd_lst *cmd)
 	// printf("| EXEC FIRST CMD\n");
 	// printf("| cmd index = %d\n", cmd->i);
 	signal(SIGINT, signal_handler_child);
+	if (get_heredoc_str(input, cmd) == FAILED)
+		input->status = 1;
+	printf("heredoc_str = %s\n", cmd->heredoc_str);
+	if (open_files(input, cmd) == -1)
+		input->status = 1;
 	if (handle_infile(input, cmd) == FAILED)
 		exit (0);
 	if (!handle_outfile(input, cmd))
 		if (cmd->next != NULL)
 			dup2(cmd->cmd_pipe[1], STDOUT_FILENO);
 	close_all_pipes(cmd);
-	int i = -1;
-	while(cmd->args[++i])
-		printf("cmd->args[%d] = %s\n", i, cmd->args[i]);
 	if (find_built_in(cmd->name) == BUILT_IN)
 		exit(exec_built_in(input, cmd));
 	// else if (find_built_in(cmd->name) == PROGRAM)
@@ -50,7 +52,7 @@ void	exec_mid_cmd(t_input *input, t_cmd_lst *cmd)
 	if (handle_infile_result == FAILED)
 		exit (0);
 	else if (!handle_infile_result)
-		dup2(cmd->previous->cmd_pipe[0], STDIN_FILENO); 
+		dup2(cmd->previous->cmd_pipe[0], STDIN_FILENO);
 	if (!handle_outfile(input, cmd))
 		dup2(cmd->cmd_pipe[1], STDOUT_FILENO);
 	close_all_pipes(cmd);

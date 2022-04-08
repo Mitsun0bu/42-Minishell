@@ -85,3 +85,7 @@ Problemes :
 5) checker skip_space et voir pour la mettre dans les utils
 
 6 ) variable globale pour le retour de status
+
+7) On ne ferme jamais les fichiers !!!
+
+8) Si la creation du pipe pour les heredoc foire, a quelle valeur on met le statut ?
