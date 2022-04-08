@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 12:14:03 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/08 16:51:16 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/08 18:33:30 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,25 @@
 
 int	open_files(t_input *input, t_cmd_lst *cmd)
 {
-	if (cmd->n_infile > 0)
-		if (open_infiles(input, cmd) == 1)
-			return (1);
-	if (cmd->n_outfile > 0)
-		if (open_outfiles(input, cmd) == 1)
-			return (1);
-	if (cmd->n_app_outfile > 0)
-		if(open_app_outfiles(input, cmd) == 1)
-			return (1);
+	t_cmd_lst	*start;
+
+	start = cmd;
+	while (cmd)
+	{
+		if (cmd->n_infile > 0)
+			if (open_infiles(input, cmd) == 1)
+				return (1);
+		if (cmd->n_outfile > 0)
+			if (open_outfiles(input, cmd) == 1)
+				return (1);
+		if (cmd->n_app_outfile > 0)
+			if(!open_app_outfiles(input, cmd) == 1)
+				return (1);
+		if (cmd->next == NULL)
+			break ;
+		cmd = cmd->next;
+	}
+	cmd = start;
 	return (0);
 }
 
