@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 15:23:59 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/07 10:11:04 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/08 13:54:12 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ t_cmd_lst	*create_new_cmd(t_input *input, int *i)
 	ft_memset(new_cmd, 0, sizeof(t_cmd_lst));
 	new_cmd->i = *i;
 	if (input->cmd_exec_tab && input->cmd_exec_tab[*i][0])
-		new_cmd->name = clean_cmd_name(input, input->cmd_exec_tab[*i][0]);
+		new_cmd->name = clean_str(input, input->cmd_exec_tab[*i][0]);
 	cmd_args_manager(input, i, new_cmd);
 	cmd_infile_manager(input, i, new_cmd);
 	cmd_outfile_manager(input, i, new_cmd);

@@ -6,7 +6,7 @@
 #    By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/25 15:43:51 by llethuil          #+#    #+#              #
-#    Updated: 2022/04/06 19:07:20 by llethuil         ###   ########lyon.fr    #
+#    Updated: 2022/04/08 14:55:35 by llethuil         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -111,8 +111,11 @@ SRCS_LST	:=	built_ins/ft_cd.c								\
 				parser/utils_parser.c							\
 				shell_initializer/shell_init.c					\
 				signal_manager/signal_handler.c					\
+				utils/clean_str.c								\
+				utils/ft_free.c									\
 				utils/get_history_path.c						\
-				utils/utils.c									\
+				utils/is_space.c								\
+				utils/skip_quotes.c								\
 
 SUBDIRS_LST	:=	built_ins			\
 				cmd_line_manager	\
