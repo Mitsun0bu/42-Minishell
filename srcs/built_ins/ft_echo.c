@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 10:55:57 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/05 15:25:12 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/11 15:30:25 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	ft_echo(t_input *input, t_cmd_lst *cmd)
 	else
 	{
 		message = join_message(input, cmd);
-		print_message(message);
+		printf("%s", message);
 		if (ft_strncmp(cmd->args[1], "-n", 2))
 			printf("\n");
 	}

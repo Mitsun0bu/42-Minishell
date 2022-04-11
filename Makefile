@@ -6,7 +6,7 @@
 #    By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/25 15:43:51 by llethuil          #+#    #+#              #
-#    Updated: 2022/04/08 14:55:35 by llethuil         ###   ########lyon.fr    #
+#    Updated: 2022/04/11 15:18:45 by llethuil         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -92,6 +92,7 @@ SRCS_LST	:=	built_ins/ft_cd.c								\
 				executer/pipe_manager.c							\
 				executer/pipex.c								\
 				executer/utils_executer.c						\
+				executer/utils_heredoc.c						\
 				garbage_collector/add_garbage.c					\
 				garbage_collector/assign_garbage_type.c			\
 				garbage_collector/clear_garbage.c				\
