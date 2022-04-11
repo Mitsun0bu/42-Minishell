@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/06 18:36:34 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/06 19:09:44 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/11 15:37:01 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	check_pipe(t_input *input)
 		while (is_space(input->cmd_line[i]) && input->cmd_line[i + 1])
 			i++;
 		if (i == 0 && input->cmd_line[i] == '|')
-			return (0);
+			return (FAILED);
 		if (ft_strchr("\"\'", input->cmd_line[i]))
 			change_quote_state(&quote_state);
 		if (input->cmd_line[i] == '|' && quote_state == 0)
@@ -33,7 +33,7 @@ int	check_pipe(t_input *input)
 			while (is_space(input->cmd_line[i]) && input->cmd_line[i + 1])
 				i++;
 			if (input->cmd_line[i] == '|')
-				return (0);
+				return (FAILED);
 		}
 	}
 	return (1);

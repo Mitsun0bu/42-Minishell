@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 11:29:56 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/06 18:50:12 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/11 17:20:57 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,16 @@
 
 int	cmd_separator(t_input *input)
 {
-	if (!check_pipe(input))
+	if (check_pipe(input) == FAILED)
 	{
 		printf("minishelled: syntax error near unexpected token `|'\n");
-		return (0);
+		return (FAILED);
 	}
-	split_cmd(input);
-	if (check_basics(input) == 0)
-		return (0);
-	return (1);
+	if (split_cmd(input) == FAILED)
+		return (FAILED);
+	if (check_basics(input) == FAILED)
+		return (FAILED);
+	return (SUCCESS);
 }
 
 // 	// ---------------- FINAL TEST ---------------- //

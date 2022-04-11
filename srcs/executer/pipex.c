@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 17:31:40 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/11 11:25:48 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/11 20:03:54 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ int	pipex(t_input *input, t_cmd_lst *cmd)
 			exec_mid_cmd(input, cmd);
 		else if (i == input->n_cmd - 1 && input->process[i] == 0)
 			exec_last_cmd(input, cmd);
-		signal(SIGINT, SIG_IGN);
 		cmd = cmd->next;
 	}
 	cmd = start;

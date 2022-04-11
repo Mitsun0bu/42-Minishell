@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 13:18:59 by agirardi          #+#    #+#             */
-/*   Updated: 2022/04/06 18:19:25 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/11 15:37:48 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	check_basics(t_input *input)
 	i = -1;
 	while (++i < input->n_cmd)
 		if (!check_quotes(input->cmd_tab[i]) || !check_redir(input->cmd_tab[i]))
-			return (0);
+			return (FAILED);
 	return (1);
 }
 

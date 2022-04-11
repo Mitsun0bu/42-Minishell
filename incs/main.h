@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 17:07:56 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/11 11:47:23 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/11 17:45:33 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,10 @@
 #ifndef MAIN_H
 # define MAIN_H
 
+# define SUCCESS 0
+# define FAILED -1
+# define FALSE 60
+# define TRUE 61
 # define INPUT 42
 # define TRUNC_OUTPUT 43
 # define HEREDOC 44
@@ -35,7 +39,6 @@
 # define CMD_LST 55
 # define GARBAGE 56
 # define COLLECTOR_LST 57
-# define FAILED 58
 
 
 /* tcsetattr, tcgetattr */

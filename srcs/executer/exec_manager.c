@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 10:41:38 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/11 10:58:30 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/11 20:04:47 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	exec_mid_cmd(t_input *input, t_cmd_lst *cmd)
 	// printf("| \n");
 	// printf("| EXEC A CMD\n");
 	// printf("| cmd index = %d\n", cmd->i);
-	signal(SIGINT, signal_handler_child);
+	// signal(SIGINT, signal_handler_child);
 	handle_infile_result = handle_infile(input, cmd);
 	if (handle_infile_result == FAILED)
 		exit (0);
@@ -68,7 +68,7 @@ void	exec_last_cmd(t_input *input, t_cmd_lst *cmd)
 	int	handle_infile_result;
 	// printf("| \n");
 	// printf("| EXEC LAST CMD\n");
-	signal(SIGINT, signal_handler_child);
+	// signal(SIGINT, signal_handler_child);
 	handle_infile_result = handle_infile(input, cmd);
 	if (handle_infile_result == FAILED)
 		exit (0);

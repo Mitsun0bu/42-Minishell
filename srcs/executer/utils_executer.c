@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 17:32:59 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/08 17:28:39 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/11 20:03:19 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,12 +52,13 @@ int	wait_all_processes(t_input *input)
 
 	status = 0;
 	i = -1;
+	signal(SIGINT, SIG_IGN);
 	while (++i < input->n_cmd)
 	{
 		waitpid(input->process[i], &status, 0);
-		signal(SIGINT, signal_handler_parent);
 		// printf("| STATUS PROCESS %d = %d\n", i, status);
 	}
+	signal(SIGINT, signal_handler_parent);
 	return (status);
 }
 

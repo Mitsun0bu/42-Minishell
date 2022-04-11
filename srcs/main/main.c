@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 17:07:38 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/08 13:50:22 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/11 15:39:35 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	main(int ac, char **av, char **envp)
 	while (1)
 	{
 		cmd_line_manager(&input);
-		if (cmd_separator(&input) == 1)
+		if (cmd_separator(&input) == SUCCESS)
 		{
 			redir_collector(&input);
 			parser(&input);
