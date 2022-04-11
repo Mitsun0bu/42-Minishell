@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 12:09:40 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/08 18:52:33 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/11 14:36:17 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,11 @@ int		open_app_outfiles(t_input *input, t_cmd_lst *cmd);
 
 /* executer/heredoc_manager.c */
 int		handle_heredocs(t_input *input, t_cmd_lst *cmd);
-char	*get_heredoc_str(t_input *input, t_cmd_lst *cmd);
-char 	*build_heredoc_str(t_input *input, char *del, unsigned long del_len);
+int		get_heredoc_str(t_input *input, t_cmd_lst *cmd);
+char	*build_heredoc_str(t_input *input, char *del);
 char	*read_heredoc_line(t_input *input);
 char	*append_heredoc_line(t_input *input, char *line, char *heredoc_str);
+int		get_heredoc_from_child(t_input *input, t_cmd_lst *cmd, char *heredoc_str);
 
 /* executer/path_manager.c */
 void	path_manager(t_input *input, t_cmd_lst *cmd);

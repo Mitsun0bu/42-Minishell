@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 17:07:56 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/07 10:11:09 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/11 11:47:23 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ typedef struct s_cmd_lst
 	int					*fd_infile;
 	int					*fd_outfile;
 	int					*fd_app_outfile;
-	char				*heredoc_str;
+	int					heredoc_process;
 	int					heredoc_pipe[2];
 	int					cmd_pipe[2];
 	struct s_cmd_lst	*next;

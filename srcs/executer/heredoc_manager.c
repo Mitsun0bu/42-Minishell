@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 16:38:12 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/08 19:09:42 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/11 14:35:09 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,51 +22,70 @@ int	handle_heredocs(t_input *input, t_cmd_lst *cmd)
 	while (cmd)
 	{
 		if(cmd->n_heredoc)
-			cmd->heredoc_str = get_heredoc_str(input, cmd);
-		if (!cmd->heredoc_str || open_single_pipe(cmd->heredoc_pipe) == FAILED)
-			return (FAILED);
-			ft_putstr_fd(cmd->heredoc_str, cmd->heredoc_pipe[1]);
+			if (get_heredoc_str(input, cmd) != 0)
+				return (FAILED);
 		cmd = cmd->next;
 	}
 	cmd = start;
 	return (0);
 }
 
-char	*get_heredoc_str(t_input *input, t_cmd_lst *cmd)
+int	get_heredoc_str(t_input *input, t_cmd_lst *cmd)
 {
-	int				i;
-	unsigned int	del_len;
-	char			*heredoc_str;
+	int		status;
+	char	*heredoc_str;
 
-	i = -1;
+	status = 0;
+	if(open_single_pipe(cmd->heredoc_pipe) == FAILED)
+		return (FAILED);
 	heredoc_str = NULL;
-	while (++i < cmd->n_heredoc)
-	{
-		del_len = ft_strlen(cmd->del[i]);
-		heredoc_str = build_heredoc_str(input, cmd->del[i], del_len);
-	}
-	return (heredoc_str);
+	cmd->heredoc_process = fork();
+	check_fork_error(cmd->heredoc_process);
+	if (cmd->heredoc_process == 0)
+		status = get_heredoc_from_child(input, cmd, heredoc_str);
+	signal(SIGINT, SIG_IGN);
+	waitpid(cmd->heredoc_process, &status, 0);
+	signal(SIGINT, signal_handler_parent);
+	return (status);
 }
 
-char *build_heredoc_str(t_input *input, char *del, unsigned long del_len)
+int	get_heredoc_from_child(t_input *input, t_cmd_lst *cmd, char *heredoc_str)
 {
-	char	*heredoc_str;
-	char	*line;
-	int		i;
-	// Apres le fork, faire signal(SIGINT, SIG_DFL)
+	int	i;
+
+	i = -1;
+	signal(SIGINT, SIG_DFL);
+	while (++i < cmd->n_heredoc)
+		heredoc_str = build_heredoc_str(input, cmd->del[i]);
+	if (!heredoc_str)
+		exit(FAILED);
+	ft_putstr_fd(heredoc_str, cmd->heredoc_pipe[1]);
+	exit (0);
+}
+
+char	*build_heredoc_str(t_input *input, char *del)
+{
+	int				i;
+	char			*line;
+	char			*heredoc_str;
+	unsigned long	len;
+
+	i = 0;
 	line = NULL;
 	heredoc_str = NULL;
-	i = 0;
-	while (ft_strncmp(line, del, del_len) != 0 || ft_strlen(line) - 1 != del_len)
+	len = ft_strlen(del);
+	while (ft_strncmp(line, del, len) != 0 || ft_strlen(line) - 1 != len)
 	{
 		line = read_heredoc_line(input);
-		if (ft_strncmp(line, del, del_len) != 0 || ft_strlen(line) - 1 != del_len)
+		if (!line)
+			return (NULL);
+		if (ft_strncmp(line, del, len) != 0 || ft_strlen(line) - 1 != len)
 		{
 			if (i++ == 0)
 				heredoc_str = ft_strdup(input, line);
 			else
 				heredoc_str = append_heredoc_line(input, line, heredoc_str);
-			input->garbage->type = CMD_LST;
+			input->garbage->type = GARBAGE;
 		}
 	}
 	return (heredoc_str);
@@ -78,9 +97,8 @@ char	*read_heredoc_line(t_input *input)
 	char	*buffer;
 
 	new_line = readline("> ");
-	// printf("new_line = %s\n", new_line);
 	if (!new_line)
-		return (NULL);
+		return(NULL);
 	buffer = ft_strdup(input, new_line);
 	input->garbage->type = GARBAGE;
 	ft_free((void *)&new_line);
@@ -98,4 +116,3 @@ char	*append_heredoc_line(t_input *input, char *line, char *heredoc_str)
 	new_heredoc_str = ft_strjoin(input, buffer, line);
 	return (new_heredoc_str);
 }
-

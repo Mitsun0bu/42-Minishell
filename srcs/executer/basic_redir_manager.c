@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 10:07:06 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/07 11:40:30 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/11 12:05:53 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,6 @@ int	handle_infile(t_input *input, t_cmd_lst *cmd)
 	}
 	else if (input->last_infile_type[cmd->i] == HEREDOC)
 	{
-		if (!cmd->heredoc_str)
-		{
-			close_single_pipe(cmd->heredoc_pipe);
-			return (0);
-		}
 		dup2(cmd->heredoc_pipe[0], STDIN_FILENO);
 		close_single_pipe(cmd->heredoc_pipe);
 	}
