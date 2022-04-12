@@ -73,10 +73,6 @@ Problemes :
 
 1) echo $? doit etre remis en place (apres ca, refaire le test "return value of a process")
 
-2) CTRL+D/CTRL+C dans les heredoc (DONE) et pipe finaux (TO BE DONE)
-
-3) echo hello |v| , puis rev. Comportement bizarre apres le message d'erreur (porbablement lié au signaux [voir 2)])
-
 4) ft_calloc_strs dans minisplit a re-checker :
 		if (ft_strchr("\"\'", s[i]) && quotes == 0)
 				quotes = 1;
@@ -87,5 +83,3 @@ Problemes :
 6 ) variable globale pour le retour de status
 
 7) On ne ferme jamais les fichiers !!!
-
-8) Si la creation du pipe pour les heredoc foire, a quelle valeur on met le statut ?

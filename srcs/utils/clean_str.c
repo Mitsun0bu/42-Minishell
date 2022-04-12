@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 14:49:34 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/11 15:31:00 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/12 18:25:58 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	get_clean_str_len(char *str)
 		if (ft_strchr("\'\"", str[i]))
 		{
 			quote = str[i];
-			while(str[++i] && str[i] != quote)
+			while (str[++i] && str[i] != quote)
 				len ++;
 			if (!str[++i])
 				break ;
@@ -57,7 +57,7 @@ char	*fill_clean_str(t_input *input, char *str, int len)
 	int		j;
 
 	clean_str = ft_calloc(input, sizeof(char), len + 1);
-	input->garbage->type = CMD_LST;
+	input->gb->type = CMD_LST;
 	quote = 0;
 	i = -1;
 	j = -1;
@@ -66,7 +66,7 @@ char	*fill_clean_str(t_input *input, char *str, int len)
 		if (ft_strchr("\'\"", str[i]))
 		{
 			quote = str[i];
-			while(str[++i] && str[i] != quote)
+			while (str[++i] && str[i] != quote)
 				clean_str[++j] = str[i];
 			if (!str[++i])
 				break ;

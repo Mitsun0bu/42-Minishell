@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 15:14:08 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/11 15:14:37 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/12 18:22:42 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,25 +34,25 @@ char	*build_heredoc_str(t_input *input, char *del)
 				heredoc_str = ft_strdup(input, line);
 			else
 				heredoc_str = append_heredoc_line(input, line, heredoc_str);
-			input->garbage->type = GARBAGE;
+			input->gb->type = GARBAGE;
 		}
 	}
 	return (heredoc_str);
 }
 
 char	*read_heredoc_line(t_input *input)
- {
+{
 	char	*new_line;
 	char	*buffer;
 
 	new_line = readline("> ");
 	if (!new_line)
-		return(NULL);
+		return (NULL);
 	buffer = ft_strdup(input, new_line);
-	input->garbage->type = GARBAGE;
+	input->gb->type = GARBAGE;
 	ft_free((void *)&new_line);
 	new_line = ft_strjoin(input, buffer, "\n");
-	input->garbage->type = GARBAGE;
+	input->gb->type = GARBAGE;
 	return (new_line);
 }
 

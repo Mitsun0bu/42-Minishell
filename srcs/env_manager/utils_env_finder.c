@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 11:11:10 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/24 16:45:26 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/12 15:39:44 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	*find_key(t_input *input, char *str)
 	while (str[i] != '=' && str[i])
 		i++;
 	key = ft_substr(input, str, 0, i);
-	input->garbage->type = ENV_STRUCT;
+	input->gb->type = ENV_STRUCT;
 	return (key);
 }
 
@@ -42,6 +42,6 @@ char	*find_value(t_input *input, char *str)
 	while (str[i])
 		i++;
 	value = ft_substr(input, str, key_count + 1, i);
-	input->garbage->type = ENV_STRUCT;
+	input->gb->type = ENV_STRUCT;
 	return (value);
 }

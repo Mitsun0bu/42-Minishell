@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 16:38:19 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/11 18:27:59 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/12 18:14:32 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	get_cmd_line(t_input *input)
 		if (!buff)
 			stderror_exit(input, 0, NULL, "exit");
 		if (ft_strlen(buff))
-			break;
+			break ;
 	}
 	add_history(buff);
 	if (path)
@@ -37,6 +37,6 @@ void	get_cmd_line(t_input *input)
 		close (input->fd_history);
 	}
 	input->cmd_line = ft_strdup(input, buff);
-	input->garbage->type = CMD_LINE;
+	input->gb->type = CMD_LINE;
 	ft_free((void *)&buff);
 }

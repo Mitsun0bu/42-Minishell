@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 09:43:38 by agirardi          #+#    #+#             */
-/*   Updated: 2022/03/24 16:45:26 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/12 15:45:41 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int	check_dubble(t_input *input, char *str)
 
 	check = 0;
 	key = find_key(input, str);
-	input->garbage->type = GARBAGE;
+	input->gb->type = GARBAGE;
 	i = -1;
 	while (++i < input->n_env)
 	{

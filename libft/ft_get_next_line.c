@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 17:02:15 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/06 14:26:12 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/12 15:53:17 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,13 @@ char	*ft_get_next_line(t_input *input, int fd)
 	if (fd < 0 || fd > OPEN_MAX || BUFFER_SIZE <= 0)
 		return (NULL);
 	line = ft_malloc(input, sizeof(char), 1);
-	input->garbage->type = GARBAGE;
+	input->gb->type = GARBAGE;
 	line[0] = 0;
 	line = ft_get_line(input, line, buff, fd);
 	if (line && ft_strlen(line))
 	{
 		line = ft_strtrim(input, line, "\n");
-		input->garbage->type = GARBAGE;
+		input->gb->type = GARBAGE;
 		return (line);
 	}
 	return (NULL);
@@ -45,7 +45,7 @@ static char	*ft_get_line(t_input *input, char *line, char *buff, int fd)
 	while (read_ret > 0)
 	{
 		line = ft_strjoin_gnl(input, line, buff);
-		input->garbage->type = GARBAGE;
+		input->gb->type = GARBAGE;
 		if (ft_position_nl(buff) != -1)
 		{
 			buff_rest = &buff[ft_position_nl(buff) + 1];

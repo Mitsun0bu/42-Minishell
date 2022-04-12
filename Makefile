@@ -6,7 +6,7 @@
 #    By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/25 15:43:51 by llethuil          #+#    #+#              #
-#    Updated: 2022/04/11 15:18:45 by llethuil         ###   ########lyon.fr    #
+#    Updated: 2022/04/12 17:43:20 by llethuil         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,14 +47,15 @@ SRCS_DIR	:= srcs
 
 OBJS_DIR	:= .objs
 
-INCS_LST	:=	built_ins.h			\
+INCS_LST	:=	header.h			\
+				built_ins.h			\
 				cmd_line_manager.h	\
 				cmd_lst_manager.h	\
 				cmd_separator.h		\
 				env_manager.h		\
 				error_manager.h		\
 				executer.h			\
-				garbage_collector.h	\
+				gb_collector.h		\
 				main.h				\
 				parser.h			\
 				redir_collector.h	\
@@ -83,7 +84,7 @@ SRCS_LST	:=	built_ins/ft_cd.c								\
 				env_manager/utils_env_finder.c					\
 				env_manager/utils_env.c							\
 				error_manager/error_manager.c					\
-				executer/basic_redir_manager.c					\
+				executer/redir_manager.c						\
 				executer/exec_manager.c							\
 				executer/executer.c								\
 				executer/file_manager.c							\
@@ -93,9 +94,9 @@ SRCS_LST	:=	built_ins/ft_cd.c								\
 				executer/pipex.c								\
 				executer/utils_executer.c						\
 				executer/utils_heredoc.c						\
-				garbage_collector/add_garbage.c					\
-				garbage_collector/assign_garbage_type.c			\
-				garbage_collector/clear_garbage.c				\
+				gb_collector/add_gb.c					\
+				gb_collector/assign_gb_type.c			\
+				gb_collector/clear_gb.c				\
 				redir_collector/copy_name_in_redir_tab.c		\
 				redir_collector/get_last_redir_type_tab.c		\
 				redir_collector/redir_collector_utils_counter.c	\
@@ -125,7 +126,7 @@ SUBDIRS_LST	:=	built_ins			\
 				env_manager			\
 				error_manager		\
 				executer			\
-				garbage_collector	\
+				gb_collector	\
 				main				\
 				parser				\
 				redir_collector		\

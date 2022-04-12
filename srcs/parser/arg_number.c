@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 10:31:04 by agirardi          #+#    #+#             */
-/*   Updated: 2022/04/08 13:26:11 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/12 15:39:44 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ int	create_arg_tab(t_input *input, int i)
 		buff_start = start;
 		len = get_arg_len(input->cmd_tab[i], &start) + 1;
 		input->cmd_exec_tab[i][j] = ft_calloc(input, sizeof(char), len);
-		input->garbage->type = INPUT_STRUCT;
+		input->gb->type = INPUT_STRUCT;
 		fill_tab(input->cmd_tab[i], input->cmd_exec_tab[i][j], buff_start);
 	}
 	return (1);

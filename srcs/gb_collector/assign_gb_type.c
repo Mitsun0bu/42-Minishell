@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   assign_garbage_type.c                              :+:      :+:    :+:   */
+/*   assign_gb_type.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,22 +12,22 @@
 
 #include "main.h"
 
-void	assign_garbage_type(t_input *input, char **table, int garbage_type)
+void	assign_gb_type(t_input *input, char **table, int gb_type)
 {
-	int	i;
-	int	j;
-	t_garbage_lst	*start;
+	int			i;
+	int			j;
+	t_gb_lst	*start;
 
 	i = 0;
 	j = -1;
 	while (table[i])
 		i ++;
 	i ++;
-	start = input->garbage;
-	while(++j < i)
+	start = input->gb;
+	while (++j < i)
 	{
-		input->garbage->type = garbage_type;
-		input->garbage = input->garbage->next;
+		input->gb->type = gb_type;
+		input->gb = input->gb->next;
 	}
-	input->garbage = start;
+	input->gb = start;
 }

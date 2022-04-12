@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   garbage_collector.h                                :+:      :+:    :+:   */
+/*   gb_collector.h                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 10:02:50 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/08 14:52:53 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/12 15:38:18 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GARBAGE_COLLECTOR_H
-# define GARBAGE_COLLECTOR_H
-
-/* ************************************************************************** */
-/*                                                                            */
-/*                               ~~~ INCLUDES ~~~                             */
-/*                                                                            */
-/* ************************************************************************** */
-
-# include "main.h"
+#ifndef GB_COLLECTOR_H
+# define GB_COLLECTOR_H
 
 /* ************************************************************************** */
 /*                                                                            */
@@ -33,17 +25,17 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-/* garbage collector/add_garbage.c */
-void			add_garbage(t_garbage_lst **garbage, void *ptr);
-void			add_garbage_front(t_garbage_lst **garbage, t_garbage_lst *new_garbage);
-t_garbage_lst	*create_new_garbage(void *ptr);
+/* gb collector/add_gb.c */
+void		add_gb(t_gb_lst **gb, void *ptr);
+void		add_gb_front(t_gb_lst **gb, t_gb_lst *new_gb);
+t_gb_lst	*create_new_gb(void *ptr);
 
-/* garbage collector/assign_garbage_type.c */
-void			assign_garbage_type(t_input *input, char **table, int garbage_type);
+/* gb collector/assign_gb_type.c */
+void		assign_gb_type(t_input *input, char **table, int gb_type);
 
-/* garbage collector/clear_garbage.c */
-void			clear_all_garbage(t_garbage_lst **garbage);
-void			clear_one_garbage_type(t_garbage_lst **garbage, int type);
-int				count_garbage_type(t_garbage_lst **garbage, int type);
+/* gb collector/clear_gb.c */
+void		clear_all_gb(t_gb_lst **gb);
+void		clear_one_gb_type(t_gb_lst **gb, int type);
+int			count_gb_type(t_gb_lst **gb, int type);
 
 #endif

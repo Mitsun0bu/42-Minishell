@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/06 18:37:12 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/11 18:07:37 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/12 18:15:31 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,12 @@ int	split_cmd(t_input *input)
 		if (fill_cmd(input) != 0)
 			return (FAILED);
 	input->cmd_tab = ft_mini_split(input, input->cmd_line, '|');
-	assign_garbage_type(input, input->cmd_tab, CMD_TAB);
+	assign_gb_type(input, input->cmd_tab, CMD_TAB);
 	input->n_cmd = 0;
 	while (input->cmd_tab[++i])
 	{
 		input->cmd_tab[i] = ft_strtrim(input, input->cmd_tab[i], " \t\n\v\f\r");
-		input->garbage->type = CMD_TAB;
+		input->gb->type = CMD_TAB;
 		input->n_cmd ++;
 	}
 	return (SUCCESS);
@@ -49,7 +49,7 @@ int	fill_cmd(t_input *input)
 {
 	char	*filled_cmd;
 	int		final_pipe_fd[2];
-	int		final_pipe_process;
+	pid_t	final_pipe_process;
 
 	filled_cmd = NULL;
 	if (open_single_pipe(final_pipe_fd) == FAILED)
@@ -57,33 +57,41 @@ int	fill_cmd(t_input *input)
 	final_pipe_process = fork();
 	check_fork_error(final_pipe_process);
 	if (final_pipe_process == 0)
-		input->status = fill_cmd_from_child(input, filled_cmd, final_pipe_fd);
-	close_single_pipe(final_pipe_fd);
+		input->status = fill_cmd_child(input, filled_cmd, final_pipe_fd);
 	signal(SIGINT, SIG_IGN);
+	close(final_pipe_fd[1]);
 	waitpid(final_pipe_process, &input->status, 0);
+	if (input->status != 0)
+		return (input->status);
+	filled_cmd = ft_get_next_line(input, final_pipe_fd[0]);
 	signal(SIGINT, signal_handler_parent);
+	input->cmd_line = ft_strdup(input, filled_cmd);
+	input->gb->type = CMD_LINE;
 	return (input->status);
 }
 
-int	fill_cmd_from_child(t_input *input, char *filled_cmd, int *final_pipe_fd)
+int	fill_cmd_child(t_input *input, char *filled_cmd, int *final_pipe_fd)
 {
 	char	*line;
 
 	signal(SIGINT, SIG_DFL);
-	line = readline("> ");
-	if (!line)
-		exit (1);
+	while (1)
+	{
+		line = readline("> ");
+		if (!line)
+			stderror_exit(input, 258, "syntax error", "unexepcted end of file");
+		if (ft_strlen(line))
+			break ;
+	}
 	filled_cmd = ft_strjoin(input, input->cmd_line, line);
-	input->garbage->type = GARBAGE;
-	env_converter (input, filled_cmd);
-	input->cmd_line = ft_strdup(input, input->processed_line);
-	input->garbage->type = CMD_LINE;
+	input->gb->type = GARBAGE;
 	if (final_letter_is_pipe(line) == 1)
 	{
 		ft_free((void *)&line);
-		fill_cmd_from_child(input, filled_cmd, final_pipe_fd);
+		fill_cmd_child(input, filled_cmd, final_pipe_fd);
 	}
 	ft_putstr_fd(filled_cmd, final_pipe_fd[1]);
+	close_single_pipe(final_pipe_fd);
 	ft_free((void *)&line);
 	exit (SUCCESS);
 }

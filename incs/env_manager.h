@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 10:21:58 by agirardi          #+#    #+#             */
-/*   Updated: 2022/03/23 16:09:53 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/12 17:48:44 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,6 @@
 
 #ifndef ENV_MANAGER_H
 # define ENV_MANAGER_H
-
-/* ************************************************************************** */
-/*                                                                            */
-/*                               ~~~ INCLUDES ~~~                             */
-/*                                                                            */
-/* ************************************************************************** */
-
-# include "main.h"
 
 /* ************************************************************************** */
 /*                                                                            */
@@ -56,6 +48,5 @@ char	*find_value(t_input *input, char *str);
 char	*get_value(t_input *input, char *key);
 int		search_key(const char *str, const char *key);
 int		check_dubble(t_input *input, char *str);
-
 
 #endif

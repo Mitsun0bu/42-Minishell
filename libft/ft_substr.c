@@ -6,14 +6,14 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/02 16:33:55 by llethuil          #+#    #+#             */
-/*   Updated: 2022/03/23 13:56:21 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/12 15:54:51 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "../incs/utils.h"
 
-char	*ft_substr(t_input *input, char const *s, unsigned int start, size_t len)
+char	*ft_substr(t_input *input, char *s, unsigned int start, size_t len)
 {
 	char			*substr;
 	unsigned int	i;

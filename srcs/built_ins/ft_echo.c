@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 10:55:57 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/11 15:30:25 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/12 18:14:05 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ int	ft_echo(t_input *input, t_cmd_lst *cmd)
 	message = NULL;
 	if (!cmd->args[1])
 		printf("\n");
-	else if (!cmd->args[2] && !ft_strncmp(cmd->args[1], "-n", 2) && ft_strlen(cmd->args[1]) == 2)
+	else if (!cmd->args[2] && !ft_strncmp(cmd->args[1], "-n", 2)
+		&& ft_strlen(cmd->args[1]) == 2)
 		return (0);
 	else
 	{
@@ -50,11 +51,11 @@ char	*join_message(t_input *input, t_cmd_lst *cmd)
 			message = ft_strdup(input, cmd->args[i]);
 		else
 			message = ft_strjoin(input, message, cmd->args[i]);
-		input->garbage->type = GARBAGE;
+		input->gb->type = GARBAGE;
 		if (i != cmd->n_args - 1)
 		{
 			message = ft_strjoin(input, message, " ");
-			input->garbage->type = GARBAGE;
+			input->gb->type = GARBAGE;
 		}
 	}
 	return (message);

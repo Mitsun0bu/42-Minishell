@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 11:51:38 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/06 16:02:15 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/12 15:39:44 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,6 @@
 int	ft_exit(t_input *input)
 {
 	printf("exit\n");
-	clear_all_garbage(&input->garbage);
+	clear_all_gb(&input->gb);
 	exit(0);
 }

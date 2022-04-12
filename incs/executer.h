@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 12:09:40 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/11 14:36:17 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/12 17:49:14 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,6 @@
 
 #ifndef EXECUTER_H
 # define EXECUTER_H
-
-/* ************************************************************************** */
-/*                                                                            */
-/*                               ~~~ INCLUDES ~~~                             */
-/*                                                                            */
-/* ************************************************************************** */
-
-# include "main.h"
-# include <sys/types.h>
 
 /* ************************************************************************** */
 /*                                                                            */
@@ -56,7 +47,7 @@ int		get_heredoc_str(t_input *input, t_cmd_lst *cmd);
 char	*build_heredoc_str(t_input *input, char *del);
 char	*read_heredoc_line(t_input *input);
 char	*append_heredoc_line(t_input *input, char *line, char *heredoc_str);
-int		get_heredoc_from_child(t_input *input, t_cmd_lst *cmd, char *heredoc_str);
+int		get_heredoc_child(t_input *input, t_cmd_lst *cmd, char *heredoc_str);
 
 /* executer/path_manager.c */
 void	path_manager(t_input *input, t_cmd_lst *cmd);

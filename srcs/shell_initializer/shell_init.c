@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 13:21:26 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/06 14:17:13 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/12 15:39:44 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	init_env(t_input *input, char **envp)
 		if (ft_strncmp(envp[i], "OLDPWD=", 7) != 0)
 			j++;
 	input->env_tab = ft_calloc(input, sizeof(t_env), i);
-	input->garbage->type = ENV_STRUCT;
+	input->gb->type = ENV_STRUCT;
 	input->n_env = j;
 	i = -1;
 	j = -1;
@@ -83,7 +83,7 @@ void	init_shlvl(t_input *input)
 	input->start_shlvl ++;
 	value = ft_itoa(input, input->start_shlvl);
 	change_value(input, "SHLVL", value);
-	input->garbage->type = ENV_STRUCT;
+	input->gb->type = ENV_STRUCT;
 }
 
 void	init_history(t_input *input)

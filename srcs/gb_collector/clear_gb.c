@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   clear_garbage.c                                    :+:      :+:    :+:   */
+/*   clear_gb.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,42 +12,40 @@
 
 #include "main.h"
 
-void	clear_all_garbage(t_garbage_lst **garbage)
+void	clear_all_gb(t_gb_lst **gb)
 {
-	t_garbage_lst	*next;
+	t_gb_lst	*next;
 
-	if (!*garbage)
+	if (!*gb)
 		return ;
-	while (*garbage)
+	while (*gb)
 	{
-		next = (*garbage)->next;
-		free((*garbage)->ptr);
+		next = (*gb)->next;
+		free((*gb)->ptr);
 		if (!next)
 		{
-			free(*garbage);
+			free(*gb);
 			break ;
 		}
-		*garbage = next;
-		// if ((*garbage)->previous)
-		// 	free((*garbage)->previous);
+		*gb = next;
 	}
-	*garbage = NULL;
+	*gb = NULL;
 }
 
-void	clear_one_garbage_type(t_garbage_lst **garbage, int type)
+void	clear_one_gb_type(t_gb_lst **gb, int type)
 {
-	t_garbage_lst	*temp;
-	t_garbage_lst	*prev;
+	t_gb_lst	*temp;
+	t_gb_lst	*prev;
 
-	while (count_garbage_type(garbage, type) != 0)
+	while (count_gb_type(gb, type) != 0)
 	{
-		temp = *garbage;
+		temp = *gb;
 		if (temp && temp->type == type)
 		{
-			*garbage = temp->next;
+			*gb = temp->next;
 			free(temp->ptr);
 			free(temp);
-			(*garbage)->previous = NULL;
+			(*gb)->previous = NULL;
 			return ;
 		}
 		while (temp && temp->type != type)
@@ -63,19 +61,19 @@ void	clear_one_garbage_type(t_garbage_lst **garbage, int type)
 	}
 }
 
-int	count_garbage_type(t_garbage_lst **garbage, int type)
+int	count_gb_type(t_gb_lst **gb, int type)
 {
-	int				count;
-	t_garbage_lst	*start;
+	int			count;
+	t_gb_lst	*start;
 
 	count = 0;
-	start = *garbage;
-	while (*garbage)
+	start = *gb;
+	while (*gb)
 	{
-		if ((*garbage)->type == type)
+		if ((*gb)->type == type)
 			count ++;
-		*garbage = (*garbage)->next;
+		*gb = (*gb)->next;
 	}
-	*garbage = start;
+	*gb = start;
 	return (count);
 }

@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   add_garbage.c                                   :+:      :+:    :+:   */
+/*   add_gb.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,33 +12,33 @@
 
 #include "main.h"
 
-void	add_garbage(t_garbage_lst **garbage, void *ptr)
+void	add_gb(t_gb_lst **gb, void *ptr)
 {
-	if (!(*garbage))
-		*garbage = create_new_garbage(ptr);
+	if (!(*gb))
+		*gb = create_new_gb(ptr);
 	else
-		add_garbage_front(garbage, create_new_garbage(ptr));
+		add_gb_front(gb, create_new_gb(ptr));
 }
 
-void	add_garbage_front(t_garbage_lst **garbage, t_garbage_lst *new_garbage)
+void	add_gb_front(t_gb_lst **gb, t_gb_lst *new_gb)
 {
-	new_garbage->next = *garbage;
-	(*garbage)->previous = new_garbage;
-	*garbage = new_garbage;
+	new_gb->next = *gb;
+	(*gb)->previous = new_gb;
+	*gb = new_gb;
 }
 
-t_garbage_lst	*create_new_garbage(void *ptr)
+t_gb_lst	*create_new_gb(void *ptr)
 {
 	static int		i = 0;
-	t_garbage_lst	*new_garbage;
+	t_gb_lst		*new_gb;
 
-	new_garbage = malloc(sizeof(t_garbage_lst));
-	if (!new_garbage)
+	new_gb = malloc(sizeof(t_gb_lst));
+	if (!new_gb)
 		return (NULL);
-	new_garbage->index = i++;
-	new_garbage->ptr = ptr;
-	new_garbage->type = 0;
-	new_garbage->next = NULL;
-	new_garbage->previous = NULL;
-	return (new_garbage);
+	new_gb->index = i++;
+	new_gb->ptr = ptr;
+	new_gb->type = 0;
+	new_gb->next = NULL;
+	new_gb->previous = NULL;
+	return (new_gb);
 }

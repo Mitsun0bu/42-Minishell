@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 10:41:38 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/11 20:04:47 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/12 15:45:41 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,9 @@ void	exec_first_cmd(t_input *input, t_cmd_lst *cmd)
 	close_all_pipes(cmd);
 	if (find_built_in(cmd->name) == BUILT_IN)
 		exit(exec_built_in(input, cmd));
-	// else if (find_built_in(cmd->name) == PROGRAM)
-	// 	exit(exec_program(input, cmd));
 	else if (!input->paths_tab)
 		exit(stderror_return(1, NULL, cmd->name, "No such file or directory"));
-	else if (cmd->name)
+	else if (cmd->name && cmd->valid_path)
 		execve(cmd->valid_path, cmd->args, convert_env_tab(input));
 	else
 		exit(0);
@@ -42,22 +40,20 @@ void	exec_mid_cmd(t_input *input, t_cmd_lst *cmd)
 	// printf("| \n");
 	// printf("| EXEC A CMD\n");
 	// printf("| cmd index = %d\n", cmd->i);
-	// signal(SIGINT, signal_handler_child);
+	signal(SIGINT, signal_handler_child);
 	handle_infile_result = handle_infile(input, cmd);
 	if (handle_infile_result == FAILED)
 		exit (0);
-	else if (!handle_infile_result)
+	else if (!handle_infile_result && cmd->valid_path)
 		dup2(cmd->previous->cmd_pipe[0], STDIN_FILENO);
-	if (!handle_outfile(input, cmd))
+	if (!handle_outfile(input, cmd) && cmd->valid_path)
 		dup2(cmd->cmd_pipe[1], STDOUT_FILENO);
 	close_all_pipes(cmd);
 	if (find_built_in(cmd->name) == BUILT_IN)
 		exit(exec_built_in(input, cmd));
-	// else if (find_built_in(cmd->name) == PROGRAM)
-	// 	exit(exec_program(input, cmd));
 	else if (!input->paths_tab)
 		exit(stderror_return(1, NULL, cmd->name, "No such file or directory"));
-	else if (cmd->name)
+	else if (cmd->name && cmd->valid_path)
 		execve(cmd->valid_path, cmd->args, convert_env_tab(input));
 	else
 		exit(0);
@@ -68,7 +64,7 @@ void	exec_last_cmd(t_input *input, t_cmd_lst *cmd)
 	int	handle_infile_result;
 	// printf("| \n");
 	// printf("| EXEC LAST CMD\n");
-	// signal(SIGINT, signal_handler_child);
+	signal(SIGINT, signal_handler_child);
 	handle_infile_result = handle_infile(input, cmd);
 	if (handle_infile_result == FAILED)
 		exit (0);
@@ -78,11 +74,9 @@ void	exec_last_cmd(t_input *input, t_cmd_lst *cmd)
 	close_all_pipes(cmd);
 	if (find_built_in(cmd->name) == BUILT_IN)
 		exit(exec_built_in(input, cmd));
-	// else if (find_built_in(cmd->name) == PROGRAM)
-	// 	exit(exec_program(input, cmd));
 	else if (!input->paths_tab)
 		exit(stderror_return(1, NULL, cmd->name, "No such file or directory"));
-	else if (cmd->name)
+	else if (cmd->name && cmd->valid_path)
 		execve(cmd->valid_path, cmd->args, convert_env_tab(input));
 	else
 		exit(0);
@@ -93,7 +87,7 @@ int	exec_built_in(t_input *input, t_cmd_lst *cmd)
 	int	status;
 
 	status = 0;
-	if (!ft_strncmp(cmd->name, "cd", 2) /*&& !cmd->name[2]*/)
+	if (!ft_strncmp(cmd->name, "cd", 2) && !cmd->name[2])
 		status = ft_cd(input, cmd);
 	else if (!ft_strncmp(cmd->name, "echo", 4) && !cmd->name[4])
 		status = ft_echo(input, cmd);
@@ -122,12 +116,12 @@ int	exec_program(t_input *input, t_cmd_lst *cmd)
 	cwd = getcwd(NULL, 0);
 	len = ft_strlen(cmd->name) - 1;
 	program_name = ft_malloc(input, sizeof(char), len);
-	input->garbage->type = GARBAGE;
+	input->gb->type = GARBAGE;
 	while (cmd->name[++i])
 		program_name[i] = cmd->name[i + 1];
 	program_path = ft_strjoin(input, cwd, program_name);
 	printf("program path = %s\n", program_path);
-	input->garbage->type = GARBAGE;
+	input->gb->type = GARBAGE;
 	ft_free((void *)&cwd);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 17:07:38 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/11 15:39:35 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/12 15:47:37 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int	main(int ac, char **av, char **envp)
 {
-	t_input			input;
-	t_cmd_lst		*cmd;
+	t_input		input;
+	t_cmd_lst	*cmd;
 
 	cmd = NULL;
 	if (ac > 1 || av[1])
@@ -32,11 +32,14 @@ int	main(int ac, char **av, char **envp)
 			parser(&input);
 			cmd_lst_init(&input, &cmd);
 			executer(&input, cmd);
-			clear_one_garbage_type(&input.garbage, CMD_LST);
-			clear_one_garbage_type(&input.garbage, CMD_LINE);
-			clear_one_garbage_type(&input.garbage, CMD_TAB);
+			clear_one_gb_type(&input.gb, CMD_LST);
+			clear_one_gb_type(&input.gb, CMD_LINE);
+			clear_one_gb_type(&input.gb, CMD_TAB);
 		}
-		clear_one_garbage_type(&input.garbage, INPUT_STRUCT);
-		clear_one_garbage_type(&input.garbage, GARBAGE);
+		clear_one_gb_type(&input.gb, INPUT_STRUCT);
+		clear_one_gb_type(&input.gb, GARBAGE);
 	}
+	// clear_one_gb_type(&input.gb, ENV_STRUCT);
+	// ft_clear_all_gb(&input.gb);
+	// exit (0);
 }

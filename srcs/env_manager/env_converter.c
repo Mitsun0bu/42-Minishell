@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 16:58:42 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/06 19:09:44 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/12 15:45:41 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	env_converter(t_input *input, char *str)
 		}
 	}
 	input->processed_line = ft_calloc(input, sizeof(char), size + 1);
-	input->garbage->type = INPUT_STRUCT;
+	input->gb->type = INPUT_STRUCT;
 	fill_buffer(input, str);
 }
 
@@ -66,7 +66,7 @@ void	fill_env(t_input *input, char *str, int *i, int *j)
 	while (!ft_strchr("$<>=\'\"", str[*i]) && !is_space(str[*i]) && str[*i])
 		(*i)++;
 	key = ft_substr(input, str, start, *i - start);
-	input->garbage->type = GARBAGE;
+	input->gb->type = GARBAGE;
 	value = get_value(input, key);
 	k = 0;
 	if (value)

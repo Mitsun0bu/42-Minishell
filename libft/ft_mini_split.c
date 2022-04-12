@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 11:25:47 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/06 17:44:22 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/12 15:54:12 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ static int	ft_count_words(char *s, char c)
 				word ++;
 		}
 		else
-			return (1) ;
+			return (1);
 		i ++;
 	}
 	return (word);
@@ -72,7 +72,7 @@ static int	ft_calloc_strs(t_input *input, char *s, char c, char **table)
 		while (s[i])
 		{
 			if (s[i] == c && quotes == 0)
-				break;
+				break ;
 			if (ft_strchr("\"\'", s[i]) && quotes == 0)
 				quotes = 1;
 			j_table ++;
@@ -107,7 +107,7 @@ static void	ft_fill_table(char *s, char c, char **table)
 			if (s[i] != c || (s[i] == c && quotes == 1))
 				table[i_table][j_table++] = s[i++];
 			else if (s[i++] == c && quotes == 0)
-				break;
+				break ;
 		}
 	}
 }

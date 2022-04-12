@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 17:31:40 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/11 20:03:54 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/12 15:39:44 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	pipex(t_input *input, t_cmd_lst *cmd)
 
 	// printf(" - - - - - - - - PIPEX - - - - - - - - \n");
 	input->process = ft_malloc(input, sizeof(pid_t), input->n_cmd);
-	input->garbage->type = INPUT_STRUCT;
+	input->gb->type = INPUT_STRUCT;
 	i = -1;
 	start = cmd;
 	while (++i < input->n_cmd)

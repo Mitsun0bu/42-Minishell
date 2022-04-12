@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/06 18:36:34 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/11 15:37:01 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/12 18:14:59 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	check_pipe(t_input *input)
 
 	quote_state = 0;
 	i = -1;
-	while (input->cmd_line[++i])
+	while (++i < (int)ft_strlen(input->cmd_line))
 	{
 		while (is_space(input->cmd_line[i]) && input->cmd_line[i + 1])
 			i++;

@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 11:15:36 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/06 19:09:21 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/12 18:12:21 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef REDIR_COLLECOR_H
-# define REDIR_COLLECOR_H
-
-/* ************************************************************************** */
-/*                                                                            */
-/*                               ~~~ INCLUDES ~~~                             */
-/*                                                                            */
-/* ************************************************************************** */
-
-# include "main.h"
+#ifndef REDIR_COLLECTOR_H
+# define REDIR_COLLECTOR_H
 
 /* ************************************************************************** */
 /*                                                                            */
@@ -34,7 +26,7 @@
 /* ************************************************************************** */
 
 /* redir_collector/copy_filename_in_redir_tab.c */
-void	copy_name_for_each_file(t_input *input, int i_cmd, int type, int i_file);
+void	copy_name_for_each_file(t_input *input, int i_c, int type, int i_f);
 void	copy_infile(char *infile, char *cmd, int i_file);
 void	copy_outfile(char *outfile, char *cmd, int i_file);
 void	copy_delimiter(char *delimiter, char *cmd, int i_file);
@@ -68,7 +60,7 @@ void	redir_collector(t_input *input);
 /* redir_collector/redir_tab_memory_manager.c */
 void	malloc_cmd_dimension(t_input *input);
 void	malloc_types_dimension_for_each_cmd(t_input *input);
-void	malloc_n_file_dimension_for_each_type(t_input *input, int i_cmd, int type);
-void	malloc_name_for_each_file(t_input *input, int i_cmd, int type, int i_file);
+void	malloc_n_file_dimension_for_each_type(t_input *input, int i_c, int t);
+void	malloc_name_for_each_file(t_input *input, int i_c, int t, int i_f);
 
 #endif

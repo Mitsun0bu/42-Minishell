@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 13:22:25 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/08 17:19:30 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/12 18:15:53 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	stderror_exit(t_input *input, int error, char *problem, char *err_message)
 		ft_putstr_fd(err_message, 2);
 		ft_putstr_fd("\n", 2);
 	}
-	clear_all_garbage(&input->garbage);
+	clear_all_gb(&input->gb);
 	tcsetattr(STDIN_FILENO, TCSANOW, &input->old_term);
 	exit(error);
 }

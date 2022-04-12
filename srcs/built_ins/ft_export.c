@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 15:10:44 by agirardi          #+#    #+#             */
-/*   Updated: 2022/04/07 10:11:04 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/12 15:45:41 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int	parse_key(t_input *input, char	*str, int type)
 
 	i = -1;
 	key = find_key(input, str);
-	input->garbage->type = GARBAGE;
+	input->gb->type = GARBAGE;
 	while (key[++i])
 		if ((!ft_isalnum(key[i]) && key[i] != '_') || ft_isdigit(key[0]))
 			return (0);
@@ -92,7 +92,7 @@ char	*del_quotes(t_input *input, char *str)
 		if (!ft_strchr("\'\"", str[i]))
 			count++;
 	var = ft_calloc(input, sizeof(char), count + 1);
-	input->garbage->type = GARBAGE;
+	input->gb->type = GARBAGE;
 	i = 0;
 	j = 0;
 	while (j < count && str[i])

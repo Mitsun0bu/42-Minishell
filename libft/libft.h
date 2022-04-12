@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 15:21:56 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/07 10:11:33 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/12 15:55:21 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@
 # include <stdio.h>
 # include <unistd.h>
 # include "../incs/main.h"
-
 
 /* ************************************************************************** */
 /*                                                                            */
@@ -77,6 +76,6 @@ size_t	ft_strlen(const char *str);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 char	*ft_strnstr(const char *haystack, const char *needle, size_t len);
 char	*ft_strtrim(t_input *input, char *s1, char const *set);
-char	*ft_substr(t_input *input, char const *s, unsigned int start, size_t len);
+char	*ft_substr(t_input *input, char *s, unsigned int start, size_t len);
 
 #endif
