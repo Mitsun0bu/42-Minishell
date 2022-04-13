@@ -90,7 +90,7 @@ echo $? doit etre remis en place
 5) SIGNALS :
 
 ctrl-\ after you wrote some stuff should quit minishell
-ctll-\ after a blocking command (fonctionne, mais l'affichage n'est pas comme bash)
+ctrl-\ after a blocking command (fonctionne, mais l'affichage n'est pas comme bash)
 ctrl-D after a blocking command (ne fonctionne pas)
 
 6) DOUBLE QUOTES :
@@ -131,10 +131,7 @@ OK
 
 15)REDIRECTION
 
-echo hello >outfile_1 | rev <outfile_1 >>    outfile_2 | cat outfile_2
-
-bash : ecrit hello (en ecrasant si il y a deja quelque chose) dans outfile_1, puis ecrit olleh dans outfile_2 en ajoutant a la ligne si il y a deja du contenu dedans, puis cat le contenu de outifle_2
-minishell : n'ajoute pas olleh dans outfile_2
+OK
 
 16) PIPES
 
