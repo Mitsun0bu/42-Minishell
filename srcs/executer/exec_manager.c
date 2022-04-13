@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 10:41:38 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/12 15:45:41 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/13 11:52:33 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	exec_first_cmd(t_input *input, t_cmd_lst *cmd)
 	if (find_built_in(cmd->name) == BUILT_IN)
 		exit(exec_built_in(input, cmd));
 	else if (!input->paths_tab)
-		exit(stderror_return(1, NULL, cmd->name, "No such file or directory"));
+		exit(err_return(1, NULL, cmd->name, "No such file or directory"));
 	else if (cmd->name && cmd->valid_path)
 		execve(cmd->valid_path, cmd->args, convert_env_tab(input));
 	else
@@ -52,7 +52,7 @@ void	exec_mid_cmd(t_input *input, t_cmd_lst *cmd)
 	if (find_built_in(cmd->name) == BUILT_IN)
 		exit(exec_built_in(input, cmd));
 	else if (!input->paths_tab)
-		exit(stderror_return(1, NULL, cmd->name, "No such file or directory"));
+		exit(err_return(1, NULL, cmd->name, "No such file or directory"));
 	else if (cmd->name && cmd->valid_path)
 		execve(cmd->valid_path, cmd->args, convert_env_tab(input));
 	else
@@ -75,7 +75,7 @@ void	exec_last_cmd(t_input *input, t_cmd_lst *cmd)
 	if (find_built_in(cmd->name) == BUILT_IN)
 		exit(exec_built_in(input, cmd));
 	else if (!input->paths_tab)
-		exit(stderror_return(1, NULL, cmd->name, "No such file or directory"));
+		exit(err_return(1, NULL, cmd->name, "No such file or directory"));
 	else if (cmd->name && cmd->valid_path)
 		execve(cmd->valid_path, cmd->args, convert_env_tab(input));
 	else
@@ -96,7 +96,7 @@ int	exec_built_in(t_input *input, t_cmd_lst *cmd)
 	else if (!ft_strncmp(cmd->name, "env", 3) && !cmd->name[3])
 		status = ft_env(input);
 	else if (!ft_strncmp(cmd->name, "exit", 4) && !cmd->name[4])
-		status = ft_exit(input);
+		status = ft_exit(input, cmd);
 	else if (!ft_strncmp(cmd->name, "export", 6) && !cmd->name[6])
 		status = ft_export(input, cmd);
 	else if (!ft_strncmp(cmd->name, "unset", 5) && !cmd->name[5])

@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 15:10:44 by agirardi          #+#    #+#             */
-/*   Updated: 2022/04/12 15:45:41 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/13 11:12:53 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int	parse_key(t_input *input, char	*str, int type)
 	input->gb->type = GARBAGE;
 	while (key[++i])
 		if ((!ft_isalnum(key[i]) && key[i] != '_') || ft_isdigit(key[0]))
-			return (0);
+			return(err_return(0, "minishelled: export", key, "not a valid identifier"));
 	if (type == 2)
 		return (2);
 	if (check_dubble(input, key))

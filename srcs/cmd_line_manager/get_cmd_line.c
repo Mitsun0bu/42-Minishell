@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 16:38:19 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/12 18:14:32 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/13 11:12:53 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	get_cmd_line(t_input *input)
 	{
 		buff = readline("minishelled > ");
 		if (!buff)
-			stderror_exit(input, 0, NULL, "exit");
+			err_exit(input, 0, NULL, "exit");
 		if (ft_strlen(buff))
 			break ;
 	}
@@ -32,7 +32,7 @@ void	get_cmd_line(t_input *input)
 	{
 		input->fd_history = open(path, O_CREAT | O_RDWR | O_APPEND, 0644);
 		if (input->fd_history < 0)
-			stderror_exit(input, -1, "error", ": couldn't open history file");
+			err_exit(input, -1, "error", ": couldn't open history file");
 		ft_putstr_fd(ft_strjoin(input, buff, "\n"), input->fd_history);
 		close (input->fd_history);
 	}

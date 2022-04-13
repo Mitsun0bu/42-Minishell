@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 13:35:01 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/12 18:25:25 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/13 11:28:54 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	signal_handler_parent(int signal)
 	{
 		rl_on_new_line();
 		rl_redisplay();
+		exit(0);
 	}
 }
 

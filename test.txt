@@ -69,17 +69,74 @@ env -i
 OLDPWD
 
 
-Problemes :
+CORRECTION :
 
-1) echo $? doit etre remis en place (apres ca, refaire le test "return value of a process")
+1) SIMPLE COMMAND & GLOBAL
 
-4) ft_calloc_strs dans minisplit a re-checker :
+OK
+
+2) ARGUMENTS & HISTORY
+
+OK
+
+3) EXIT :
+
+OK
+
+4) RETURN VALUE OF A PROCESS :
+
+echo $? doit etre remis en place
+
+5) SIGNALS :
+
+ctrl-\ after you wrote some stuff should quit minishell
+ctll-\ after a blocking command (fonctionne, mais l'affichage n'est pas comme bash)
+ctrl-D after a blocking command (ne fonctionne pas)
+
+6) DOUBLE QUOTES :
+
+OK
+
+7) SIMPLE QUOTES :
+
+OK
+
+8) ENV :
+
+OK
+
+9) EXPORT :
+
+OK
+
+10) UNSET :
+
+OK
+
+11) CD :
+
+OK
+
+12) PWD :
+
+OK
+
+13) RELATIVE PATH :
+
+OK
+
+14) ENVIRONMENT PATH :
+
+
+CHOSES A CHECKER :
+
+1) ft_calloc_strs dans minisplit a re-checker :
 		if (ft_strchr("\"\'", s[i]) && quotes == 0)
 				quotes = 1;
 		else if ????
 
-5) checker skip_space et voir pour la mettre dans les utils
+2) checker skip_space et voir pour la mettre dans les utils
 
-6 ) variable globale pour le retour de status
+3 ) tous les endroits où on doit modifier la variable globale status
 
-7) On ne ferme jamais les fichiers !!!
+4) On ne ferme jamais les fichiers !!!

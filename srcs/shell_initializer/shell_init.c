@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 13:21:26 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/12 15:39:44 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/13 11:12:53 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ void	init_history(t_input *input)
 		return ;
 	input->fd_history = open(path, O_CREAT | O_RDWR | O_APPEND, 0644);
 	if (input->fd_history < 0)
-		stderror_exit(input, -1, "error", ": couldn't open history file");
+		err_exit(input, -1, "error", ": couldn't open history file");
 	while (1)
 	{
 		cmd_line_history = ft_get_next_line(input, input->fd_history);

@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 10:56:25 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/07 10:11:04 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/13 11:19:16 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,39 +14,42 @@
 
 int	ft_cd(t_input *input, t_cmd_lst *cmd)
 {
-	char	*pwd;
 	char	*home;
+	char	*pwd;
+	char	*pwd_gb;
 
 	home = get_value(input, "HOME");
+	if (!home && !cmd->args[1])
+		return (err_return(1, NULL, "cd", "HOME not set"));
 	if (!cmd->args[1])
-	{
-		if (!home)
-			stderror_return(1, NULL, "cd", "HOME not set");
-		update_oldpwd(input);
-		chdir(home);
-	}
+		update_oldpwd(input, home);
 	if (cmd->i == 0 && access(cmd->args[1], F_OK) == 0)
-	{
-		update_oldpwd(input);
-		chdir(cmd->args[1]);
-	}
+		update_oldpwd(input, cmd->args[1]);
 	else if (cmd->args[1] && access(cmd->args[1], F_OK) != 0)
-		return (1);
+		return(err_return(1, "minishelled: cd", cmd->args[1], "No such file or directory"));
 	pwd = getcwd(NULL, 0);
-	change_value(input, "PWD", pwd);
+	pwd_gb = ft_strdup(input, pwd);
+	input->gb->type = ENV_STRUCT;
+	ft_free((void *)&pwd);
+	change_value(input, "PWD", pwd_gb);
 	return (0);
 }
 
-void	update_oldpwd(t_input *input)
+void	update_oldpwd(t_input *input, char *destination)
 {
 	char	*pwd;
+	char	*pwd_gb;
 
 	pwd = getcwd(NULL, 0);
+	pwd_gb = ft_strdup(input, pwd);
+	input->gb->type = ENV_STRUCT;
+	ft_free((void *)&pwd);
 	if (!get_value(input, "OLDPWD"))
 	{
 		add_to_env(input, "OLDPWD", ENV_NULL);
-		change_value(input, "OLDPWD", pwd);
+		change_value(input, "OLDPWD", pwd_gb);
 	}
 	else
-		change_value(input, "OLDPWD", pwd);
+		change_value(input, "OLDPWD", pwd_gb);
+	chdir(destination);
 }
