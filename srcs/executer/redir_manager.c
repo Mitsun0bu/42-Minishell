@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   basic_redir_manager.c                              :+:      :+:    :+:   */
+/*   redir_manager.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 10:07:06 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/11 12:05:53 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/13 13:24:10 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	handle_infile(t_input *input, t_cmd_lst *cmd)
 				return (FAILED);
 		}
 	}
-	else if (input->last_infile_type[cmd->i] == HEREDOC)
+	else if (cmd->n_heredoc && input->last_infile_type[cmd->i] == HEREDOC)
 	{
 		dup2(cmd->heredoc_pipe[0], STDIN_FILENO);
 		close_single_pipe(cmd->heredoc_pipe);
@@ -42,7 +42,7 @@ int	handle_outfile(t_input *input, t_cmd_lst *cmd)
 	int	i;
 
 	i = -1;
-	if (cmd->n_app_outfile && input->last_outfile_type[cmd->i] == TRUNC_OUTPUT)
+	if (cmd->n_outfile && input->last_outfile_type[cmd->i] == TRUNC_OUTPUT)
 	{
 		while (++i < cmd->n_app_outfile)
 			dup2(cmd->fd_app_outfile[i], STDOUT_FILENO);
@@ -50,7 +50,7 @@ int	handle_outfile(t_input *input, t_cmd_lst *cmd)
 		while (++i < cmd->n_outfile)
 			dup2(cmd->fd_outfile[i], STDOUT_FILENO);
 	}
-	else if (cmd->n_outfile && input->last_outfile_type[cmd->i] == APP_OUTPUT)
+	else if (cmd->n_app_outfile && input->last_outfile_type[cmd->i] == APP_OUTPUT)
 	{
 		while (++i < cmd->n_outfile)
 			dup2(cmd->fd_outfile[i], STDOUT_FILENO);

@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 12:14:03 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/13 11:12:53 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/13 13:22:40 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ int	open_app_outfiles(t_input *input, t_cmd_lst *cmd)
 	cmd->fd_app_outfile = ft_malloc(input, sizeof(int), cmd->n_app_outfile);
 	input->gb->type = CMD_LST;
 	i = -1;
-	while (++i < cmd->n_app_outfile - 1)
+	while (++i < cmd->n_app_outfile)
 	{
 		cmd->fd_app_outfile[i] = open(cmd->app_outfile[i],
 				O_CREAT | O_RDWR | O_APPEND, 0644);

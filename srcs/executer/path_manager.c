@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 14:58:04 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/13 11:49:33 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/13 12:51:24 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ void	path_manager(t_input *input, t_cmd_lst *cmd)
 			else if (get_paths_tab(input) == SUCCESS)
 			{
 				cmd->valid_path = assign_path(input, cmd, cmd->name);
-				printf("valid_path = %s\n", cmd->valid_path);
 				input->gb->type = CMD_LST;
 			}
 		}
