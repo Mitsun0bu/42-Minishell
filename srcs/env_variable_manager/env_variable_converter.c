@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env_converter.c                                    :+:      :+:    :+:   */
+/*   env_variable_converter.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 16:58:42 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/12 15:45:41 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/14 12:46:40 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-void	env_converter(t_input *input, char *str)
+void	env_variable_converter(t_input *input, char *str)
 {
 	int		size;
 	int		i;
@@ -67,7 +67,7 @@ void	fill_env(t_input *input, char *str, int *i, int *j)
 		(*i)++;
 	key = ft_substr(input, str, start, *i - start);
 	input->gb->type = GARBAGE;
-	value = get_value(input, key);
+	value = get_value_from_key(input, key);
 	k = 0;
 	if (value)
 		while (value[k])

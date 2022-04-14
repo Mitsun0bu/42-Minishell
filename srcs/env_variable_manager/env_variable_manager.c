@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 10:22:00 by agirardi          #+#    #+#             */
-/*   Updated: 2022/04/14 12:07:37 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/14 12:48:27 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ void	add_to_env(t_input *input, char *str, int type)
 		new_env_tab[i].value = input->env_tab[i].value;
 		new_env_tab[i].type = input->env_tab[i].type;
 	}
-	new_env_tab[i].key = find_key(input, str);
-	new_env_tab[i].value = find_value(input, str);
+	new_env_tab[i].key = get_key_from_env_tab(input, str);
+	new_env_tab[i].value = get_value_from_env_tab(input, str);
 	new_env_tab[i].type = type;
 	input->env_tab = new_env_tab;
 }
@@ -46,7 +46,7 @@ void	remove_from_env(t_input *input, char *key_to_remove)
 	j = 0;
 	while (++i < input->n_env + 1)
 	{
-		if (test_key(input->env_tab[i].key, key_to_remove) == FAILED)
+		if (find_key(input->env_tab[i].key, key_to_remove) == FAILED)
 		{
 			new_env_tab[j].key = input->env_tab[i].key;
 			new_env_tab[j].value = input->env_tab[i].value;

@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 12:09:40 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/14 10:59:15 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/14 14:23:04 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ char	*append_heredoc_line(t_input *input, char *line, char *heredoc_str);
 int		get_heredoc_child(t_input *input, t_cmd_lst *cmd, char *heredoc_str);
 
 /* executer/path_manager.c */
-void	path_manager(t_input *input, t_cmd_lst *cmd);
+int		path_manager(t_input *input, t_cmd_lst *cmd);
 int		get_paths_tab(t_input *input);
 char	*assign_path(t_input *input, t_cmd_lst *cmd, char *arg);
 

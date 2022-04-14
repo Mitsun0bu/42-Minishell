@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 10:32:58 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/13 11:12:53 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/14 13:52:11 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,10 @@ int	open_all_pipes(t_cmd_lst *cmd)
 int	open_single_pipe(int *fd_tab)
 {
 	if (pipe(fd_tab) == -1)
-		return (err_return(FAILED, "minishelled",
-				"pipe", "open pipe failed"));
+	{
+		print_error("minishelled", "pipe", "open pipe failed");
+		return (FAILED);
+	}
 	return (1);
 }
 

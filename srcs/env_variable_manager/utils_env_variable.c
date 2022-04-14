@@ -1,64 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils_env.c                                        :+:      :+:    :+:   */
+/*   utils_env_variable.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 09:43:38 by agirardi          #+#    #+#             */
-/*   Updated: 2022/04/14 12:07:30 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/14 14:00:30 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-char	*get_value(t_input *input, char *key)
-{
-	int	i;
-
-	i = -1;
-	while (++i < input->n_env)
-	{
-		if (ft_strncmp(key, input->env_tab[i].key, ft_strlen(key)) == 0)
-			if (ft_strlen(key) == ft_strlen(input->env_tab[i].key))
-				return (input->env_tab[i].value);
-	}
-	return (0);
-}
-
-int	test_key(const char *str, const char *key)
-{
-	int	i;
-
-	if (ft_strlen(str) != ft_strlen(key))
-		return (0);
-	i = -1;
-	while (key[++i])
-	{
-		if (key[i] != str[i])
-			return (FAILED);
-	}
-	return (SUCCESS);
-}
-
-int	find_same_env_variable(t_input *input, char *str)
-{
-	char	*key;
-	int		i;
-
-	key = find_key(input, str);
-	input->gb->type = GARBAGE;
-	i = -1;
-	while (++i < input->n_env)
-	{
-		if (ft_strncmp(key, input->env_tab[i].key, ft_strlen(key)) == 0)
-			if (ft_strlen(key) == ft_strlen(input->env_tab[i].key))
-				return (YES);
-	}
-	return (NO);
-}
-
-char	*find_key(t_input *input, char *str)
+char	*get_key_from_env_tab(t_input *input, char *str)
 {
 	char	*key;
 	int		i;
@@ -71,7 +25,7 @@ char	*find_key(t_input *input, char *str)
 	return (key);
 }
 
-char	*find_value(t_input *input, char *str)
+char	*get_value_from_env_tab(t_input *input, char *str)
 {
 	char	*value;
 	int		key_count;
@@ -91,3 +45,51 @@ char	*find_value(t_input *input, char *str)
 	input->gb->type = ENV_STRUCT;
 	return (value);
 }
+
+char	*get_value_from_key(t_input *input, char *key)
+{
+	int	i;
+
+	i = -1;
+	while (++i < input->n_env)
+	{
+		if (ft_strncmp(key, input->env_tab[i].key, ft_strlen(key)) == SUCCESS)
+			if (ft_strlen(key) == ft_strlen(input->env_tab[i].key))
+				return (input->env_tab[i].value);
+	}
+	return (0);
+}
+
+int	find_key(const char *str, const char *key)
+{
+	int	i;
+
+	if (ft_strlen(str) != ft_strlen(key))
+		return (0);
+	i = -1;
+	while (key[++i])
+	{
+		if (key[i] != str[i])
+			return (NO);
+	}
+	return (YES);
+}
+
+int	find_value(t_input *input, char *str)
+{
+	char	*key;
+	int		i;
+
+	key = get_key_from_env_tab(input, str);
+	input->gb->type = GARBAGE;
+	i = -1;
+	while (++i < input->n_env)
+	{
+		if (ft_strncmp(key, input->env_tab[i].key, ft_strlen(key)) == 0)
+			if (ft_strlen(key) == ft_strlen(input->env_tab[i].key))
+				return (YES);
+	}
+	return (NO);
+}
+
+

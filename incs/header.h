@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 17:37:10 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/14 11:05:15 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/14 13:19:38 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,21 +25,23 @@
 # define NO 0
 # define IN 1
 # define OUT 0
+# define NEW_LINE 0
+# define REDIR 1
 # define CHILD 0
-# define INFILE 2
-# define OUTFILE 3
-# define HEREDOC 4
-# define APP_OUTFILE 5
-# define ENV 7
-# define ENV_EMPTY 8
-# define ENV_NULL 9
-# define INPUT_STRUCT 10
-# define CMD_LINE 11
-# define CMD_TAB 12
-# define ENV_STRUCT 13
-# define CMD_LST 14
-# define GARBAGE 15
-# define COLLECTOR_LST 16
+# define INFILE 1
+# define OUTFILE 2
+# define HEREDOC 3
+# define APP_OUTFILE 4
+# define ENV 1
+# define ENV_EMPTY 0
+# define ENV_NULL -1
+# define INPUT_STRUCT 0
+# define CMD_LINE 1
+# define CMD_TAB 2
+# define ENV_STRUCT 3
+# define CMD_LST 4
+# define GARBAGE 5
+# define COLLECTOR_LST 6
 
 /* ************************************************************************** */
 /*                                                                            */

@@ -158,15 +158,20 @@ bash-3.2$ cat infile_1 > outfile_1 | rev  > outfile_2   < "Makefile" | cat outfi
 -------------------------------------------------------------------------------
 CHOSES A CHECKER :
 
-1) ft_calloc_strs dans minisplit a re-checker :
+1) Retravailler tout path_manager.c
+	- dans get_valid_path : check & squeeze le else if
+
+2) Refaire marcher les variables d'environnement
+
+3) ft_calloc_strs dans minisplit a re-checker :
 		if (ft_strchr("\"\'", s[i]) && quotes == 0)
 				quotes = 1;
 		else if ????
 
-2) checker skip_space et voir pour la mettre dans les utils
+4) checker skip_space et voir pour la mettre dans les utils
 
-3 ) Tous les endroits où on doit modifier la variable globale status :
+5) Tous les endroits où on doit modifier la variable globale status :
 ATTENTION ! NE PAS MODIFIER LA VARIABLE GLOBALE DANS ERR_RETURN MAIS REMONTER DANS LE CODE POUR REFLECHIR OU LE FAIRE
 
-4) On ne ferme jamais les fichiers !!!
+6) On ne ferme jamais les fichiers de redirections !!!
 

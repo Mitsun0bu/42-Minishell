@@ -6,7 +6,7 @@
 #    By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/25 15:43:51 by llethuil          #+#    #+#              #
-#    Updated: 2022/04/14 11:56:52 by llethuil         ###   ########lyon.fr    #
+#    Updated: 2022/04/14 13:03:01 by llethuil         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -63,75 +63,75 @@ INCS_LST	:=	header.h			\
 				shell_initializer.h	\
 				utils.h				\
 
-SRCS_LST	:=	built_ins/ft_cd.c								\
-				built_ins/ft_echo.c								\
-				built_ins/ft_env.c								\
-				built_ins/ft_exit.c								\
-				built_ins/ft_export.c							\
-				built_ins/ft_pwd.c								\
-				built_ins/ft_unset.c							\
-				cmd_line_manager/get_cmd_line.c					\
-				cmd_line_manager/cmd_line_manager.c				\
-				cmd_lst_manager/cmd_lst_init.c					\
-				cmd_lst_manager/cmd_lst_manager.c				\
-				cmd_lst_manager/utils_cmd_lst_manager.c			\
-				cmd_separator/cmd_separator.c					\
-				cmd_separator/check_pipe.c						\
-				cmd_separator/split_cmd.c						\
-				env_manager/env_manager.c						\
-				env_manager/env_converter.c						\
-				env_manager/utils_env_counter.c					\
-				env_manager/utils_env.c							\
-				error_manager/error_manager.c					\
-				executer/redir_manager.c						\
-				executer/exec_manager.c							\
-				executer/executer.c								\
-				executer/file_manager.c							\
-				executer/heredoc_manager.c						\
-				executer/path_manager.c							\
-				executer/pipe_manager.c							\
-				executer/pipex.c								\
-				executer/utils_executer.c						\
-				executer/utils_heredoc.c						\
-				gb_collector/add_gb.c					\
-				gb_collector/assign_gb_type.c			\
-				gb_collector/clear_gb.c				\
-				redir_collector/copy_name_in_redir_tab.c		\
-				redir_collector/get_last_redir_type_tab.c		\
-				redir_collector/redir_collector_utils_counter.c	\
-				redir_collector/redir_collector_utils_other.c	\
-				redir_collector/redir_collector_utils_quotes.c	\
-				redir_collector/redir_collector.c				\
-				redir_collector/redir_tab_memory_manager.c		\
-				main/main.c										\
-				parser/arg_length.c								\
-				parser/arg_number.c								\
-				parser/checker.c								\
-				parser/cleaner.c								\
-				parser/parser.c									\
-				parser/utils_parser.c							\
-				shell_initializer/shell_init.c					\
-				signal_manager/signal_handler.c					\
-				utils/clean_str.c								\
-				utils/ft_free.c									\
-				utils/get_history_path.c						\
-				utils/is_space.c								\
-				utils/skip_quotes.c								\
+SRCS_LST	:=	built_ins/ft_cd.c									\
+				built_ins/ft_echo.c									\
+				built_ins/ft_env.c									\
+				built_ins/ft_exit.c									\
+				built_ins/ft_export.c								\
+				built_ins/ft_pwd.c									\
+				built_ins/ft_unset.c								\
+				cmd_line_manager/get_cmd_line.c						\
+				cmd_line_manager/cmd_line_manager.c					\
+				cmd_lst_manager/cmd_lst_init.c						\
+				cmd_lst_manager/cmd_lst_manager.c					\
+				cmd_lst_manager/utils_cmd_lst_manager.c				\
+				cmd_separator/cmd_separator.c						\
+				cmd_separator/check_pipe.c							\
+				cmd_separator/split_cmd.c							\
+				env_variable_manager/env_variable_converter.c		\
+				env_variable_manager/env_variable_manager.c			\
+				env_variable_manager/utils_env_variable_counter.c	\
+				env_variable_manager/utils_env_variable.c			\
+				error_manager/error_manager.c						\
+				executer/redir_manager.c							\
+				executer/exec_manager.c								\
+				executer/executer.c									\
+				executer/file_manager.c								\
+				executer/heredoc_manager.c							\
+				executer/path_manager.c								\
+				executer/pipe_manager.c								\
+				executer/pipex.c									\
+				executer/utils_executer.c							\
+				executer/utils_heredoc.c							\
+				gb_collector/add_gb.c								\
+				gb_collector/assign_gb_type.c						\
+				gb_collector/clear_gb.c								\
+				redir_collector/copy_name_in_redir_tab.c			\
+				redir_collector/get_last_redir_type_tab.c			\
+				redir_collector/redir_collector_utils_counter.c		\
+				redir_collector/redir_collector_utils_other.c		\
+				redir_collector/redir_collector_utils_quotes.c		\
+				redir_collector/redir_collector.c					\
+				redir_collector/redir_tab_memory_manager.c			\
+				main/main.c											\
+				parser/arg_length.c									\
+				parser/arg_number.c									\
+				parser/checker.c									\
+				parser/cleaner.c									\
+				parser/parser.c										\
+				parser/utils_parser.c								\
+				shell_initializer/shell_init.c						\
+				signal_manager/signal_handler.c						\
+				utils/clean_str.c									\
+				utils/ft_free.c										\
+				utils/get_history_path.c							\
+				utils/is_space.c									\
+				utils/skip_quotes.c									\
 
-SUBDIRS_LST	:=	built_ins			\
-				cmd_line_manager	\
-				cmd_lst_manager		\
-				cmd_separator		\
-				env_manager			\
-				error_manager		\
-				executer			\
-				gb_collector	\
-				main				\
-				parser				\
-				redir_collector		\
-				shell_initializer	\
-				signal_manager		\
-				utils				\
+SUBDIRS_LST	:=	built_ins				\
+				cmd_line_manager		\
+				cmd_lst_manager			\
+				cmd_separator			\
+				env_variable_manager	\
+				error_manager			\
+				executer				\
+				gb_collector			\
+				main					\
+				parser					\
+				redir_collector			\
+				shell_initializer		\
+				signal_manager			\
+				utils					\
 
 OBJS_LST	:=	$(SRCS_LST:.c=.o)
 

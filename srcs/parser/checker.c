@@ -6,24 +6,25 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 13:18:59 by agirardi          #+#    #+#             */
-/*   Updated: 2022/04/11 15:37:48 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/14 13:53:40 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-int	check_basics(t_input *input)
+int	check_quotes_and_redir(t_input *input)
 {
 	int	i;
 
 	i = -1;
 	while (++i < input->n_cmd)
-		if (!check_quotes(input->cmd_tab[i]) || !check_redir(input->cmd_tab[i]))
+		if (find_unclosed_quotes(input->cmd_tab[i]) == YES
+			|| find_invalid_redir(input->cmd_tab[i]) == YES)
 			return (FAILED);
 	return (1);
 }
 
-int	check_quotes(char *str)
+int	find_unclosed_quotes(char *str)
 {
 	char	c;
 	int		i;
@@ -39,15 +40,15 @@ int	check_quotes(char *str)
 				i++;
 			if (!str[i])
 			{
-				printf("minishelled: syntax error unclosed quote\n");
-				return (0);
+				print_error(NULL, "syntax error", "unclosed quote");
+				return(YES);
 			}
 		}
 	}
-	return (1);
+	return (NO);
 }
 
-int	check_redir(char *str)
+int	find_invalid_redir(char *str)
 {
 	int	i;
 
@@ -57,29 +58,41 @@ int	check_redir(char *str)
 		if (ft_strchr("\"\'", str[i]))
 			skip_quotes(str, &i);
 		if (ft_strchr("<>", str[i]) && !str[i + 1])
-			return (print_red_error_message(str, i, 0));
+			invalid_redir(str, i, NEW_LINE);
 		if (ft_strchr("<>", str[i]))
 		{
 			if (ft_strchr("<>", str[i + 1]))
 				if (str[i + 1] != str[i] || ft_strchr("<>", str[i + 2]))
-					return (print_red_error_message(str, i, 1));
-			if (!check_next_arg(str, i))
-				return (0);
+					return (invalid_redir(str, i, REDIR));
+			if (check_next_arg(str, i) == FAILED)
+				return (YES);
 		}
 	}
-	return (1);
+	return (NO);
 }
 
-int	print_red_error_message(char *str, int i, int type)
+int	check_next_arg(char *str, int i)
 {
-	if (type == 0)
-		printf("minishelled: syntax error near unexpected token `newline'\n");
+	while (ft_strchr("<>", str[i]))
+		i++;
+	while (is_space(str[i]))
+		i++;
+	if (ft_strchr("<>", str[i]))
+		return (FAILED);
 	else
+		return (SUCCESS);
+}
+
+int	invalid_redir(char *str, int i, int type)
+{
+	if (type == NEW_LINE)
+		printf("minishelled: syntax error near unexpected token `newline'\n");
+	else if (type == REDIR)
 	{
 		if (str[i] == '>')
-			printf("bash: syntax error near unexpected token `<'\n");
+			printf("minishelled: syntax error near unexpected token `<'\n");
 		else
-			printf("bash: syntax error near unexpected token `>'\n");
+			printf("minishelled: syntax error near unexpected token `>'\n");
 	}
-	return (0);
+	return (YES);
 }

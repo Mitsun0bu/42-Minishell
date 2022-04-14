@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 10:41:38 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/14 11:39:28 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/14 14:21:23 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	exec_first_cmd(t_input *input, t_cmd_lst *cmd)
 	if (is_built_in(cmd->name) == YES)
 		exit(exec_built_in(input, cmd));
 	else if (!input->paths_tab)
-		exit(err_return(1, NULL, cmd->name, "No such file or directory"));
+		exit(1);
 	else if (cmd->name && cmd->valid_path)
 		execve(cmd->valid_path, cmd->args, convert_env_tab(input));
 	else
@@ -50,7 +50,7 @@ void	exec_mid_cmd(t_input *input, t_cmd_lst *cmd)
 	if (is_built_in(cmd->name) == YES)
 		exit(exec_built_in(input, cmd));
 	else if (!input->paths_tab)
-		exit(err_return(1, NULL, cmd->name, "No such file or directory"));
+		exit(1);
 	else if (cmd->name && cmd->valid_path)
 		execve(cmd->valid_path, cmd->args, convert_env_tab(input));
 	else
@@ -72,7 +72,7 @@ void	exec_last_cmd(t_input *input, t_cmd_lst *cmd)
 	if (is_built_in(cmd->name) == YES)
 		exit(exec_built_in(input, cmd));
 	else if (!input->paths_tab)
-		exit(err_return(1, NULL, cmd->name, "No such file or directory"));
+		exit(1);
 	else if (cmd->name && cmd->valid_path)
 		execve(cmd->valid_path, cmd->args, convert_env_tab(input));
 	else

@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 13:21:26 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/13 11:12:53 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/14 12:47:48 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,8 @@ void	init_env(t_input *input, char **envp)
 		if (ft_strncmp(envp[i], "OLDPWD=", 7) != 0)
 		{
 			++j;
-			input->env_tab[j].key = find_key(input, envp[i]);
-			input->env_tab[j].value = find_value(input, envp[i]);
+			input->env_tab[j].key = get_key_from_env_tab(input, envp[i]);
+			input->env_tab[j].value = get_value_from_env_tab(input, envp[i]);
 			input->env_tab[j].type = ENV;
 		}
 	}
@@ -74,12 +74,12 @@ void	init_shlvl(t_input *input)
 	char	*value;
 
 	value = NULL;
-	if (!get_value(input, "SHLVL"))
+	if (!get_value_from_key(input, "SHLVL"))
 	{
 		add_to_env(input, "SHLVL=1", ENV);
 		return ;
 	}
-	input->start_shlvl = ft_atoi(get_value(input, "SHLVL"));
+	input->start_shlvl = ft_atoi(get_value_from_key(input, "SHLVL"));
 	input->start_shlvl ++;
 	value = ft_itoa(input, input->start_shlvl);
 	change_value(input, "SHLVL", value);

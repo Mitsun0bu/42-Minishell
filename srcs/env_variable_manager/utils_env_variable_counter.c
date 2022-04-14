@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 10:58:45 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/12 15:45:41 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/14 12:55:39 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,9 @@ int	count_env(t_input *input, char *str, int *i, int red)
 	j = -1;
 	while (!ft_strchr("$<>\'\"", str[++ *i]) && !is_space(str[*i]) && str[*i])
 		key[++j] = str[*i];
-	count = ft_strlen(get_value(input, key));
+	printf("key = %s\n", key);
+	count = ft_strlen(get_value_from_key(input, key));
+	printf("count = %d\n", count);
 	if (red == 0)
 		return (count);
 	return (0);

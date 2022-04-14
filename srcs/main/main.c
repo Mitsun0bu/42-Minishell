@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 17:07:38 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/13 11:12:53 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/14 13:52:55 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,10 @@ int	main(int ac, char **av, char **envp)
 
 	cmd = NULL;
 	if (ac > 1 || av[1])
-		return (err_return(127, "minishelled", av[1], "invalid option"));
+	{
+		print_error("minishelled", av[1], "invalid option");
+		return (127);
+	}
 	signal(SIGINT, signal_handler_parent);
 	signal(SIGQUIT, signal_handler_parent);
 	shell_init(envp, &input);

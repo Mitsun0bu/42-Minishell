@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 12:14:03 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/14 10:56:33 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/14 13:48:46 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,10 @@ int	open_infiles(t_input *input, t_cmd_lst *cmd)
 	{
 		cmd->fd_infile[i] = open(cmd->infile[i], O_RDONLY);
 		if (cmd->fd_infile[i] < 0)
-			return (err_return(FAILED, cmd->name,
-					cmd->infile[i], "No such file or directory"));
+		{
+			print_error(cmd->name, cmd->infile[i], "No such file or directory");
+			return (FAILED);
+		}
 	}
 	return (SUCCESS);
 }
@@ -65,8 +67,10 @@ int	open_outfiles(t_input *input, t_cmd_lst *cmd)
 		cmd->fd_outfile[i] = open(cmd->outfile[i],
 				O_CREAT | O_RDWR | O_TRUNC, 0644);
 		if (cmd->fd_outfile[i] < 0)
-			return (err_return(FAILED, cmd->name,
-					cmd->infile[i], "No such file or directory"));
+		{
+			print_error(cmd->name, cmd->infile[i], "No such file or directory");
+			return (FAILED);
+		}
 	}
 	return (SUCCESS);
 }
@@ -83,8 +87,10 @@ int	open_app_outfiles(t_input *input, t_cmd_lst *cmd)
 		cmd->fd_app_outfile[i] = open(cmd->app_outfile[i],
 				O_CREAT | O_RDWR | O_APPEND, 0644);
 		if (cmd->fd_app_outfile[i] < 0)
-			return (err_return(FAILED, cmd->name,
-					cmd->infile[i], "No such file or directory"));
+		{
+			print_error(cmd->name, cmd->infile[i], "No such file or directory");
+			return (FAILED);
+		}
 	}
 	return (SUCCESS);
 }

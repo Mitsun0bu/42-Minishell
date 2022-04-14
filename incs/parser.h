@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 10:09:31 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/12 17:49:26 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/14 13:31:50 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,10 @@ int		get_arg_num(char *str);
 int		create_arg_tab(t_input *input, int i);
 
 /* parser/checker.c */
-int		check_basics(t_input *input);
-int		check_quotes(char *str);
-int		check_redir(char *str);
-int		print_red_error_message(char *str, int i, int type);
+int		check_quotes_and_redir(t_input *input);
+int		find_unclosed_quotes(char *str);
+int		find_invalid_redir(char *str);
+int		invalid_redir(char *str, int i, int type);
 int		check_pipe(t_input *input);
 
 /* parser/cleaner.c */

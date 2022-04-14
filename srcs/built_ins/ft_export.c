@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 15:10:44 by agirardi          #+#    #+#             */
-/*   Updated: 2022/04/14 11:44:42 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/14 13:45:23 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int	parse_var(t_input *input, char *str)
 			equal_sign = YES;
 	if (equal_sign == NO)
 	{
-		if (find_same_env_variable(input, str) == YES)
+		if (find_value(input, str) == YES)
 			return (0);
 		return (parse_key(input, str, ENV_NULL));
 	}
@@ -62,16 +62,21 @@ int	parse_key(t_input *input, char	*str, int type)
 	int		i;
 
 	i = -1;
-	key = find_key(input, str);
+	key = get_key_from_env_tab(input, str);
 	input->gb->type = GARBAGE;
 	while (key[++i])
+	{
 		if ((!ft_isalnum(key[i]) && key[i] != '_') || ft_isdigit(key[0]))
-			return(err_return(0, "minishelled: export", key, "not a valid identifier"));
+		{
+			print_error("minishelled: export", key, "not a valid identifier");
+			return (0);
+		}
+	}
 	if (type == ENV_NULL)
 		return (ENV_NULL);
-	if (find_same_env_variable(input, key) == YES)
+	if (find_value(input, key) == YES)
 	{
-		change_value(input, key, find_value(input, str));
+		change_value(input, key, get_value_from_env_tab(input, str));
 		return (0);
 	}
 	if (!str[i + 1])
