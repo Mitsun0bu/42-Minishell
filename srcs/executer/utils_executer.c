@@ -6,34 +6,32 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 17:32:59 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/13 19:10:37 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/14 10:59:15 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-int	find_built_in(char *name)
+int	is_built_in(char *name)
 {
 	if (!name)
 		return (0);
 	else if (!ft_strncmp(name, "cd", 2) && !name[2])
-		return (BUILT_IN);
+		return (YES);
 	else if (!ft_strncmp(name, "echo", 4) && !name[4])
-		return (BUILT_IN);
+		return (YES);
 	else if (!ft_strncmp(name, "pwd", 3) && !name[3])
-		return (BUILT_IN);
+		return (YES);
 	else if (!ft_strncmp(name, "env", 3) && !name[3])
-		return (BUILT_IN);
+		return (YES);
 	else if (!ft_strncmp(name, "exit", 4) && !name[4])
-		return (BUILT_IN);
+		return (YES);
 	else if (!ft_strncmp(name, "export", 6) && !name[6])
-		return (BUILT_IN);
+		return (YES);
 	else if (!ft_strncmp(name, "unset", 5) && !name[5])
-		return (BUILT_IN);
-	else if (!ft_strncmp(name, "./", 2))
-		return (PROGRAM);
+		return (YES);
 	else
-		return (0);
+		return (NO);
 }
 
 void	check_fork_error(pid_t	process)

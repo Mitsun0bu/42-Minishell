@@ -135,6 +135,25 @@ OK
 
 16) PIPES
 
+a) Problemes de quotes autour d'un nom de fichier
+
+exemple 1 :
+bash-3.2$ cat infile_1 > outfile_1 | rev  > outfile_2   < 'outfile_1' | cat outfile_2
+(rien n'est cat, , mais les commandes ont fonctionnée dans les fichiers
+
+minishelled > cat infile_1 > outfile_1 | rev  > outfile_2   < 'outfile_1' | cat outfile_2
+rev: 'outfile_1': No such file or directory
+
+exemple 2 :
+bash-3.2$ cat infile_1 > outfile_1 | rev  > outfile_2   < "outfile_1" | cat outfile_2
+(rien n'est cat, , mais les commandes ont fonctionnée dans les fichiers)
+
+minishelled > cat infile_1 > outfile_1 | rev  > outfile_2   < "outfile_1" | cat outfile_2
+rev: "outfile_1": No such file or directory
+
+exemple 3 et 4 :
+bash-3.2$ cat infile_1 > outfile_1 | rev  > outfile_2   < 'Makefile' | cat outfile_2
+bash-3.2$ cat infile_1 > outfile_1 | rev  > outfile_2   < "Makefile" | cat outfile_2
 
 -------------------------------------------------------------------------------
 CHOSES A CHECKER :
@@ -146,6 +165,8 @@ CHOSES A CHECKER :
 
 2) checker skip_space et voir pour la mettre dans les utils
 
-3 ) tous les endroits où on doit modifier la variable globale status
+3 ) Tous les endroits où on doit modifier la variable globale status :
+ATTENTION ! NE PAS MODIFIER LA VARIABLE GLOBALE DANS ERR_RETURN MAIS REMONTER DANS LE CODE POUR REFLECHIR OU LE FAIRE
 
 4) On ne ferme jamais les fichiers !!!
+

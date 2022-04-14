@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 18:48:00 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/12 15:39:44 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/14 11:05:15 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,16 +37,16 @@ void	get_last_types(t_input *input, char *cmd, int i_cmd, int *i_start)
 	if (!input->last_infile_type[i_cmd])
 	{
 		if (cmd[*i_start] == '<' && cmd[*i_start - 1] != '<')
-			input->last_infile_type[i_cmd] = INPUT;
+			input->last_infile_type[i_cmd] = INFILE;
 		else if (cmd[*i_start] == '<' && cmd[*i_start - 1] == '<')
 			input->last_infile_type[i_cmd] = HEREDOC;
 	}
 	if (!input->last_outfile_type[i_cmd])
 	{
 		if (cmd[*i_start] == '>' && cmd[*i_start - 1] != '>')
-			input->last_outfile_type[i_cmd] = TRUNC_OUTPUT;
+			input->last_outfile_type[i_cmd] = OUTFILE;
 		else if (cmd[*i_start] == '>' && cmd[*i_start - 1] == '>')
-			input->last_outfile_type[i_cmd] = APP_OUTPUT;
+			input->last_outfile_type[i_cmd] = APP_OUTFILE;
 	}
 }
 

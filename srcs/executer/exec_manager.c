@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 10:41:38 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/13 19:00:41 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/14 11:39:28 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	exec_first_cmd(t_input *input, t_cmd_lst *cmd)
 		if (cmd->next != NULL)
 			dup2(cmd->cmd_pipe[1], STDOUT_FILENO);
 	close_all_pipes(cmd);
-	if (find_built_in(cmd->name) == BUILT_IN)
+	if (is_built_in(cmd->name) == YES)
 		exit(exec_built_in(input, cmd));
 	else if (!input->paths_tab)
 		exit(err_return(1, NULL, cmd->name, "No such file or directory"));
@@ -47,7 +47,7 @@ void	exec_mid_cmd(t_input *input, t_cmd_lst *cmd)
 	if (!handle_outfile(input, cmd) && cmd->valid_path)
 		dup2(cmd->cmd_pipe[1], STDOUT_FILENO);
 	close_all_pipes(cmd);
-	if (find_built_in(cmd->name) == BUILT_IN)
+	if (is_built_in(cmd->name) == YES)
 		exit(exec_built_in(input, cmd));
 	else if (!input->paths_tab)
 		exit(err_return(1, NULL, cmd->name, "No such file or directory"));
@@ -69,7 +69,7 @@ void	exec_last_cmd(t_input *input, t_cmd_lst *cmd)
 		dup2(cmd->previous->cmd_pipe[0], STDIN_FILENO);
 	handle_outfile(input, cmd);
 	close_all_pipes(cmd);
-	if (find_built_in(cmd->name) == BUILT_IN)
+	if (is_built_in(cmd->name) == YES)
 		exit(exec_built_in(input, cmd));
 	else if (!input->paths_tab)
 		exit(err_return(1, NULL, cmd->name, "No such file or directory"));
@@ -97,7 +97,7 @@ int	exec_built_in(t_input *input, t_cmd_lst *cmd)
 	else if (!ft_strncmp(cmd->name, "export", 6) && !cmd->name[6])
 		status = ft_export(input, cmd);
 	else if (!ft_strncmp(cmd->name, "unset", 5) && !cmd->name[5])
-		status = ft_unset(input);
+		status = ft_unset(input, cmd);
 	return (status);
 }
 

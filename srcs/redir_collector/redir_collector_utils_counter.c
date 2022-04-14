@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 14:16:10 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/07 16:21:09 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/14 11:05:15 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,16 +23,16 @@ int	count_n_file(char *cmd, int type)
 	{
 		if (cmd[i] == '\'' || cmd[i] == '"')
 			skip_quotes(cmd, &i);
-		if (type == 0)
+		if (type == INFILE)
 			if (cmd[i] == '<' && cmd[i + 1] != '<' && cmd[i - 1] != '<')
 				n_red ++;
-		if (type == 1)
+		if (type == OUTFILE)
 			if (cmd[i] == '>' && cmd[i + 1] != '>' && cmd[i - 1] != '>')
 				n_red ++;
-		if (type == 2)
+		if (type == HEREDOC)
 			if (cmd[i] == '<' && cmd[i + 1] == '<')
 					n_red ++;
-		if (type == 3)
+		if (type == APP_OUTFILE)
 			if (cmd[i] == '>' && cmd[i + 1] == '>')
 					n_red ++;
 	}

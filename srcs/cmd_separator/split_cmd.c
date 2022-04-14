@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/06 18:37:12 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/13 11:12:53 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/14 10:40:02 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	split_cmd(t_input *input)
 	int	i;
 
 	i = -1;
-	if (final_letter_is_pipe(input->cmd_line) == TRUE)
+	if (final_letter_is_pipe(input->cmd_line) == YES)
 		if (fill_cmd(input) != 0)
 			return (FAILED);
 	input->cmd_tab = ft_mini_split(input, input->cmd_line, '|');
@@ -37,12 +37,12 @@ int	final_letter_is_pipe(char *str)
 	int		i_end;
 
 	i_end = ft_strlen(str);
-	while (is_space(str[i_end - 1]) == 1)
+	while (is_space(str[i_end - 1]) == YES)
 		i_end --;
 	if (str[i_end - 1] == '|')
-		return (TRUE);
+		return (YES);
 	else
-		return (FALSE);
+		return (NO);
 }
 
 int	fill_cmd(t_input *input)
@@ -56,7 +56,7 @@ int	fill_cmd(t_input *input)
 		return (FAILED);
 	final_pipe_process = fork();
 	check_fork_error(final_pipe_process);
-	if (final_pipe_process == 0)
+	if (final_pipe_process == CHILD)
 		input->status = fill_cmd_child(input, filled_cmd, final_pipe_fd);
 	signal(SIGINT, SIG_IGN);
 	close(final_pipe_fd[1]);
@@ -85,7 +85,7 @@ int	fill_cmd_child(t_input *input, char *filled_cmd, int *final_pipe_fd)
 	}
 	filled_cmd = ft_strjoin(input, input->cmd_line, line);
 	input->gb->type = GARBAGE;
-	if (final_letter_is_pipe(line) == 1)
+	if (final_letter_is_pipe(line) == YES)
 	{
 		ft_free((void *)&line);
 		fill_cmd_child(input, filled_cmd, final_pipe_fd);

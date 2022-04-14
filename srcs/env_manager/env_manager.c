@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 10:22:00 by agirardi          #+#    #+#             */
-/*   Updated: 2022/04/12 15:39:44 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/14 12:07:37 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	add_to_env(t_input *input, char *str, int type)
 	input->env_tab = new_env_tab;
 }
 
-void	remove_from_env(t_input *input, char *key)
+void	remove_from_env(t_input *input, char *key_to_remove)
 {
 	t_env	*new_env_tab;
 	int		i;
@@ -46,7 +46,7 @@ void	remove_from_env(t_input *input, char *key)
 	j = 0;
 	while (++i < input->n_env + 1)
 	{
-		if (!search_key(input->env_tab[i].key, key))
+		if (test_key(input->env_tab[i].key, key_to_remove) == FAILED)
 		{
 			new_env_tab[j].key = input->env_tab[i].key;
 			new_env_tab[j].value = input->env_tab[i].value;

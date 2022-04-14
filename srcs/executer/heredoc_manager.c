@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 16:38:12 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/13 19:13:55 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/14 10:27:38 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	get_heredoc_str(t_input *input, t_cmd_lst *cmd)
 		return (FAILED);
 	cmd->heredoc_process = fork();
 	check_fork_error(cmd->heredoc_process);
-	if (cmd->heredoc_process == 0)
+	if (cmd->heredoc_process == CHILD)
 		status = get_heredoc_child(input, cmd, heredoc_str);
 	waitpid(cmd->heredoc_process, &status, 0);
 	return (status);

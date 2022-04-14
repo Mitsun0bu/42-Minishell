@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 14:58:04 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/13 12:51:24 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/14 10:59:15 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	path_manager(t_input *input, t_cmd_lst *cmd)
 	{
 		if (cmd->name)
 		{
-			if (find_built_in(cmd->name) == BUILT_IN)
+			if (is_built_in(cmd->name) == YES)
 			{
 				cmd->valid_path = ft_strdup(input, "built-in");
 				input->gb->type = CMD_LST;
@@ -78,7 +78,7 @@ char	*assign_path(t_input *input, t_cmd_lst *cmd, char *arg)
 	i = -1;
 	while (input->paths_tab[++i])
 	{
-		if (access(arg, F_OK) == 0)
+		if (access(arg, F_OK) == SUCCESS)
 		{
 			if (opendir(arg) != NULL)
 				return (err_return_char(NULL, NULL, arg, "is a directory"));
@@ -86,7 +86,7 @@ char	*assign_path(t_input *input, t_cmd_lst *cmd, char *arg)
 			return (path);
 		}
 		path = ft_strjoin(input, input->paths_tab[i], cmd->name);
-		if (access(path, F_OK) == 0)
+		if (access(path, F_OK) == SUCCESS)
 			return (path);
 		input->gb->type = GARBAGE;
 	}

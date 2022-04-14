@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 12:09:40 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/12 17:49:14 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/14 10:59:15 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int		dup_redir_output(t_cmd_lst *cmd);
 int		dup_redir_app_output(t_cmd_lst *cmd);
 
 /* executer/utils_executer.c */
-int		find_built_in(char *name);
+int		is_built_in(char *name);
 void	check_fork_error(pid_t	process);
 int		wait_all_processes(t_input *input);
 char	**convert_env_tab(t_input *input);

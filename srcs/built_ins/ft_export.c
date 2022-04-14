@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 15:10:44 by agirardi          #+#    #+#             */
-/*   Updated: 2022/04/13 11:12:53 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/14 11:44:42 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,15 @@ int	ft_export(t_input *input, t_cmd_lst *cmd)
 	if (input->n_cmd > 1 && cmd->n_args > 1)
 		return (0);
 	i = 0;
-	while (input->cmd_exec_tab[cmd->i][++i])
+	while (cmd->args[++i])
 	{
-		var = del_quotes(input, input->cmd_exec_tab[cmd->i][i]);
+		var = cmd->args[i];
 		res = parse_var(input, var);
-		if (res == 1)
+		if (res == ENV)
 			add_to_env(input, var, ENV);
-		else if (res == 2)
+		else if (res == ENV_NULL)
 			add_to_env(input, var, ENV_NULL);
-		else if (res == 3)
+		else if (res == ENV_EMPTY)
 			add_to_env(input, var, ENV_EMPTY);
 	}
 	if (i == 1)
@@ -39,21 +39,21 @@ int	ft_export(t_input *input, t_cmd_lst *cmd)
 
 int	parse_var(t_input *input, char *str)
 {
-	int	equal;
+	int	equal_sign;
 	int	i;
 
-	equal = 0;
+	equal_sign = NO;
 	i = -1;
 	while (str[++i])
 		if (str[i] == '=')
-			equal = 1;
-	if (equal == 0)
+			equal_sign = YES;
+	if (equal_sign == NO)
 	{
-		if (check_dubble(input, str))
+		if (find_same_env_variable(input, str) == YES)
 			return (0);
-		return (parse_key(input, str, 2));
+		return (parse_key(input, str, ENV_NULL));
 	}
-	return (parse_key(input, str, 1));
+	return (parse_key(input, str, ENV));
 }
 
 int	parse_key(t_input *input, char	*str, int type)
@@ -67,41 +67,16 @@ int	parse_key(t_input *input, char	*str, int type)
 	while (key[++i])
 		if ((!ft_isalnum(key[i]) && key[i] != '_') || ft_isdigit(key[0]))
 			return(err_return(0, "minishelled: export", key, "not a valid identifier"));
-	if (type == 2)
-		return (2);
-	if (check_dubble(input, key))
+	if (type == ENV_NULL)
+		return (ENV_NULL);
+	if (find_same_env_variable(input, key) == YES)
 	{
 		change_value(input, key, find_value(input, str));
 		return (0);
 	}
 	if (!str[i + 1])
-		return (3);
-	return (1);
-}
-
-char	*del_quotes(t_input *input, char *str)
-{
-	char	*var;
-	int		count;
-	int		i;
-	int		j;
-
-	count = 0;
-	i = -1;
-	while (str[++i])
-		if (!ft_strchr("\'\"", str[i]))
-			count++;
-	var = ft_calloc(input, sizeof(char), count + 1);
-	input->gb->type = GARBAGE;
-	i = 0;
-	j = 0;
-	while (j < count && str[i])
-	{
-		if (!ft_strchr("\'\"", str[i]))
-			var[j++] = str[i];
-		i++;
-	}
-	return (var);
+		return (ENV_EMPTY);
+	return (ENV);
 }
 
 void	print_export(t_input *input)

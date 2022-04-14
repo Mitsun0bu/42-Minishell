@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 10:21:58 by agirardi          #+#    #+#             */
-/*   Updated: 2022/04/12 17:48:44 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/14 11:54:53 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ char	*find_value(t_input *input, char *str);
 
 /* env_manager/utils_env.c */
 char	*get_value(t_input *input, char *key);
-int		search_key(const char *str, const char *key);
-int		check_dubble(t_input *input, char *str);
+int		test_key(const char *str, const char *key_to_remove);
+int		find_same_env_variable(t_input *input, char *str);
 
 #endif

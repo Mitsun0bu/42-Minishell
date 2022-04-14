@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 10:55:57 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/12 18:14:05 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/14 10:40:02 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,15 +39,15 @@ char	*join_message(t_input *input, t_cmd_lst *cmd)
 	char	*message;
 
 	i = 0;
-	option = 0;
+	option = NO;
 	message = NULL;
 	if (!ft_strncmp(cmd->args[1], "-n", 2) && ft_strlen(cmd->args[1]) == 2)
-		option ++;
+		option = YES;
 	if (!ft_strncmp(cmd->args[1], "-n", 2) && ft_strlen(cmd->args[1]) == 2)
 		i++;
 	while (++i < cmd->n_args)
 	{
-		if (i == 1 || (i == 2 && option == 1))
+		if (i == 1 || (i == 2 && option == YES))
 			message = ft_strdup(input, cmd->args[i]);
 		else
 			message = ft_strjoin(input, message, cmd->args[i]);

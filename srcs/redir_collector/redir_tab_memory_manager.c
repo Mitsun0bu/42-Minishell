@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 15:14:37 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/12 18:12:15 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/14 11:05:15 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,13 +47,13 @@ void	malloc_name_for_each_file(t_input *input, int i_c, int t, int i_f)
 	int	len;
 
 	len = 0;
-	if (t == 0)
+	if (t == INFILE)
 		len = count_infile_name_len(input->cmd_tab[i_c], i_f);
-	else if (t == 1)
+	else if (t == OUTFILE)
 		len = count_output_name_len(input->cmd_tab[i_c], i_f);
-	else if (t == 2)
+	else if (t == HEREDOC)
 		len = count_delimiter_len(input->cmd_tab[i_c], i_f);
-	else if (t == 3)
+	else if (t == APP_OUTFILE)
 		len = count_app_output_name_len(input->cmd_tab[i_c], i_f);
 	input->redir_tab[i_c][t][i_f] = ft_malloc(input, sizeof(char), len + 1);
 	input->redir_tab[i_c][t][i_f][len] = '\0';

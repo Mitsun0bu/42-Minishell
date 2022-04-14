@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/06 18:36:34 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/12 18:14:59 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/14 10:25:31 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	check_pipe(t_input *input)
 	int		i;
 	int		quote_state;
 
-	quote_state = 0;
+	quote_state = OUT;
 	i = -1;
 	while (++i < (int)ft_strlen(input->cmd_line))
 	{
@@ -27,7 +27,7 @@ int	check_pipe(t_input *input)
 			return (FAILED);
 		if (ft_strchr("\"\'", input->cmd_line[i]))
 			change_quote_state(&quote_state);
-		if (input->cmd_line[i] == '|' && quote_state == 0)
+		if (input->cmd_line[i] == '|' && quote_state == OUT)
 		{
 			i ++;
 			while (is_space(input->cmd_line[i]) && input->cmd_line[i + 1])
@@ -41,9 +41,9 @@ int	check_pipe(t_input *input)
 
 void	change_quote_state(int	*quote_state)
 {
-	if (*quote_state == 0)
-		*quote_state = 1;
-	else if (*quote_state == 1)
-		*quote_state = 0;
+	if (*quote_state == OUT)
+		*quote_state = IN;
+	else if (*quote_state == IN)
+		*quote_state = OUT;
 	return ;
 }

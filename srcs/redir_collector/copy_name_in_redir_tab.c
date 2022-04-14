@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 13:52:08 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/12 18:09:16 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/14 11:05:15 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,13 @@ void	copy_name_for_each_file(t_input *input, int i_c, int type, int i_f)
 	c = i_c;
 	t = type;
 	f = i_f;
-	if (t == 0)
+	if (t == INFILE)
 		copy_infile(input->redir_tab[c][t][f], input->cmd_tab[c], f);
-	if (t == 1)
+	if (t == OUTFILE)
 		copy_outfile(input->redir_tab[c][t][f], input->cmd_tab[c], f);
-	if (t == 2)
+	if (t == HEREDOC)
 		copy_delimiter(input->redir_tab[c][t][f], input->cmd_tab[c], f);
-	if (t == 3)
+	if (t == APP_OUTFILE)
 		copy_app_outfile(input->redir_tab[c][t][f], input->cmd_tab[c], f);
 }
 

@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 11:12:39 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/06 19:11:06 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/14 11:03:44 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,6 @@ void	skip_space(char *cmd, int *i)
 	(*i)++;
 	if (cmd[*i] == '<' || cmd[*i] == '>')
 		(*i)++;
-	while (is_space(cmd[*i]) == 1)
+	while (is_space(cmd[*i]) == YES)
 		(*i)++;
 }

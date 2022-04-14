@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 11:56:09 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/13 11:25:39 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/14 11:44:54 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,11 +49,10 @@ int		ft_pwd(void);
 int		ft_export(t_input *input, t_cmd_lst *cmd);
 int		parse_var(t_input *input, char *str);
 int		parse_key(t_input *input, char	*str, int type);
-char	*del_quotes(t_input *input, char *str);
 void	print_export(t_input *input);
 
 /*built_ins/ft_unset.c */
-int		ft_unset(t_input *input);
+int		ft_unset(t_input *input, t_cmd_lst *cmd);
 int		parse_arg(char *str);
 
 #endif

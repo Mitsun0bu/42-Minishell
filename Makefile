@@ -6,7 +6,7 @@
 #    By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/25 15:43:51 by llethuil          #+#    #+#              #
-#    Updated: 2022/04/12 17:43:20 by llethuil         ###   ########lyon.fr    #
+#    Updated: 2022/04/14 11:56:52 by llethuil         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -81,7 +81,6 @@ SRCS_LST	:=	built_ins/ft_cd.c								\
 				env_manager/env_manager.c						\
 				env_manager/env_converter.c						\
 				env_manager/utils_env_counter.c					\
-				env_manager/utils_env_finder.c					\
 				env_manager/utils_env.c							\
 				error_manager/error_manager.c					\
 				executer/redir_manager.c						\

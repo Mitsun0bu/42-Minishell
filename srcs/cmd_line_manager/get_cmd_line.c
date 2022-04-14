@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 16:38:19 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/13 11:12:53 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/14 10:03:31 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	get_cmd_line(t_input *input)
 	buff = NULL;
 	while (1)
 	{
-		buff = readline("minishelled > ");
+		buff = readline("minishelled-1.0$ ");
 		if (!buff)
 			err_exit(input, 0, NULL, "exit");
 		if (ft_strlen(buff))

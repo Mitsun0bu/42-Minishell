@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 17:31:40 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/13 19:01:10 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/14 10:29:20 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,11 @@ int	pipex(t_input *input, t_cmd_lst *cmd)
 	{
 		input->process[i] = fork();
 		check_fork_error(input->process[i]);
-		if (i == 0 && input->process[i] == 0)
+		if (i == 0 && input->process[i] == CHILD)
 			exec_first_cmd(input, cmd);
-		else if (i != 0 && i != input->n_cmd - 1 && input->process[i] == 0)
+		else if (i != 0 && i != input->n_cmd - 1 && input->process[i] == CHILD)
 			exec_mid_cmd(input, cmd);
-		else if (i == input->n_cmd - 1 && input->process[i] == 0)
+		else if (i == input->n_cmd - 1 && input->process[i] == CHILD)
 			exec_last_cmd(input, cmd);
 		cmd = cmd->next;
 	}
