@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 14:51:13 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/14 10:59:15 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/15 14:08:30 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	executer(t_input *input, t_cmd_lst *cmd)
 {
-	path_manager(input, cmd);
 	if (handle_heredocs(input, cmd) == FAILED)
 		return ;
 	if (open_files(input, cmd) == FAILED)

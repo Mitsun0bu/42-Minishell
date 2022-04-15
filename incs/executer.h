@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 12:09:40 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/14 14:23:04 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/15 17:11:56 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ void	exec_first_cmd(t_input *input, t_cmd_lst *cmd);
 void	exec_mid_cmd(t_input *input, t_cmd_lst *cmd);
 void	exec_last_cmd(t_input *input, t_cmd_lst *cmd);
 int		exec_built_in(t_input *input, t_cmd_lst *cmd);
-int		exec_program(t_input *input, t_cmd_lst *cmd);
 
 /* executer/executer.c */
 void	executer(t_input *input, t_cmd_lst *cmd);
@@ -51,8 +50,9 @@ int		get_heredoc_child(t_input *input, t_cmd_lst *cmd, char *heredoc_str);
 
 /* executer/path_manager.c */
 int		path_manager(t_input *input, t_cmd_lst *cmd);
-int		get_paths_tab(t_input *input);
-char	*assign_path(t_input *input, t_cmd_lst *cmd, char *arg);
+int		cmd_name_is_a_valid_relative_path(t_cmd_lst *cmd);
+int		get_paths_tab_from_env_path(t_input *input);
+char	*assign_path_to_cmd(t_input *input, char *cmd_name);
 
 /* executer/pipe_manager.c */
 int		open_all_pipes(t_cmd_lst *cmd);
@@ -63,14 +63,12 @@ void	close_single_pipe(int *fd_tab);
 /* executer/pipex.c */
 int		pipex(t_input *input, t_cmd_lst *cmd);
 
-/*executer/infile_manager.c */
+/*executer/redir_manager.c */
+int		set_stdin(t_input *input, t_cmd_lst *cmd);
+int		set_stdout(t_input *input, t_cmd_lst *cmd);
 int		handle_infile(t_input *input, t_cmd_lst *cmd);
-int		dup_redir_input(t_cmd_lst *cmd);
-
-/*executer/outfile_manager.c */
 int		handle_outfile(t_input *input, t_cmd_lst *cmd);
-int		dup_redir_output(t_cmd_lst *cmd);
-int		dup_redir_app_output(t_cmd_lst *cmd);
+int		dup_loop(int n_file, int *fd_file, int where);
 
 /* executer/utils_executer.c */
 int		is_built_in(char *name);

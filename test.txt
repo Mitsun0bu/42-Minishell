@@ -158,10 +158,7 @@ bash-3.2$ cat infile_1 > outfile_1 | rev  > outfile_2   < "Makefile" | cat outfi
 -------------------------------------------------------------------------------
 CHOSES A CHECKER :
 
-1) Retravailler tout path_manager.c
-	- dans get_valid_path : check & squeeze le else if
-
-2) Refaire marcher les variables d'environnement
+1) Refaire marcher les variables d'environnement
 
 3) ft_calloc_strs dans minisplit a re-checker :
 		if (ft_strchr("\"\'", s[i]) && quotes == 0)
@@ -174,4 +171,6 @@ CHOSES A CHECKER :
 ATTENTION ! NE PAS MODIFIER LA VARIABLE GLOBALE DANS ERR_RETURN MAIS REMONTER DANS LE CODE POUR REFLECHIR OU LE FAIRE
 
 6) On ne ferme jamais les fichiers de redirections !!!
+
+7) Que faire dans executer si handle_heredocs ou open_all_pipes FAILED (ce serait uniquement du a des problemes d'ouverture de pipe)
 

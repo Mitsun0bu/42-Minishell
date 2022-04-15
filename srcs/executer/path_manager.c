@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 14:58:04 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/14 14:27:10 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/15 14:19:13 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,59 +14,48 @@
 
 int	path_manager(t_input *input, t_cmd_lst *cmd)
 {
-	t_cmd_lst	*start;
-
-	start = cmd;
-	while (cmd)
+	if (get_paths_tab_from_env_path(input) == FAILED)
 	{
-		if (cmd->name)
-		{
-			if (get_valid_path(input, cmd) == FAILED)
-			{
-				print_error(cmd->name, NULL, "No such file or directory");
-				return (FAILED);
-			}
-		}
-		else
-			cmd->valid_path = NULL;
-		cmd = cmd->next;
+		print_error(cmd->name, NULL, "No such file or directory");
+		input->status = 127;
+		return (FAILED);
 	}
-	cmd = start;
+	if (ft_strchr(cmd->name, '/') != NULL)
+	{
+		if (cmd_name_is_a_valid_relative_path(cmd) == YES)
+			return (SUCCESS);
+		else
+		{
+			input->status = 127;
+			return (FAILED);
+		}
+	}
+	cmd->valid_path = assign_path_to_cmd(input, cmd->name);
+	input->gb->type = CMD_LST;
+	if (!cmd->valid_path)
+	{
+		print_error("minishelled", cmd->name, "command not found");
+		input->status = 127;
+		return (FAILED);
+	}
 	return (SUCCESS);
 }
 
-int	get_valid_path(t_input *input, t_cmd_lst *cmd)
+int	cmd_name_is_a_valid_relative_path(t_cmd_lst *cmd)
 {
-	if (is_built_in(cmd->name) == YES)
+	if (access(cmd->name, F_OK) == SUCCESS && opendir(cmd->name) == NULL)
 	{
-		cmd->valid_path = ft_strdup(input, "built-in");
-		input->gb->type = CMD_LST;
-		return (SUCCESS);
-	}
-	else if (get_paths_tab(input) == SUCCESS)
-	{
-		cmd->valid_path = assign_path(input, cmd, cmd->name);
-		input->gb->type = CMD_LST;
-		if (cmd->valid_path)
-		{
-			if (access(cmd->valid_path, F_OK) == -1 && cmd->i != input->n_cmd - 1)
-			{
-				print_error("minishelled", cmd->name, "command not found");
-				return (0);
-			}
-			if (access(cmd->valid_path, F_OK) == -1 && cmd->i == input->n_cmd - 1)
-			{
-				print_error("minishelled", cmd->name, "command not found");
-				return (127);
-			}
-		}
-		return (SUCCESS);
+		cmd->valid_path = cmd->name;
+		return (YES);
 	}
 	else
-		return (FAILED);
+	{
+		print_error(NULL, cmd->name, "No such file or directory");
+		return (NO);
+	}
 }
 
-int	get_paths_tab(t_input *input)
+int	get_paths_tab_from_env_path(t_input *input)
 {
 	int		i;
 	char	*paths_line;
@@ -76,7 +65,6 @@ int	get_paths_tab(t_input *input)
 	paths_line = get_value_from_key(input, "PATH");
 	if (!paths_line)
 		return (FAILED);
-	// Message d'erreur ?
 	input->paths_tab = ft_split(input, paths_line, ':');
 	assign_gb_type(input, input->paths_tab, GARBAGE);
 	i = -1;
@@ -88,7 +76,7 @@ int	get_paths_tab(t_input *input)
 	return (SUCCESS);
 }
 
-char	*assign_path(t_input *input, t_cmd_lst *cmd, char *arg)
+char	*assign_path_to_cmd(t_input *input, char *cmd_name)
 {
 	int		i;
 	char	*path;
@@ -97,17 +85,7 @@ char	*assign_path(t_input *input, t_cmd_lst *cmd, char *arg)
 	i = -1;
 	while (input->paths_tab[++i])
 	{
-		if (access(arg, F_OK) == SUCCESS)
-		{
-			if (opendir(arg) != NULL)
-			{
-				print_error(NULL, arg, "is a directory");
-				return (NULL);
-			}
-			path = ft_strdup(input, arg);
-			return (path);
-		}
-		path = ft_strjoin(input, input->paths_tab[i], cmd->name);
+		path = ft_strjoin(input, input->paths_tab[i], cmd_name);
 		if (access(path, F_OK) == SUCCESS)
 			return (path);
 		input->gb->type = GARBAGE;
