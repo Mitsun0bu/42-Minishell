@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 12:09:40 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/15 17:11:56 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/19 11:58:47 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,14 @@ int		exec_built_in(t_input *input, t_cmd_lst *cmd);
 void	executer(t_input *input, t_cmd_lst *cmd);
 
 /* executer/file_manager.c */
-int		open_files(t_input *input, t_cmd_lst *cmd);
+int		open_all_files(t_input *input, t_cmd_lst *cmd);
 int		open_infiles(t_input *input, t_cmd_lst *cmd);
 int		open_outfiles(t_input *input, t_cmd_lst *cmd);
 int		open_app_outfiles(t_input *input, t_cmd_lst *cmd);
+int		close_all_files(t_cmd_lst *cmd);
+int		close_infiles(t_cmd_lst *cmd);
+int		close_outfiles(t_cmd_lst *cmd);
+int		close_app_outfiles(t_cmd_lst *cmd);
 
 /* executer/heredoc_manager.c */
 int		handle_heredocs(t_input *input, t_cmd_lst *cmd);
@@ -64,8 +68,8 @@ void	close_single_pipe(int *fd_tab);
 int		pipex(t_input *input, t_cmd_lst *cmd);
 
 /*executer/redir_manager.c */
-int		set_stdin(t_input *input, t_cmd_lst *cmd);
-int		set_stdout(t_input *input, t_cmd_lst *cmd);
+void	set_stdin(t_input *input, t_cmd_lst *cmd);
+void	set_stdout(t_input *input, t_cmd_lst *cmd);
 int		handle_infile(t_input *input, t_cmd_lst *cmd);
 int		handle_outfile(t_input *input, t_cmd_lst *cmd);
 int		dup_loop(int n_file, int *fd_file, int where);

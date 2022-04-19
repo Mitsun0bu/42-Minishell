@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 10:41:38 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/15 17:23:40 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/19 11:14:31 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	exec_mid_cmd(t_input *input, t_cmd_lst *cmd)
 		input->status = exec_built_in(input, cmd);
 		exit(input->status);
 	}
-	else if (cmd->name)
+	else if (cmd->name && cmd->valid_path)
 		execve(cmd->valid_path, cmd->args, convert_env_tab(input));
 	else
 		exit(0);

@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 13:35:01 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/13 19:24:34 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/19 11:13:31 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ void	signal_handler_exec(int signal)
 
 void	signal_handler_heredoc(int signal)
 {
-	// printf("here\n");
 	if (signal == SIGINT)
 	{
 		// rl_on_new_line();

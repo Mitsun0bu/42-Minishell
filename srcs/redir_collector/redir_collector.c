@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 09:36:30 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/15 14:40:41 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/19 09:40:45 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	redir_collector(t_input *input)
 	int	type;
 	int	i_file;
 
-	get_last_redir_type_tab(input);
+	get_last_redir_types_tab(input);
 	malloc_cmd_dimension(input);
 	malloc_types_dimension_for_each_cmd(input);
 	i_cmd = -1;

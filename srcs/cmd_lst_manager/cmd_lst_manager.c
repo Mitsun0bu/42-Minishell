@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 11:36:41 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/15 14:41:18 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/19 09:51:35 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	cmd_infile_manager(t_input *input, int *i, t_cmd_lst *new_cmd)
 	j = -1;
 	while (input->redir_tab[*i][0][++j])
 	{
-		new_cmd->infile[j] = ft_strdup(input, input->redir_tab[*i][0][j]);
+		new_cmd->infile[j] = clean_str(input, input->redir_tab[*i][0][j]);
 		input->gb->type = CMD_LST;
 	}
 }
@@ -64,7 +64,7 @@ void	cmd_outfile_manager(t_input *input, int *i, t_cmd_lst *new_cmd)
 	j = -1;
 	while (input->redir_tab[*i][1][++j])
 	{
-		new_cmd->outfile[j] = ft_strdup(input, input->redir_tab[*i][1][j]);
+		new_cmd->outfile[j] = clean_str(input, input->redir_tab[*i][1][j]);
 		input->gb->type = CMD_LST;
 	}
 }
@@ -83,7 +83,7 @@ void	cmd_heredoc_manager(t_input *input, int *i, t_cmd_lst *new_cmd)
 	j = -1;
 	while (input->redir_tab[*i][2][++j])
 	{
-		new_cmd->del[j] = ft_strdup(input, input->redir_tab[*i][2][j]);
+		new_cmd->del[j] = clean_str(input, input->redir_tab[*i][2][j]);
 		input->gb->type = CMD_LST;
 	}
 }
@@ -102,7 +102,7 @@ void	cmd_app_outfile_manager(t_input *input, int *i, t_cmd_lst *new_cmd)
 	j = -1;
 	while (input->redir_tab[*i][3][++j])
 	{
-		new_cmd->app_outfile[j] = ft_strdup(input, input->redir_tab[*i][3][j]);
+		new_cmd->app_outfile[j] = clean_str(input, input->redir_tab[*i][3][j]);
 		input->gb->type = CMD_LST;
 	}
 }

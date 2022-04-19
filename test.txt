@@ -135,25 +135,7 @@ OK
 
 16) PIPES
 
-a) Problemes de quotes autour d'un nom de fichier
-
-exemple 1 :
-bash-3.2$ cat infile_1 > outfile_1 | rev  > outfile_2   < 'outfile_1' | cat outfile_2
-(rien n'est cat, , mais les commandes ont fonctionnée dans les fichiers
-
-minishelled > cat infile_1 > outfile_1 | rev  > outfile_2   < 'outfile_1' | cat outfile_2
-rev: 'outfile_1': No such file or directory
-
-exemple 2 :
-bash-3.2$ cat infile_1 > outfile_1 | rev  > outfile_2   < "outfile_1" | cat outfile_2
-(rien n'est cat, , mais les commandes ont fonctionnée dans les fichiers)
-
-minishelled > cat infile_1 > outfile_1 | rev  > outfile_2   < "outfile_1" | cat outfile_2
-rev: "outfile_1": No such file or directory
-
-exemple 3 et 4 :
-bash-3.2$ cat infile_1 > outfile_1 | rev  > outfile_2   < 'Makefile' | cat outfile_2
-bash-3.2$ cat infile_1 > outfile_1 | rev  > outfile_2   < "Makefile" | cat outfile_2
+OK
 
 -------------------------------------------------------------------------------
 CHOSES A CHECKER :
@@ -173,4 +155,3 @@ ATTENTION ! NE PAS MODIFIER LA VARIABLE GLOBALE DANS ERR_RETURN MAIS REMONTER DA
 6) On ne ferme jamais les fichiers de redirections !!!
 
 7) Que faire dans executer si handle_heredocs ou open_all_pipes FAILED (ce serait uniquement du a des problemes d'ouverture de pipe)
-

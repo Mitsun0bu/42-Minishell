@@ -6,7 +6,7 @@
 #    By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/25 15:43:51 by llethuil          #+#    #+#              #
-#    Updated: 2022/04/14 13:03:01 by llethuil         ###   ########lyon.fr    #
+#    Updated: 2022/04/19 09:37:33 by llethuil         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -97,7 +97,7 @@ SRCS_LST	:=	built_ins/ft_cd.c									\
 				gb_collector/assign_gb_type.c						\
 				gb_collector/clear_gb.c								\
 				redir_collector/copy_name_in_redir_tab.c			\
-				redir_collector/get_last_redir_type_tab.c			\
+				redir_collector/get_last_redir_types_tab.c			\
 				redir_collector/redir_collector_utils_counter.c		\
 				redir_collector/redir_collector_utils_other.c		\
 				redir_collector/redir_collector_utils_quotes.c		\

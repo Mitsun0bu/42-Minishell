@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 16:38:12 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/15 14:41:34 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/19 11:13:20 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ int	get_heredoc_str(t_input *input, t_cmd_lst *cmd)
 	int		status;
 	char	*heredoc_str;
 
-	printf("here\n");
 	status = 0;
 	heredoc_str = NULL;
 	if (open_single_pipe(cmd->heredoc_pipe) == FAILED)
