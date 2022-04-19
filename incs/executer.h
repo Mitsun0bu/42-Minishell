@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 12:09:40 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/19 11:58:47 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/19 16:19:17 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,6 @@ int		is_built_in(char *name);
 void	check_fork_error(pid_t	process);
 int		wait_all_processes(t_input *input);
 char	**convert_env_tab(t_input *input);
-int		count_env_to_convert(t_input *input);
+int		count_env_var_to_convert(t_input *input);
 
 #endif

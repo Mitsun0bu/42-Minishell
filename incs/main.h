@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 17:07:56 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/12 17:47:37 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/19 19:19:26 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@
 # include "cmd_line_manager.h"
 # include "cmd_lst_manager.h"
 # include "cmd_separator.h"
-# include "env_manager.h"
+# include "env_var_manager.h"
 # include "error_manager.h"
 # include "executer.h"
 # include "gb_collector.h"
@@ -46,6 +46,8 @@
 /*                              ~~~ PROTOTYPES ~~~                            */
 /*                                                                            */
 /* ************************************************************************** */
+
+extern int g_status;
 
 /* main/main.c */
 int	main(int ac, char **av, char **envp);

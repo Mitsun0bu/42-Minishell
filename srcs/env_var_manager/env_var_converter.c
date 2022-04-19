@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env_variable_converter.c                                    :+:      :+:    :+:   */
+/*   env_var_converter.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,7 +12,7 @@
 
 #include "main.h"
 
-void	env_variable_converter(t_input *input, char *str)
+void	env_var_converter(t_input *input, char *str)
 {
 	int		size;
 	int		i;
@@ -22,7 +22,7 @@ void	env_variable_converter(t_input *input, char *str)
 	while (str[i])
 	{
 		if (str[i] == '$' && str[i])
-			size += count_env(input, str, &i, 0);
+			size += count_env_var(input, str, &i, 0);
 		if (ft_strchr("\'\"", str[i]) && str[i])
 			size += count_quotes(input, str, &i);
 		if (!ft_strchr("$\'\"", str[i]) && str[i])
@@ -46,7 +46,7 @@ void	fill_buffer(t_input *input, char *str)
 	while (str[i])
 	{
 		if (str[i] == '$' && str[i])
-			fill_env(input, str, &i, &j);
+			fill_env_var(input, str, &i, &j);
 		if (ft_strchr("\'\"", str[i]) && str[i])
 			fill_quotes(input, str, &i, &j);
 		if (!ft_strchr("$\'\"", str[i]) && str[i])
@@ -54,7 +54,7 @@ void	fill_buffer(t_input *input, char *str)
 	}
 }
 
-void	fill_env(t_input *input, char *str, int *i, int *j)
+void	fill_env_var(t_input *input, char *str, int *i, int *j)
 {
 	char	*key;
 	char	*value;
@@ -86,7 +86,7 @@ void	fill_quotes(t_input *input, char *str, int *i, int *j)
 	{
 		if (str[*i] == '$' && c == '\"')
 		{
-			fill_env(input, str, i, j);
+			fill_env_var(input, str, i, j);
 			if (str[*i] == c)
 				break ;
 		}

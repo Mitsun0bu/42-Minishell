@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 13:18:59 by agirardi          #+#    #+#             */
-/*   Updated: 2022/04/14 13:53:40 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/19 19:10:14 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	find_unclosed_quotes(char *str)
 				i++;
 			if (!str[i])
 			{
-				print_error(NULL, "syntax error", "unclosed quote");
+				print_err(258, NULL, "syntax error", "unclosed quote");
 				return(YES);
 			}
 		}
@@ -57,13 +57,18 @@ int	find_invalid_redir(char *str)
 	{
 		if (ft_strchr("\"\'", str[i]))
 			skip_quotes(str, &i);
-		if (ft_strchr("<>", str[i]) && !str[i + 1])
-			invalid_redir(str, i, NEW_LINE);
+		if (ft_strchr("<>", str[i]))
+			if (!str[i + 1] || (ft_strchr("<>", str[i + 1]) && !str[i + 2]))
+				return (invalid_redir(str, i, NEW_LINE));
 		if (ft_strchr("<>", str[i]))
 		{
-			if (ft_strchr("<>", str[i + 1]))
-				if (str[i + 1] != str[i] || ft_strchr("<>", str[i + 2]))
-					return (invalid_redir(str, i, REDIR));
+			i ++;
+			if (ft_strchr("<>", str[i]))
+				i ++;
+			while (is_space(str[i]) == YES)
+				i ++;
+			if (ft_strchr("<>", str[i]))
+				return (invalid_redir(str, i, REDIR));
 			if (check_next_arg(str, i) == FAILED)
 				return (YES);
 		}
@@ -86,13 +91,17 @@ int	check_next_arg(char *str, int i)
 int	invalid_redir(char *str, int i, int type)
 {
 	if (type == NEW_LINE)
-		printf("minishelled: syntax error near unexpected token `newline'\n");
+		print_err(258, NULL, NULL, "syntax error near unexpected token `newline'");
 	else if (type == REDIR)
 	{
-		if (str[i] == '>')
-			printf("minishelled: syntax error near unexpected token `<'\n");
-		else
-			printf("minishelled: syntax error near unexpected token `>'\n");
+		if (str[i] == '>' && str[i + 1] != '>')
+			print_err(258, NULL, NULL, "syntax error near unexpected token `>'");
+		else if (str[i] == '>' && str[i + 1] == '>')
+			print_err(258, NULL, NULL, "syntax error near unexpected token `>>'");
+		else if (str[i] == '<' && str[i + 1] != '<')
+			print_err(258, NULL, NULL, "syntax error near unexpected token `<'");
+		else if (str[i] == '<' && str[i + 1] == '<')
+			print_err(258, NULL, NULL, "syntax error near unexpected token `<<'");
 	}
 	return (YES);
 }

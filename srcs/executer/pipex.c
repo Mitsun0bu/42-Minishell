@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 17:31:40 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/19 10:40:05 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/19 18:47:54 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,6 @@ int	pipex(t_input *input, t_cmd_lst *cmd)
 	cmd = start;
 	close_all_pipes(cmd);
 	close_all_files(cmd);
-	input->status = wait_all_processes(input);
-	return (WEXITSTATUS(input->status));
+	g_status = wait_all_processes(input);
+	return (WEXITSTATUS(g_status));
 }

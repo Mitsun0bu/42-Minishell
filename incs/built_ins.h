@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 11:56:09 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/14 11:44:54 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/19 15:40:32 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int		ft_pwd(void);
 
 /* built_ins/ft_export.c */
 int		ft_export(t_input *input, t_cmd_lst *cmd);
-int		parse_var(t_input *input, char *str);
+int		parse_env_var(t_input *input, char *var);
 int		parse_key(t_input *input, char	*str, int type);
 void	print_export(t_input *input);
 

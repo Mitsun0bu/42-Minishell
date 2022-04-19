@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 15:10:44 by agirardi          #+#    #+#             */
-/*   Updated: 2022/04/14 13:45:23 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/19 18:53:02 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,7 @@
 
 int	ft_export(t_input *input, t_cmd_lst *cmd)
 {
-	char	*var;
-	int		res;
+	int		env_var_type;
 	int		i;
 
 	if (input->n_cmd > 1 && cmd->n_args > 1)
@@ -23,37 +22,41 @@ int	ft_export(t_input *input, t_cmd_lst *cmd)
 	i = 0;
 	while (cmd->args[++i])
 	{
-		var = cmd->args[i];
-		res = parse_var(input, var);
-		if (res == ENV)
-			add_to_env(input, var, ENV);
-		else if (res == ENV_NULL)
-			add_to_env(input, var, ENV_NULL);
-		else if (res == ENV_EMPTY)
-			add_to_env(input, var, ENV_EMPTY);
+		if (find_existing_env_var(input, cmd->args[i]) == YES)
+			replace_existing_env_var(input, cmd->args[i]);
+		else
+		{
+			env_var_type = parse_env_var(input, cmd->args[i]);
+			if (env_var_type == ENV)
+				add_to_env_tab(input, cmd->args[i], ENV);
+			else if (env_var_type == ENV_NULL)
+				add_to_env_tab(input, cmd->args[i], ENV_NULL);
+			else if (env_var_type == ENV_EMPTY)
+				add_to_env_tab(input, cmd->args[i], ENV_EMPTY);
+		}
 	}
 	if (i == 1)
 		print_export(input);
 	return (0);
 }
 
-int	parse_var(t_input *input, char *str)
+int	parse_env_var(t_input *input, char *env_var)
 {
 	int	equal_sign;
 	int	i;
 
 	equal_sign = NO;
 	i = -1;
-	while (str[++i])
-		if (str[i] == '=')
+	while (env_var[++i])
+		if (env_var[i] == '=')
 			equal_sign = YES;
 	if (equal_sign == NO)
 	{
-		if (find_value(input, str) == YES)
+		if (find_existing_env_var(input, env_var) == YES)
 			return (0);
-		return (parse_key(input, str, ENV_NULL));
+		return (parse_key(input, env_var, ENV_NULL));
 	}
-	return (parse_key(input, str, ENV));
+	return (parse_key(input, env_var, ENV));
 }
 
 int	parse_key(t_input *input, char	*str, int type)
@@ -62,21 +65,21 @@ int	parse_key(t_input *input, char	*str, int type)
 	int		i;
 
 	i = -1;
-	key = get_key_from_env_tab(input, str);
+	key = extract_key_from_str(input, str);
 	input->gb->type = GARBAGE;
 	while (key[++i])
 	{
 		if ((!ft_isalnum(key[i]) && key[i] != '_') || ft_isdigit(key[0]))
 		{
-			print_error("minishelled: export", key, "not a valid identifier");
+			print_err(1, "minishelled: export", key, "not a valid identifier");
 			return (0);
 		}
 	}
 	if (type == ENV_NULL)
 		return (ENV_NULL);
-	if (find_value(input, key) == YES)
+	if (find_existing_env_var(input, key) == YES)
 	{
-		change_value(input, key, get_value_from_env_tab(input, str));
+		change_value(input, key, extract_value_from_str(input, str));
 		return (0);
 	}
 	if (!str[i + 1])

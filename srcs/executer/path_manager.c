@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 14:58:04 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/15 14:19:13 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/19 19:07:03 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,7 @@ int	path_manager(t_input *input, t_cmd_lst *cmd)
 {
 	if (get_paths_tab_from_env_path(input) == FAILED)
 	{
-		print_error(cmd->name, NULL, "No such file or directory");
-		input->status = 127;
+		print_err(127, cmd->name, NULL, "No such file or directory");
 		return (FAILED);
 	}
 	if (ft_strchr(cmd->name, '/') != NULL)
@@ -26,7 +25,7 @@ int	path_manager(t_input *input, t_cmd_lst *cmd)
 			return (SUCCESS);
 		else
 		{
-			input->status = 127;
+			g_status = 127;
 			return (FAILED);
 		}
 	}
@@ -34,8 +33,7 @@ int	path_manager(t_input *input, t_cmd_lst *cmd)
 	input->gb->type = CMD_LST;
 	if (!cmd->valid_path)
 	{
-		print_error("minishelled", cmd->name, "command not found");
-		input->status = 127;
+		print_err(127, "minishelled", cmd->name, "command not found");
 		return (FAILED);
 	}
 	return (SUCCESS);
@@ -50,7 +48,7 @@ int	cmd_name_is_a_valid_relative_path(t_cmd_lst *cmd)
 	}
 	else
 	{
-		print_error(NULL, cmd->name, "No such file or directory");
+		print_err(127, NULL, cmd->name, "No such file or directory");
 		return (NO);
 	}
 }

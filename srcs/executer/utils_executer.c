@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 17:32:59 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/15 14:30:39 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/19 16:19:17 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ char	**convert_env_tab(t_input *input)
 	int		i;
 	char	*env_str;
 
-	i_list = count_env_to_convert(input);
+	i_list = count_env_var_to_convert(input);
 	env_list = ft_malloc(input, sizeof(char *), i_list + 1);
 	input->gb->type = GARBAGE;
 	env_list[i_list] = NULL;
@@ -85,7 +85,7 @@ char	**convert_env_tab(t_input *input)
 	return (env_list);
 }
 
-int	count_env_to_convert(t_input *input)
+int	count_env_var_to_convert(t_input *input)
 {
 	int	i;
 	int	i_list;

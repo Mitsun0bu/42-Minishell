@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/06 18:37:12 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/14 10:40:02 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/19 18:44:55 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,17 +57,17 @@ int	fill_cmd(t_input *input)
 	final_pipe_process = fork();
 	check_fork_error(final_pipe_process);
 	if (final_pipe_process == CHILD)
-		input->status = fill_cmd_child(input, filled_cmd, final_pipe_fd);
+		g_status = fill_cmd_child(input, filled_cmd, final_pipe_fd);
 	signal(SIGINT, SIG_IGN);
 	close(final_pipe_fd[1]);
-	waitpid(final_pipe_process, &input->status, 0);
-	if (input->status != 0)
-		return (input->status);
+	waitpid(final_pipe_process, &g_status, 0);
+	if (g_status != 0)
+		return (g_status);
 	filled_cmd = ft_get_next_line(input, final_pipe_fd[0]);
 	signal(SIGINT, signal_handler_parent);
 	input->cmd_line = ft_strdup(input, filled_cmd);
 	input->gb->type = CMD_LINE;
-	return (input->status);
+	return (g_status);
 }
 
 int	fill_cmd_child(t_input *input, char *filled_cmd, int *final_pipe_fd)

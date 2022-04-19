@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils_env_counter.c                                :+:      :+:    :+:   */
+/*   utils_env_var_counter.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 10:58:45 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/14 12:55:39 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/19 19:16:05 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-int	count_env(t_input *input, char *str, int *i, int red)
+int	count_env_var(t_input *input, char *str, int *i, int red)
 {
 	char	*key;
 	int		key_len;
@@ -28,9 +28,7 @@ int	count_env(t_input *input, char *str, int *i, int red)
 	j = -1;
 	while (!ft_strchr("$<>\'\"", str[++ *i]) && !is_space(str[*i]) && str[*i])
 		key[++j] = str[*i];
-	printf("key = %s\n", key);
 	count = ft_strlen(get_value_from_key(input, key));
-	printf("count = %d\n", count);
 	if (red == 0)
 		return (count);
 	return (0);
@@ -49,7 +47,7 @@ int	count_quotes(t_input *input, char *str, int *i)
 	{
 		if (str[*i] == '$' && c == '\"')
 		{
-			count += count_env(input, str, i, 0);
+			count += count_env_var(input, str, i, 0);
 			if (str[*i] == c)
 				break ;
 		}

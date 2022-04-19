@@ -140,18 +140,12 @@ OK
 -------------------------------------------------------------------------------
 CHOSES A CHECKER :
 
-1) Refaire marcher les variables d'environnement
-
-3) ft_calloc_strs dans minisplit a re-checker :
+1) ft_calloc_strs dans minisplit a re-checker :
 		if (ft_strchr("\"\'", s[i]) && quotes == 0)
 				quotes = 1;
 		else if ????
 
-4) checker skip_space et voir pour la mettre dans les utils
+2) checker skip_space et voir pour la mettre dans les utils
 
-5) Tous les endroits où on doit modifier la variable globale status :
+3) Tous les endroits où on doit modifier la variable globale status :
 ATTENTION ! NE PAS MODIFIER LA VARIABLE GLOBALE DANS ERR_RETURN MAIS REMONTER DANS LE CODE POUR REFLECHIR OU LE FAIRE
-
-6) On ne ferme jamais les fichiers de redirections !!!
-
-7) Que faire dans executer si handle_heredocs ou open_all_pipes FAILED (ce serait uniquement du a des problemes d'ouverture de pipe)

@@ -6,11 +6,13 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 17:07:38 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/14 13:52:55 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/19 19:17:38 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
+
+int	g_status = 0;
 
 int	main(int ac, char **av, char **envp)
 {
@@ -20,7 +22,7 @@ int	main(int ac, char **av, char **envp)
 	cmd = NULL;
 	if (ac > 1 || av[1])
 	{
-		print_error("minishelled", av[1], "invalid option");
+		print_err(127, "minishelled", av[1], "invalid option");
 		return (127);
 	}
 	signal(SIGINT, signal_handler_parent);

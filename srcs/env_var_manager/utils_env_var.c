@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils_env_variable.c                               :+:      :+:    :+:   */
+/*   utils_env_var.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 09:43:38 by agirardi          #+#    #+#             */
-/*   Updated: 2022/04/14 14:00:30 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/19 16:15:13 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-char	*get_key_from_env_tab(t_input *input, char *str)
+char	*extract_key_from_str(t_input *input, char *str)
 {
 	char	*key;
 	int		i;
@@ -25,7 +25,7 @@ char	*get_key_from_env_tab(t_input *input, char *str)
 	return (key);
 }
 
-char	*get_value_from_env_tab(t_input *input, char *str)
+char	*extract_value_from_str(t_input *input, char *str)
 {
 	char	*value;
 	int		key_count;
@@ -60,7 +60,7 @@ char	*get_value_from_key(t_input *input, char *key)
 	return (0);
 }
 
-int	find_key(const char *str, const char *key)
+int	env_tab_contains_key(const char *str, const char *key)
 {
 	int	i;
 
@@ -75,12 +75,12 @@ int	find_key(const char *str, const char *key)
 	return (YES);
 }
 
-int	find_value(t_input *input, char *str)
+int	find_existing_env_var(t_input *input, char *str)
 {
 	char	*key;
 	int		i;
 
-	key = get_key_from_env_tab(input, str);
+	key = extract_key_from_str(input, str);
 	input->gb->type = GARBAGE;
 	i = -1;
 	while (++i < input->n_env)

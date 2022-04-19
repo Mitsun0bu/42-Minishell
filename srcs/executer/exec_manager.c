@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 10:41:38 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/19 11:14:31 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/19 18:45:57 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,14 @@
 void	exec_first_cmd(t_input *input, t_cmd_lst *cmd)
 {
 	if (path_manager(input, cmd) == FAILED && is_built_in(cmd->name) == NO)
-		exit (input->status);
+		exit (g_status);
 	set_stdin(input, cmd);
 	set_stdout(input, cmd);
 	close_all_pipes(cmd);
 	if (is_built_in(cmd->name) == YES)
 	{
-		input->status = exec_built_in(input, cmd);
-		exit(input->status);
+		g_status = exec_built_in(input, cmd);
+		exit(g_status);
 	}
 	else if (cmd->name && cmd->valid_path)
 		execve(cmd->valid_path, cmd->args, convert_env_tab(input));
@@ -39,14 +39,14 @@ void	exec_first_cmd(t_input *input, t_cmd_lst *cmd)
 void	exec_mid_cmd(t_input *input, t_cmd_lst *cmd)
 {
 	if (path_manager(input, cmd) == FAILED && is_built_in(cmd->name) == NO)
-		exit (input->status);
+		exit (g_status);
 	set_stdin(input, cmd);
 	set_stdout(input, cmd);
 	close_all_pipes(cmd);
 	if (is_built_in(cmd->name) == YES)
 	{
-		input->status = exec_built_in(input, cmd);
-		exit(input->status);
+		g_status = exec_built_in(input, cmd);
+		exit(g_status);
 	}
 	else if (cmd->name && cmd->valid_path)
 		execve(cmd->valid_path, cmd->args, convert_env_tab(input));
@@ -60,14 +60,14 @@ void	exec_mid_cmd(t_input *input, t_cmd_lst *cmd)
 void	exec_last_cmd(t_input *input, t_cmd_lst *cmd)
 {
 	if (path_manager(input, cmd) == FAILED && is_built_in(cmd->name) == NO)
-		exit (input->status);
+		exit (g_status);
 	set_stdin(input, cmd);
 	set_stdout(input, cmd);
 	close_all_pipes(cmd);
 	if (is_built_in(cmd->name) == YES)
 	{
-		input->status = exec_built_in(input, cmd);
-		exit(input->status);
+		g_status = exec_built_in(input, cmd);
+		exit(g_status);
 	}
 	else if (cmd->name && cmd->valid_path)
 		execve(cmd->valid_path, cmd->args, convert_env_tab(input));

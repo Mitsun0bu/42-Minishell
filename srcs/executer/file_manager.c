@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 12:14:03 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/19 10:39:39 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/19 19:05:58 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	open_infiles(t_input *input, t_cmd_lst *cmd)
 		cmd->fd_infile[i] = open(cmd->infile[i], O_RDONLY);
 		if (cmd->fd_infile[i] == FAILED)
 		{
-			print_error(cmd->name, cmd->infile[i], "No such file or directory");
+			print_err(1, cmd->name, cmd->infile[i], "No such file or directory");
 			return (FAILED);
 		}
 	}
@@ -68,7 +68,7 @@ int	open_outfiles(t_input *input, t_cmd_lst *cmd)
 				O_CREAT | O_RDWR | O_TRUNC, 0644);
 		if (cmd->fd_outfile[i] == FAILED)
 		{
-			print_error(cmd->name, cmd->outfile[i], "No such file or directory");
+			print_err(1, cmd->name, cmd->outfile[i], "No such file or directory");
 			return (FAILED);
 		}
 	}
@@ -88,7 +88,7 @@ int	open_app_outfiles(t_input *input, t_cmd_lst *cmd)
 				O_CREAT | O_RDWR | O_APPEND, 0644);
 		if (cmd->fd_app_outfile[i] == FAILED)
 		{
-			print_error(cmd->name, cmd->app_outfile[i], "No such file or directory");
+			print_err(1, cmd->name, cmd->app_outfile[i], "No such file or directory");
 			return (FAILED);
 		}
 	}
@@ -128,7 +128,7 @@ int	close_infiles(t_cmd_lst *cmd)
 	{
 		if (close(cmd->fd_infile[i]) == FAILED)
 		{
-			print_error(cmd->name, cmd->infile[i], "close() failed");
+			print_err(1, NULL, cmd->infile[i], "close() failed");
 			return (FAILED);
 		}
 	}
@@ -144,7 +144,7 @@ int	close_outfiles(t_cmd_lst *cmd)
 	{
 		if (close(cmd->fd_outfile[i]) == FAILED)
 		{
-			print_error(cmd->name, cmd->outfile[i], "close() failed");
+			print_err(1, NULL, cmd->outfile[i], "close() failed");
 			return (FAILED);
 		}
 	}
@@ -160,7 +160,7 @@ int	close_app_outfiles(t_cmd_lst *cmd)
 	{
 		if (close(cmd->fd_app_outfile[i]) == FAILED)
 		{
-			print_error(cmd->name, cmd->app_outfile[i], "No such file or directory");
+			print_err(1, NULL, cmd->app_outfile[i], "close() failed");
 			return (FAILED);
 		}
 	}
