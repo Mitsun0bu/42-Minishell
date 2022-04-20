@@ -6,7 +6,7 @@
 #    By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/25 15:43:51 by llethuil          #+#    #+#              #
-#    Updated: 2022/04/20 11:34:10 by llethuil         ###   ########lyon.fr    #
+#    Updated: 2022/04/20 17:41:28 by llethuil         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -77,6 +77,8 @@ SRCS_LST	:=	built_ins/ft_cd.c								\
 				cmd_lst_manager/utils_cmd_lst_manager.c			\
 				cmd_separator/cmd_separator.c					\
 				cmd_separator/check_pipe.c						\
+				cmd_separator/check_quotes.c					\
+				cmd_separator/check_redir.c						\
 				cmd_separator/split_cmd.c						\
 				env_var_manager/env_var_converter.c				\
 				env_var_manager/env_var_counter.c				\
@@ -109,14 +111,15 @@ SRCS_LST	:=	built_ins/ft_cd.c								\
 				main/main.c										\
 				parser/arg_length.c								\
 				parser/arg_number.c								\
-				parser/checker.c								\
 				parser/cleaner.c								\
 				parser/parser.c									\
 				parser/utils_parser.c							\
 				shell_initializer/shell_init.c					\
 				signal_manager/signal_handler.c					\
+				utils/back_skip_quotes.c						\
 				utils/clean_str.c								\
 				utils/ft_free.c									\
+				utils/get_g_status.c							\
 				utils/get_history_path.c						\
 				utils/is_space.c								\
 				utils/skip_quotes.c								\

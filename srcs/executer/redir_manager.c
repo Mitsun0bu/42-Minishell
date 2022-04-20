@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 10:07:06 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/19 12:01:52 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/20 17:09:56 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ int	handle_infile(t_input *input, t_cmd_lst *cmd)
 	}
 	else if (input->last_infile_type[cmd->i] == HEREDOC)
 	{
+		printf("here\n");
 		dup2(cmd->heredoc_pipe[0], STDIN_FILENO);
 		close_single_pipe(cmd->heredoc_pipe);
 		return (YES);

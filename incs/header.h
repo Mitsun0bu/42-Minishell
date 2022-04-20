@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 17:37:10 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/19 19:19:20 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/20 15:38:20 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,13 @@
 # define IN 1
 # define OUT 0
 # define UNSET -1
-# define NEW_LINE 0
 # define REDIR 1
 # define CHILD 0
 # define INFILE 0
 # define OUTFILE 1
 # define HEREDOC 2
 # define APP_OUTFILE 3
+# define NEW_LINE 4
 # define ENV 1
 # define ENV_EMPTY 0
 # define ENV_NULL -1

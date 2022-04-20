@@ -85,11 +85,11 @@ OK
 
 4) RETURN VALUE OF A PROCESS :
 
-echo $? doit etre remis en place
+OK
 
 5) SIGNALS :
 
-ctrl-\ after a blocking command (fonctionne, mais l'affichage n'est pas comme bash)
+OK
 
 6) DOUBLE QUOTES :
 
@@ -150,3 +150,5 @@ ATTENTION ! NE PAS MODIFIER LA VARIABLE GLOBALE DANS ERR_RETURN MAIS REMONTER DA
 
 4)	echo > $RANDOM
 	--> bash: $random: ambiguous redirect
+
+5) signaux dans un minishell lance a partir de minishell

@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 11:15:36 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/20 09:34:51 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/20 16:04:36 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ void	copy_app_outfile(char *app_outfile, char *cmd, int i_file);
 void	get_last_redir_types_tab(t_input *input);
 void	init_last_redir_types_tab(t_input *input);
 void	get_last_redir_types(t_input *input, char *cmd, int i_cmd, int *i);
-void	back_skip_quotes(char *str, int *i);
 
 /* redir_collector/redir_collector_utils_counter.c */
 int		count_n_file(char *cmd, int type);

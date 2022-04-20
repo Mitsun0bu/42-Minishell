@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 15:14:08 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/12 18:22:42 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/20 17:33:29 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,13 @@
 
 char	*build_heredoc_str(t_input *input, char *del)
 {
-	int				i;
 	char			*line;
 	char			*heredoc_str;
 	unsigned long	len;
 
-	i = 0;
 	line = NULL;
-	heredoc_str = NULL;
+	heredoc_str = ft_strdup(input, "");
+	input->gb->type = GARBAGE;
 	len = ft_strlen(del);
 	while (ft_strncmp(line, del, len) != 0 || ft_strlen(line) - 1 != len)
 	{
@@ -30,10 +29,7 @@ char	*build_heredoc_str(t_input *input, char *del)
 			return (NULL);
 		if (ft_strncmp(line, del, len) != 0 || ft_strlen(line) - 1 != len)
 		{
-			if (i++ == 0)
-				heredoc_str = ft_strdup(input, line);
-			else
-				heredoc_str = append_heredoc_line(input, line, heredoc_str);
+			heredoc_str = append_heredoc_line(input, line, heredoc_str);
 			input->gb->type = GARBAGE;
 		}
 	}

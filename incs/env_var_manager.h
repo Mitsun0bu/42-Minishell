@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 10:21:58 by agirardi          #+#    #+#             */
-/*   Updated: 2022/04/20 11:33:03 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/20 17:38:05 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,10 @@ void	fill_quotes(t_input *input, char *str, int index[], int red);
 
 /* env_manager/utils_env_var_processing.c */
 void	fill_value(t_input *input, char *value, int *i);
+char	*find_exit_status(t_input *input, char *str, int i, int red);
 int		check_heredoc(char *str, int i);
 char	*get_key_to_process(t_input *input, char *str, int *i);
+int		is_first_command(char *str, int limit);
 
 /* env_manager/utils_env_var.c */
 char	*extract_key_from_str(t_input *input, char *str);

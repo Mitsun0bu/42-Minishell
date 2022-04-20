@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 12:09:40 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/20 09:56:26 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/20 17:50:12 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ void	close_single_pipe(int *fd_tab);
 int		pipex(t_input *input, t_cmd_lst *cmd);
 void	set_termios_and_sig_for_exec(t_input *input);
 void	finish_exec(t_input *input, t_cmd_lst *cmd);
+int	ft_get_pid(int pid);
 
 /*executer/redir_manager.c */
 void	set_stdin(t_input *input, t_cmd_lst *cmd);

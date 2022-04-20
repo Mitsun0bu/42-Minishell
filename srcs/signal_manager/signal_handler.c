@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 13:35:01 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/20 09:01:32 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/20 18:21:12 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ void	signal_handler_main(int signal)
 	{
 		rl_on_new_line();
 		rl_redisplay();
-		exit(0);
 	}
 }
 
@@ -33,12 +32,12 @@ void	signal_handler_exec(int signal)
 {
 	if (signal == SIGINT)
 	{
-		printf("^C\n");
+		printf("\n");
+		printf("\n");
 	}
 	if (signal == SIGQUIT)
 	{
 		printf("^\\Quit: 3\n");
-		exit(0);
 	}
 }
 

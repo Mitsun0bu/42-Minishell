@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/20 11:08:53 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/20 11:35:24 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/20 17:36:13 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	fill_env_var(t_input *input, char *str, int index[], int red)
 
 	if (str[index[0] + 1] == '?')
 	{
-		value = ft_strdup(input, "$?");
+		value = find_exit_status(input, str, index[0], red);
 		index[0] += 2;
 	}
 	else if (is_space(str[index[0] + 1]) || ft_strchr("$<>", str[index[0] + 1]))

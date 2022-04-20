@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/20 11:13:19 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/20 11:17:44 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/20 17:37:19 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,20 @@ void	fill_value(t_input *input, char *value, int *i)
 	if (value)
 		while (value[j])
 			input->processed_line[(*i)++] = value[j++];
+}
+
+char	*find_exit_status(t_input *input, char *str, int i, int red)
+{
+	char	*value;
+
+	if (red == HEREDOC)
+		value = ft_strdup(input, "$?");
+	else if (is_first_command(str, i))
+		return (get_g_status(input));
+	else
+		value = ft_strdup(input, "0");
+	input->gb->type = GARBAGE;
+	return (value);
 }
 
 int	check_heredoc(char *str, int i)
@@ -59,4 +73,19 @@ char	*get_key_to_process(t_input *input, char *str, int *i)
 	}
 	input->gb->type = GARBAGE;
 	return (key);
+}
+
+int	is_first_command(char *str, int limit)
+{
+	int	i;
+
+	i = -1;
+	while (++i < limit)
+	{
+		if (ft_strchr("\"\'", str[i]))
+			skip_quotes(str, &i);
+		if (str[i] == '|')
+			return (0);
+	}
+	return (1);
 }

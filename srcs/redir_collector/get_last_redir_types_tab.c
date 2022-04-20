@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 18:48:00 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/20 09:33:46 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/20 16:03:42 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,14 +61,4 @@ void	get_last_redir_types(t_input *input, char *cmd, int i_cmd, int *i)
 		else if (cmd[*i] == '>' && cmd[*i - 1] == '>')
 			input->last_outfile_type[i_cmd] = APP_OUTFILE;
 	}
-}
-
-void	back_skip_quotes(char *str, int *i)
-{
-	char	c;
-
-	c = str[*i];
-	(*i)--;
-	while (str[*i] != 0 && str[*i] != c)
-		(*i)--;
 }

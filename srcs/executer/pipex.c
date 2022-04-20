@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 17:31:40 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/20 09:55:58 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/20 18:20:13 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,18 @@ void	finish_exec(t_input *input, t_cmd_lst *cmd)
 {
 	close_all_pipes(cmd);
 	close_all_files(cmd);
+	signal(SIGINT, SIG_IGN);
 	g_status = wait_all_processes(input);
 	signal(SIGINT, signal_handler_main);
 	signal(SIGQUIT, signal_handler_main);
 	tcsetattr(STDIN_FILENO, TCSANOW, &input->new_term);
+}
+
+int	ft_get_pid(int pid)
+{
+	static int parent_pid;
+
+	if (pid > 0)
+		parent_pid = pid;
+	return (parent_pid);
 }
