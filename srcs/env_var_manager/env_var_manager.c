@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env_var_manager.c                             :+:      :+:    :+:   */
+/*   env_var_manager.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/15 10:22:00 by agirardi          #+#    #+#             */
-/*   Updated: 2022/04/19 16:14:25 by llethuil         ###   ########lyon.fr   */
+/*   Created: 2022/04/20 09:37:04 by llethuil          #+#    #+#             */
+/*   Updated: 2022/04/20 09:38:04 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,9 @@ void	add_to_env_tab(t_input *input, char *str, int type)
 
 void	replace_existing_env_var(t_input *input, char *str)
 {
-	char *key;
-	char *value;
+	char	*key;
+	char	*value;
 
-	printf("here\n");
 	key = extract_key_from_str(input, str);
 	value = extract_value_from_str(input, str);
 	if (value || ft_strchr(str, '='))

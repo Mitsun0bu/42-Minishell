@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 18:48:00 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/19 09:39:29 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/20 09:33:46 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,15 @@
 void	get_last_redir_types_tab(t_input *input)
 {
 	int	i_cmd;
-	int	i_start;
+	int	i;
 
 	init_last_redir_types_tab(input);
 	i_cmd = -1;
 	while (++i_cmd < input->n_cmd)
 	{
-		i_start = ft_strlen(input->cmd_tab[i_cmd]);
-		while (--i_start >= 0)
-			get_last_redir_types(input, input->cmd_tab[i_cmd], i_cmd, &i_start);
+		i = ft_strlen(input->cmd_tab[i_cmd]);
+		while (--i >= 0)
+			get_last_redir_types(input, input->cmd_tab[i_cmd], i_cmd, &i);
 	}
 }
 
@@ -43,22 +43,22 @@ void	init_last_redir_types_tab(t_input *input)
 	}
 }
 
-void	get_last_redir_types(t_input *input, char *cmd, int i_cmd, int *i_start)
+void	get_last_redir_types(t_input *input, char *cmd, int i_cmd, int *i)
 {
-	if (cmd[*i_start] == '\'' || cmd[*i_start] == '"')
-		back_skip_quotes(cmd, i_start);
+	if (cmd[*i] == '\'' || cmd[*i] == '"')
+		back_skip_quotes(cmd, i);
 	if (input->last_infile_type[i_cmd] == UNSET)
 	{
-		if (cmd[*i_start] == '<' && cmd[*i_start - 1] != '<')
+		if (cmd[*i] == '<' && cmd[*i - 1] != '<')
 			input->last_infile_type[i_cmd] = INFILE;
-		else if (cmd[*i_start] == '<' && cmd[*i_start - 1] == '<')
+		else if (cmd[*i] == '<' && cmd[*i - 1] == '<')
 			input->last_infile_type[i_cmd] = HEREDOC;
 	}
 	if (input->last_outfile_type[i_cmd] == UNSET)
 	{
-		if (cmd[*i_start] == '>' && cmd[*i_start - 1] != '>')
+		if (cmd[*i] == '>' && cmd[*i - 1] != '>')
 			input->last_outfile_type[i_cmd] = OUTFILE;
-		else if (cmd[*i_start] == '>' && cmd[*i_start - 1] == '>')
+		else if (cmd[*i] == '>' && cmd[*i - 1] == '>')
 			input->last_outfile_type[i_cmd] = APP_OUTFILE;
 	}
 }

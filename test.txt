@@ -89,9 +89,7 @@ echo $? doit etre remis en place
 
 5) SIGNALS :
 
-ctrl-\ after you wrote some stuff should quit minishell
 ctrl-\ after a blocking command (fonctionne, mais l'affichage n'est pas comme bash)
-ctrl-D after a blocking command (ne fonctionne pas)
 
 6) DOUBLE QUOTES :
 
@@ -149,3 +147,6 @@ CHOSES A CHECKER :
 
 3) Tous les endroits où on doit modifier la variable globale status :
 ATTENTION ! NE PAS MODIFIER LA VARIABLE GLOBALE DANS ERR_RETURN MAIS REMONTER DANS LE CODE POUR REFLECHIR OU LE FAIRE
+
+4)	echo > $RANDOM
+	--> bash: $random: ambiguous redirect

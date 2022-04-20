@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 15:15:26 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/19 18:53:02 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/20 10:03:38 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 /* ************************************************************************** */
 
 /* error_manager/error_manger.c */
-void	print_err(int	error, char *who, char *problem, char *err_message);
-int	err_exit(t_input *input, int error, char *problem, char *err_message);
+void	print_err(int error, char *who, char *problem, char *err_message);
+int		exit_err(t_input *input, int error, char *problem, char *err_message);
 
 #endif

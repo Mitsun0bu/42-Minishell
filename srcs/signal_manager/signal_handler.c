@@ -6,13 +6,13 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 13:35:01 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/19 11:13:31 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/20 09:01:32 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-void	signal_handler_parent(int signal)
+void	signal_handler_main(int signal)
 {
 	if (signal == SIGINT)
 	{
@@ -33,10 +33,13 @@ void	signal_handler_exec(int signal)
 {
 	if (signal == SIGINT)
 	{
-		printf("\n");
+		printf("^C\n");
 	}
 	if (signal == SIGQUIT)
+	{
+		printf("^\\Quit: 3\n");
 		exit(0);
+	}
 }
 
 void	signal_handler_heredoc(int signal)

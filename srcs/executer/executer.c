@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 14:51:13 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/19 19:20:55 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/20 09:41:38 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,4 @@ void	executer(t_input *input, t_cmd_lst *cmd)
 	}
 	else
 		g_status = pipex(input, cmd);
-	// printf("- - - - - - - - - - - - - - - - - - - \n");
 }

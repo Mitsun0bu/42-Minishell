@@ -6,14 +6,21 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 13:21:26 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/19 16:04:11 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/20 10:03:38 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-void	shell_init(char **envp, t_input *input)
+void	shell_init(int ac, char **av, char **envp, t_input *input)
 {
+	if (ac > 1 || av[1])
+	{
+		print_err(127, "minishelled", av[1], "invalid option");
+		exit (127);
+	}
+	signal(SIGINT, signal_handler_main);
+	signal(SIGQUIT, signal_handler_main);
 	ft_memset(input, 0, sizeof(t_input));
 	tcgetattr(STDIN_FILENO, &input->old_term);
 	input->new_term = input->old_term;
@@ -96,7 +103,7 @@ void	init_history(t_input *input)
 		return ;
 	input->fd_history = open(path, O_CREAT | O_RDWR | O_APPEND, 0644);
 	if (input->fd_history < 0)
-		err_exit(input, -1, "error", ": couldn't open history file");
+		exit_err(input, -1, "error", ": couldn't open history file");
 	while (1)
 	{
 		cmd_line_history = ft_get_next_line(input, input->fd_history);

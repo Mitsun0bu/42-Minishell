@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 10:21:58 by agirardi          #+#    #+#             */
-/*   Updated: 2022/04/19 16:29:53 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/20 11:33:03 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,23 @@ void	change_value(t_input *input, char *key, char *value);
 
 /* env_manager/env_var_converter.c */
 void	env_var_converter(t_input *input, char *str);
-void	fill_buffer(t_input *input, char *buffer);
-void	fill_env_var(t_input *input, char *str, int *i, int *j);
-void	fill_quotes(t_input *input, char *str, int *i, int *j);
 
-/* env_manager/utils_env_var_counter.c */
+/* env_manager/env_var_counter.c */
+int		count_processed_line(t_input *input, char *str);
 int		count_env_var(t_input *input, char *str, int *i, int red);
-int		count_quotes(t_input *input, char *str, int *i);
+int		count_quotes(t_input *input, char *str, int *i, int red);
+int		count_basic(char *str, int *red, int *i);
+
+/* env_manager/env_var_filler.c */
+void	fill_processed_line(t_input *input, char *str);
+void	fill_basic(t_input *input, char *str, int index[], int *red);
+void	fill_env_var(t_input *input, char *str, int index[], int red);
+void	fill_quotes(t_input *input, char *str, int index[], int red);
+
+/* env_manager/utils_env_var_processing.c */
+void	fill_value(t_input *input, char *value, int *i);
+int		check_heredoc(char *str, int i);
+char	*get_key_to_process(t_input *input, char *str, int *i);
 
 /* env_manager/utils_env_var.c */
 char	*extract_key_from_str(t_input *input, char *str);

@@ -6,7 +6,7 @@
 #    By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/25 15:43:51 by llethuil          #+#    #+#              #
-#    Updated: 2022/04/19 16:32:05 by llethuil         ###   ########lyon.fr    #
+#    Updated: 2022/04/20 11:34:10 by llethuil         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -79,14 +79,17 @@ SRCS_LST	:=	built_ins/ft_cd.c								\
 				cmd_separator/check_pipe.c						\
 				cmd_separator/split_cmd.c						\
 				env_var_manager/env_var_converter.c				\
+				env_var_manager/env_var_counter.c				\
+				env_var_manager/env_var_filler.c				\
 				env_var_manager/env_var_manager.c				\
-				env_var_manager/utils_env_var_counter.c			\
+				env_var_manager/utils_env_var_processing.c		\
 				env_var_manager/utils_env_var.c					\
 				error_manager/error_manager.c					\
 				executer/redir_manager.c						\
 				executer/exec_manager.c							\
 				executer/executer.c								\
-				executer/file_manager.c							\
+				executer/file_closer.c							\
+				executer/file_opener.c							\
 				executer/heredoc_manager.c						\
 				executer/path_manager.c							\
 				executer/pipe_manager.c							\

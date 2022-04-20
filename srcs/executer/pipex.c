@@ -6,13 +6,12 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 17:31:40 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/19 18:47:54 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/20 09:55:58 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-// printf(" - - - - - - - - PIPEX - - - - - - - - \n");
 int	pipex(t_input *input, t_cmd_lst *cmd)
 {
 	int			i;
@@ -20,8 +19,7 @@ int	pipex(t_input *input, t_cmd_lst *cmd)
 
 	input->process = ft_malloc(input, sizeof(pid_t), input->n_cmd);
 	input->gb->type = INPUT_STRUCT;
-	tcsetattr(STDIN_FILENO, TCSANOW, &input->old_term);
-	signal(SIGINT, signal_handler_exec);
+	set_termios_and_sig_for_exec(input);
 	i = -1;
 	start = cmd;
 	while (++i < input->n_cmd)
@@ -37,8 +35,23 @@ int	pipex(t_input *input, t_cmd_lst *cmd)
 		cmd = cmd->next;
 	}
 	cmd = start;
+	finish_exec(input, cmd);
+	return (WEXITSTATUS(g_status));
+}
+
+void	set_termios_and_sig_for_exec(t_input *input)
+{
+	tcsetattr(STDIN_FILENO, TCSANOW, &input->old_term);
+	signal(SIGINT, signal_handler_exec);
+	signal(SIGQUIT, signal_handler_exec);
+}
+
+void	finish_exec(t_input *input, t_cmd_lst *cmd)
+{
 	close_all_pipes(cmd);
 	close_all_files(cmd);
 	g_status = wait_all_processes(input);
-	return (WEXITSTATUS(g_status));
+	signal(SIGINT, signal_handler_main);
+	signal(SIGQUIT, signal_handler_main);
+	tcsetattr(STDIN_FILENO, TCSANOW, &input->new_term);
 }

@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 11:40:20 by agirardi          #+#    #+#             */
-/*   Updated: 2022/04/19 18:53:50 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/20 09:35:42 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ int	ft_unset(t_input *input, t_cmd_lst *cmd)
 	while (cmd->args[++i])
 	{
 		key = cmd->args[i];
-		if (parse_arg(key) == SUCCESS && find_existing_env_var(input, key) == YES)
+		if (parse_arg(key) == SUCCESS
+			&& find_existing_env_var(input, key) == YES)
 			remove_from_env_tab(input, key);
 	}
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 17:32:59 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/19 16:19:17 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/20 09:53:25 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,6 @@ int	wait_all_processes(t_input *input)
 	i = -1;
 	while (++i < input->n_cmd)
 		waitpid(input->process[i], &status, 0);
-	signal(SIGINT, signal_handler_parent);
-	tcsetattr(STDIN_FILENO, TCSANOW, &input->new_term);
 	return (status);
 }
 

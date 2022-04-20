@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/06 18:37:12 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/19 18:44:55 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/20 10:03:38 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ int	fill_cmd(t_input *input)
 	if (g_status != 0)
 		return (g_status);
 	filled_cmd = ft_get_next_line(input, final_pipe_fd[0]);
-	signal(SIGINT, signal_handler_parent);
+	signal(SIGINT, signal_handler_main);
 	input->cmd_line = ft_strdup(input, filled_cmd);
 	input->gb->type = CMD_LINE;
 	return (g_status);
@@ -79,7 +79,7 @@ int	fill_cmd_child(t_input *input, char *filled_cmd, int *final_pipe_fd)
 	{
 		line = readline("> ");
 		if (!line)
-			err_exit(input, 258, "syntax error", "unexepcted end of file");
+			exit_err(input, 258, "syntax error", "unexepcted end of file");
 		if (ft_strlen(line))
 			break ;
 	}

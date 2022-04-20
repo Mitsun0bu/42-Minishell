@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 09:43:38 by agirardi          #+#    #+#             */
-/*   Updated: 2022/04/19 16:15:13 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/20 09:40:04 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,5 +91,3 @@ int	find_existing_env_var(t_input *input, char *str)
 	}
 	return (NO);
 }
-
-
