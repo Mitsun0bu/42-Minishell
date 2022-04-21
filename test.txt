@@ -143,12 +143,12 @@ CHOSES A CHECKER :
 				quotes = 1;
 		else if ????
 
-2) checker skip_space et voir pour la mettre dans les utils
+2) Checker tous les endroits où on doit modifier la variable globale status
 
-3) Tous les endroits où on doit modifier la variable globale status :
-ATTENTION ! NE PAS MODIFIER LA VARIABLE GLOBALE DANS ERR_RETURN MAIS REMONTER DANS LE CODE POUR REFLECHIR OU LE FAIRE
-
-4)	echo > $RANDOM
+3)	echo > $RANDOM
 	--> bash: $random: ambiguous redirect
 
-5) signaux dans un minishell lance a partir de minishell
+4)	Signaux dans un minishell lancé a partir de minishell ne foncitonne pas
+
+5)	echo: erstdh: No such file or directory
+	hello

@@ -1,22 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is_space.c                                         :+:      :+:    :+:   */
+/*   convert_env_var_in_str.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/08 14:51:11 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/21 09:45:25 by llethuil         ###   ########lyon.fr   */
+/*   Created: 2022/04/20 09:36:44 by llethuil          #+#    #+#             */
+/*   Updated: 2022/04/20 11:29:40 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-int	is_space(char c)
+void	convert_env_var_in_str(t_input *input, char *str)
 {
-	if (c == '\t' || c == '\n' || c == '\v'
-		|| c == '\f' || c == '\r' || c == ' ')
-		return (1);
-	else
-		return (0);
+	int		size;
+
+	size = count_processed_line(input, str);
+	input->processed_line = ft_calloc(input, sizeof(char), size + 1);
+	input->gb->type = INPUT_STRUCT;
+	fill_processed_line(input, str);
 }

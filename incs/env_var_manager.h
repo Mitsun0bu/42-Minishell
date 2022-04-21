@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 10:21:58 by agirardi          #+#    #+#             */
-/*   Updated: 2022/04/20 17:38:05 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/21 14:48:15 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ void	replace_existing_env_var(t_input *input, char *str);
 void	remove_from_env_tab(t_input *input, char *key);
 void	change_value(t_input *input, char *key, char *value);
 
-/* env_manager/env_var_converter.c */
-void	env_var_converter(t_input *input, char *str);
+/* env_manager/convert_env_var_in_str.c */
+void	convert_env_var_in_str(t_input *input, char *str);
 
 /* env_manager/env_var_counter.c */
 int		count_processed_line(t_input *input, char *str);

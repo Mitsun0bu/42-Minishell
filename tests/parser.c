@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.c                                           :+:      :+:    :+:   */
+/*   arg_separator.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -11,14 +11,14 @@
 /* ************************************************************************** */
 
 // // ---------------- FINAL TEST ---------------- //
-// printf("========================== PARSER ==========================\n");
+// printf("========================== arg_separator ==========================\n");
 // int i = -1;
 // int j;
 // while (input->cmd_exec_tab[++i])
 // {
 	// j = -1;
 	// printf("| TEST with : %s\n", input->cmd_tab[i]);
-	// printf("| ARG NUM : %d\n", get_arg_num(input->cmd_tab[i]));
+	// printf("| ARG NUM : %d\n", get_number_of_arg(input->cmd_tab[i]));
 	// while (input->cmd_exec_tab[i][++j])
 		// printf("| CMD_EXEC_TAB[%d][%d] %s\n",i, j, input->cmd_exec_tab[i][j]);
 // }

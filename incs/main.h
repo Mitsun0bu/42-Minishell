@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 17:07:56 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/20 09:08:15 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/21 17:33:13 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@
 # include "error_manager.h"
 # include "executer.h"
 # include "gb_collector.h"
-# include "parser.h"
+# include "arg_separator.h"
 # include "redir_collector.h"
 # include "shell_initializer.h"
 # include "signal_manager.h"

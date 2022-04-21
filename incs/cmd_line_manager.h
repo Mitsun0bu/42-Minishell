@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 16:36:06 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/12 17:48:26 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/21 14:50:33 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,5 @@
 
 /* cmd_line_manager/cmd_line_manager.c */
 void	cmd_line_manager(t_input *input);
-
-/* cmd_line_manager/get_cmd_line.c */
-void	get_cmd_line(t_input *input);
 
 #endif

@@ -1,22 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is_space.c                                         :+:      :+:    :+:   */
+/*   cmd_separator.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/08 14:51:11 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/21 09:45:25 by llethuil         ###   ########lyon.fr   */
+/*   Created: 2022/02/02 11:29:56 by llethuil          #+#    #+#             */
+/*   Updated: 2022/04/21 15:03:28 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-int	is_space(char c)
+int	cmd_separator(t_input *input)
 {
-	if (c == '\t' || c == '\n' || c == '\v'
-		|| c == '\f' || c == '\r' || c == ' ')
-		return (1);
-	else
-		return (0);
+	if (check_pipe(input) == FAILED)
+	{
+		printf("minishelled: syntax error near unexpected token `|'\n");
+		return (FAILED);
+	}
+	if (split_cmd(input) == FAILED)
+		return (FAILED);
+	if (check_quotes(input) == FAILED)
+		return (FAILED);
+	if (check_redir(input) == FAILED)
+	{
+		simulate_heredoc(input);
+		return (FAILED);
+	}
+	return (SUCCESS);
 }

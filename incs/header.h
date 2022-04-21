@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 17:37:10 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/20 15:38:20 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/21 11:51:28 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,7 @@ typedef struct s_input
 	int						n_env;
 	char					**cmd_tab;
 	int						n_cmd;
+	int						i_syntax_err;
 	int						*last_infile_type;
 	int						*last_outfile_type;
 	char					****redir_tab;

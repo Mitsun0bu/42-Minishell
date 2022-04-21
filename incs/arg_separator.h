@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cmd_separator.h                                    :+:      :+:    :+:   */
+/*   arg_separator.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/16 10:23:10 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/21 15:24:26 by llethuil         ###   ########lyon.fr   */
+/*   Created: 2022/02/10 10:09:31 by llethuil          #+#    #+#             */
+/*   Updated: 2022/04/21 18:28:05 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CMD_SEPARATOR_H
-# define CMD_SEPARATOR_H
+#ifndef arg_separator_H
+# define arg_separator_H
 
 /* ************************************************************************** */
 /*                                                                            */
@@ -25,22 +25,16 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-/* cmd_separator/check_pipe.c */
-int		check_pipe(t_input *input);
+/* arg_separator/arg_separator.c */
+int		arg_separator(t_input *input);
 
-/* cmd_separator/check_quotes.c */
-int		check_quotes(t_input *input);
+/* arg_separator/create_arg_tab.c */
+int		create_arg_tab(t_input *input, int i);
 
-/* cmd_seprator/check_redir.c */
-int		check_redir(t_input *input);
+/* arg_separator/get_arg_len.c */
+int		get_arg_len(char *str, int *i);
 
-/* cmd_separator/cmd_separator.c */
-int		cmd_separator(t_input *input);
-
-/* cmd_separator/simulate_heredoc.c */
-void	simulate_heredoc(t_input *input);
-
-/* cmd_separator/split_cmd.c */
-int		split_cmd(t_input *input);
+/* arg_separator/get_number_of_arg.c */
+int		get_number_of_arg(char *str);
 
 #endif

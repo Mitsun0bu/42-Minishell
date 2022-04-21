@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 13:35:01 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/20 18:21:12 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/21 17:47:34 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ void	signal_handler_exec(int signal)
 {
 	if (signal == SIGINT)
 	{
-		printf("\n");
 		printf("\n");
 	}
 	if (signal == SIGQUIT)
