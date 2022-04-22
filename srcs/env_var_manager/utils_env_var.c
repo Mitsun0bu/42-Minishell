@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 09:43:38 by agirardi          #+#    #+#             */
-/*   Updated: 2022/04/20 09:40:04 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/22 17:56:57 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,21 +60,6 @@ char	*get_value_from_key(t_input *input, char *key)
 	return (0);
 }
 
-int	env_tab_contains_key(const char *str, const char *key)
-{
-	int	i;
-
-	if (ft_strlen(str) != ft_strlen(key))
-		return (0);
-	i = -1;
-	while (key[++i])
-	{
-		if (key[i] != str[i])
-			return (NO);
-	}
-	return (YES);
-}
-
 int	find_existing_env_var(t_input *input, char *str)
 {
 	char	*key;
@@ -90,4 +75,46 @@ int	find_existing_env_var(t_input *input, char *str)
 				return (YES);
 	}
 	return (NO);
+}
+
+void	add_to_env_tab(t_input *input, char *str, int type)
+{
+	t_env	*new_env_tab;
+	int		i;
+
+	input->n_env ++;
+	new_env_tab = ft_malloc(input, sizeof(t_env), input->n_env);
+	input->gb->type = ENV_STRUCT;
+	i = -1;
+	while (++i < input->n_env - 1)
+	{
+		new_env_tab[i].key = input->env_tab[i].key;
+		new_env_tab[i].value = input->env_tab[i].value;
+		new_env_tab[i].type = input->env_tab[i].type;
+	}
+	new_env_tab[i].key = extract_key_from_str(input, str);
+	new_env_tab[i].value = extract_value_from_str(input, str);
+	new_env_tab[i].type = type;
+	input->env_tab = new_env_tab;
+}
+
+void	change_value(t_input *input, char *key, char *value)
+{
+	int	i;
+
+	i = -1;
+	while (++i < input->n_env)
+	{
+		if (ft_strncmp(key, input->env_tab[i].key, ft_strlen(key)) == 0)
+		{
+			if (ft_strlen(key) == ft_strlen(input->env_tab[i].key))
+			{
+				input->env_tab[i].value = value;
+				if (!value)
+					input->env_tab[i].type = ENV_EMPTY;
+				else
+					input->env_tab[i].type = ENV;
+			}
+		}
+	}
 }

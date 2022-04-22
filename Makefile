@@ -6,7 +6,7 @@
 #    By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/25 15:43:51 by llethuil          #+#    #+#              #
-#    Updated: 2022/04/22 10:40:05 by llethuil         ###   ########lyon.fr    #
+#    Updated: 2022/04/22 17:41:23 by llethuil         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,7 +53,6 @@ INCS_LST	:=	header.h			\
 				cmd_lst_manager.h	\
 				cmd_separator.h		\
 				env_var_manager.h	\
-				error_manager.h		\
 				executer.h			\
 				gb_collector.h		\
 				main.h				\
@@ -82,19 +81,16 @@ SRCS_LST	:=	1_main/main.c									\
 				7_cmd_lst_manager/cmd_lst_init.c				\
 				7_cmd_lst_manager/cmd_lst_manager.c				\
 				7_cmd_lst_manager/utils_cmd_lst_manager.c		\
+				8_executer/built_in_utils.c						\
 				8_executer/close_all_files.c					\
-				8_executer/close_all_pipes.c					\
-				8_executer/cmd_is_built_in.c					\
-				8_executer/exec_cmd.c							\
+				8_executer/convert_env_tab.c					\
 				8_executer/executer.c							\
+				8_executer/get_path.c							\
 				8_executer/handle_heredocs.c					\
-				8_executer/handle_pipe.c						\
-				8_executer/handle_redir_files.c					\
+				8_executer/pipe_exec.c							\
+				8_executer/pipe_utils.c							\
 				8_executer/open_all_files.c						\
-				8_executer/open_all_pipes.c						\
-				8_executer/path_manager.c						\
-				8_executer/redir_manager.c						\
-				8_executer/utils_executer.c						\
+				8_executer/set_data_flux.c						\
 				9_built_ins/ft_cd.c								\
 				9_built_ins/ft_echo.c							\
 				9_built_ins/ft_env.c							\
@@ -108,23 +104,24 @@ SRCS_LST	:=	1_main/main.c									\
 				env_var_manager/env_var_manager.c				\
 				env_var_manager/utils_env_var_processing.c		\
 				env_var_manager/utils_env_var.c					\
-				error_manager/error_manager.c					\
-				gb_collector/add_gb.c							\
-				gb_collector/assign_gb_type.c					\
-				gb_collector/clear_gb.c							\
-				signal_manager/signal_handler.c					\
+				utils/add_gb_utils.c							\
 				utils/back_skip_quotes.c						\
 				utils/build_heredoc_str.c						\
+				utils/check_fork_error.c						\
 				utils/clean_str.c								\
+				utils/clear_gb_utils.c							\
 				utils/close_single_pipe.c						\
 				utils/copy_filename.c							\
 				utils/count_filename_len.c						\
 				utils/count_n_file.c							\
+				utils/error_utils.c								\
 				utils/ft_free.c									\
-				utils/get_g_status.c							\
+				utils/get_and_set_termios.c						\
+				utils/get_status.c							\
 				utils/get_history_path.c						\
 				utils/is_space.c								\
 				utils/open_single_pipe.c						\
+				utils/signal_utils.c							\
 				utils/skip_quotes.c								\
 				utils/skip_space_after_chev.c					\
 
@@ -138,9 +135,6 @@ SUBDIRS_LST	:=	1_main				\
 				8_executer			\
 				9_built_ins			\
 				env_var_manager		\
-				error_manager		\
-				gb_collector		\
-				signal_manager		\
 				utils				\
 
 OBJS_LST	:=	$(SRCS_LST:.c=.o)

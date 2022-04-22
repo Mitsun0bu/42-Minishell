@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 17:07:56 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/21 17:33:13 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/22 16:26:41 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,18 +26,15 @@
 /* ************************************************************************** */
 
 # include "header.h"
-# include "built_ins.h"
-# include "cmd_line_manager.h"
-# include "cmd_lst_manager.h"
-# include "cmd_separator.h"
-# include "env_var_manager.h"
-# include "error_manager.h"
-# include "executer.h"
-# include "gb_collector.h"
-# include "arg_separator.h"
-# include "redir_collector.h"
 # include "shell_initializer.h"
-# include "signal_manager.h"
+# include "cmd_line_manager.h"
+# include "cmd_separator.h"
+# include "redir_collector.h"
+# include "arg_separator.h"
+# include "cmd_lst_manager.h"
+# include "executer.h"
+# include "built_ins.h"
+# include "env_var_manager.h"
 # include "utils.h"
 # include "../libft/libft.h"
 

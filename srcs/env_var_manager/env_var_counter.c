@@ -6,34 +6,11 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 10:58:45 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/22 10:11:00 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/22 17:44:51 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
-
-int	count_processed_line(t_input *input, char *str)
-{
-	int	size;
-	int	redir;
-	int	i;
-
-	redir = 0;
-	size = 0;
-	i = 0;
-	while (str[i])
-	{
-		if (str[i] == '$' && str[i])
-			size += count_env_var(input, str, &i, redir);
-		if (ft_strchr("\'\"", str[i]) && str[i])
-			size += count_quotes(input, str, &i, redir);
-		if (str[i])
-			size += count_basic(str, &redir, &i);
-		if (check_heredoc(str, i))
-			redir = HEREDOC;
-	}
-	return (size);
-}
 
 int	count_env_var(t_input *input, char *str, int *i, int redir)
 {
@@ -47,7 +24,7 @@ int	count_env_var(t_input *input, char *str, int *i, int redir)
 		if (redir == HEREDOC)
 			return (2);
 		if (is_first_command(str, *i))
-			return (ft_strlen(get_g_status(input)));
+			return (ft_strlen(get_status(input)));
 		return (1);
 	}
 	if (redir == 0)
