@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 10:21:58 by agirardi          #+#    #+#             */
-/*   Updated: 2022/04/22 10:11:00 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/22 18:04:53 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,6 @@
 
 /* env_manager/env_var_manager.c */
 void	add_to_env_tab(t_input *input, char *str, int type);
-void	replace_existing_env_var(t_input *input, char *str);
-void	remove_from_env_tab(t_input *input, char *key);
 void	change_value(t_input *input, char *key, char *value);
 
 /* env_manager/convert_env_var_in_str.c */
@@ -57,7 +55,6 @@ int		is_first_command(char *str, int limit);
 char	*extract_key_from_str(t_input *input, char *str);
 char	*extract_value_from_str(t_input *input, char *str);
 char	*get_value_from_key(t_input *input, char *key);
-int		env_tab_contains_key(const char *str, const char *key);
 int		find_existing_env_var(t_input *input, char *str);
 
 #endif

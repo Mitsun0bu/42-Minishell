@@ -6,7 +6,7 @@
 #    By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/25 15:43:51 by llethuil          #+#    #+#              #
-#    Updated: 2022/04/22 17:41:23 by llethuil         ###   ########lyon.fr    #
+#    Updated: 2022/04/22 18:08:19 by llethuil         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,78 +62,73 @@ INCS_LST	:=	header.h			\
 				shell_initializer.h	\
 				utils.h				\
 
-SRCS_LST	:=	1_main/main.c									\
-				2_shell_initializer/shell_initializer.c			\
-				3_cmd_line_manager/cmd_line_manager.c			\
-				4_cmd_separator/cmd_separator.c					\
-				4_cmd_separator/check_pipe.c					\
-				4_cmd_separator/check_quotes.c					\
-				4_cmd_separator/check_redir.c					\
-				4_cmd_separator/split_cmd.c						\
-				4_cmd_separator/simulate_heredoc.c				\
-				5_redir_collector/copy_filenames_in_redir_tab.c	\
-				5_redir_collector/get_last_redir_types_tab.c	\
-				5_redir_collector/redir_collector.c				\
-				6_arg_separator/arg_separator.c					\
-				6_arg_separator/create_arg_tab.c				\
-				6_arg_separator/get_arg_len.c					\
-				6_arg_separator/get_number_of_arg.c				\
-				7_cmd_lst_manager/cmd_lst_init.c				\
-				7_cmd_lst_manager/cmd_lst_manager.c				\
-				7_cmd_lst_manager/utils_cmd_lst_manager.c		\
-				8_executer/built_in_utils.c						\
-				8_executer/close_all_files.c					\
-				8_executer/convert_env_tab.c					\
-				8_executer/executer.c							\
-				8_executer/get_path.c							\
-				8_executer/handle_heredocs.c					\
-				8_executer/pipe_exec.c							\
-				8_executer/pipe_utils.c							\
-				8_executer/open_all_files.c						\
-				8_executer/set_data_flux.c						\
-				9_built_ins/ft_cd.c								\
-				9_built_ins/ft_echo.c							\
-				9_built_ins/ft_env.c							\
-				9_built_ins/ft_exit.c							\
-				9_built_ins/ft_export.c							\
-				9_built_ins/ft_pwd.c							\
-				9_built_ins/ft_unset.c							\
+SRCS_LST	:=	main/main.c										\
+				shell_initializer/shell_initializer.c			\
+				cmd_line_manager/cmd_line_manager.c				\
+				cmd_separator/cmd_separator.c					\
+				cmd_separator/check_pipe.c						\
+				cmd_separator/check_quotes.c					\
+				cmd_separator/check_redir.c						\
+				cmd_separator/split_cmd.c						\
+				cmd_separator/simulate_heredoc.c				\
+				redir_collector/copy_filenames_in_redir_tab.c	\
+				redir_collector/get_last_redir_types_tab.c		\
+				redir_collector/redir_collector.c				\
+				arg_separator/arg_separator.c					\
+				arg_separator/create_arg_tab.c					\
+				arg_separator/get_arg_len.c						\
+				arg_separator/get_number_of_arg.c				\
+				cmd_lst_manager/cmd_lst_init.c					\
+				cmd_lst_manager/cmd_lst_manager.c				\
+				cmd_lst_manager/utils_cmd_lst_manager.c			\
+				executer/built_in_utils.c						\
+				executer/close_all_files.c						\
+				executer/convert_env_tab.c						\
+				executer/executer.c								\
+				executer/get_path.c								\
+				executer/handle_heredocs.c						\
+				executer/pipe_exec.c							\
+				executer/pipe_utils.c							\
+				executer/open_all_files.c						\
+				executer/set_data_flux.c						\
+				built_ins/ft_cd.c								\
+				built_ins/ft_echo.c								\
+				built_ins/ft_env.c								\
+				built_ins/ft_exit.c								\
+				built_ins/ft_export.c							\
+				built_ins/ft_pwd.c								\
+				built_ins/ft_unset.c							\
 				env_var_manager/convert_env_var_in_str.c		\
 				env_var_manager/env_var_counter.c				\
-				env_var_manager/env_var_filler.c				\
-				env_var_manager/env_var_manager.c				\
 				env_var_manager/utils_env_var_processing.c		\
 				env_var_manager/utils_env_var.c					\
-				utils/add_gb_utils.c							\
-				utils/back_skip_quotes.c						\
-				utils/build_heredoc_str.c						\
-				utils/check_fork_error.c						\
-				utils/clean_str.c								\
-				utils/clear_gb_utils.c							\
-				utils/close_single_pipe.c						\
-				utils/copy_filename.c							\
-				utils/count_filename_len.c						\
-				utils/count_n_file.c							\
-				utils/error_utils.c								\
-				utils/ft_free.c									\
-				utils/get_and_set_termios.c						\
-				utils/get_status.c							\
-				utils/get_history_path.c						\
-				utils/is_space.c								\
-				utils/open_single_pipe.c						\
-				utils/signal_utils.c							\
-				utils/skip_quotes.c								\
-				utils/skip_space_after_chev.c					\
+				utils/utils_build_heredoc_str.c					\
+				utils/utils_check_fork_error.c					\
+				utils/utils_clean_str.c							\
+				utils/utils_copy_filename.c						\
+				utils/utils_count_filename_len.c				\
+				utils/utils_count_n_file.c						\
+				utils/utils_error.c								\
+				utils/utils_ft_free.c							\
+				utils/utils_gb_add.c							\
+				utils/utils_gb_clear.c							\
+				utils/utils_get_history_path.c					\
+				utils/utils_get_status.c						\
+				utils/utils_is_space.c							\
+				utils/utils_pipe.c								\
+				utils/utils_set_termios.c						\
+				utils/utils_signal.c							\
+				utils/utils_skip.c								\
 
-SUBDIRS_LST	:=	1_main				\
-				2_shell_initializer	\
-				3_cmd_line_manager	\
-				4_cmd_separator		\
-				5_redir_collector	\
-				6_arg_separator		\
-				7_cmd_lst_manager	\
-				8_executer			\
-				9_built_ins			\
+SUBDIRS_LST	:=	main				\
+				shell_initializer	\
+				cmd_line_manager	\
+				cmd_separator		\
+				redir_collector		\
+				arg_separator		\
+				cmd_lst_manager		\
+				executer			\
+				built_ins			\
 				env_var_manager		\
 				utils				\
 
