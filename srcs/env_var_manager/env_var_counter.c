@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 10:58:45 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/20 17:35:31 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/22 10:11:00 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,27 +15,27 @@
 int	count_processed_line(t_input *input, char *str)
 {
 	int	size;
-	int	red;
+	int	redir;
 	int	i;
 
-	red = 0;
+	redir = 0;
 	size = 0;
 	i = 0;
 	while (str[i])
 	{
 		if (str[i] == '$' && str[i])
-			size += count_env_var(input, str, &i, red);
+			size += count_env_var(input, str, &i, redir);
 		if (ft_strchr("\'\"", str[i]) && str[i])
-			size += count_quotes(input, str, &i, red);
+			size += count_quotes(input, str, &i, redir);
 		if (str[i])
-			size += count_basic(str, &red, &i);
+			size += count_basic(str, &redir, &i);
 		if (check_heredoc(str, i))
-			red = HEREDOC;
+			redir = HEREDOC;
 	}
 	return (size);
 }
 
-int	count_env_var(t_input *input, char *str, int *i, int red)
+int	count_env_var(t_input *input, char *str, int *i, int redir)
 {
 	char	*key;
 
@@ -44,20 +44,20 @@ int	count_env_var(t_input *input, char *str, int *i, int red)
 		return (1);
 	if (ft_strlen(key) == 2 && key[1] == '?')
 	{
-		if (red == HEREDOC)
+		if (redir == HEREDOC)
 			return (2);
 		if (is_first_command(str, *i))
 			return (ft_strlen(get_g_status(input)));
 		return (1);
 	}
-	if (red == 0)
+	if (redir == 0)
 		return (ft_strlen(get_value_from_key(input, key)));
-	if (red == HEREDOC)
+	if (redir == HEREDOC)
 		return (ft_strlen(key) + 1);
 	return (0);
 }
 
-int	count_quotes(t_input *input, char *str, int *i, int red)
+int	count_quotes(t_input *input, char *str, int *i, int redir)
 {
 	int		count;
 	char	quote;
@@ -68,7 +68,7 @@ int	count_quotes(t_input *input, char *str, int *i, int red)
 	{
 		if (str[*i] == '$' && quote == '\"')
 		{
-			count += count_env_var(input, str, i, red);
+			count += count_env_var(input, str, i, redir);
 			if (str[*i] == quote)
 				break ;
 		}
@@ -82,7 +82,7 @@ int	count_quotes(t_input *input, char *str, int *i, int red)
 	return (count);
 }
 
-int	count_basic(char *str, int *red, int *i)
+int	count_basic(char *str, int *redir, int *i)
 {
 	int	size;
 
@@ -90,7 +90,7 @@ int	count_basic(char *str, int *red, int *i)
 	while (str[*i] && !ft_strchr("$\'\"", str[*i]))
 	{
 		if (is_space(str[*i]) || ft_strchr("<>", str[*i]))
-			*red = 0;
+			*redir = 0;
 		(*i)++;
 		size++;
 	}

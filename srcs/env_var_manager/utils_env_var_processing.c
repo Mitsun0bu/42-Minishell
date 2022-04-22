@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/20 11:13:19 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/20 17:37:19 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/22 10:11:00 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,11 @@ void	fill_value(t_input *input, char *value, int *i)
 			input->processed_line[(*i)++] = value[j++];
 }
 
-char	*find_exit_status(t_input *input, char *str, int i, int red)
+char	*find_exit_status(t_input *input, char *str, int i, int redir)
 {
 	char	*value;
 
-	if (red == HEREDOC)
+	if (redir == HEREDOC)
 		value = ft_strdup(input, "$?");
 	else if (is_first_command(str, i))
 		return (get_g_status(input));

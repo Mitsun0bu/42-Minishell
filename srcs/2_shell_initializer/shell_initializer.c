@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 13:21:26 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/21 14:50:16 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/22 10:44:32 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@ void	shell_initializer(int ac, char **av, char **envp, t_input *input)
 		print_err(127, "minishelled", av[1], "invalid option");
 		exit (127);
 	}
+	tcgetattr(STDIN_FILENO, &input->old_term);
 	signal(SIGINT, signal_handler_main);
 	signal(SIGQUIT, signal_handler_main);
 	ft_memset(input, 0, sizeof(t_input));
-	tcgetattr(STDIN_FILENO, &input->old_term);
 	input->new_term = input->old_term;
 	input->new_term.c_lflag &= ~(ICANON | ECHOCTL);
 	tcsetattr(STDIN_FILENO, TCSANOW, &input->new_term);

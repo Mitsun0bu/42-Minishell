@@ -15,7 +15,7 @@
 static char **find_del(t_input *input, char *str, int n_del, char **del_tab);
 static int	simulate_heredoc_prompt(t_input *input, char **del_tab);
 static int	get_fake_heredoc_str(t_input *input, char *del);
-static int	get_str_from_child(t_input *input, char *del, char *heredoc_str);
+static int	get_str_from_child(t_input *input, char *del, char *str);
 
 void	simulate_heredoc(t_input *input)
 {
@@ -68,26 +68,26 @@ static int	simulate_heredoc_prompt(t_input *input, char **del_tab)
 static int	get_fake_heredoc_str(t_input *input, char *del)
 {
 	int		status;
-	char	*heredoc_str;
+	char	*str;
 	pid_t	fake_pid;
 
-	heredoc_str = NULL;
+	str = NULL;
 	fake_pid = fork();
 	check_fork_error(fake_pid);
 	if (fake_pid == CHILD)
-		status = get_str_from_child(input, del, heredoc_str);
+		status = get_str_from_child(input, del, str);
 	waitpid(fake_pid, &status, 0);
 	return (status);
 }
 
-static int	get_str_from_child(t_input *input, char *del, char *heredoc_str)
+static int	get_str_from_child(t_input *input, char *del, char *str)
 {
 	int	i;
 
 	i = -1;
 	signal(SIGINT, signal_handler_heredoc);
-	heredoc_str = build_heredoc_str(input, del);
-	if (!heredoc_str)
+	str = build_heredoc_str(input, del);
+	if (!str)
 		exit(FAILED);
 	exit (0);
 }

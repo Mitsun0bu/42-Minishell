@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.c                                            :+:      :+:    :+:   */
+/*   handle_pipe.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,14 +12,14 @@
 
 #include "main.h"
 
-int	pipex(t_input *input, t_cmd_lst *cmd)
+int	handle_pipe(t_input *input, t_cmd_lst *cmd)
 {
 	int			i;
 	t_cmd_lst	*start;
 
 	input->process = ft_malloc(input, sizeof(pid_t), input->n_cmd);
 	input->gb->type = INPUT_STRUCT;
-	set_termios_and_sig_for_exec(input);
+	set_termios_and_sig(input, );
 	i = -1;
 	start = cmd;
 	while (++i < input->n_cmd)
@@ -39,22 +39,15 @@ int	pipex(t_input *input, t_cmd_lst *cmd)
 	return (WEXITSTATUS(g_status));
 }
 
-void	set_termios_and_sig_for_exec(t_input *input)
-{
-	tcsetattr(STDIN_FILENO, TCSANOW, &input->old_term);
-	signal(SIGINT, signal_handler_exec);
-	signal(SIGQUIT, signal_handler_exec);
-}
-
 void	finish_exec(t_input *input, t_cmd_lst *cmd)
 {
 	close_all_pipes(cmd);
 	close_all_files(cmd);
 	signal(SIGINT, SIG_IGN);
 	g_status = wait_all_processes(input);
+	tcsetattr(STDIN_FILENO, TCSANOW, &input->new_term);
 	signal(SIGINT, signal_handler_main);
 	signal(SIGQUIT, signal_handler_main);
-	tcsetattr(STDIN_FILENO, TCSANOW, &input->new_term);
 }
 
 int	ft_get_pid(int pid)

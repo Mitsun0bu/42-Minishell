@@ -1,16 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   file_closer.c                                      :+:      :+:    :+:   */
+/*   close_all_files.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 12:14:03 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/21 09:28:57 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/22 10:01:41 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
+
+static int	close_infiles(t_cmd_lst *cmd);
+static int	close_outfiles(t_cmd_lst *cmd);
+static int	close_app_outfiles(t_cmd_lst *cmd);
 
 int	close_all_files(t_cmd_lst *cmd)
 {
@@ -36,7 +40,7 @@ int	close_all_files(t_cmd_lst *cmd)
 	return (SUCCESS);
 }
 
-int	close_infiles(t_cmd_lst *cmd)
+static int	close_infiles(t_cmd_lst *cmd)
 {
 	int	i;
 
@@ -57,7 +61,7 @@ int	close_infiles(t_cmd_lst *cmd)
 	return (SUCCESS);
 }
 
-int	close_outfiles(t_cmd_lst *cmd)
+static int	close_outfiles(t_cmd_lst *cmd)
 {
 	int	i;
 
@@ -78,7 +82,7 @@ int	close_outfiles(t_cmd_lst *cmd)
 	return (SUCCESS);
 }
 
-int	close_app_outfiles(t_cmd_lst *cmd)
+static int	close_app_outfiles(t_cmd_lst *cmd)
 {
 	int	i;
 

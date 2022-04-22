@@ -6,7 +6,7 @@
 #    By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/25 15:43:51 by llethuil          #+#    #+#              #
-#    Updated: 2022/04/21 18:25:16 by llethuil         ###   ########lyon.fr    #
+#    Updated: 2022/04/22 10:40:05 by llethuil         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@
 
 ERASE	:=	\033[2K\r
 BOLD	:=	\033[1m
-RED		:=	\033[31m
+redir		:=	\033[31m
 GREEN	:=	\033[32m
 BLUE	:=	\033[34m
 PINK	:=	\033[35m
@@ -82,17 +82,19 @@ SRCS_LST	:=	1_main/main.c									\
 				7_cmd_lst_manager/cmd_lst_init.c				\
 				7_cmd_lst_manager/cmd_lst_manager.c				\
 				7_cmd_lst_manager/utils_cmd_lst_manager.c		\
-				8_executer/redir_manager.c						\
-				8_executer/exec_manager.c						\
+				8_executer/close_all_files.c					\
+				8_executer/close_all_pipes.c					\
+				8_executer/cmd_is_built_in.c					\
+				8_executer/exec_cmd.c							\
 				8_executer/executer.c							\
-				8_executer/file_closer.c						\
-				8_executer/file_opener.c						\
-				8_executer/heredoc_manager.c					\
+				8_executer/handle_heredocs.c					\
+				8_executer/handle_pipe.c						\
+				8_executer/handle_redir_files.c					\
+				8_executer/open_all_files.c						\
+				8_executer/open_all_pipes.c						\
 				8_executer/path_manager.c						\
-				8_executer/pipe_manager.c						\
-				8_executer/pipex.c								\
+				8_executer/redir_manager.c						\
 				8_executer/utils_executer.c						\
-				8_executer/utils_heredoc.c						\
 				9_built_ins/ft_cd.c								\
 				9_built_ins/ft_echo.c							\
 				9_built_ins/ft_env.c							\
@@ -112,7 +114,9 @@ SRCS_LST	:=	1_main/main.c									\
 				gb_collector/clear_gb.c							\
 				signal_manager/signal_handler.c					\
 				utils/back_skip_quotes.c						\
+				utils/build_heredoc_str.c						\
 				utils/clean_str.c								\
+				utils/close_single_pipe.c						\
 				utils/copy_filename.c							\
 				utils/count_filename_len.c						\
 				utils/count_n_file.c							\
@@ -120,6 +124,7 @@ SRCS_LST	:=	1_main/main.c									\
 				utils/get_g_status.c							\
 				utils/get_history_path.c						\
 				utils/is_space.c								\
+				utils/open_single_pipe.c						\
 				utils/skip_quotes.c								\
 				utils/skip_space_after_chev.c					\
 

@@ -150,5 +150,12 @@ CHOSES A CHECKER :
 
 4)	Signaux dans un minishell lancé a partir de minishell ne foncitonne pas
 
-5)	echo: erstdh: No such file or directory
+5)	minishelled-1.0$ echo hello < erstdh
+	echo: erstdh: No such file or directory
 	hello
+	(On ne doit pas afficher le message)
+
+6)	minishelled-1.0$ cat << del
+	minishelled: syntax error near unexpected token `newline'
+	>
+	(On ne doit pas afficher ce message d'erreur)

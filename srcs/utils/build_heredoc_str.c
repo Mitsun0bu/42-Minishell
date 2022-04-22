@@ -6,20 +6,23 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 15:14:08 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/20 17:33:29 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/22 09:12:00 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
+static char	*read_heredoc_line(t_input *input);
+static char	*append_heredoc_line(t_input *input, char *line, char *str);
+
 char	*build_heredoc_str(t_input *input, char *del)
 {
 	char			*line;
-	char			*heredoc_str;
+	char			*str;
 	unsigned long	len;
 
 	line = NULL;
-	heredoc_str = ft_strdup(input, "");
+	str = ft_strdup(input, "");
 	input->gb->type = GARBAGE;
 	len = ft_strlen(del);
 	while (ft_strncmp(line, del, len) != 0 || ft_strlen(line) - 1 != len)
@@ -29,35 +32,35 @@ char	*build_heredoc_str(t_input *input, char *del)
 			return (NULL);
 		if (ft_strncmp(line, del, len) != 0 || ft_strlen(line) - 1 != len)
 		{
-			heredoc_str = append_heredoc_line(input, line, heredoc_str);
+			str = append_heredoc_line(input, line, str);
 			input->gb->type = GARBAGE;
 		}
 	}
-	return (heredoc_str);
+	return (str);
 }
 
-char	*read_heredoc_line(t_input *input)
+static char	*read_heredoc_line(t_input *input)
 {
-	char	*new_line;
+	char	*line;
 	char	*buffer;
 
-	new_line = readline("> ");
-	if (!new_line)
+	line = readline("> ");
+	if (!line)
 		return (NULL);
-	buffer = ft_strdup(input, new_line);
+	buffer = ft_strdup(input, line);
 	input->gb->type = GARBAGE;
-	ft_free((void *)&new_line);
-	new_line = ft_strjoin(input, buffer, "\n");
+	ft_free((void *)&line);
+	line = ft_strjoin(input, buffer, "\n");
 	input->gb->type = GARBAGE;
-	return (new_line);
+	return (line);
 }
 
-char	*append_heredoc_line(t_input *input, char *line, char *heredoc_str)
+static char	*append_heredoc_line(t_input *input, char *line, char *str)
 {
-	char	*new_heredoc_str;
+	char	*append_line;
 	char	*buffer;
 
-	buffer = heredoc_str;
-	new_heredoc_str = ft_strjoin(input, buffer, line);
-	return (new_heredoc_str);
+	buffer = str;
+	append_line = ft_strjoin(input, buffer, line);
+	return (append_line);
 }

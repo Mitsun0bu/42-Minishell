@@ -6,7 +6,7 @@
 #    By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/05 14:36:18 by llethuil          #+#    #+#              #
-#    Updated: 2022/04/05 16:29:23 by llethuil         ###   ########lyon.fr    #
+#    Updated: 2022/04/22 10:11:00 by llethuil         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@
 
 ERASE	:=	\033[2K\r
 BOLD	:=	\033[1m
-RED		:=	\033[31m
+redir		:=	\033[31m
 GREEN	:=	\033[32m
 BLUE	:=	\033[34m
 PINK	:=	\033[35m

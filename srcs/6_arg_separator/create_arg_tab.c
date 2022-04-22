@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 10:31:04 by agirardi          #+#    #+#             */
-/*   Updated: 2022/04/21 18:24:54 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/22 10:11:00 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 static void	fill_tab(char *cmd, char *exec_cmd, int i);
 static void	copy_in_quote(char *cmd, char *exec_cmd, int *i, int *j);
-static int	end_check(char *cmd, int *i, int *red);
-static void	check_red(int *red, char *cmd, int *i);
+static int	end_check(char *cmd, int *i, int *redir);
+static void	check_red(int *redir, char *cmd, int *i);
 
 int	create_arg_tab(t_input *input, int i)
 {
@@ -40,10 +40,10 @@ int	create_arg_tab(t_input *input, int i)
 
 static void	fill_tab(char *cmd, char *exec_cmd, int i)
 {
-	int	red;
+	int	redir;
 	int	j;
 
-	red = 0;
+	redir = 0;
 	j = 0;
 	while (cmd[++i])
 	{
@@ -51,17 +51,17 @@ static void	fill_tab(char *cmd, char *exec_cmd, int i)
 		{
 			if (ft_strchr("\"\'", cmd[i]))
 			{
-				if (red == 1)
+				if (redir == 1)
 					skip_quotes(cmd, &i);
 				else
 					copy_in_quote(cmd, exec_cmd, &i, &j);
 			}
-			if (red == 0 && !ft_strchr("\t\n\v\f\r <>", cmd[i]))
+			if (redir == 0 && !ft_strchr("\t\n\v\f\r <>", cmd[i]))
 				exec_cmd[j++] = cmd[i];
-			if (!end_check(cmd, &i, &red))
+			if (!end_check(cmd, &i, &redir))
 				return ;
 		}
-		check_red(&red, cmd, &i);
+		check_red(&redir, cmd, &i);
 	}
 }
 
@@ -83,19 +83,19 @@ static void	copy_in_quote(char *cmd, char *exec_cmd, int *i, int *j)
 }
 
 
-static int	end_check(char *cmd, int *i, int *red)
+static int	end_check(char *cmd, int *i, int *redir)
 {
-	if (ft_strchr("\t <>", cmd[*i + 1]) && *red == 0)
+	if (ft_strchr("\t <>", cmd[*i + 1]) && *redir == 0)
 		return (0);
 	(*i)++;
 	return (1);
 }
 
-static void	check_red(int *red, char *cmd, int *i)
+static void	check_red(int *redir, char *cmd, int *i)
 {
-	*red = 0;
+	*redir = 0;
 	if (ft_strchr("<>", cmd[*i]))
-		*red = 1;
+		*redir = 1;
 	if (ft_strchr("<>", cmd[*i]))
 		while (ft_strchr("\t <>", cmd[*i + 1]))
 			(*i)++;

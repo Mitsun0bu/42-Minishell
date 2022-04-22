@@ -1,16 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   file_opener.c                                      :+:      :+:    :+:   */
+/*   open_all_files.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/20 09:44:30 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/20 11:34:45 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/22 09:43:21 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
+
+static int	open_infiles(t_input *input, t_cmd_lst *cmd);
+static int	open_outfiles(t_input *input, t_cmd_lst *cmd);
+static int	open_app_outfiles(t_input *input, t_cmd_lst *cmd);
 
 int	open_all_files(t_input *input, t_cmd_lst *cmd)
 {
@@ -36,7 +40,7 @@ int	open_all_files(t_input *input, t_cmd_lst *cmd)
 	return (SUCCESS);
 }
 
-int	open_infiles(t_input *input, t_cmd_lst *cmd)
+static int	open_infiles(t_input *input, t_cmd_lst *cmd)
 {
 	int	i;
 
@@ -56,7 +60,7 @@ int	open_infiles(t_input *input, t_cmd_lst *cmd)
 	return (SUCCESS);
 }
 
-int	open_outfiles(t_input *input, t_cmd_lst *cmd)
+static int	open_outfiles(t_input *input, t_cmd_lst *cmd)
 {
 	int	i;
 
@@ -77,7 +81,7 @@ int	open_outfiles(t_input *input, t_cmd_lst *cmd)
 	return (SUCCESS);
 }
 
-int	open_app_outfiles(t_input *input, t_cmd_lst *cmd)
+static int	open_app_outfiles(t_input *input, t_cmd_lst *cmd)
 {
 	int	i;
 
