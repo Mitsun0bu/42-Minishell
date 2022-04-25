@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 12:09:40 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/22 16:07:47 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/25 10:35:37 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int		open_all_files(t_input *input, t_cmd_lst *cmd);
 int		get_path(t_input *input, t_cmd_lst *cmd);
 
 /*executer/set_data_flux.c */
-void	set_stdin(t_input *input, t_cmd_lst *cmd);
+int	set_stdin(t_input *input, t_cmd_lst *cmd);
 void	set_stdout(t_input *input, t_cmd_lst *cmd);
 
 #endif

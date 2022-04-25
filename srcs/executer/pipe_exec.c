@@ -46,7 +46,8 @@ static void	child_exec_cmd(t_input *input, t_cmd_lst *cmd)
 {
 	if (get_path(input, cmd) == FAILED && cmd_is_built_in(cmd->name) == NO)
 		exit (g_status);
-	set_stdin(input, cmd);
+	if (set_stdin(input, cmd) == FAILED)
+		exit (g_status);
 	set_stdout(input, cmd);
 	close_all_pipes(cmd);
 	if (cmd_is_built_in(cmd->name) == YES)

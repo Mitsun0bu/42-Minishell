@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 10:07:06 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/22 15:56:17 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/25 10:42:56 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static int	handle_infile(t_input *input, t_cmd_lst *cmd);
 static int	handle_outfile(t_input *input, t_cmd_lst *cmd);
 static int	dup_loop(int n_file, int *fd_file, int where);
 
-void	set_stdin(t_input *input, t_cmd_lst *cmd)
+int	set_stdin(t_input *input, t_cmd_lst *cmd)
 {
 	int	job_done;
 
@@ -26,10 +26,16 @@ void	set_stdin(t_input *input, t_cmd_lst *cmd)
 	else if (cmd->n_infile || cmd->n_heredoc)
 	{
 		job_done = handle_infile(input, cmd);
-		if (cmd->i != 0 || job_done == NO)
+		if (cmd->i != 0 && job_done == NO)
 			if (cmd->valid_path || cmd_is_built_in(cmd->name) == YES)
 				dup2(cmd->previous->cmd_pipe[0], STDIN_FILENO);
+		else
+		{
+			g_status = 1;
+			return (FAILED);
+		}
 	}
+	return (SUCCESS);
 }
 
 void	set_stdout(t_input *input, t_cmd_lst *cmd)

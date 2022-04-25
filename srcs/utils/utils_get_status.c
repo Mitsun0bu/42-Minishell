@@ -18,6 +18,5 @@ char *get_status(t_input *input)
 
 	status = ft_itoa(input, g_status);
 	input->gb->type = GARBAGE;
-
 	return(status);
 }
