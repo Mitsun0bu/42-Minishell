@@ -6,7 +6,7 @@
 #    By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/25 15:43:51 by llethuil          #+#    #+#              #
-#    Updated: 2022/04/22 18:08:19 by llethuil         ###   ########lyon.fr    #
+#    Updated: 2022/04/25 17:45:05 by llethuil         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,17 +48,15 @@ SRCS_DIR	:= srcs
 OBJS_DIR	:= .objs
 
 INCS_LST	:=	header.h			\
+				arg_separator.h		\
 				built_ins.h			\
 				cmd_line_manager.h	\
 				cmd_lst_manager.h	\
 				cmd_separator.h		\
-				env_var_manager.h	\
+				env_var_converter.h	\
 				executer.h			\
-				gb_collector.h		\
 				main.h				\
-				arg_separator.h		\
 				redir_collector.h	\
-				signal_manager.h	\
 				shell_initializer.h	\
 				utils.h				\
 
@@ -98,22 +96,22 @@ SRCS_LST	:=	main/main.c										\
 				built_ins/ft_export.c							\
 				built_ins/ft_pwd.c								\
 				built_ins/ft_unset.c							\
-				env_var_manager/convert_env_var_in_str.c		\
-				env_var_manager/env_var_counter.c				\
-				env_var_manager/utils_env_var_processing.c		\
-				env_var_manager/utils_env_var.c					\
+				env_var_converter/convert_env_var_in_str.c		\
+				env_var_converter/copy_basic_char.c				\
+				env_var_converter/convert_env_var.c				\
+				env_var_converter/fill_quotes.c					\
 				utils/utils_build_heredoc_str.c					\
 				utils/utils_check_fork_error.c					\
 				utils/utils_clean_str.c							\
 				utils/utils_copy_filename.c						\
 				utils/utils_count_filename_len.c				\
 				utils/utils_count_n_file.c						\
+				utils/utils_env_var.c							\
 				utils/utils_error.c								\
 				utils/utils_ft_free.c							\
 				utils/utils_gb_add.c							\
 				utils/utils_gb_clear.c							\
 				utils/utils_get_history_path.c					\
-				utils/utils_get_status.c						\
 				utils/utils_is_space.c							\
 				utils/utils_pipe.c								\
 				utils/utils_set_termios.c						\
@@ -129,7 +127,7 @@ SUBDIRS_LST	:=	main				\
 				cmd_lst_manager		\
 				executer			\
 				built_ins			\
-				env_var_manager		\
+				env_var_converter	\
 				utils				\
 
 OBJS_LST	:=	$(SRCS_LST:.c=.o)

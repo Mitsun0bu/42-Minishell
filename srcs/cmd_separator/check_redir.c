@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 13:18:59 by agirardi          #+#    #+#             */
-/*   Updated: 2022/04/22 17:24:06 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/25 17:19:58 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@ static int	check_sgl_chev_red(t_input *input, char *str, int *i)
 		(*i) ++;
 	if (!str[(*i)])
 	{
-		printf("here\n");
 		select_err_mess(input, NEW_LINE);
 		return (FAILED);
 	}

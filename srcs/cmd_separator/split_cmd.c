@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/06 18:37:12 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/22 12:56:27 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/25 19:30:40 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,17 +58,17 @@ static int	fill_cmd(t_input *input)
 	filled_cmd = NULL;
 	if (open_single_pipe(pipe_fd) == FAILED)
 		return (FAILED);
+	set_signals(EXEC);
 	final_pipe_process = fork();
 	check_fork_error(final_pipe_process);
 	if (final_pipe_process == CHILD)
 		g_status = fill_cmd_child(input, filled_cmd, pipe_fd);
-	set_signals(UNSET);
 	close(pipe_fd[1]);
 	waitpid(final_pipe_process, &g_status, 0);
-	if (g_status != 0)
-		return (g_status);
-	filled_cmd = ft_get_next_line(input, pipe_fd[0]);
 	set_signals(MAIN);
+	filled_cmd = ft_get_next_line(input, pipe_fd[0]);
+	if (g_status != 0 || !filled_cmd)
+		return (g_status);
 	input->cmd_line = ft_strdup(input, filled_cmd);
 	input->gb->type = CMD_LINE;
 	return (g_status);
@@ -78,12 +78,12 @@ static int	fill_cmd_child(t_input *input, char *filled_cmd, int *pipe_fd)
 {
 	char	*line;
 
-	signal(SIGINT, SIG_DFL);
+	set_signals(PIPE);
 	while (1)
 	{
 		line = readline("> ");
 		if (!line)
-			exit_err(input, 258, "syntax error", "unexepcted end of file");
+			exit_err(input, 258, "syntax error", "unexpected end of file");
 		if (ft_strlen(line))
 			break ;
 	}

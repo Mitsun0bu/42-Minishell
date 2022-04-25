@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 17:37:10 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/22 14:52:31 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/25 19:25:16 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 # define OUT 0
 # define MAIN 0
 # define EXEC 1
+# define PIPE 5
 # define UNSET -1
 # define REDIR 1
 # define CHILD 0

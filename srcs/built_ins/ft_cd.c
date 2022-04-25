@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 10:56:25 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/22 16:10:58 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/25 17:14:11 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,10 @@ int	ft_cd(t_input *input, t_cmd_lst *cmd)
 
 	home = get_value_from_key(input, "HOME");
 	if (check_access_error(cmd, home) == FAILED)
-		return (1);
+	{
+		g_status = 1;
+		return (g_status);
+	}
 	call_update_oldpwd(input, cmd, home);
 	pwd = getcwd(NULL, 0);
 	pwd_gb = ft_strdup(input, pwd);

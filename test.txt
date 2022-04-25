@@ -70,7 +70,3 @@ CHOSES A CHECKER :
 
 3)	echo > $RANDOM
 	--> bash: $random: ambiguous redirect
-
-5) Mes modifs et idees :
-	- Si g_status est different de 0 , on execute pas les built_ins
-	- Si g_status = 130 ou 131, on print un "\n" au debut de la boucle while(1)

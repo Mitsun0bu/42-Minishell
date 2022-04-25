@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 10:07:06 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/25 10:42:56 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/25 10:56:07 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,10 @@ int	set_stdin(t_input *input, t_cmd_lst *cmd)
 	{
 		job_done = handle_infile(input, cmd);
 		if (cmd->i != 0 && job_done == NO)
+		{
 			if (cmd->valid_path || cmd_is_built_in(cmd->name) == YES)
 				dup2(cmd->previous->cmd_pipe[0], STDIN_FILENO);
+		}
 		else
 		{
 			g_status = 1;

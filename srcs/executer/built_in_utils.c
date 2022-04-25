@@ -6,11 +6,13 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 10:41:38 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/22 17:30:53 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/25 17:34:40 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
+
+static int	check_infiles(t_cmd_lst *cmd);
 
 int	cmd_is_built_in(char *name)
 {
@@ -36,16 +38,19 @@ int	cmd_is_built_in(char *name)
 
 int	exec_built_in(t_input *input, t_cmd_lst *cmd)
 {
-	if (g_status != 0)
-		return (FAILED);
-	else if (!ft_strncmp(cmd->name, "cd", 2) && !cmd->name[2])
+	if (check_infiles(cmd) == FAILED)
+	{
+		g_status = 1;
+		return (g_status);
+	}
+	if (!ft_strncmp(cmd->name, "cd", 2) && !cmd->name[2])
 		return (ft_cd(input, cmd));
 	else if (!ft_strncmp(cmd->name, "echo", 4) && !cmd->name[4])
 		return (ft_echo(input, cmd));
 	else if (!ft_strncmp(cmd->name, "pwd", 3) && !cmd->name[3])
 		return (ft_pwd());
 	else if (!ft_strncmp(cmd->name, "env", 3) && !cmd->name[3])
-		return (ft_env(input));
+		return (ft_env(input, cmd));
 	else if (!ft_strncmp(cmd->name, "exit", 4) && !cmd->name[4])
 		return (ft_exit(input, cmd));
 	else if (!ft_strncmp(cmd->name, "export", 6) && !cmd->name[6])
@@ -54,4 +59,17 @@ int	exec_built_in(t_input *input, t_cmd_lst *cmd)
 		return (ft_unset(input, cmd));
 	else
 		return (FAILED);
+}
+
+static int	check_infiles(t_cmd_lst *cmd)
+{
+	int	i;
+
+	i = -1;
+	while (++i < cmd->n_infile)
+	{
+		if (access(cmd->infile[i], F_OK) != SUCCESS)
+			return (FAILED);
+	}
+	return (SUCCESS);
 }

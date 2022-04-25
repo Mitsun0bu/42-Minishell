@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   gb_collector.h                                :+:      :+:    :+:   */
+/*   env_var_converter.h                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/29 10:02:50 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/12 15:38:18 by llethuil         ###   ########lyon.fr   */
+/*   Created: 2022/02/15 10:21:58 by agirardi          #+#    #+#             */
+/*   Updated: 2022/04/25 17:44:27 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GB_COLLECTOR_H
-# define GB_COLLECTOR_H
+#ifndef ENV_VAR_MANAGER_H
+# define ENV_VAR_MANAGER_H
 
 /* ************************************************************************** */
 /*                                                                            */
@@ -25,17 +25,16 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-/* gb collector/add_gb.c */
-void		add_gb(t_gb_lst **gb, void *ptr);
-void		add_gb_front(t_gb_lst **gb, t_gb_lst *new_gb);
-t_gb_lst	*create_new_gb(void *ptr);
+/* env_manager/convert_env_var_in_str.c */
+char	*convert_env_var_in_str(t_input *input, char *str);
 
-/* gb collector/assign_gb_type.c */
-void		assign_gb_type(t_input *input, char **table, int gb_type);
+/* env_manager/convert_env_var.c */
+char	*convert_env_var(t_input *input, char *str, int *i, int red);
 
-/* gb collector/clear_gb.c */
-void		clear_all_gb(t_gb_lst **gb);
-void		clear_one_gb_type(t_gb_lst **gb, int type);
-int			count_gb_type(t_gb_lst **gb, int type);
+/* env_manager/fill_quotes.c */
+char	*fill_quotes(t_input *input, char *str, int *i, int red);
+
+/* env_manager/copy_basic_char.c */
+char	*copy_basic_char(t_input *input, char *str, int *i, int *red);
 
 #endif

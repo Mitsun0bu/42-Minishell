@@ -13,7 +13,6 @@
 #include "main.h"
 
 static void	child_exec_cmd(t_input *input, t_cmd_lst *cmd);
-static void	finish_exec(t_input *input, t_cmd_lst *cmd);
 static int	wait_all_processes(t_input *input);
 
 int	pipe_exec(t_input *input, t_cmd_lst *cmd)
@@ -36,10 +35,12 @@ int	pipe_exec(t_input *input, t_cmd_lst *cmd)
 		cmd = cmd->next;
 	}
 	cmd = start;
-	finish_exec(input, cmd);
+	close_all_pipes(cmd);
+	close_all_files(cmd);
+	g_status = wait_all_processes(input);
 	set_termios(input, YES);
 	set_signals(MAIN);
-	return (WEXITSTATUS(g_status));
+	return (g_status);
 }
 
 static void	child_exec_cmd(t_input *input, t_cmd_lst *cmd)
@@ -61,15 +62,6 @@ static void	child_exec_cmd(t_input *input, t_cmd_lst *cmd)
 		exit(0);
 }
 
-static void	finish_exec(t_input *input, t_cmd_lst *cmd)
-{
-	close_all_pipes(cmd);
-	close_all_files(cmd);
-	// signal(SIGINT, SIG_IGN);
-	signal(SIGINT, signal_handler_parent);
-	g_status = wait_all_processes(input);
-}
-
 static int	wait_all_processes(t_input *input)
 {
 	int	status;
@@ -78,6 +70,18 @@ static int	wait_all_processes(t_input *input)
 	status = 0;
 	i = -1;
 	while (++i < input->n_cmd)
+	{
 		waitpid(input->process[i], &status, 0);
-	return (status);
+		if (WIFSIGNALED(status) && WTERMSIG(status) == 2)
+		{
+			ft_putstr_fd("\n", 2);
+			g_status = 130;
+		}
+		else if (WIFSIGNALED(status) && WTERMSIG(status) == 3)
+		{
+			ft_putstr_fd("Quit : 3\n", 2);
+			g_status = 131;
+		}
+	}
+	return (g_status);
 }

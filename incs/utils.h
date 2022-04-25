@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 11:29:37 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/22 17:41:23 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/25 19:26:34 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,14 @@ int		count_filename_len(char *cmd, int i_file, char c);
 /*utils/count_n_file.c */
 int		count_n_file(char *cmd, int type);
 
+/* env_manager/utils_env_var.c */
+char	*extract_key_from_str(t_input *input, char *str);
+char	*extract_value_from_str(t_input *input, char *str);
+char	*get_value_from_key(t_input *input, char *key);
+int		find_existing_env_var(t_input *input, char *str);
+void	add_to_env_tab(t_input *input, char *str, int type);
+void	change_value(t_input *input, char *key, char *value);
+
 /* utils/error_utils.c */
 void	print_err(int error, char *who, char *problem, char *err_message);
 int		exit_err(t_input *input, int error, char *problem, char *err_message);
@@ -72,9 +80,6 @@ void	ft_free(void **ptr);
 /* utils/get_and_set_termios.c */
 void	get_and_set_termios(t_input *input, char *get, char *set);
 void	set_termios(t_input *input, int mode);
-
-/* utils/get_status.c */
-char	*get_status(t_input *input);
 
 /* utils/get_histroy_path.c */
 char	*get_history_path(t_input *input);
@@ -89,8 +94,8 @@ int	open_single_pipe(int *fd_tab);
 void	set_signals(int mode);
 void	signal_handler_main(int signal);
 void	signal_handler_exec(int signal);
-void	signal_handler_parent(int signal);
 void	signal_handler_heredoc(int signal);
+void	signal_handler_final_pipe(int signal);
 
 /* utils/skip_quotes.c */
 void	skip_quotes(char *str, int *i);

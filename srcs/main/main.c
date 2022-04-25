@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 17:07:38 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/25 10:40:42 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/25 10:50:53 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ int	main(int ac, char **av, char **envp)
 	shell_initializer(ac, av, envp, &input);
 	while (1)
 	{
-		// g_status = 0;
 		cmd_line_manager(&input);
 		if (cmd_separator(&input) == SUCCESS)
 		{

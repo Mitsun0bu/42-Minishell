@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 11:56:09 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/22 16:15:46 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/25 17:34:11 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int		ft_cd(t_input *input, t_cmd_lst *cmd);
 int		ft_echo(t_input *input, t_cmd_lst *cmd);
 
 /* built_ins/ft_env.c */
-int		ft_env(t_input *input);
+int		ft_env(t_input *input, t_cmd_lst *cmd);
 
 /* built_ins/ft_exit.c */
 int		ft_exit(t_input *input, t_cmd_lst *cmd);
