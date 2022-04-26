@@ -6,7 +6,7 @@
 #    By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/25 15:43:51 by llethuil          #+#    #+#              #
-#    Updated: 2022/04/25 17:45:05 by llethuil         ###   ########lyon.fr    #
+#    Updated: 2022/04/26 15:36:01 by llethuil         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -99,7 +99,7 @@ SRCS_LST	:=	main/main.c										\
 				env_var_converter/convert_env_var_in_str.c		\
 				env_var_converter/copy_basic_char.c				\
 				env_var_converter/convert_env_var.c				\
-				env_var_converter/fill_quotes.c					\
+				env_var_converter/copy_env_var_in_quote.c		\
 				utils/utils_build_heredoc_str.c					\
 				utils/utils_check_fork_error.c					\
 				utils/utils_clean_str.c							\

@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 10:07:06 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/25 10:56:07 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/26 15:35:38 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,9 @@ int	set_stdin(t_input *input, t_cmd_lst *cmd)
 	else if (cmd->n_infile || cmd->n_heredoc)
 	{
 		job_done = handle_infile(input, cmd);
-		if (cmd->i != 0 && job_done == NO)
+		if (job_done == YES)
+			return (SUCCESS);
+		else if (cmd->i != 0 && job_done == NO)
 		{
 			if (cmd->valid_path || cmd_is_built_in(cmd->name) == YES)
 				dup2(cmd->previous->cmd_pipe[0], STDIN_FILENO);
@@ -50,7 +52,9 @@ void	set_stdout(t_input *input, t_cmd_lst *cmd)
 	else if (cmd->n_outfile || cmd->n_app_outfile)
 	{
 		job_done = handle_outfile(input, cmd);
-		if (cmd->next != NULL || job_done == NO)
+		if (job_done == YES)
+			return ;
+		else if (cmd->next != NULL || job_done == NO)
 			if (cmd->valid_path || cmd_is_built_in(cmd->name) == YES)
 				dup2(cmd->cmd_pipe[1], STDOUT_FILENO);
 	}

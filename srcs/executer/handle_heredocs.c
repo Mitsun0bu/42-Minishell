@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 16:38:12 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/25 19:06:08 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/26 15:22:14 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,23 +46,8 @@ static int	get_heredoc_str(t_input *input, t_cmd_lst *cmd)
 	cmd->heredoc_process = fork();
 	check_fork_error(cmd->heredoc_process);
 	if (cmd->heredoc_process == CHILD)
-	{
 		status = get_str_from_child(input, cmd, str);
-		printf("status = %d\n",status);
-	}
 	waitpid(cmd->heredoc_process, &status, 0);
-	// if (WIFSIGNALED(status) && WTERMSIG(status) == 2)
-	// {
-	// 	ft_putstr_fd("\n", 2);
-	// 	g_status = 130;
-	// }
-	// else if (WIFSIGNALED(status) && WTERMSIG(status) == 3)
-	// {
-	// 	ft_putstr_fd("Quit : 3\n", 2);
-	// 	g_status = 131;
-	// }
-	// printf ("WIFSIGNALED = %d\n", WIFSIGNALED(status));
-	// printf ("WTERMSIG = %d\n", WTERMSIG(status));
 	set_signals(MAIN);
 	return (status);
 }
@@ -77,7 +62,8 @@ static int	get_str_from_child(t_input *input, t_cmd_lst *cmd, char *str)
 		str = build_heredoc_str(input, cmd->del[i]);
 	if (!str)
 		exit(FAILED);
-	// mettre fonction d'Alex ici
+	str = convert_env_var_in_str(input, str);
+	input->gb->type = GARBAGE;
 	ft_putstr_fd(str, cmd->heredoc_pipe[1]);
 	exit (0);
 }

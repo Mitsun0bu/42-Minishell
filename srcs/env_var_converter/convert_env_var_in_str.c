@@ -29,7 +29,7 @@ char	*convert_env_var_in_str(t_input *input, char *str)
 		if (str[i] == '$' && str[i])
 			line = ft_strjoin(input, line, convert_env_var(input, str, &i, red));
 		if (ft_strchr("\"\'", str[i]) && str[i])
-			line = ft_strjoin(input, line, fill_quotes(input, str, &i, red));
+			line = ft_strjoin(input, line, copy_env_var_in_quote(input, str, &i, red));
 		if (!ft_strchr("$\"\'", str[i]) && str[i])
 			line = ft_strjoin(input, line, copy_basic_char(input, str, &i, &red));
 		if (check_heredoc(str, i))
