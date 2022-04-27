@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 15:10:44 by agirardi          #+#    #+#             */
-/*   Updated: 2022/04/27 13:50:24 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/27 17:29:51 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,8 +112,7 @@ static void	print_export(t_input *input)
 	i = -1;
 	while (++i < input->n_env)
 	{
-		if (ft_strncmp(input->env_tab[i].key, "_",
-				ft_strlen(input->env_tab[i].key)) != 0)
+		if (ft_strcmp(input->env_tab[i].key, "_") == FAILED)
 		{
 			if (input->env_tab[i].value
 				&& input->env_tab[i].type != ENV_EMPTY)
@@ -124,7 +123,7 @@ static void	print_export(t_input *input)
 			else
 				printf("declare -x %s\n", input->env_tab[i].key);
 		}
-		if (ft_strncmp(input->env_tab[i].key, "OLDPWD", 6) == 0)
+		if (ft_strcmp(input->env_tab[i].key, "OLDPWD") == SUCCESS)
 			check_oldpwd = 1;
 	}
 	if (check_oldpwd == 0)

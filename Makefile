@@ -6,7 +6,7 @@
 #    By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/25 15:43:51 by llethuil          #+#    #+#              #
-#    Updated: 2022/04/26 15:36:01 by llethuil         ###   ########lyon.fr    #
+#    Updated: 2022/04/27 17:12:22 by llethuil         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -109,6 +109,7 @@ SRCS_LST	:=	main/main.c										\
 				utils/utils_env_var.c							\
 				utils/utils_error.c								\
 				utils/utils_ft_free.c							\
+				utils/utils_ft_strcmp.c							\
 				utils/utils_gb_add.c							\
 				utils/utils_gb_clear.c							\
 				utils/utils_get_history_path.c					\

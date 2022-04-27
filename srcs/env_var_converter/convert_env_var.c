@@ -98,7 +98,7 @@ static char	*get_key_to_process(t_input *input, char *str, int *i)
 	else
 	{
 		start = ++(*i);
-		while (!ft_strchr("$<>\'\"", str[*i]) && !is_space(str[*i]) && str[*i])
+		while (!ft_strchr("$<>=\'\"", str[*i]) && !is_space(str[*i]) && str[*i])
 			(*i)++;
 		key = ft_substr(input, str, start, *i - start);
 	}

@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 09:43:38 by agirardi          #+#    #+#             */
-/*   Updated: 2022/04/22 17:56:57 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/27 17:23:13 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,11 +52,8 @@ char	*get_value_from_key(t_input *input, char *key)
 
 	i = -1;
 	while (++i < input->n_env)
-	{
-		if (ft_strncmp(key, input->env_tab[i].key, ft_strlen(key)) == SUCCESS)
-			if (ft_strlen(key) == ft_strlen(input->env_tab[i].key))
+		if (ft_strcmp(key, input->env_tab[i].key) == SUCCESS)
 				return (input->env_tab[i].value);
-	}
 	return (0);
 }
 
@@ -70,9 +67,8 @@ int	find_existing_env_var(t_input *input, char *str)
 	i = -1;
 	while (++i < input->n_env)
 	{
-		if (ft_strncmp(key, input->env_tab[i].key, ft_strlen(key)) == 0)
-			if (ft_strlen(key) == ft_strlen(input->env_tab[i].key))
-				return (YES);
+		if (ft_strcmp(key, input->env_tab[i].key) == SUCCESS)
+			return (YES);
 	}
 	return (NO);
 }
@@ -105,16 +101,13 @@ void	change_value(t_input *input, char *key, char *value)
 	i = -1;
 	while (++i < input->n_env)
 	{
-		if (ft_strncmp(key, input->env_tab[i].key, ft_strlen(key)) == 0)
+		if (ft_strcmp(key, input->env_tab[i].key) == SUCCESS)
 		{
-			if (ft_strlen(key) == ft_strlen(input->env_tab[i].key))
-			{
-				input->env_tab[i].value = value;
-				if (!value)
-					input->env_tab[i].type = ENV_EMPTY;
-				else
-					input->env_tab[i].type = ENV;
-			}
+			input->env_tab[i].value = value;
+			if (!value)
+				input->env_tab[i].type = ENV_EMPTY;
+			else
+				input->env_tab[i].type = ENV;
 		}
 	}
 }

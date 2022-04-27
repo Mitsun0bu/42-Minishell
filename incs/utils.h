@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 11:29:37 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/25 19:26:34 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/27 17:07:15 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,9 @@ int		exit_err(t_input *input, int error, char *problem, char *err_message);
 
 /* utils/ft_free.c */
 void	ft_free(void **ptr);
+
+/* utils/ft_strcmp.c */
+int	ft_strcmp(const char *s1, const char *s2);
 
 /* utils/get_and_set_termios.c */
 void	get_and_set_termios(t_input *input, char *get, char *set);

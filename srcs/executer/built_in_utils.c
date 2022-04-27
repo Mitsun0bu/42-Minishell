@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 10:41:38 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/25 17:34:40 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/27 17:26:24 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,19 +18,19 @@ int	cmd_is_built_in(char *name)
 {
 	if (!name)
 		return (0);
-	else if (!ft_strncmp(name, "cd", 2) && !name[2])
+	else if (ft_strcmp(name, "cd") == SUCCESS)
 		return (YES);
-	else if (!ft_strncmp(name, "echo", 4) && !name[4])
+	else if (ft_strcmp(name, "echo") == SUCCESS)
 		return (YES);
-	else if (!ft_strncmp(name, "pwd", 3) && !name[3])
+	else if (ft_strcmp(name, "pwd") == SUCCESS)
 		return (YES);
-	else if (!ft_strncmp(name, "env", 3) && !name[3])
+	else if (ft_strcmp(name, "env") == SUCCESS)
 		return (YES);
-	else if (!ft_strncmp(name, "exit", 4) && !name[4])
+	else if (ft_strcmp(name, "exit") == SUCCESS)
 		return (YES);
-	else if (!ft_strncmp(name, "export", 6) && !name[6])
+	else if (ft_strcmp(name, "export") == SUCCESS)
 		return (YES);
-	else if (!ft_strncmp(name, "unset", 5) && !name[5])
+	else if (ft_strcmp(name, "unset") == SUCCESS)
 		return (YES);
 	else
 		return (NO);
@@ -43,19 +43,19 @@ int	exec_built_in(t_input *input, t_cmd_lst *cmd)
 		g_status = 1;
 		return (g_status);
 	}
-	if (!ft_strncmp(cmd->name, "cd", 2) && !cmd->name[2])
+	if (ft_strcmp(cmd->name, "cd")== SUCCESS)
 		return (ft_cd(input, cmd));
-	else if (!ft_strncmp(cmd->name, "echo", 4) && !cmd->name[4])
+	else if (ft_strcmp(cmd->name, "echo")== SUCCESS)
 		return (ft_echo(input, cmd));
-	else if (!ft_strncmp(cmd->name, "pwd", 3) && !cmd->name[3])
+	else if (ft_strcmp(cmd->name, "pwd")== SUCCESS)
 		return (ft_pwd());
-	else if (!ft_strncmp(cmd->name, "env", 3) && !cmd->name[3])
+	else if (ft_strcmp(cmd->name, "env")== SUCCESS)
 		return (ft_env(input, cmd));
-	else if (!ft_strncmp(cmd->name, "exit", 4) && !cmd->name[4])
+	else if (ft_strcmp(cmd->name, "exit")== SUCCESS)
 		return (ft_exit(input, cmd));
-	else if (!ft_strncmp(cmd->name, "export", 6) && !cmd->name[6])
+	else if (ft_strcmp(cmd->name, "export")== SUCCESS)
 		return (ft_export(input, cmd));
-	else if (!ft_strncmp(cmd->name, "unset", 5) && !cmd->name[5])
+	else if (ft_strcmp(cmd->name, "unset")== SUCCESS)
 		return (ft_unset(input, cmd));
 	else
 		return (FAILED);
