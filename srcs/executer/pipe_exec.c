@@ -47,7 +47,6 @@ static void	child_exec_cmd(t_input *input, t_cmd_lst *cmd)
 {
 	if (get_path(input, cmd) == FAILED && cmd_is_built_in(cmd->name) == NO)
 		exit (g_status);
-	printf("valid_path = %s\n", cmd->valid_path);
 	if (set_stdin(input, cmd) == FAILED)
 		exit (g_status);
 	set_stdout(input, cmd);
@@ -55,6 +54,8 @@ static void	child_exec_cmd(t_input *input, t_cmd_lst *cmd)
 	if (cmd_is_built_in(cmd->name) == YES)
 	{
 		g_status = exec_built_in(input, cmd);
+		if (ft_strcmp(cmd->name, "exit") == SUCCESS)
+			clear_all_gb(&input->gb);
 		exit(g_status);
 	}
 	else if (cmd->name && cmd->valid_path)

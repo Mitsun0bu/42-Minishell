@@ -70,3 +70,7 @@ CHOSES A CHECKER :
 
 3)	echo > $RANDOM
 	--> bash: $random: ambiguous redirect
+
+4) PROBLEME ?
+exit '              -2345'
+cmd->args[1] =               -2345

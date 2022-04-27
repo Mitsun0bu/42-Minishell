@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/20 09:44:30 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/22 09:43:21 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/27 17:59:38 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,14 @@ int	open_all_files(t_input *input, t_cmd_lst *cmd)
 	start = cmd;
 	while (cmd)
 	{
-		if (cmd->n_infile > 0)
-			if (open_infiles(input, cmd) == FAILED)
-				return (FAILED);
 		if (cmd->n_outfile > 0)
 			if (open_outfiles(input, cmd) == FAILED)
 				return (FAILED);
 		if (cmd->n_app_outfile > 0)
 			if (open_app_outfiles(input, cmd) == FAILED)
+				return (FAILED);
+		if (cmd->n_infile > 0)
+			if (open_infiles(input, cmd) == FAILED)
 				return (FAILED);
 		if (cmd->next == NULL)
 			break ;
