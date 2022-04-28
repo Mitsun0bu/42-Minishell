@@ -66,11 +66,5 @@ CHOSES A CHECKER :
 				quotes = 1;
 		else if ????
 
-2) Checker tous les endroits où on doit modifier la variable globale status
-
 3)	echo > $RANDOM
 	--> bash: $random: ambiguous redirect
-
-4) PROBLEME QUE CA NE SOIT PAS TRIM ?
-exit '              -2345'
-cmd->args[1] =               -2345

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   copy_filename.c                                    :+:      :+:    :+:   */
+/*   utils_copy_filename.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 16:17:18 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/21 17:07:27 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/28 18:55:40 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,18 +17,23 @@ static int	copy_out_quote(char *file, int *f_cursor, char *cmd, int *cursor);
 
 void	copy_filename(char *dest, char *cmd, int i_file, char c)
 {
-	static int	cursor = -1;
+	static int	cursor = 0;
 	int			f_cursor;
 
 	if (i_file == 0)
-		cursor = -1;
+		cursor = 0;
 	f_cursor = 0;
-	while (cmd[++cursor])
+	while (cmd[cursor])
 	{
-		if ((cmd[cursor] == c && cmd[cursor + 1] != c && cmd[cursor - 1] != c)
-			|| (cmd[cursor] == c && cmd[cursor + 1] == c))
+		if (cmd[cursor] == '\'' || cmd[cursor] == '"')
+			skip_quotes(cmd, &cursor);
+		if (cmd[cursor] == c)
 		{
-			skip_space_after_chev(cmd, &cursor);
+			if (cmd[cursor + 1] == c || cmd[cursor - 1] == c)
+			{
+				cursor ++;
+				skip_space_after_chev(cmd, &cursor);
+			}
 			while (cmd[cursor] && !ft_strchr(" <>", cmd[cursor]))
 			{
 				if (cmd[cursor] == '\'' || cmd[cursor] == '"')
@@ -38,6 +43,7 @@ void	copy_filename(char *dest, char *cmd, int i_file, char c)
 			}
 			return ;
 		}
+		cursor ++;
 	}
 }
 

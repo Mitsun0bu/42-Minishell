@@ -44,7 +44,7 @@ static char **find_del(t_input *input, char *str, int n_del, char **del_tab)
 	i = -1;
 	while (++i < n_del)
 	{
-		len = count_filename_len(str, i, '<');
+		len = count_filename_len(str, i, '<', HEREDOC);
 		del_tab[i] = ft_calloc(input, sizeof(char), len + 1);
 		input->gb->type = GARBAGE;
 		copy_filename(del_tab[i], str, i, '<');

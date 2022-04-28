@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 11:51:38 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/28 12:46:39 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/28 14:58:54 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,12 +69,12 @@ static int	arg_is_numeric(char *arg)
 	i = -1;
 	while(arg[++i])
 	{
-		if (arg[i] == '+' || arg[i] == '-')
+		if (arg[0] == '+' || arg[0] == '-')
 			i ++;
 		if (ft_isdigit(arg[i]) == NO)
 		{
 			ft_putstr_fd("exit\n", 2);
-			print_err(g_status, NULL, "exit", "numeric argument required");
+			print_err(255, NULL, "exit", "numeric argument required");
 			return (NO);
 		}
 	}
