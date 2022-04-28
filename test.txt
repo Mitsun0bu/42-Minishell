@@ -71,6 +71,6 @@ CHOSES A CHECKER :
 3)	echo > $RANDOM
 	--> bash: $random: ambiguous redirect
 
-4) PROBLEME ?
+4) PROBLEME QUE CA NE SOIT PAS TRIM ?
 exit '              -2345'
 cmd->args[1] =               -2345

@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 17:37:10 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/27 10:33:47 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/28 12:47:19 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 
 # define SUCCESS 0
 # define FAILED -1
+# define OVERFLOW -1
 # define YES 1
 # define NO 0
 # define IN 1

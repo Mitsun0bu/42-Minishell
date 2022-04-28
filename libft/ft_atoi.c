@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 15:05:03 by llethuil          #+#    #+#             */
-/*   Updated: 2021/12/15 13:50:39 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/28 13:09:05 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,38 +20,63 @@ static int	ft_isspace(int c)
 	return (0);
 }
 
-static int	ft_checkoverflow(long int nbr, long int sign)
+static void	handle_sign(const char *str, long long *sign, int *i)
 {
-	if (nbr > 2147483647 && sign == 1)
-		return (-1);
-	if (nbr > 2147483648 && sign == -1)
-		return (-1);
-	return ((int)nbr * sign);
+	if (str[*i] == '-')
+	{
+		(*sign) = -(*sign);
+		(*i)++;
+	}
+	else if (str[*i] == '+')
+		(*i)++;
 }
 
-int	ft_atoi(const char *str)
+static long long of_before_conv(const char *str, unsigned long long nbr, long long sign)
 {
-	long int	nbr;
-	int			i;
-	long int	sign;
+	if (ft_strlen(str) > 19 && sign == -1)
+	{
+		if (str[19] == '8')
+			return (0);
+		else if (str[20] == '9' || nbr > 922337203685477580)
+			return (OVERFLOW);
+	}
+	if (ft_strlen(str) > 19 && sign == 1)
+		return (OVERFLOW);
+	return (1);
+}
+
+static long long of_after_conv(unsigned long long nbr, long long sign)
+{
+	if (nbr > LLONG_MAX && sign == 1)
+		return (OVERFLOW);
+	if (nbr > LLONG_MAX && sign == -1)
+		return (OVERFLOW);
+	return (NO);
+}
+
+long long	ft_atoi(const char *str)
+{
+	unsigned long long	nbr;
+	long long			sign;
+	int					i;
 
 	nbr = 0;
-	i = 0;
 	sign = 1;
+	i = 0;
 	while (ft_isspace(str[i]) == 1)
 		i++;
-	if (str[i] == '-')
-	{
-		sign = sign * -1;
-		i ++;
-	}
-	else if (str[i] == '+')
-		i++;
+	handle_sign(str, &sign, &i);
 	while (str[i] && '0' <= str[i] && str[i] <= '9')
 	{
 		nbr = nbr * 10;
 		nbr = nbr + str[i] - '0';
 		i++;
+		if (of_before_conv(str, nbr, sign) == OVERFLOW)
+			return (OVERFLOW);
+		if (of_before_conv(str, nbr, sign) == 0)
+			return (0);
 	}
-	return (ft_checkoverflow(nbr, sign));
+	if (of_after_conv(nbr, sign) == OVERFLOW)
+		return (OVERFLOW);
+	return (nbr * sign);
 }
