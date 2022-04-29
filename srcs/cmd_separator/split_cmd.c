@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/06 18:37:12 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/28 10:16:39 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/29 16:54:58 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	split_cmd(t_input *input)
 	if (final_letter_is_pipe(input->cmd_line) == YES)
 		if (fill_cmd(input) != 0)
 			return (FAILED);
-	input->cmd_tab = ft_mini_split(input, input->cmd_line, '|');
+	input->cmd_tab = ft_mini_split(input, input->cmd_line);
 	assign_gb_type(input, input->cmd_tab, CMD_TAB);
 	input->n_cmd = 0;
 	while (input->cmd_tab[++i])

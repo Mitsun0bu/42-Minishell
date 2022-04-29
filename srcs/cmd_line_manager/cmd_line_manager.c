@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 16:33:25 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/25 15:57:24 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/29 17:00:41 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ static void get_cmd_line(t_input *input);
 void	cmd_line_manager(t_input *input)
 {
 	get_cmd_line(input);
-
+	// input->cmd_line = convert_tilde(input, input->cmd_line);
+	// input->gb->type = CMD_LINE;
 	input->cmd_line = convert_env_var_in_str(input, input->cmd_line);
 	input->gb->type = CMD_LINE;
 }

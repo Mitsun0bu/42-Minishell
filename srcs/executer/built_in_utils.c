@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 10:41:38 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/27 17:54:25 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/29 15:16:48 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	exec_built_in(t_input *input, t_cmd_lst *cmd)
 	else if (ft_strcmp(cmd->name, "echo")== SUCCESS)
 		return (ft_echo(input, cmd));
 	else if (ft_strcmp(cmd->name, "pwd")== SUCCESS)
-		return (ft_pwd());
+		return (ft_pwd(input));
 	else if (ft_strcmp(cmd->name, "env")== SUCCESS)
 		return (ft_env(input, cmd));
 	else if (ft_strcmp(cmd->name, "exit")== SUCCESS)

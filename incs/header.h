@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 17:37:10 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/28 12:47:19 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/29 15:15:27 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,7 @@ typedef struct s_input
 	char					***cmd_exec_tab;
 	char					**paths_tab;
 	int						fd_history;
+	char					*cwd;
 	int						*process;
 	int						status;
 }	t_input;

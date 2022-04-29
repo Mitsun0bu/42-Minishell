@@ -28,15 +28,12 @@ char	*convert_env_var(t_input *input, char *str, int *i, int red)
 		value = get_exit_status(input, str, *i, red);
 		*i += 2;
 	}
-	else if (is_space(str[*i + 1]) || ft_strchr("$<>", str[*i + 1]))
-	{
-		value = ft_strdup(input, "$");
-		*i += 1;
-	}
 	else
 		value = get_env_var_value(input, str, i, red);
 	input->gb->type = GARBAGE;
-	return (value);
+	if (value)
+		return (value);
+	return ("");
 }
 
 static char	*get_exit_status(t_input *input, char *str, int i, int redir)
@@ -70,14 +67,16 @@ static int	is_first_command(char *str, int limit)
 static char *get_env_var_value(t_input *input, char *str, int *i, int red)
 {
 	char	*key;
-	char	*value;
 
 	key = get_key_to_process(input, str, i);
-	if (red == 0)
-		value = ft_strdup(input, get_value_from_key(input, key));
-	else
-		value = ft_strjoin(input, "$", key);
-	return (value);
+	if (red == HEREDOC)
+	{
+		return(ft_strjoin(input, "$", key));
+		input->gb->type = GARBAGE;
+	}
+	if (ft_strcmp("$", key) == SUCCESS)
+		return ("$");
+	return (get_value_from_key(input, key));
 }
 
 static char	*get_key_to_process(t_input *input, char *str, int *i)
@@ -85,24 +84,14 @@ static char	*get_key_to_process(t_input *input, char *str, int *i)
 	char	*key;
 	int		start;
 
-	if (str[(*i) + 1] == '?')
-	{
-		key = ft_strdup(input, "$?");
-		(*i) += 2;
-	}
-	else if (is_space(str[(*i) + 1]) || ft_strchr("$<>", str[(*i) + 1]))
-	{
+	start = (*i) + 1;
+	while (str[++(*i)])
+		if (!ft_isalnum(str[*i]) || ft_isdigit(str[start]))
+			break;
+	if (start == *i)
 		key = ft_strdup(input, "$");
-		(*i)++;
-	}
 	else
-	{
-		start = ++(*i);
-		while (!ft_strchr("$<>=\'\"", str[*i]) && !is_space(str[*i]) && str[*i])
-			(*i)++;
 		key = ft_substr(input, str, start, *i - start);
-	}
 	input->gb->type = GARBAGE;
 	return (key);
 }
-

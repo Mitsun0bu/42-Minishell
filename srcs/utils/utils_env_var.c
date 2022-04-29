@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 09:43:38 by agirardi          #+#    #+#             */
-/*   Updated: 2022/04/27 17:23:13 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/29 14:13:04 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ char	*extract_key_from_str(t_input *input, char *str)
 	char	*key;
 	int		i;
 
+	if (str[0] == '=')
+		return ("=");
 	i = 0;
 	while (str[i] != '=' && str[i])
 		i++;

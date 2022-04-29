@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 15:10:44 by agirardi          #+#    #+#             */
-/*   Updated: 2022/04/27 17:29:51 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/29 14:16:37 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ int	ft_export(t_input *input, t_cmd_lst *cmd)
 
 	if (input->n_cmd > 1 && cmd->n_args > 1)
 		return (0);
+	if (cmd->n_args == 1)
+		print_export(input);
 	i = 0;
 	while (cmd->args[++i])
 	{
@@ -32,16 +34,10 @@ int	ft_export(t_input *input, t_cmd_lst *cmd)
 		else
 		{
 			env_var_type = parse_env_var(input, cmd->args[i]);
-			if (env_var_type == ENV)
-				add_to_env_tab(input, cmd->args[i], ENV);
-			else if (env_var_type == ENV_NULL)
-				add_to_env_tab(input, cmd->args[i], ENV_NULL);
-			else if (env_var_type == ENV_EMPTY)
-				add_to_env_tab(input, cmd->args[i], ENV_EMPTY);
+			if (env_var_type)
+				add_to_env_tab(input, cmd->args[i], env_var_type);
 		}
 	}
-	if (i == 1)
-		print_export(input);
 	return (g_status);
 }
 
@@ -85,9 +81,10 @@ static int	parse_key(t_input *input, char	*str, int type)
 	input->gb->type = GARBAGE;
 	while (key[++i])
 	{
-		if ((!ft_isalnum(key[i]) && key[i] != '_') || ft_isdigit(key[0]))
+		if ((!ft_isalnum(key[i]) && key[i] != '_')
+			|| ft_isdigit(key[0]) || key[0] == '=')
 		{
-			print_err(1, "minishelled: export", key, "not a valid identifier");
+			print_err(1, "minishelled: export", str, "not a valid identifier");
 			return (0);
 		}
 	}
