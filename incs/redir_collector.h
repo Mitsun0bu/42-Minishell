@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 11:15:36 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/21 17:02:37 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/29 11:39:47 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,9 @@
 
 /* redir_collector/copy_filename_in_redir_tab.c */
 void	copy_filenames_in_redir_tab(t_input *input, int i_c, int type, int i_f);
+void	cp_single_red(char *dest, char *cmd, int i_file, char c);
+void	cp_double_red(char *dest, char *cmd, int i_file, char c);
+
 
 /* redir_collector/get_last_redir_types_tab.c */
 void	get_last_redir_types_tab(t_input *input);

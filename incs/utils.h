@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 11:29:37 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/28 17:16:41 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/29 11:22:40 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,8 @@ void	clear_all_gb(t_gb_lst **gb);
 void	clear_one_gb_type(t_gb_lst **gb, int type);
 
 /*utils/copy_filename.c */
-void	copy_filename(char *dest, char *cmd, int i_file, char c);
+void	get_name(char *dest, int *i_dest, char *cmd, int *i);
+void	skip_other_redir(char *cmd, int *i);
 
 /*utils/count_filename_len.c */
 int	count_filename_len(char *cmd, int i_file, char c, int t);

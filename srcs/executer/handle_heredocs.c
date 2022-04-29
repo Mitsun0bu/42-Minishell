@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 16:38:12 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/28 09:54:43 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/29 11:53:48 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,5 @@ static int	get_str_from_child(t_input *input, t_cmd_lst *cmd, char *str)
 	str = convert_env_var_in_str(input, str);
 	input->gb->type = GARBAGE;
 	ft_putstr_fd(str, cmd->heredoc_pipe[1]);
-	printf("g_status = %d\n", g_status);
 	exit (0);
 }

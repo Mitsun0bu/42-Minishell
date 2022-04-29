@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 15:11:09 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/28 15:08:00 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/04/29 11:52:26 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ int	get_path(t_input *input, t_cmd_lst *cmd)
 	input->gb->type = CMD_LST;
 	if (!cmd->valid_path)
 	{
-		printf("here\n");
 		print_err(127, "minishelled", cmd->name, "command not found");
 		return (FAILED);
 	}

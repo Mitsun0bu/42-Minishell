@@ -1,0 +1,9 @@
+CHOSES A CHECKER :
+
+1) ft_calloc_strs dans minisplit a re-checker :
+		if (ft_strchr("\"\'", s[i]) && quotes == 0)
+				quotes = 1;
+		else if ????
+
+3)	echo > $RANDOM
+	--> bash: $random: ambiguous redirect
