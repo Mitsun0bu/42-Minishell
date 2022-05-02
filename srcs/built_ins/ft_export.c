@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 15:10:44 by agirardi          #+#    #+#             */
-/*   Updated: 2022/04/29 14:16:37 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/05/02 16:04:26 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,6 @@ static int	parse_key(t_input *input, char	*str, int type)
 
 	i = -1;
 	key = extract_key_from_str(input, str);
-	input->gb->type = GARBAGE;
 	while (key[++i])
 	{
 		if ((!ft_isalnum(key[i]) && key[i] != '_')

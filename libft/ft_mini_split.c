@@ -25,7 +25,6 @@ char	**ft_mini_split(t_input	*input, char *s)
 	if (!s)
 		return (NULL);
 	n_cmd = count_n_cmd(s);
-	printf("n_cmd = %d\n", n_cmd);
 	table = ft_calloc(input, sizeof(char *), n_cmd + 1);
 	ft_calloc_cmd_name(input, s, table);
 	ft_fill_table(s, table);

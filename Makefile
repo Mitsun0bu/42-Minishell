@@ -6,7 +6,7 @@
 #    By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/25 15:43:51 by llethuil          #+#    #+#              #
-#    Updated: 2022/04/29 11:25:33 by llethuil         ###   ########lyon.fr    #
+#    Updated: 2022/05/02 18:51:54 by llethuil         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,13 +62,14 @@ INCS_LST	:=	header.h			\
 
 SRCS_LST	:=	main/main.c										\
 				shell_initializer/shell_initializer.c			\
+				cmd_line_manager/check_pipe.c					\
+				cmd_line_manager/check_quotes.c					\
+				cmd_line_manager/check_redir.c					\
 				cmd_line_manager/cmd_line_manager.c				\
+				cmd_line_manager/convert_tilde_in_str.c			\
+				cmd_line_manager/simulate_heredoc.c				\
 				cmd_separator/cmd_separator.c					\
-				cmd_separator/check_pipe.c						\
-				cmd_separator/check_quotes.c					\
-				cmd_separator/check_redir.c						\
 				cmd_separator/split_cmd.c						\
-				cmd_separator/simulate_heredoc.c				\
 				redir_collector/copy_filenames_in_redir_tab.c	\
 				redir_collector/get_last_redir_types_tab.c		\
 				redir_collector/redir_collector.c				\
@@ -101,6 +102,7 @@ SRCS_LST	:=	main/main.c										\
 				env_var_converter/convert_env_var.c				\
 				env_var_converter/copy_env_var_in_quote.c		\
 				utils/utils_build_heredoc_str.c					\
+				utils/utils_change_quote_state.c				\
 				utils/utils_check_fork_error.c					\
 				utils/utils_clean_str.c							\
 				utils/utils_copy_filename.c						\

@@ -26,11 +26,11 @@ char	*convert_env_var(t_input *input, char *str, int *i, int red)
 	if (str[*i + 1] == '?')
 	{
 		value = get_exit_status(input, str, *i, red);
+		input->gb->type = GARBAGE;
 		*i += 2;
 	}
 	else
 		value = get_env_var_value(input, str, i, red);
-	input->gb->type = GARBAGE;
 	if (value)
 		return (value);
 	return ("");
@@ -67,12 +67,16 @@ static int	is_first_command(char *str, int limit)
 static char *get_env_var_value(t_input *input, char *str, int *i, int red)
 {
 	char	*key;
+	char	*value;
 
 	key = get_key_to_process(input, str, i);
+	value = ft_strdup(input, "");
+	input->gb->type = GARBAGE;
 	if (red == HEREDOC)
 	{
-		return(ft_strjoin(input, "$", key));
+		value = ft_strjoin(input, "$", key);
 		input->gb->type = GARBAGE;
+		return(value);
 	}
 	if (ft_strcmp("$", key) == SUCCESS)
 		return ("$");

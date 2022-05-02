@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 17:07:38 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/27 13:49:08 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/05/02 18:00:34 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,16 +23,18 @@ int	main(int ac, char **av, char **envp)
 	shell_initializer(ac, av, envp, &input);
 	while (1)
 	{
-		cmd_line_manager(&input);
-		if (cmd_separator(&input) == SUCCESS)
+		if (cmd_line_manager(&input) == SUCCESS)
 		{
-			redir_collector(&input);
-			arg_separator(&input);
-			cmd_lst_init(&input, &cmd);
-			executer(&input, cmd);
-			clear_one_gb_type(&input.gb, CMD_LST);
-			clear_one_gb_type(&input.gb, CMD_LINE);
-			clear_one_gb_type(&input.gb, CMD_TAB);
+			if (cmd_separator(&input) == SUCCESS)
+			{
+				redir_collector(&input);
+				arg_separator(&input);
+				cmd_lst_init(&input, &cmd);
+				executer(&input, cmd);
+				clear_one_gb_type(&input.gb, CMD_LST);
+				clear_one_gb_type(&input.gb, CMD_LINE);
+				clear_one_gb_type(&input.gb, CMD_TAB);
+			}
 		}
 		clear_one_gb_type(&input.gb, INPUT_STRUCT);
 		clear_one_gb_type(&input.gb, GARBAGE);

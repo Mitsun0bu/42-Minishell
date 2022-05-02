@@ -20,10 +20,17 @@ void	add_gb(t_gb_lst **gb, void *ptr)
 		add_gb_front(gb, create_new_gb(ptr));
 }
 
+// void	add_gb_front(t_gb_lst **gb, t_gb_lst *new_gb)
+// {
+// 	new_gb->next = *gb;
+// 	(*gb)->previous = new_gb;
+// 	*gb = new_gb;
+// }
+
 void	add_gb_front(t_gb_lst **gb, t_gb_lst *new_gb)
 {
-	new_gb->next = *gb;
-	(*gb)->previous = new_gb;
+	new_gb->previous = *gb;
+	(*gb)->next = new_gb;
 	*gb = new_gb;
 }
 
@@ -53,12 +60,11 @@ void	assign_gb_type(t_input *input, char **table, int gb_type)
 	j = -1;
 	while (table[i])
 		i ++;
-	i ++;
 	start = input->gb;
 	while (++j < i)
 	{
 		input->gb->type = gb_type;
-		input->gb = input->gb->next;
+		input->gb = input->gb->previous;
 	}
 	input->gb = start;
 }

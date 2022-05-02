@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 13:18:59 by agirardi          #+#    #+#             */
-/*   Updated: 2022/04/25 17:19:58 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/05/02 18:56:50 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	check_redir(t_input *input)
 			break;
 		if (ft_strchr("\"\'", input->cmd_line[i]))
 			skip_quotes(input->cmd_line, &i);
-		if (ft_strchr("<>", input->cmd_line[i]))
+		if (input->cmd_line[i] && ft_strchr("<>", input->cmd_line[i]))
 		{
 			if (red_is_valid(input, &i) == NO)
 				return (FAILED);

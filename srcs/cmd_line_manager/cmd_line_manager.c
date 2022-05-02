@@ -6,21 +6,25 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 16:33:25 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/29 17:00:41 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/05/02 18:57:02 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
 static void get_cmd_line(t_input *input);
+static int	check_cmd_line(t_input *input);
 
-void	cmd_line_manager(t_input *input)
+int	cmd_line_manager(t_input *input)
 {
 	get_cmd_line(input);
-	// input->cmd_line = convert_tilde(input, input->cmd_line);
-	// input->gb->type = CMD_LINE;
+	if (check_cmd_line(input) == FAILED)
+		return (FAILED);
+	input->cmd_line = convert_tilde_in_str(input, input->cmd_line);
+	input->gb->type = CMD_LINE;
 	input->cmd_line = convert_env_var_in_str(input, input->cmd_line);
 	input->gb->type = CMD_LINE;
+	return (SUCCESS);
 }
 
 static void	get_cmd_line(t_input *input)
@@ -50,4 +54,22 @@ static void	get_cmd_line(t_input *input)
 	input->cmd_line = ft_strdup(input, buff);
 	input->gb->type = CMD_LINE;
 	ft_free((void *)&buff);
+}
+
+static int	check_cmd_line(t_input *input)
+{
+	if (check_redir(input) == FAILED)
+	{
+		simulate_heredoc(input);
+		return (FAILED);
+	}
+	if (check_quotes(input) == FAILED)
+		return (FAILED);
+	if (check_pipe(input) == FAILED)
+	{
+		ft_putstr_fd("minishelled: syntax error near unexpected token `|'", 2);
+		ft_putstr_fd("\n", 2);
+		return (FAILED);
+	}
+	return (SUCCESS);
 }

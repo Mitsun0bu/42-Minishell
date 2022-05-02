@@ -1,30 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   copy_basic_char.c                                       :+:      :+:    :+:   */
+/*   utils_change_quote_state.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/25 16:25:09 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/25 16:25:16 by llethuil         ###   ########lyon.fr   */
+/*   Created: 2022/05/02 13:54:05 by llethuil          #+#    #+#             */
+/*   Updated: 2022/05/02 13:54:46 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-char	*copy_basic_char(t_input *input, char *str, int *i, int *red)
+void change_quote_state(int	*quote_state, char quote)
 {
-	char	*new_line;
-	int		start;
+	static char previous_quote = 0;
 
-	start = *i;
-	while (str[*i] && !ft_strchr("$\'\"", str[*i]))
+	if (*quote_state == OUT)
 	{
-		if (is_space(str[*i]) || ft_strchr("<>", str[*i]))
-			*red = 0;
-		(*i)++;
+		*quote_state = IN;
+		previous_quote = quote;
 	}
-	new_line = ft_substr(input, str, start, (*i) - start);
-	input->gb->type = GARBAGE;
-	return (new_line);
+	else if (*quote_state == IN && quote == previous_quote)
+	{
+		*quote_state = OUT;
+		previous_quote = 0;
+	}
+	return ;
 }

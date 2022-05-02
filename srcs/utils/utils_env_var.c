@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 09:43:38 by agirardi          #+#    #+#             */
-/*   Updated: 2022/04/29 14:13:04 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/05/02 16:05:35 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,6 @@ int	find_existing_env_var(t_input *input, char *str)
 	int		i;
 
 	key = extract_key_from_str(input, str);
-	input->gb->type = GARBAGE;
 	i = -1;
 	while (++i < input->n_env)
 	{

@@ -24,6 +24,7 @@ char	*convert_env_var_in_str(t_input *input, char *str)
 	i = 0;
 	line = ft_strdup(input, "");
 	input->gb->type = GARBAGE;
+	// ligne 26 a supprimer potentiellement
 	while (str[i])
 	{
 		if (str[i] == '$' && str[i])

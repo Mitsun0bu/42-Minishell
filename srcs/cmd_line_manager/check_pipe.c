@@ -6,13 +6,11 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/06 18:36:34 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/21 14:55:28 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/05/02 18:28:34 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
-
-static void	change_quote_state(int	*quote_state);
 
 int	check_pipe(t_input *input)
 {
@@ -28,7 +26,7 @@ int	check_pipe(t_input *input)
 		if (i == 0 && input->cmd_line[i] == '|')
 			return (FAILED);
 		if (ft_strchr("\"\'", input->cmd_line[i]))
-			change_quote_state(&quote_state);
+			change_quote_state(&quote_state, input->cmd_line[i]);
 		if (input->cmd_line[i] == '|' && quote_state == OUT)
 		{
 			i ++;
@@ -38,14 +36,6 @@ int	check_pipe(t_input *input)
 				return (FAILED);
 		}
 	}
-	return (1);
+	return (SUCCESS);
 }
 
-static void	change_quote_state(int	*quote_state)
-{
-	if (*quote_state == OUT)
-		*quote_state = IN;
-	else if (*quote_state == IN)
-		*quote_state = OUT;
-	return ;
-}
