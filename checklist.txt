@@ -1,0 +1,251 @@
+CHOSES A CHECKER	:
+
+1)	echo > $RANDOM
+	--> bash: $random: ambiguous redirect
+
+2)	Thallard tester	:
+
+cd_tests			-->	OK
+echo_tests			--> NOT OK
+
+	1)	bash-3.2$ echo -nn bonjour
+		bonjourbash-3.2$
+		VS
+		minishelled-1.0$ echo -nn bonjour
+		-nn bonjour
+		minishelled-1.0$
+
+	2)	bash-3.2$ echo "-nnnn" bonjour
+		bonjourbash-3.2$
+		VS
+		minishelled-1.0$ echo "-nnnn" bonjour
+		-nnnn bonjour
+		minishelled-1.0$
+
+	3)	bash-3.2$ echo ~/123
+		/Users/llethuil/123
+		VS
+		minishelled-1.0$ echo ~/123
+		~/123
+
+	4)	bash-3.2$ echo ~/123/456
+		/Users/llethuil/123/456
+		VS
+		minishelled-1.0$ echo ~/123/456
+		~/123/456
+
+	5)	bash-3.2$ echo '\" ' " \"\""
+		\"   ""
+		VS
+		minishelled-1.0$ echo '\" ' " \"\""
+		\"   \\
+
+	6)	bash-3.2$ echo \\\" \\\" \\\" \\\"\\\"\\\" \\\'\\\'\\\'
+		\" \" \" \"\"\" \'\'\'
+		VS
+		minishelled-1.0$ echo \\\" \\\" \\\" \\\"\\\"\\\" \\\'\\\'\\\'
+		minishelled: syntax error: unclosed quote
+
+	7)	bash-3.2$ echo "$USER""Users/$USER/file""'$USER'"'$USER'
+		llethuilUsers/llethuil/file'llethuil'$USER
+		VS
+		minishelled-1.0$ echo "$USER""Users/$USER/file""'$USER'"'$USER'
+		llethuilUsers/llethuil/filellethuil"$USER
+
+	8)	bash-3.2$ echo '$USER'"$USER"'$USER'
+		$USERllethuil$USER
+		VS
+		minishelled-1.0$ echo '$USER'"$USER"'$USER'
+		$USERllethuil'$USER'9@��
+
+	9)	bash-3.2$ echo " $USER  "'$PWD'
+ 		llethuil  $PWD
+		VS
+		minishelled-1.0$ echo " $USER  "'$PWD'
+ 		llethuil  $PWD�
+
+	10)	bash-3.2$ echo " $USER  \$ "'$PWD'
+ 		llethuil  $ $PWD
+		VS
+		minishelled-1.0$ echo " $USER  \$ "'$PWD'
+		llethuil  \$ $PWD�:@��
+
+	11)	bash-3.2$ echo $USER$12USER$USER=4$USER12
+		llethuil2USERllethuil=4
+		VS
+		minishelled-1.0$ echo $USER$12USER$USER=4$USER12
+		llethuil$12USERllethuil=4
+
+	12) bash-3.2$ echo $USER $123456789USER $USER123456789
+		llethuil 23456789USER
+		VS
+		minishelled-1.0$ echo $USER $123456789USER $USER123456789
+		llethuil $123456789USER
+
+	13)	bash-3.2$ echo $USER $9999USER $8888USER $7777USER
+		llethuil 999USER 888USER 777USER
+		VS
+		minishelled-1.0$ echo $USER $9999USER $8888USER $7777USER
+		llethuil $9999USER $8888USER $7777USER
+
+	14)	bash-3.2$ echo "$9USER" "'$USER=12$SOMETHING'"
+		USER 'llethuil=12'
+		VS
+		minishelled-1.0$ echo "$9USER" "'$USER=12$SOMETHING'"
+		$9USER 'llethuil=12'
+
+error_tests			-->	NOT OK
+
+	1)	bash-3.2$ <<<<<<<<<
+		bash: syntax error near unexpected token `<<<'
+		VS
+		minishelled-1.0$ <<<<<<<<<
+		minishelled: syntax error near unexpected token `newline'
+		>
+		(should not open heredoc !!!)
+
+	2)	bash-3.2$ > > > >
+		bash: syntax error near unexpected token `>'
+		VS
+		minishelled-1.0$ > > > >
+		minishelled-1.0$
+
+	3)	bash-3.2$ <<
+		bash: syntax error near unexpected token `newline'
+		VS
+		minishelled-1.0$ <<
+		minishelled: syntax error near unexpected token `newline'
+		>
+		(should not open heredoc !!!)
+
+	4)	bash-3.2$ .
+		bash: .: filename argument required
+		.: usage: . filename [arguments]
+		VS
+		minishelled-1.0$ .
+
+	5)	bash-3.2$ ..
+		bash: ..: command not found
+		VS
+		minishelled-1.0$ ..
+
+exit_tests			-->	NOT OK
+
+	1)	bash-3.2$ exit +'42'"42"42
+		exit
+		bash-3.2$ echo $?
+		50
+		VS
+		minishelled-1.0$ exit +'42'"42"42
+		exit
+		minishelled: exit: numeric argument required
+		minishelled-1.0$ echo $?
+		255
+
+	2)	bash-3.2$ exit -'42'"42"42
+		exit
+		bash-3.2$ echo $?
+		206
+		VS
+		minishelled-1.0$ exit -'42'"42"42
+		exit
+		minishelled: exit: numeric argument required
+		minishelled-1.0$ echo $?
+		255
+
+export_tests		-->	NOT OK
+
+	1)	bash-3.2$ env | grep "_="
+		_=/usr/bin/env
+		VS
+		minishelled-1.0$ env | grep "_="
+		_=/Users/llethuil/Documents/LEVEL_3/minishell/./minishell
+
+	2)	bash-3.2$ export | grep "SHLVL"
+		declare -x SHLVL="4"
+		VS
+		minishelled-1.0$ export | grep "SHLVL"
+		minishelled: export: command not found
+		declare -x SHLVL="2"
+
+	3)	bash-3.2$ export | grep "OLDPWD"
+		declare -x OLDPWD
+		VS
+		minishelled-1.0$ export | grep "OLDPWD"
+		minishelled: export: command not found
+		grep: illegal byte sequence
+
+	4)	declare -x OLDPWD
+		declare -x PWD="/Users/llethuil/Documents/LEVEL_3/minishell"
+		VS
+		minishelled-1.0$ export | grep "PWD"
+		minishelled: export: command not found
+		declare -x PWD="/Users/llethuil/Documents/LEVEL_3/minishell"
+		declare -x OLDPWD
+
+	5)	bash-3.2$ export TEST+=100
+		(it exports TEST=100, and after next call TEST=100 becomes TEST=100100)
+		VS
+		minishelled-1.0$ export TEST+=100
+		minishelled: export: TEST+=100: not a valid identifier
+
+pipes_tests			-->	NOT OK
+
+	1)	bash-3.2$ echo oui | cat -e
+		oui$
+		VS
+		minishelled-1.0$ echo oui | cat -e
+		cat: illegal option -- �
+		usage: cat [-benstuv] [file ...]
+
+	2)	bash-3.2$ echo oui | echo non | echo something | grep something
+		something
+		VS
+		minishelled-1.0$ echo oui | echo non | echo something | grep something
+
+	3)	bash-3.2$ cd .. | echo "something"
+		something
+		VS
+		minishelled-1.0$ cd .. | echo "something"
+		something
+		minishelled-1.0$ cd .. | echo "something"
+		somethingcd ..
+
+	4)	bash-3.2$ cd / | echo "something"
+		something
+		VS
+		minishelled-1.0$ cd / | echo "something"
+		something
+		minishelled-1.0$ cd / | echo "something"
+		somethingcd /�
+
+	5)	bash-3.2$ whoami | grep $USER
+		llethuil
+		bash-3.2$ whoami | grep $USER > tmp/file
+		bash: tmp/file: No such file or directory
+		VS
+		minishelled-1.0$ whoami | grep $USER > tmp/file
+		grep: tmp/file
+		@��: No such file or directory
+		minishell(99619,0x1141cd5c0) malloc: *** error for object 0x7fd098400a65: pointer being freed was not allocated
+		minishell(99619,0x1141cd5c0) malloc: *** set a breakpoint in malloc_error_break to debug
+		[1]    99619 abort      ./minishell
+
+	6)	bash-3.2$ export TEST=123 | cat -e | cat -e
+		VS
+		minishelled-1.0$ export TEST=123 | cat -e | cat -e
+		minishelled: export: command not found
+
+	7)	bash-3.2$ unset TEST | cat -e
+		VS
+		minishelled-1.0$ unset TEST | cat -e
+		minishelled: unset: command not found
+
+	8)	bash-3.2$ whereis ls | cat -e | cat -e > test
+		VS
+		minishelled-1.0$ whereis ls | cat -e | cat -e > test
+		cat: ?: No such file or directory
+
+redirections_tests	--> ???
+
+unset_tests			-->
