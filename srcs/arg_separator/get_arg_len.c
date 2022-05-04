@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 10:31:30 by agirardi          #+#    #+#             */
-/*   Updated: 2022/04/22 10:11:00 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/05/04 18:52:31 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,3 @@ void	count_in_quote(char *str, int *i, int *count, int redir)
 			*count = *count + 1;
 	}
 }
-
-
-
-

@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 16:36:06 by llethuil          #+#    #+#             */
-/*   Updated: 2022/05/02 18:02:42 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/05/04 17:59:20 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,7 @@
 /* ************************************************************************** */
 
 /* cmd_line_manager/cmd_line_manager.c */
-int	cmd_line_manager(t_input *input);
+int		cmd_line_manager(t_input *input);
 char	*convert_tilde_in_str(t_input *input, char *str);
-
 
 #endif

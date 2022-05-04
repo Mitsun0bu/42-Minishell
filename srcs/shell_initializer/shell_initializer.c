@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 13:21:26 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/22 14:54:08 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/05/04 19:02:25 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,6 @@ static void	init_env(t_input *input, char **envp)
 	input->n_env = j;
 	i = -1;
 	j = -1;
-
 	while (envp[++i])
 	{
 		if (ft_strncmp(envp[i], "OLDPWD=", 7) != 0)

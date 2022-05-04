@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 10:41:38 by llethuil          #+#    #+#             */
-/*   Updated: 2022/05/02 18:08:42 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/05/04 19:00:59 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,19 +43,19 @@ int	exec_built_in(t_input *input, t_cmd_lst *cmd)
 		g_status = 1;
 		return (g_status);
 	}
-	if (ft_strcmp(cmd->name, "cd")== SUCCESS)
+	if (ft_strcmp(cmd->name, "cd") == SUCCESS)
 		return (ft_cd(input, cmd));
-	else if (ft_strcmp(cmd->name, "echo")== SUCCESS)
+	else if (ft_strcmp(cmd->name, "echo") == SUCCESS)
 		return (ft_echo(input, cmd));
-	else if (ft_strcmp(cmd->name, "pwd")== SUCCESS)
+	else if (ft_strcmp(cmd->name, "pwd") == SUCCESS)
 		return (ft_pwd(input));
-	else if (ft_strcmp(cmd->name, "env")== SUCCESS)
+	else if (ft_strcmp(cmd->name, "env") == SUCCESS)
 		return (ft_env(input, cmd));
-	else if (ft_strcmp(cmd->name, "exit")== SUCCESS)
+	else if (ft_strcmp(cmd->name, "exit") == SUCCESS)
 		return (ft_exit(input, cmd));
-	else if (ft_strcmp(cmd->name, "export")== SUCCESS)
+	else if (ft_strcmp(cmd->name, "export") == SUCCESS)
 		return (ft_export(input, cmd));
-	else if (ft_strcmp(cmd->name, "unset")== SUCCESS)
+	else if (ft_strcmp(cmd->name, "unset") == SUCCESS)
 		return (ft_unset(input, cmd));
 	else
 		return (FAILED);

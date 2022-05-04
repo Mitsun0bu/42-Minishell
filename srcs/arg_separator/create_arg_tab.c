@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 10:31:04 by agirardi          #+#    #+#             */
-/*   Updated: 2022/04/22 10:11:00 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/05/04 18:52:18 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,6 @@ static void	copy_in_quote(char *cmd, char *exec_cmd, int *i, int *j)
 		exec_cmd[(*j)++] = cmd[(*i)++];
 	}
 }
-
 
 static int	end_check(char *cmd, int *i, int *redir)
 {

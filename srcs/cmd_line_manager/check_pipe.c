@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/06 18:36:34 by llethuil          #+#    #+#             */
-/*   Updated: 2022/05/02 18:28:34 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/05/04 18:55:57 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,3 @@ int	check_pipe(t_input *input)
 	}
 	return (SUCCESS);
 }
-

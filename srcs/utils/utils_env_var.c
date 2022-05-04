@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 09:43:38 by agirardi          #+#    #+#             */
-/*   Updated: 2022/05/02 16:05:35 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/05/04 19:03:47 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ char	*get_value_from_key(t_input *input, char *key)
 	i = -1;
 	while (++i < input->n_env)
 		if (ft_strcmp(key, input->env_tab[i].key) == SUCCESS)
-				return (input->env_tab[i].value);
+			return (input->env_tab[i].value);
 	return (0);
 }
 

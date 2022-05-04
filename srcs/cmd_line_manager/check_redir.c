@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 13:18:59 by agirardi          #+#    #+#             */
-/*   Updated: 2022/05/02 18:56:50 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/05/04 17:29:48 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	check_redir(t_input *input)
 		while (is_space(input->cmd_line[i]))
 			i ++;
 		if (!input->cmd_line[i])
-			break;
+			break ;
 		if (ft_strchr("\"\'", input->cmd_line[i]))
 			skip_quotes(input->cmd_line, &i);
 		if (input->cmd_line[i] && ft_strchr("<>", input->cmd_line[i]))
@@ -59,9 +59,9 @@ static int	red_is_valid(t_input *input, int *i)
 
 static int	check_sgl_chev_red(t_input *input, char *str, int *i)
 {
-	(*i) ++;
+	(*i)++;
 	while (is_space(str[*i]))
-		(*i) ++;
+		(*i)++;
 	if (!str[(*i)])
 	{
 		select_err_mess(input, NEW_LINE);
@@ -69,9 +69,9 @@ static int	check_sgl_chev_red(t_input *input, char *str, int *i)
 	}
 	else if (ft_strchr("<>", str[(*i)]))
 	{
-		if (str[*i] == '<' && !str[(*i) + 1])
+		if (str[*i] == '<' && (!str[(*i) + 1] || str[(*i) + 1] == ' '))
 			select_err_mess(input, INFILE);
-		else if (str[*i] == '>' && !str[(*i) + 1])
+		else if (str[*i] == '>' && (!str[(*i) + 1] || str[(*i) + 1] == ' '))
 			select_err_mess(input, OUTFILE);
 		else if (str[*i] == '<' && str[(*i) + 1] == '<')
 			select_err_mess(input, HEREDOC);
@@ -84,7 +84,7 @@ static int	check_sgl_chev_red(t_input *input, char *str, int *i)
 
 static int	check_dbl_chev_red(t_input *input, char *str, int *i)
 {
-	char double_c[3];
+	char	double_c[3];
 
 	double_c[2] = '\0';
 	double_c[0] = str[*i];
@@ -96,6 +96,14 @@ static int	check_dbl_chev_red(t_input *input, char *str, int *i)
 			select_err_mess(input, INFILE);
 		else
 			select_err_mess(input, NEW_LINE);
+		return (FAILED);
+	}
+	else if (str[*i + 1] == '<' || str[*i + 1] == '>' )
+	{
+		if (double_c[0] == '<')
+			select_err_mess(input, INFILE);
+		else if (double_c[0] == '>')
+			select_err_mess(input, OUTFILE);
 		return (FAILED);
 	}
 	return (0);
@@ -110,7 +118,7 @@ static void	select_err_mess(t_input *input, int type)
 	final_message = NULL;
 	if (type == NEW_LINE)
 		final_message = ft_strjoin(input, pre_message, "`newline'");
-	else if(type == INFILE)
+	else if (type == INFILE)
 		final_message = ft_strjoin(input, pre_message, "`<'");
 	else if (type == OUTFILE)
 		final_message = ft_strjoin(input, pre_message, "`>'");

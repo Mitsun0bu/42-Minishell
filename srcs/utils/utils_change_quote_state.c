@@ -6,15 +6,15 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 13:54:05 by llethuil          #+#    #+#             */
-/*   Updated: 2022/05/02 13:54:46 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/05/04 19:02:33 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-void change_quote_state(int	*quote_state, char quote)
+void	change_quote_state(int	*quote_state, char quote)
 {
-	static char previous_quote = 0;
+	static char	previous_quote = 0;
 
 	if (*quote_state == OUT)
 	{

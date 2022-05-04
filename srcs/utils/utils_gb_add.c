@@ -20,13 +20,6 @@ void	add_gb(t_gb_lst **gb, void *ptr)
 		add_gb_front(gb, create_new_gb(ptr));
 }
 
-// void	add_gb_front(t_gb_lst **gb, t_gb_lst *new_gb)
-// {
-// 	new_gb->next = *gb;
-// 	(*gb)->previous = new_gb;
-// 	*gb = new_gb;
-// }
-
 void	add_gb_front(t_gb_lst **gb, t_gb_lst *new_gb)
 {
 	new_gb->previous = *gb;

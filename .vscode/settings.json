@@ -3,5 +3,6 @@
 		"main.h": "c",
 		"shell_initializer.h": "c",
 		"utils.h": "c"
-	}
+	},
+	"C_Cpp.errorSquiggles": "Disabled"
 }

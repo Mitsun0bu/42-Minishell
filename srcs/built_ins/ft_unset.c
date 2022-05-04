@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 11:40:20 by agirardi          #+#    #+#             */
-/*   Updated: 2022/04/22 17:53:34 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/05/04 18:55:41 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static int	parse_arg(char *str);
 static void	remove_from_env_tab(t_input *input, char *key_to_remove);
-static int	env_tab_contains_key(const char *str, const char *key);
+static int	env_tab_contains_key(char *str, char *key);
 
 int	ft_unset(t_input *input, t_cmd_lst *cmd)
 {
@@ -74,7 +74,7 @@ static void	remove_from_env_tab(t_input *input, char *key_to_remove)
 	input->env_tab = new_env_tab;
 }
 
-static int	env_tab_contains_key(const char *str, const char *key)
+static int	env_tab_contains_key(char *str, char *key)
 {
 	int	i;
 

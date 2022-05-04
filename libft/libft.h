@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 15:21:56 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/29 16:59:44 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/05/04 18:50:46 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ typedef struct s_list
 /*                                                                            */
 /* ************************************************************************** */
 
-long long		ft_atoi(const char *str);
+long long		ft_atoi(char *str);
 void			ft_bzero(void *s, size_t n);
 void			*ft_calloc(t_input *input, size_t size, size_t count);
 char			*ft_get_next_line(t_input *input, int fd);
@@ -68,14 +68,14 @@ void			*ft_memset(void *b, int c, size_t len);
 void			ft_putstr_fd(char *s, int fd);
 char			**ft_mini_split(t_input *input, char *s);
 char			**ft_split(t_input *input, char *s, char c);
-char			*ft_strchr(const char *s, int c);
+char			*ft_strchr(char *s, int c);
 char			*ft_strdup(t_input *input, char *s1);
 char			*ft_strjoin(t_input *input, char *s1, char *s2);
-size_t			ft_strlcpy(char *dst, const char *src, size_t dstsize);
-size_t			ft_strlen(const char *str);
-int				ft_strncmp(const char *s1, const char *s2, size_t n);
-char			*ft_strnstr(const char *haystack, const char *needle, size_t len);
-char			*ft_strtrim(t_input *input, char *s1, char const *set);
+size_t			ft_strlcpy(char *dst, char *src, size_t dstsize);
+size_t			ft_strlen(char *str);
+int				ft_strncmp(char *s1, char *s2, size_t n);
+char			*ft_strnstr(char *haystack, char *needle, size_t len);
+char			*ft_strtrim(t_input *input, char *s1, char *set);
 char			*ft_substr(t_input *input, char *s, unsigned int start, size_t len);
 
 #endif

@@ -12,14 +12,14 @@
 
 #include "main.h"
 
-static char **find_del(t_input *input, char *str, int n_del, char **del_tab);
+static char	**find_del(t_input *input, char *str, int n_del, char **del_tab);
 static int	simulate_heredoc_prompt(t_input *input, char **del_tab);
 static int	get_fake_heredoc_str(t_input *input, char *del);
 static int	get_str_from_child(t_input *input, char *del, char *str);
 
 void	simulate_heredoc(t_input *input)
 {
-	int	i;
+	int		i;
 	char	*cmd_line_ok;
 	int		n_del;
 	char	**del_tab;
@@ -36,7 +36,7 @@ void	simulate_heredoc(t_input *input)
 	simulate_heredoc_prompt(input, del_tab);
 }
 
-static char **find_del(t_input *input, char *str, int n_del, char **del_tab)
+static char	**find_del(t_input *input, char *str, int n_del, char **del_tab)
 {
 	int	i;
 	int	len;

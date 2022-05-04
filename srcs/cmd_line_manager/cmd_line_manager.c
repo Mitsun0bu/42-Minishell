@@ -6,13 +6,13 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 16:33:25 by llethuil          #+#    #+#             */
-/*   Updated: 2022/05/04 10:32:39 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/05/04 18:56:26 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-static void get_cmd_line(t_input *input);
+static void	get_cmd_line(t_input *input);
 static int	check_cmd_line(t_input *input);
 
 int	cmd_line_manager(t_input *input)
@@ -60,7 +60,7 @@ static int	check_cmd_line(t_input *input)
 {
 	if (check_redir(input) == FAILED)
 	{
-		simulate_heredoc(input);
+		// simulate_heredoc(input);
 		return (FAILED);
 	}
 	if (check_quotes(input) == FAILED)

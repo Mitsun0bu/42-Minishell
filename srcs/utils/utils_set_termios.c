@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_and_set_termios.c                              :+:      :+:    :+:   */
+/*   utils_set_termios.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 10:45:07 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/22 14:52:31 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/05/04 19:04:52 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,4 +29,3 @@ void	set_termios(t_input *input, int mode)
 		tcsetattr(STDIN_FILENO, TCSANOW, &input->default_term);
 	}
 }
-

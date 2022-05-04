@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 16:04:12 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/28 18:37:39 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/05/04 19:03:19 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ static int	get_filename_len(char *cmd, int *i, int type)
 	else if (type == HEREDOC || type == APP_OUTFILE)
 		(*i) += 2;
 	while (cmd[(*i)] && is_space(cmd[(*i)]) == YES)
-		(*i) ++;
+		(*i)++;
 	while (cmd[(*i)] && !ft_strchr(" <>", cmd[(*i)]))
 	{
 		if (cmd[*i] == '\'' || cmd[*i] == '"')
@@ -107,8 +107,8 @@ static void	skip_filename_type(char *cmd, int *i, int type)
 	else if (type == HEREDOC || type == APP_OUTFILE)
 		(*i)++;
 	while (cmd[*i] && is_space(cmd[*i]) == YES)
-		(*i) ++;
+		(*i)++;
 	while (cmd[*i] && !ft_strchr(" <>", cmd[*i]))
-		(*i) ++;
-	(*i) --;
+		(*i)++;
+	(*i)--;
 }

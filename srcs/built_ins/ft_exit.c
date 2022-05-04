@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 11:51:38 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/28 14:58:54 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/05/04 17:58:13 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,12 @@ int	ft_exit(t_input *input, t_cmd_lst *cmd)
 	else
 		g_status = check_result % 256;
 	ft_putstr_fd("exit\n", 2);
-	return(g_status);
+	return (g_status);
 }
 
 static long long	check_exit_arg(char *arg)
 {
 	long long	numeric_arg;
-
 
 	numeric_arg = 0;
 	if (arg_is_numeric(arg) == NO)
@@ -67,9 +66,9 @@ static int	arg_is_numeric(char *arg)
 	int	i;
 
 	i = -1;
-	while(arg[++i])
+	while (arg[++i])
 	{
-		if (arg[0] == '+' || arg[0] == '-')
+		if (i == 0 && (arg[0] == '+' || arg[0] == '-'))
 			i ++;
 		if (ft_isdigit(arg[i]) == NO)
 		{

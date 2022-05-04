@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 16:17:18 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/29 11:16:53 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/05/04 19:02:55 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static int	copy_out_quote(char *file, int *i_dest, char *cmd, int *i);
 void	get_name(char *dest, int *i_dest, char *cmd, int *i)
 {
 	while (cmd[(*i)] && is_space(cmd[(*i)]) == YES)
-		(*i) ++;
+		(*i)++;
 	while (cmd[(*i)] && !ft_strchr(" <>", cmd[(*i)]))
 	{
 		if (cmd[*i] == '\'' || cmd[*i] == '"')
@@ -32,10 +32,10 @@ void	get_name(char *dest, int *i_dest, char *cmd, int *i)
 void	skip_other_redir(char *cmd, int *i)
 {
 	while (cmd[*i] && is_space(cmd[*i]) == YES)
-		(*i) ++;
+		(*i)++;
 	while (cmd[*i] && !ft_strchr(" <>", cmd[*i]))
-		(*i) ++;
-	(*i) --;
+		(*i)++;
+	(*i)--;
 }
 
 static int	copy_in_quote(char *file, int *i_dest, char *cmd, int *i)

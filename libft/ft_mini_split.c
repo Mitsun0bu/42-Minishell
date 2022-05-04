@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_mini_split.'|'                                    :+:      :+:    :+:   */
+/*   ft_mini_split.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/10 11:25:47 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/12 15:54:12 by llethuil         ###   ########lyon.fr   */
+/*   Created: 2022/05/04 18:02:56 by llethuil          #+#    #+#             */
+/*   Updated: 2022/05/04 18:44:49 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 static int		count_n_cmd(char *s);
 static int		ft_calloc_cmd_name(t_input *input, char *s, char **table);
+static int		count_cmd_len(char *s, int *i);
 static void		ft_fill_table(char *s, char **table);
 
 char	**ft_mini_split(t_input	*input, char *s)
@@ -56,61 +57,76 @@ static int	count_n_cmd(char *s)
 	return (n_cmd);
 }
 
-static int	ft_calloc_cmd_name(t_input *input, char *s, char **table)
+static int	ft_calloc_cmd_name(t_input *input, char *str, char **table)
 {
-	int	i;
-	int	quotes;
+	int	len;
+	int	i_str;
 	int	i_table;
-	int	j_table;
 
-	i = 0;
-	quotes = 0;
+	len = 0;
+	i_str = 0;
 	i_table = -1;
-	while (++i_table < count_n_cmd(s))
+	while (++i_table < count_n_cmd(str))
 	{
-		j_table = 0;
-		while (s[i])
-		{
-			if (s[i] == '|' && quotes == 0)
-				break ;
-			if (ft_strchr("\"\'", s[i]) && quotes == 0)
-				quotes = 1;
-			if (s[i] != '|' || (s[i] == '|' && quotes == 1))
-			{
-				j_table ++;
-				i ++;
-			}
-			else if (s[i++] == '|' && quotes == 0)
-				break ;
-		}
-		table[i_table] = ft_calloc(input, sizeof(char), j_table + 1);
+		len = count_cmd_len(str, &i_str);
+		table[i_table] = ft_calloc(input, sizeof(char), len + 1);
 	}
-	return (1);
+	return (SUCCESS);
+}
+
+static int	count_cmd_len(char *s, int *i)
+{
+	int	len;
+	int	quote_state;
+
+	len = 0;
+	quote_state = OUT;
+	while (s[*i])
+	{
+		if (s[*i] == '|' && quote_state == OUT)
+		{
+			(*i)++;
+			break ;
+		}
+		if (ft_strchr("\"\'", s[*i]))
+			change_quote_state(&quote_state, s[*i]);
+		if (s[*i] != '|' || (s[*i] == '|' && quote_state == IN))
+		{
+			len ++;
+			(*i)++;
+		}
+		else
+			(*i)++;
+	}
+	return (len);
 }
 
 static void	ft_fill_table(char *s, char **table)
 {
 	int	i;
-	int	quotes;
+	int	quote_state;
 	int	i_table;
 	int	j_table;
 
 	i = 0;
-	quotes = 0;
+	quote_state = 0;
 	i_table = -1;
 	while (++i_table < count_n_cmd(s))
 	{
 		j_table = 0;
 		while (s[i])
 		{
-			if (ft_strchr("\"\'", s[i]) && quotes == 0)
-				quotes = 1;
-			else if (ft_strchr("\"\'", s[i]) && quotes == 1)
-				quotes = 0;
-			if (s[i] != '|' || (s[i] == '|' && quotes == 1))
-				table[i_table][j_table++] = s[i++];
-			else if (s[i++] == '|' && quotes == 0)
+			if (s[i] == '|' && quote_state == OUT)
+			{
+				i++;
 				break ;
+			}
+			if (ft_strchr("\"\'", s[i]))
+				change_quote_state(&quote_state, s[i]);
+			if (s[i] != '|' || (s[i] == '|' && quote_state == IN))
+				table[i_table][j_table++] = s[i++];
+			else
+				i ++;
 		}
 	}
 }

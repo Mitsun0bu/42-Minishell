@@ -6,17 +6,16 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 14:29:04 by llethuil          #+#    #+#             */
-/*   Updated: 2022/05/02 17:47:47 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/05/04 16:32:14 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-static char	*copy_other_char(t_input *input, char *str, int *i, int *red);
+static char	*copy_char(t_input *input, char *str, int *i, int *red);
 static int	identify_last_redir(char *line);
-static char	*convert_tilde(t_input *input, char* str, int *i, int *red);
-static char	*convert_tilde_not_after_heredoc(t_input *input, char* str, int *i);
-
+static char	*convert_tilde(t_input *input, char *str, int *i, int *red);
+static char	*convert_tilde_not_after_heredoc(t_input *input, char *str, int *i);
 
 char	*convert_tilde_in_str(t_input *input, char *str)
 {
@@ -32,7 +31,7 @@ char	*convert_tilde_in_str(t_input *input, char *str)
 	{
 		if (str[i] && str[i] != '~')
 		{
-			line = ft_strjoin(input, line, copy_other_char(input, str, &i, &red));
+			line = ft_strjoin(input, line, copy_char(input, str, &i, &red));
 			input->gb->type = GARBAGE;
 		}
 		else if (str[i] == '~')
@@ -46,7 +45,7 @@ char	*convert_tilde_in_str(t_input *input, char *str)
 	return (line);
 }
 
-static char	*copy_other_char(t_input *input, char *str, int *i, int *red)
+static char	*copy_char(t_input *input, char *str, int *i, int *red)
 {
 	char	*line;
 	int		start;
@@ -91,7 +90,7 @@ static int	identify_last_redir(char *line)
 	return (red);
 }
 
-static char *convert_tilde(t_input *input, char* str, int *i, int *red)
+static char	*convert_tilde(t_input *input, char *str, int *i, int *red)
 {
 	char	*value;
 
@@ -113,16 +112,18 @@ static char *convert_tilde(t_input *input, char* str, int *i, int *red)
 	return (value);
 }
 
-static char	*convert_tilde_not_after_heredoc(t_input *input, char* str, int *i)
+static char	*convert_tilde_not_after_heredoc(t_input *input, char *str, int *i)
 {
 	char	*value;
 
 	value = ft_strdup(input, "");
-	if ((is_space(str[*i - 1]) == NO && *i != 0)
+	if ((is_space(str[*i - 1]) == YES && *i != 0) && str[*i + 1] == '/')
+		value = get_value_from_key(input, "HOME");
+	else if ((is_space(str[*i - 1]) == NO && *i != 0)
 		|| (is_space(str[*i + 1]) == NO && str[*i + 1] != '\0'))
 	{
-		value = ft_strjoin(input, value, "~");
-		input->gb->type = GARBAGE;
+			value = ft_strjoin(input, value, "~");
+			input->gb->type = GARBAGE;
 	}
 	else
 		value = get_value_from_key(input, "HOME");

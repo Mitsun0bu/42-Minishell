@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/20 14:11:19 by llethuil          #+#    #+#             */
-/*   Updated: 2022/05/04 10:16:52 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/05/04 18:56:13 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static int	find_unclosed_quotes(char *str);
 int	check_quotes(t_input *input)
 {
 	if (find_unclosed_quotes(input->cmd_line) == YES)
-			return (FAILED);
+		return (FAILED);
 	return (SUCCESS);
 }
 
