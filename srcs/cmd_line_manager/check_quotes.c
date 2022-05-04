@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/20 14:11:19 by llethuil          #+#    #+#             */
-/*   Updated: 2022/05/02 18:57:10 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/05/04 10:16:52 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,8 @@ static int	find_unclosed_quotes(char *str)
 	i = -1;
 	quote_state = OUT;
 	while (str[++i])
-	{
 		if (ft_strchr("\"\'", str[i]))
-		{
 			change_quote_state(&quote_state, str[i]);
-			i++;
-		}
-	}
 	if (quote_state == IN)
 	{
 		print_err(258, NULL, "syntax error", "unclosed quote");

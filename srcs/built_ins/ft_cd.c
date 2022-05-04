@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 10:56:25 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/29 15:15:12 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/05/04 09:45:43 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,6 @@ static int	check_access_error(t_input *input, t_cmd_lst *cmd, char *home)
 	}
 	else if (cmd->args[1] && open(cmd->args[1], O_DIRECTORY) == -1)
 	{
-		printf("cmd->args[1] : %s\n", cmd->args[1]);
-		printf("ERROR 3\n");
 		print_err(1, "minishelled: cd",
 			cmd->args[1], "No such file or directory");
 		return (FAILED);

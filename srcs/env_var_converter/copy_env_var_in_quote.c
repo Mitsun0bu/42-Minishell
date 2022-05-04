@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 16:24:39 by llethuil          #+#    #+#             */
-/*   Updated: 2022/05/02 17:50:05 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/05/04 09:38:31 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,8 @@ char	*copy_env_var_in_quote(t_input *input, char *str, int *i, int red)
 			input->gb->type = GARBAGE;
 		}
 	}
-	printf("new_line = %s\n", new_line);
 	new_line = add_quotes(input, new_line, quote);
 	(*i)++;
-	printf("new_line = %s\n", new_line);
 	return (new_line);
 }
 

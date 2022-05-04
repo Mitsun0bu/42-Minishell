@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 16:33:25 by llethuil          #+#    #+#             */
-/*   Updated: 2022/05/02 18:57:02 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/05/04 10:32:39 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,7 @@ static int	check_cmd_line(t_input *input)
 		return (FAILED);
 	if (check_pipe(input) == FAILED)
 	{
-		ft_putstr_fd("minishelled: syntax error near unexpected token `|'", 2);
-		ft_putstr_fd("\n", 2);
+		print_err(258, NULL, NULL, "syntax error near unexpected token `|'");
 		return (FAILED);
 	}
 	return (SUCCESS);
