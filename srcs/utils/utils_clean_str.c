@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   clean_str.c                                        :+:      :+:    :+:   */
+/*   utils_clean_str.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 14:49:34 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/12 18:25:58 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/05/05 09:47:54 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	get_clean_str_len(char *str)
 			quote = str[i];
 			while (str[++i] && str[i] != quote)
 				len ++;
-			if (!str[++i])
+			if (!str[i])
 				break ;
 		}
 		if (!ft_strchr("\'\"", str[i]))
@@ -68,7 +68,7 @@ char	*fill_clean_str(t_input *input, char *str, int len)
 			quote = str[i];
 			while (str[++i] && str[i] != quote)
 				clean_str[++j] = str[i];
-			if (!str[++i])
+			if (!str[i])
 				break ;
 		}
 		if (!ft_strchr("\'\"", str[i]))

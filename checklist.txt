@@ -8,65 +8,17 @@ CHOSES A CHECKER	:
 cd_tests			-->	OK
 echo_tests			--> NOT OK
 
-	1)	bash-3.2$ echo '\" ' " \"\""
-		\"   ""
-		VS
-		minishelled-1.0$ echo '\" ' " \"\""
-		\"   \\
-
-	2)	bash-3.2$ echo \\\" \\\" \\\" \\\"\\\"\\\" \\\'\\\'\\\'
-		\" \" \" \"\"\" \'\'\'
-		VS
-		minishelled-1.0$ echo \\\" \\\" \\\" \\\"\\\"\\\" \\\'\\\'\\\'
-		minishelled: syntax error: unclosed quote
-
-	3)	bash-3.2$ echo "$USER""Users/$USER/file""'$USER'"'$USER'
-		llethuilUsers/llethuil/file'llethuil'$USER
-		VS
-		minishelled-1.0$ echo "$USER""Users/$USER/file""'$USER'"'$USER'
-		llethuilUsers/llethuil/filellethuil"$USER
-
-	4)	bash-3.2$ echo '$USER'"$USER"'$USER'
-		$USERllethuil$USER
-		VS
-		minishelled-1.0$ echo '$USER'"$USER"'$USER'
-		$USERllethuil'$USER'9@��
-
-	5)	bash-3.2$ echo " $USER  "'$PWD'
- 		llethuil  $PWD
-		VS
-		minishelled-1.0$ echo " $USER  "'$PWD'
- 		llethuil  $PWD�
-
-	6)	bash-3.2$ echo " $USER  \$ "'$PWD'
- 		llethuil  $ $PWD
-		VS
-		minishelled-1.0$ echo " $USER  \$ "'$PWD'
-		llethuil  \$ $PWD�:@��
-
-	7)	bash-3.2$ echo $USER$12USER$USER=4$USER12
+	1)	bash-3.2$ echo $USER$12USER$USER=4$USER12
 		llethuil2USERllethuil=4
-		VS
-		minishelled-1.0$ echo $USER$12USER$USER=4$USER12
-		llethuil$12USERllethuil=4
 
-	8) bash-3.2$ echo $USER $123456789USER $USER123456789
+	2)	bash-3.2$ echo $USER $123456789USER $USER123456789
 		llethuil 23456789USER
-		VS
-		minishelled-1.0$ echo $USER $123456789USER $USER123456789
-		llethuil $123456789USER
 
-	9)	bash-3.2$ echo $USER $9999USER $8888USER $7777USER
+	3)	bash-3.2$ echo $USER $9999USER $8888USER $7777USER
 		llethuil 999USER 888USER 777USER
-		VS
-		minishelled-1.0$ echo $USER $9999USER $8888USER $7777USER
-		llethuil $9999USER $8888USER $7777USER
 
-	10)	bash-3.2$ echo "$9USER" "'$USER=12$SOMETHING'"
+	4)	bash-3.2$ echo "$9USER" "'$USER=12$SOMETHING'"
 		USER 'llethuil=12'
-		VS
-		minishelled-1.0$ echo "$9USER" "'$USER=12$SOMETHING'"
-		$9USER 'llethuil=12'
 
 error_tests			-->	NOT OK
 
@@ -91,45 +43,7 @@ export_tests		-->	NOT OK
 		minishelled-1.0$ env | grep "_="
 		_=/Users/llethuil/Documents/LEVEL_3/minishell/./minishell
 
-	2)	bash-3.2$ export | grep "SHLVL"
-		declare -x SHLVL="4"
-		VS
-		minishelled-1.0$ export | grep "SHLVL"
-		minishelled: export: command not found
-		declare -x SHLVL="2"
-
-	3)	bash-3.2$ export | grep "OLDPWD"
-		declare -x OLDPWD
-		VS
-		minishelled-1.0$ export | grep "OLDPWD"
-		minishelled: export: command not found
-		grep: illegal byte sequence
-
-	4)	declare -x OLDPWD
-		declare -x PWD="/Users/llethuil/Documents/LEVEL_3/minishell"
-		VS
-		minishelled-1.0$ export | grep "PWD"
-		minishelled: export: command not found
-		declare -x PWD="/Users/llethuil/Documents/LEVEL_3/minishell"
-		declare -x OLDPWD
-
-	5)	bash-3.2$ export TEST+=100
-		(it exports TEST=100, and after next call TEST=100 becomes TEST=100100)
-		VS
-		minishelled-1.0$ export TEST+=100
-		minishelled: export: TEST+=100: not a valid identifier
-
-pipes_tests			-->	NOT OK
-
-	1)	bash-3.2$ export TEST=123 | cat -e | cat -e
-		VS
-		minishelled-1.0$ export TEST=123 | cat -e | cat -e
-		minishelled: export: command not found
-
-	2)	bash-3.2$ unset TEST | cat -e
-		VS
-		minishelled-1.0$ unset TEST | cat -e
-		minishelled: unset: command not found
+pipes_tests			-->	OK
 
 redirections_tests	--> ???
 
