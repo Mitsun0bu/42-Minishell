@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 18:58:03 by llethuil          #+#    #+#             */
-/*   Updated: 2022/05/04 18:58:24 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/05/05 15:22:38 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ static char	*get_key_to_process(t_input *input, char *str, int *i)
 
 	start = (*i) + 1;
 	while (str[++(*i)])
-		if (!ft_isalnum(str[*i]) || ft_isdigit(str[start]))
+		if (!ft_isalnum(str[*i]) && str[*i] != '_')
 			break ;
 	if (start == *i)
 		key = ft_strdup(input, "$");

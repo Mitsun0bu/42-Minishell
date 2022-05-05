@@ -1,50 +1,16 @@
 CHOSES A CHECKER	:
 
-1)	echo > $RANDOM
+1)	echo > $dfghjfk
 	--> bash: $random: ambiguous redirect
 
 2)	Thallard tester	:
 
 cd_tests			-->	OK
-echo_tests			--> NOT OK
-
-	1)	bash-3.2$ echo $USER$12USER$USER=4$USER12
-		llethuil2USERllethuil=4
-
-	2)	bash-3.2$ echo $USER $123456789USER $USER123456789
-		llethuil 23456789USER
-
-	3)	bash-3.2$ echo $USER $9999USER $8888USER $7777USER
-		llethuil 999USER 888USER 777USER
-
-	4)	bash-3.2$ echo "$9USER" "'$USER=12$SOMETHING'"
-		USER 'llethuil=12'
-
-error_tests			-->	NOT OK
-
-	1)	bash-3.2$ .
-		bash: .: filename argument required
-		.: usage: . filename [arguments]
-		VS
-		minishelled-1.0$ .
-
-	2)	bash-3.2$ ..
-		bash: ..: command not found
-		VS
-		minishelled-1.0$ ..
-
+echo_tests			--> OK
+error_tests			-->	OK
 exit_tests			-->	OK
-
-export_tests		-->	NOT OK
-
-	1)	bash-3.2$ env | grep "_="
-		_=/usr/bin/env
-		VS
-		minishelled-1.0$ env | grep "_="
-		_=/Users/llethuil/Documents/LEVEL_3/minishell/./minishell
-
+export_tests		-->	OK
 pipes_tests			-->	OK
-
 redirections_tests	--> ???
-
 unset_tests			-->
+

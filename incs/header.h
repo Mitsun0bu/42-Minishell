@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 17:37:10 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/29 15:15:27 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/05/05 10:39:07 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@
 # define HEREDOC 2
 # define APP_OUTFILE 3
 # define NEW_LINE 4
+# define PROGRAM 5
 # define ENV 1
 # define ENV_EMPTY 0
 # define ENV_NULL -1

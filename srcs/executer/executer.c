@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 14:51:13 by llethuil          #+#    #+#             */
-/*   Updated: 2022/05/02 18:22:12 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/05/05 15:29:22 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,14 @@
 
 static int	prepare_exec(t_input *input, t_cmd_lst *cmd);
 static void	launch_exec(t_input *input, t_cmd_lst *cmd);
+static void	uptdate_underscore(t_input *input);
 
 void	executer(t_input *input, t_cmd_lst *cmd)
 {
 	if (prepare_exec(input, cmd) == FAILED)
 		return ;
 	launch_exec(input, cmd);
+	uptdate_underscore(input);
 }
 
 static int	prepare_exec(t_input *input, t_cmd_lst *cmd)
@@ -51,4 +53,22 @@ static void	launch_exec(t_input *input, t_cmd_lst *cmd)
 	}
 	else
 		g_status = pipe_exec(input, cmd);
+}
+
+static void	uptdate_underscore(t_input *input)
+{
+	char	*underscore_value;
+	int		i;
+
+	i = -1;
+	if (input->n_cmd == 1)
+	{
+		while (input->cmd_exec_tab[0][++i])
+			;
+		underscore_value = ft_strdup(input, input->cmd_exec_tab[0][i - 1]);
+		input->gb->type = ENV_STRUCT;
+		change_value(input, "_", underscore_value);
+	}
+	else
+		change_value(input, "_", NULL);
 }

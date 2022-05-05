@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/20 09:44:30 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/29 11:52:38 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/05/05 15:40:41 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ static int	open_outfiles(t_input *input, t_cmd_lst *cmd)
 				O_CREAT | O_RDWR | O_TRUNC, 0644);
 		if (cmd->fd_outfile[i] == FAILED)
 		{
+			printf("here\n");
 			print_err(1, cmd->name,
 				cmd->outfile[i], "No such file or directory");
 			return (FAILED);
