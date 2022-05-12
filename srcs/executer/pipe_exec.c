@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 19:01:22 by llethuil          #+#    #+#             */
-/*   Updated: 2022/05/12 11:10:47 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/05/12 18:19:33 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,10 @@ int	pipe_exec(t_input *input, t_cmd_lst *cmd)
 	}
 	cmd = start;
 	close_all_pipes(cmd);
-	close_all_files(cmd);
 	wait_all_processes(input);
 	set_termios(input, YES);
 	set_signals(MAIN);
+	close_all_files(cmd);
 	return (g_status);
 }
 

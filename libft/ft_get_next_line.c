@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 17:02:15 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/12 15:53:17 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/05/12 18:10:07 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 static char	*ft_get_line(t_input *input, char *line, char *buff, int fd);
 static char	*ft_strjoin_gnl(t_input *input, char *line, char *buff);
-static int	ft_position_nl(char *str);
+static int	ft_find_nl_index(char *str);
+static int	ft_determine_buff_size(char *buff);
 
 char	*ft_get_next_line(t_input *input, int fd)
 {
@@ -46,9 +47,9 @@ static char	*ft_get_line(t_input *input, char *line, char *buff, int fd)
 	{
 		line = ft_strjoin_gnl(input, line, buff);
 		input->gb->type = GARBAGE;
-		if (ft_position_nl(buff) != -1)
+		if (ft_find_nl_index(buff) != -1)
 		{
-			buff_rest = &buff[ft_position_nl(buff) + 1];
+			buff_rest = &buff[ft_find_nl_index(buff) + 1];
 			while (*buff_rest)
 				*buff++ = *buff_rest++;
 			*buff = '\0';
@@ -71,26 +72,27 @@ static char	*ft_strjoin_gnl(t_input *input, char *line, char *buff)
 	int		i_l;
 	int		i_b;
 
-	if (ft_position_nl(buff) != -1)
-		buff_size = ft_position_nl(buff) + 1;
-	else
-		buff_size = ft_strlen(buff);
-	joined = ft_malloc(input, sizeof(char), ft_strlen(line) + buff_size + 1);
+	buff_size = ft_determine_buff_size(buff);
+	joined = ft_malloc(input, sizeof(char), ft_strlen(line) + buff_size + 2);
 	i_l = -1;
 	while (line[++i_l])
 		joined[i_l] = line[i_l];
-	i_b = 0;
-	while (buff[i_b])
+	i_b = -1;
+	while (buff[++i_b])
 	{
-		joined[i_l++] = buff[i_b++];
-		if (buff[i_b - 1] == '\n')
+		joined[i_l] = buff[i_b];
+		if (buff[i_b] == '\n')
+		{
+			i_l ++;
 			break ;
+		}
+		i_l ++;
 	}
 	joined[i_l] = '\0';
 	return (joined);
 }
 
-static int	ft_position_nl(char *str)
+static int	ft_find_nl_index(char *str)
 {
 	int	i;
 
@@ -104,4 +106,16 @@ static int	ft_position_nl(char *str)
 		i++;
 	}
 	return (-1);
+}
+
+static int	ft_determine_buff_size(char *buff)
+{
+	int	buff_size;
+
+	buff_size = 0;
+	if (ft_find_nl_index(buff) == -1)
+		buff_size = ft_strlen(buff);
+	else
+		buff_size = ft_find_nl_index(buff);
+	return (buff_size);
 }

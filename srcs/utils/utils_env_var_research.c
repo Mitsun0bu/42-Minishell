@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 11:41:10 by llethuil          #+#    #+#             */
-/*   Updated: 2022/05/12 11:41:38 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/05/12 17:59:11 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ char	*extract_value_from_str(t_input *input, char *str)
 	while (str[i])
 		i++;
 	value = ft_substr(input, str, key_count + 1, i);
+	if (!value)
+		value = ft_strdup(input, "(null)");
 	input->gb->type = ENV_STRUCT;
 	return (value);
 }
