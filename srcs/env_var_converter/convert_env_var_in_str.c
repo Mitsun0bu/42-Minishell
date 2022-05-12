@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   convert_env_var_in_str.c                                :+:      :+:    :+:   */
+/*   convert_env_var_in_str.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/20 09:36:44 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/20 11:29:40 by llethuil         ###   ########lyon.fr   */
+/*   Created: 2022/05/12 09:36:10 by llethuil          #+#    #+#             */
+/*   Updated: 2022/05/12 09:36:13 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,17 @@ char	*convert_env_var_in_str(t_input *input, char *str)
 	i = 0;
 	line = ft_strdup(input, "");
 	input->gb->type = GARBAGE;
-	// ligne 26 a supprimer potentiellement
 	while (str[i])
 	{
 		if (str[i] == '$' && str[i])
-			line = ft_strjoin(input, line, convert_env_var(input, str, &i, red));
+			line = ft_strjoin(input, line,
+					convert_env_var(input, str, &i, red));
 		else if (ft_strchr("\"\'", str[i]) && str[i])
-			line = ft_strjoin(input, line, copy_env_var_in_quote(input, str, &i, red));
+			line = ft_strjoin(input, line,
+					copy_env_var_in_quote(input, str, &i, red));
 		else if (!ft_strchr("$\"\'", str[i]) && str[i])
-			line = ft_strjoin(input, line, copy_basic_char(input, str, &i, &red));
+			line = ft_strjoin(input, line,
+					copy_basic_char(input, str, &i, &red));
 		input->gb->type = GARBAGE;
 		if (check_heredoc(str, i))
 			red = HEREDOC;

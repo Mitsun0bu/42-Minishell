@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 11:29:37 by llethuil          #+#    #+#             */
-/*   Updated: 2022/05/04 18:50:46 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/05/12 11:42:22 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,17 +49,19 @@ int			count_filename_len(char *cmd, int i_file, char c, int t);
 /*	utils/count_n_file.c	*/
 int			count_n_file(char *cmd, int type);
 
-/*	utils/utils_env_var.c	*/
+/*	utils/utils_env_var_manip.c	*/
+void		add_to_env_tab(t_input *input, char *str, int type);
+void		change_value(t_input *input, char *key, char *value);
+
+/*	utils/utils_env_var_research.c	*/
 char		*extract_key_from_str(t_input *input, char *str);
 char		*extract_value_from_str(t_input *input, char *str);
 char		*get_value_from_key(t_input *input, char *key);
 int			find_existing_env_var(t_input *input, char *str);
-void		add_to_env_tab(t_input *input, char *str, int type);
-void		change_value(t_input *input, char *key, char *value);
 
 /*	utils/utils_error.c	*/
-void		print_err(int error, char *who, char *problem, char *err_message);
-int			exit_err(t_input *input, int error, char *problem, char *err_message);
+void		print_err(int err_no, char *who, char *problem, char *err_mess);
+int			exit_err(t_input *input, int err_no, char *problem, char *err_mess);
 
 /*	utils/ft_free.c	*/
 void		ft_free(void **ptr);

@@ -6,7 +6,7 @@
 #    By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/25 15:43:51 by llethuil          #+#    #+#              #
-#    Updated: 2022/05/02 18:51:54 by llethuil         ###   ########lyon.fr    #
+#    Updated: 2022/05/12 11:43:08 by llethuil         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -108,7 +108,8 @@ SRCS_LST	:=	main/main.c										\
 				utils/utils_copy_filename.c						\
 				utils/utils_count_filename_len.c				\
 				utils/utils_count_n_file.c						\
-				utils/utils_env_var.c							\
+				utils/utils_env_var_manip.c						\
+				utils/utils_env_var_research.c					\
 				utils/utils_error.c								\
 				utils/utils_ft_free.c							\
 				utils/utils_ft_strcmp.c							\

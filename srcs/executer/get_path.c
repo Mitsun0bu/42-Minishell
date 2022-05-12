@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 15:11:09 by llethuil          #+#    #+#             */
-/*   Updated: 2022/05/05 11:51:22 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/05/12 09:46:55 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ static int	cmd_name_is_a_valid_relative_path(t_cmd_lst *cmd)
 {
 	if (access(cmd->name, F_OK) == SUCCESS && opendir(cmd->name) == NULL)
 	{
-		 if (access(cmd->name, X_OK))
+		if (access(cmd->name, X_OK))
 		{
 			print_err(126, NULL, cmd->name, "Permission denied");
 			return (NO);

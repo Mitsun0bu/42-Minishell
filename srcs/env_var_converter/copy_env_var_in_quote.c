@@ -6,14 +6,14 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 16:24:39 by llethuil          #+#    #+#             */
-/*   Updated: 2022/05/04 19:00:25 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/05/12 09:38:38 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-static char	*handle_single_quotes(t_input *input, char *str, int *i, char quote);
-static char	*add_quotes(t_input *input, char *str, char quote);
+static char	*handle_single_quotes(t_input *input, char *s, int *i, char quote);
+static char	*add_quotes(t_input *input, char *s, char quote);
 
 char	*copy_env_var_in_quote(t_input *input, char *str, int *i, int red)
 {
@@ -43,34 +43,34 @@ char	*copy_env_var_in_quote(t_input *input, char *str, int *i, int red)
 	return (new_line);
 }
 
-static char	*handle_single_quotes(t_input *input, char *str, int *i, char quote)
+static char	*handle_single_quotes(t_input *input, char *s, int *i, char quote)
 {
 	char	*new_line;
 	int		start;
 
 	start = *i;
-	while (str[*i] && str[*i] != quote)
+	while (s[*i] && s[*i] != quote)
 	{
-		if (str[*i] == '$' && quote != '\'')
+		if (s[*i] == '$' && quote != '\'')
 			break ;
 		(*i)++;
 	}
-	new_line = ft_substr(input, str, start, (*i) - start);
+	new_line = ft_substr(input, s, start, (*i) - start);
 	input->gb->type = GARBAGE;
 	return (new_line);
 }
 
-static char	*add_quotes(t_input *input, char *str, char quote)
+static char	*add_quotes(t_input *input, char *s, char quote)
 {
 	char	*new_line;
-	char	*quote_str;
+	char	*quote_s;
 
-	quote_str = ft_calloc(input, 2, sizeof(char));
+	quote_s = ft_calloc(input, 2, sizeof(char));
 	input->gb->type = GARBAGE;
-	quote_str[0] = quote;
-	new_line = ft_strjoin(input, quote_str, str);
+	quote_s[0] = quote;
+	new_line = ft_strjoin(input, quote_s, s);
 	input->gb->type = GARBAGE;
-	new_line = ft_strjoin(input, new_line, quote_str);
+	new_line = ft_strjoin(input, new_line, quote_s);
 	input->gb->type = GARBAGE;
 	return (new_line);
 }

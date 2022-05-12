@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 10:41:38 by llethuil          #+#    #+#             */
-/*   Updated: 2022/05/05 11:01:05 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/05/12 09:46:26 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,6 @@ int	cmd_is_built_in(char *name)
 		return (YES);
 	else if (ft_strcmp(name, "unset") == SUCCESS)
 		return (YES);
-	// else if (!ft_strncmp(name, "./", 2))
-	// 	return (PROGRAM);
 	else
 		return (NO);
 }

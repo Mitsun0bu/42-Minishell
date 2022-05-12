@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/06 18:37:12 by llethuil          #+#    #+#             */
-/*   Updated: 2022/05/02 17:10:04 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/05/12 11:53:30 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 static int	final_letter_is_pipe(char *str);
 static int	fill_cmd(t_input *input);
 static int	fill_cmd_child(t_input *input, char *filled_cmd, int *pipe_fd);
+static void	update_status_and_signals(pid_t *final_pipe_process);
 
 int	split_cmd(t_input *input)
 {
@@ -64,14 +65,7 @@ static int	fill_cmd(t_input *input)
 	if (final_pipe_process == CHILD)
 		g_status = fill_cmd_child(input, filled_cmd, pipe_fd);
 	close(pipe_fd[1]);
-	waitpid(final_pipe_process, &g_status, 0);
-	if (WIFEXITED(g_status) && WEXITSTATUS(g_status) == 1)
-		g_status = 1;
-	else if (WIFEXITED(g_status) && WEXITSTATUS(g_status) == 2)
-		g_status = 258;
-	else
-		g_status = 0;
-	set_signals(MAIN);
+	update_status_and_signals(&final_pipe_process);
 	filled_cmd = ft_get_next_line(input, pipe_fd[0]);
 	if (g_status != 0 || !filled_cmd)
 		return (g_status);
@@ -104,4 +98,16 @@ static int	fill_cmd_child(t_input *input, char *filled_cmd, int *pipe_fd)
 	close_single_pipe(pipe_fd);
 	ft_free((void *)&line);
 	exit (SUCCESS);
+}
+
+static void	update_status_and_signals(pid_t *final_pipe_process)
+{
+	waitpid(*final_pipe_process, &g_status, 0);
+	if (WIFEXITED(g_status) && WEXITSTATUS(g_status) == 1)
+		g_status = 1;
+	else if (WIFEXITED(g_status) && WEXITSTATUS(g_status) == 2)
+		g_status = 258;
+	else
+		g_status = 0;
+	set_signals(MAIN);
 }
