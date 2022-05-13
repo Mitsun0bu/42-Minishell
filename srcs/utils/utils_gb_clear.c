@@ -20,15 +20,18 @@ void	clear_all_gb(t_gb_lst **gb)
 		return ;
 	while ((*gb)->previous != NULL)
 		*gb = (*gb)->previous;
+	int i = 0;
 	while (*gb)
 	{
 		to_clear = *gb;
 		*gb = to_clear->next;
 		free(to_clear->ptr);
 		free(to_clear);
+		i ++;
 		(*gb)->previous = NULL;
 		if (!(*gb)->next)
 		{
+			free((*gb)->ptr);
 			free(*gb);
 			break ;
 		}

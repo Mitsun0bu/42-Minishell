@@ -6,7 +6,7 @@
 #    By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/25 15:43:51 by llethuil          #+#    #+#              #
-#    Updated: 2022/05/12 17:05:48 by llethuil         ###   ########lyon.fr    #
+#    Updated: 2022/05/13 18:27:29 by llethuil         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,7 @@ NAME		:= minishell
 
 CC			:= gcc
 
-CFLAGS		:= -Wall -Wextra -Werror -ggdb3
+CFLAGS		:= -Wall -Wextra -Werror -g
 
 RM			:= rm -f
 
@@ -81,7 +81,6 @@ SRCS_LST	:=	main/main.c										\
 				cmd_lst_manager/cmd_lst_manager.c				\
 				cmd_lst_manager/utils_cmd_lst_manager.c			\
 				executer/built_in_utils.c						\
-				executer/close_all_files.c						\
 				executer/convert_env_tab.c						\
 				executer/executer.c								\
 				executer/get_path.c								\

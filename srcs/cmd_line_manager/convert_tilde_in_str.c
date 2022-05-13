@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 14:29:04 by llethuil          #+#    #+#             */
-/*   Updated: 2022/05/04 16:32:14 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/05/13 12:00:31 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ char	*convert_tilde_in_str(t_input *input, char *str)
 			line = ft_strjoin(input, line, copy_char(input, str, &i, &red));
 			input->gb->type = GARBAGE;
 		}
-		else if (str[i] == '~')
+		else if (str[i] && str[i] == '~')
 		{
 			line = ft_strjoin(input, line, convert_tilde(input, str, &i, &red));
 			input->gb->type = GARBAGE;
@@ -117,9 +117,9 @@ static char	*convert_tilde_not_after_heredoc(t_input *input, char *str, int *i)
 	char	*value;
 
 	value = ft_strdup(input, "");
-	if ((is_space(str[*i - 1]) == YES && *i != 0) && str[*i + 1] == '/')
+	if ((*i != 0 && is_space(str[*i - 1]) == YES) && str[*i + 1] == '/')
 		value = get_value_from_key(input, "HOME");
-	else if ((is_space(str[*i - 1]) == NO && *i != 0)
+	else if ((*i != 0 && is_space(str[*i - 1]) == NO)
 		|| (is_space(str[*i + 1]) == NO && str[*i + 1] != '\0'))
 	{
 			value = ft_strjoin(input, value, "~");

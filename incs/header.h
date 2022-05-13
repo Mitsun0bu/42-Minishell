@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 17:37:10 by llethuil          #+#    #+#             */
-/*   Updated: 2022/05/05 10:39:07 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/05/13 16:33:31 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@
 # define MAIN 0
 # define EXEC 1
 # define PIPE 5
+# define INVALID_CMD 2
 # define UNSET -1
 # define REDIR 1
 # define CHILD 0

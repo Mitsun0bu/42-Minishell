@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 15:11:09 by llethuil          #+#    #+#             */
-/*   Updated: 2022/05/12 09:46:55 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/05/13 16:36:13 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	get_path(t_input *input, t_cmd_lst *cmd)
 	{
 		cmd->valid_path = assign_path_to_cmd(input, cmd->name);
 		input->gb->type = CMD_LST;
-		if (!cmd->valid_path)
+		if (!cmd->valid_path && result == INVALID_CMD)
 		{
 			print_err(127, "minishelled", cmd->name, "command not found");
 			return (FAILED);
@@ -62,7 +62,7 @@ static int	handle_path_exceptions(t_cmd_lst *cmd)
 		print_err(127, "minishelled", cmd->name, "command not found");
 		return (FAILED);
 	}
-	return (NO);
+	return (INVALID_CMD);
 }
 
 static int	get_paths_tab_from_env_tab(t_input *input)
@@ -88,7 +88,9 @@ static int	get_paths_tab_from_env_tab(t_input *input)
 
 static int	cmd_name_is_a_valid_relative_path(t_cmd_lst *cmd)
 {
-	if (access(cmd->name, F_OK) == SUCCESS && opendir(cmd->name) == NULL)
+	DIR* dir;
+	dir = opendir(cmd->name);
+	if (access(cmd->name, F_OK) == SUCCESS && dir == NULL)
 	{
 		if (access(cmd->name, X_OK))
 		{
@@ -100,6 +102,7 @@ static int	cmd_name_is_a_valid_relative_path(t_cmd_lst *cmd)
 	}
 	else
 	{
+		closedir(dir);
 		print_err(127, NULL, cmd->name, "No such file or directory");
 		return (NO);
 	}

@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 10:55:57 by llethuil          #+#    #+#             */
-/*   Updated: 2022/05/05 15:45:08 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/05/13 17:28:48 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static char	*join_message(t_input *input, t_cmd_lst *cmd);
 static int	find_last_option_index(t_cmd_lst *cmd);
-static int	arg_is_option(char *arg, int *i);
+static int	arg_is_option(char *arg);
 
 int	ft_echo(t_input *input, t_cmd_lst *cmd)
 {
@@ -32,7 +32,7 @@ int	ft_echo(t_input *input, t_cmd_lst *cmd)
 			return (g_status);
 	message = join_message(input, cmd);
 	printf("%s", message);
-	if (find_last_option_index(cmd) == 0)
+	if (ft_strncmp(cmd->args[1], "-n", 2))
 		printf("\n");
 	return (g_status);
 }
@@ -44,8 +44,9 @@ static char	*join_message(t_input *input, t_cmd_lst *cmd)
 
 	message = ft_strdup(input, "");
 	input->gb->type = GARBAGE;
-	i = find_last_option_index(cmd);
-	while (++i < cmd->n_args)
+	i = find_last_option_index(cmd) + 1;
+	// printf("find_last_option_index return = %d\n", i);
+	while (i < cmd->n_args)
 	{
 		message = ft_strjoin(input, message, cmd->args[i]);
 		input->gb->type = GARBAGE;
@@ -54,6 +55,7 @@ static char	*join_message(t_input *input, t_cmd_lst *cmd)
 			message = ft_strjoin(input, message, " ");
 			input->gb->type = GARBAGE;
 		}
+		i ++;
 	}
 	return (message);
 }
@@ -62,41 +64,50 @@ static int	find_last_option_index(t_cmd_lst *cmd)
 {
 	int	start;
 	int	i_arg;
-	int	i;
 
 	start = 0;
 	i_arg = 1;
 	while (i_arg < cmd->n_args)
 	{
-		i = 0;
-		if (cmd->args[i_arg][0] == '-')
+		if (i_arg == 1 && arg_is_option(cmd->args[i_arg]) == YES)
 		{
-			if (arg_is_option(cmd->args[i_arg], &i) == YES)
-				start ++;
+			i_arg ++;
+			start ++;
 		}
+		while (arg_is_option(cmd->args[i_arg]) == YES)
+		{
+			i_arg++;
+			start ++;
+		}
+		if (arg_is_option(cmd->args[i_arg]) == NO)
+			break ;
 		i_arg ++;
 	}
 	return (start);
 }
 
-static int	arg_is_option(char *arg, int *i)
+static int	arg_is_option(char *arg)
 {
+	size_t	i;
 	int	is_option;
 
+	i = 0;
 	is_option = NO;
-	(*i)++;
-	while (arg[(*i)])
+	if (!arg || arg[0] != '-')
+		return (NO);
+	i++;
+	while (i < strlen(arg))
 	{
-		if (arg[(*i)] == 'n')
+		if (arg[i] && arg[i] == 'n')
 			is_option = YES;
-		else if (arg[(*i)] != 'n')
+		else if (arg[i] && arg[i] != 'n')
 		{
 			is_option = NO;
-			while (arg[(*i)])
-				(*i)++;
+			while (arg[i])
+				i++;
 			break ;
 		}
-		(*i)++;
+		i++;
 	}
 	return (is_option);
 }

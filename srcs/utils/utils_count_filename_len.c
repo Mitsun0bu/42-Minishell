@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 16:04:12 by llethuil          #+#    #+#             */
-/*   Updated: 2022/05/04 19:03:19 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/05/13 16:56:24 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ int	count_filename_len(char *cmd, int i_file, char c, int t)
 			skip_quotes(cmd, &i);
 		if (t == INFILE || t == OUTFILE)
 		{
+			if (i == 0 && cmd[i] == c && cmd[i + 1])
+				return (get_filename_len(cmd, &i, t));
 			if (cmd[i] == c && cmd[i + 1] != c && cmd[i - 1] != c)
 				return (get_filename_len(cmd, &i, t));
 			else if (cmd[i] == c && cmd[i + 1] == c)

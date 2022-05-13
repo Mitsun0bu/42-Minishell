@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 14:51:13 by llethuil          #+#    #+#             */
-/*   Updated: 2022/05/12 18:18:35 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/05/13 10:41:59 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,4 @@ static void	update_underscore(t_input *input)
 		input->gb->type = ENV_STRUCT;
 		change_value(input, "_", underscore_value);
 	}
-	// else
-	// 	change_value(input, "_", NULL);
 }

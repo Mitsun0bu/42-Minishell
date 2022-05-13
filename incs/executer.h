@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 12:09:40 by llethuil          #+#    #+#             */
-/*   Updated: 2022/05/04 18:00:04 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/05/13 18:27:25 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,6 @@
 /* executer/built_ins_utils.c */
 int		cmd_is_built_in(char *name);
 int		exec_built_in(t_input *input, t_cmd_lst *cmd);
-
-/* executer/close_all_files.c */
-int		close_all_files(t_cmd_lst *cmd);
 
 /* executer/convert_env_tab.c */
 char	**convert_env_tab(t_input *input);
