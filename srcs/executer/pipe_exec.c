@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 19:01:22 by llethuil          #+#    #+#             */
-/*   Updated: 2022/05/16 11:27:22 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/05/16 17:16:38 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,6 @@ static void	child_exec_cmd(t_input *input, t_cmd_lst *cmd)
 {
 	if (get_path(input, cmd) == FAILED && cmd_is_built_in(cmd->name) == NO)
 		exit (g_status);
-	if (open_all_files(input, cmd, CHILD) == FAILED)
-	{
-		g_status = 1;
-		exit (g_status);
-	}
 	if (set_stdin(input, cmd) == FAILED)
 		exit (g_status);
 	set_stdout(input, cmd);
