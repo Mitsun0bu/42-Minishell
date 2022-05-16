@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 18:48:00 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/21 15:28:07 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/05/16 09:44:45 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,16 +52,20 @@ static void	get_last_redir_types(t_input *input, char *cmd, int i_cmd, int *i)
 		back_skip_quotes(cmd, i);
 	if (input->last_infile_type[i_cmd] == UNSET)
 	{
-		if (cmd[*i] == '<' && cmd[*i - 1] != '<')
+		if ((*i == 0 && cmd[*i] == '<')
+			|| (cmd[*i] == '<' && cmd[*i - 1] != '<'))
 			input->last_infile_type[i_cmd] = INFILE;
-		else if (cmd[*i] == '<' && cmd[*i - 1] == '<')
+		else if ((*i == 0 && cmd[*i] == '<')
+			|| (cmd[*i] == '<' && cmd[*i - 1] == '<'))
 			input->last_infile_type[i_cmd] = HEREDOC;
 	}
 	if (input->last_outfile_type[i_cmd] == UNSET)
 	{
-		if (cmd[*i] == '>' && cmd[*i - 1] != '>')
+		if ((*i == 0 && cmd[*i] == '>')
+			|| (cmd[*i] == '>' && cmd[*i - 1] != '>'))
 			input->last_outfile_type[i_cmd] = OUTFILE;
-		else if (cmd[*i] == '>' && cmd[*i - 1] == '>')
+		else if ((*i == 0 && cmd[*i] == '>')
+			|| (cmd[*i] == '>' && cmd[*i - 1] == '>'))
 			input->last_outfile_type[i_cmd] = APP_OUTFILE;
 	}
 }

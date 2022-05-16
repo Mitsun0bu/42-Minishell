@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 18:02:56 by llethuil          #+#    #+#             */
-/*   Updated: 2022/05/04 18:44:49 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/05/16 15:42:46 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,22 @@
 static int		count_n_cmd(char *s);
 static int		ft_calloc_cmd_name(t_input *input, char *s, char **table);
 static int		count_cmd_len(char *s, int *i);
-static void		ft_fill_table(char *s, char **table);
+static void		ft_fill_cmd_table(char *s, char *cmd);
 
 char	**ft_mini_split(t_input	*input, char *s)
 {
 	int		n_cmd;
 	char	**table;
+	int		i_table;
 
 	if (!s)
 		return (NULL);
 	n_cmd = count_n_cmd(s);
 	table = ft_calloc(input, sizeof(char *), n_cmd + 1);
 	ft_calloc_cmd_name(input, s, table);
-	ft_fill_table(s, table);
+	i_table = -1;
+	while (++i_table < count_n_cmd(s))
+		ft_fill_cmd_table(s, table[i_table]);
 	return (table);
 }
 
@@ -101,32 +104,27 @@ static int	count_cmd_len(char *s, int *i)
 	return (len);
 }
 
-static void	ft_fill_table(char *s, char **table)
+static void	ft_fill_cmd_table(char *s, char *cmd)
 {
-	int	i;
-	int	quote_state;
-	int	i_table;
-	int	j_table;
+	static int	i_s = 0;
+	int			i_cmd;
+	int			quote_state;
 
-	i = 0;
-	quote_state = 0;
-	i_table = -1;
-	while (++i_table < count_n_cmd(s))
+	i_cmd = 0;
+	quote_state = OUT;
+	while (s[i_s])
 	{
-		j_table = 0;
-		while (s[i])
+		if (s[i_s] == '|' && quote_state == OUT)
 		{
-			if (s[i] == '|' && quote_state == OUT)
-			{
-				i++;
-				break ;
-			}
-			if (ft_strchr("\"\'", s[i]))
-				change_quote_state(&quote_state, s[i]);
-			if (s[i] != '|' || (s[i] == '|' && quote_state == IN))
-				table[i_table][j_table++] = s[i++];
-			else
-				i ++;
+			i_s ++;
+			return ;
 		}
+		if (ft_strchr("\"\'", s[i_s]))
+			change_quote_state(&quote_state, s[i_s]);
+		if (s[i_s] != '|' || (s[i_s] == '|' && quote_state == IN))
+			cmd[i_cmd++] = s[i_s++];
+		else
+			i_s ++;
 	}
+	i_s = 0;
 }

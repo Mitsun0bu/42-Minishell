@@ -6,7 +6,7 @@
 #    By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/25 15:43:51 by llethuil          #+#    #+#              #
-#    Updated: 2022/05/13 18:27:29 by llethuil         ###   ########lyon.fr    #
+#    Updated: 2022/05/16 11:16:45 by llethuil         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,12 +62,12 @@ INCS_LST	:=	header.h			\
 
 SRCS_LST	:=	main/main.c										\
 				shell_initializer/shell_initializer.c			\
+				cmd_line_manager/check_is_space.c				\
 				cmd_line_manager/check_pipe.c					\
 				cmd_line_manager/check_quotes.c					\
 				cmd_line_manager/check_redir.c					\
 				cmd_line_manager/cmd_line_manager.c				\
 				cmd_line_manager/convert_tilde_in_str.c			\
-				cmd_line_manager/simulate_heredoc.c				\
 				cmd_separator/cmd_separator.c					\
 				cmd_separator/split_cmd.c						\
 				redir_collector/copy_filenames_in_redir_tab.c	\

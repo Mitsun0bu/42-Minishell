@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 14:51:13 by llethuil          #+#    #+#             */
-/*   Updated: 2022/05/13 10:41:59 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/05/16 14:09:57 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static int	prepare_exec(t_input *input, t_cmd_lst *cmd)
 
 static void	launch_exec(t_input *input, t_cmd_lst *cmd)
 {
-	if (open_all_files(input, cmd) == FAILED)
+	if (open_all_files(input, cmd, PARENT) == FAILED)
 		g_status = 1;
 	if (input->n_cmd == 1 && cmd_is_built_in(cmd->name) == YES)
 	{
@@ -52,7 +52,14 @@ static void	launch_exec(t_input *input, t_cmd_lst *cmd)
 		dup2(STDIN_FILENO, STDOUT_FILENO);
 	}
 	else
+	{
 		g_status = pipe_exec(input, cmd);
+		if (ft_strcmp(cmd->name, "exit") == SUCCESS)
+		{
+			clear_all_gb(&input->gb);
+			exit(g_status);
+		}
+	}
 }
 
 static void	update_underscore(t_input *input)

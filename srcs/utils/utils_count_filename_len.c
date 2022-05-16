@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 16:04:12 by llethuil          #+#    #+#             */
-/*   Updated: 2022/05/13 16:56:24 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/05/16 15:08:39 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,15 @@ int	count_filename_len(char *cmd, int i_file, char c, int t)
 	static int	i = 0;
 
 	if (i_file == 0)
-		i = 0;
-	while (cmd[i])
+		i = -1;
+	while (cmd[++i])
 	{
 		if (cmd[i] == '\'' || cmd[i] == '"')
 			skip_quotes(cmd, &i);
 		if (t == INFILE || t == OUTFILE)
 		{
-			if (i == 0 && cmd[i] == c && cmd[i + 1])
-				return (get_filename_len(cmd, &i, t));
-			if (cmd[i] == c && cmd[i + 1] != c && cmd[i - 1] != c)
+			if ((i == 0 && cmd[i] == c && cmd[i + 1])
+				|| (cmd[i] == c && cmd[i + 1] != c && cmd[i - 1] != c))
 				return (get_filename_len(cmd, &i, t));
 			else if (cmd[i] == c && cmd[i + 1] == c)
 				skip_filename_type(cmd, &i, t);
@@ -43,7 +42,6 @@ int	count_filename_len(char *cmd, int i_file, char c, int t)
 			else if (cmd[i] == c && cmd[i + 1] != c && cmd[i - 1] != c)
 				skip_filename_type(cmd, &i, t);
 		}
-		i ++;
 	}
 	return (0);
 }

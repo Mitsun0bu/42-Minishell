@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 15:11:09 by llethuil          #+#    #+#             */
-/*   Updated: 2022/05/13 16:36:13 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/05/16 15:04:47 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,8 @@ static int	handle_path_exceptions(t_cmd_lst *cmd)
 		return (FAILED);
 	}
 	if (ft_strcmp(cmd->name, "export") == SUCCESS
-		|| ft_strcmp(cmd->name, "unset") == SUCCESS)
+		|| ft_strcmp(cmd->name, "unset") == SUCCESS
+		|| ft_strcmp(cmd->name, "exit") == SUCCESS)
 		return (SUCCESS);
 	if (ft_strcmp(cmd->name, ".") == SUCCESS
 		|| ft_strcmp(cmd->name, "..") == SUCCESS)
@@ -88,7 +89,8 @@ static int	get_paths_tab_from_env_tab(t_input *input)
 
 static int	cmd_name_is_a_valid_relative_path(t_cmd_lst *cmd)
 {
-	DIR* dir;
+	DIR	*dir;
+
 	dir = opendir(cmd->name);
 	if (access(cmd->name, F_OK) == SUCCESS && dir == NULL)
 	{

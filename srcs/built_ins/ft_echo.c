@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 10:55:57 by llethuil          #+#    #+#             */
-/*   Updated: 2022/05/13 17:28:48 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/05/16 14:31:56 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ static char	*join_message(t_input *input, t_cmd_lst *cmd)
 	message = ft_strdup(input, "");
 	input->gb->type = GARBAGE;
 	i = find_last_option_index(cmd) + 1;
-	// printf("find_last_option_index return = %d\n", i);
 	while (i < cmd->n_args)
 	{
 		message = ft_strjoin(input, message, cmd->args[i]);
@@ -89,7 +88,7 @@ static int	find_last_option_index(t_cmd_lst *cmd)
 static int	arg_is_option(char *arg)
 {
 	size_t	i;
-	int	is_option;
+	int		is_option;
 
 	i = 0;
 	is_option = NO;

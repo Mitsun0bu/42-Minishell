@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 11:41:10 by llethuil          #+#    #+#             */
-/*   Updated: 2022/05/12 17:59:11 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/05/16 10:00:10 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ char	*extract_value_from_str(t_input *input, char *str)
 	i = -1;
 	while (str[++i] != '=' && str[i])
 		key_count++;
-	if (!str[i + 1])
+	if (str[i] && !str[i + 1])
 		return (0);
 	if (key_count == (int)ft_strlen(str))
 		return (0);

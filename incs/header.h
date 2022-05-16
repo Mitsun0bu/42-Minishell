@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 17:37:10 by llethuil          #+#    #+#             */
-/*   Updated: 2022/05/13 16:33:31 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/05/16 14:30:59 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,27 +21,40 @@
 
 # define SUCCESS 0
 # define FAILED -1
+
 # define OVERFLOW -1
+
 # define YES 1
 # define NO 0
+
 # define IN 1
 # define OUT 0
+
 # define MAIN 0
 # define EXEC 1
 # define PIPE 5
+
 # define INVALID_CMD 2
+
 # define UNSET -1
 # define REDIR 1
+
 # define CHILD 0
+# define PARENT 1
+
 # define INFILE 0
 # define OUTFILE 1
 # define HEREDOC 2
 # define APP_OUTFILE 3
+
 # define NEW_LINE 4
+
 # define PROGRAM 5
+
 # define ENV 1
 # define ENV_EMPTY 0
 # define ENV_NULL -1
+
 # define INPUT_STRUCT 0
 # define CMD_LINE 1
 # define CMD_TAB 2

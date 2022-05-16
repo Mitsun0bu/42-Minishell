@@ -6,17 +6,17 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/20 09:44:30 by llethuil          #+#    #+#             */
-/*   Updated: 2022/05/12 11:10:36 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/05/16 11:28:36 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-static int	open_infiles(t_input *input, t_cmd_lst *cmd);
-static int	open_outfiles(t_input *input, t_cmd_lst *cmd);
-static int	open_app_outfiles(t_input *input, t_cmd_lst *cmd);
+static int	open_infiles(t_input *input, t_cmd_lst *cmd, int process_type);
+static int	open_outfiles(t_input *input, t_cmd_lst *cmd, int process_type);
+static int	open_app_outfiles(t_input *input, t_cmd_lst *cmd, int process_type);
 
-int	open_all_files(t_input *input, t_cmd_lst *cmd)
+int	open_all_files(t_input *input, t_cmd_lst *cmd, int process_type)
 {
 	t_cmd_lst	*start;
 
@@ -24,13 +24,13 @@ int	open_all_files(t_input *input, t_cmd_lst *cmd)
 	while (cmd)
 	{
 		if (cmd->n_outfile > 0)
-			if (open_outfiles(input, cmd) == FAILED)
+			if (open_outfiles(input, cmd, process_type) == FAILED)
 				return (FAILED);
 		if (cmd->n_app_outfile > 0)
-			if (open_app_outfiles(input, cmd) == FAILED)
+			if (open_app_outfiles(input, cmd, process_type) == FAILED)
 				return (FAILED);
 		if (cmd->n_infile > 0)
-			if (open_infiles(input, cmd) == FAILED)
+			if (open_infiles(input, cmd, process_type) == FAILED)
 				return (FAILED);
 		if (cmd->next == NULL)
 			break ;
@@ -40,7 +40,7 @@ int	open_all_files(t_input *input, t_cmd_lst *cmd)
 	return (SUCCESS);
 }
 
-static int	open_infiles(t_input *input, t_cmd_lst *cmd)
+static int	open_infiles(t_input *input, t_cmd_lst *cmd, int process_type)
 {
 	int	i;
 
@@ -52,15 +52,16 @@ static int	open_infiles(t_input *input, t_cmd_lst *cmd)
 		cmd->fd_infile[i] = open(cmd->infile[i], O_RDONLY);
 		if (cmd->fd_infile[i] == FAILED)
 		{
-			print_err(1, cmd->name,
-				cmd->infile[i], "No such file or directory");
+			if (process_type == PARENT)
+				print_err(1, cmd->name,
+					cmd->infile[i], "No such file or directory");
 			return (FAILED);
 		}
 	}
 	return (SUCCESS);
 }
 
-static int	open_outfiles(t_input *input, t_cmd_lst *cmd)
+static int	open_outfiles(t_input *input, t_cmd_lst *cmd, int process_type)
 {
 	int	i;
 
@@ -73,15 +74,16 @@ static int	open_outfiles(t_input *input, t_cmd_lst *cmd)
 				O_CREAT | O_RDWR | O_TRUNC, 0644);
 		if (cmd->fd_outfile[i] == FAILED)
 		{
-			print_err(1, cmd->name,
-				cmd->outfile[i], "No such file or directory");
+			if (process_type == PARENT)
+				print_err(1, cmd->name,
+					cmd->outfile[i], "No such file or directory");
 			return (FAILED);
 		}
 	}
 	return (SUCCESS);
 }
 
-static int	open_app_outfiles(t_input *input, t_cmd_lst *cmd)
+static int	open_app_outfiles(t_input *input, t_cmd_lst *cmd, int process_type)
 {
 	int	i;
 
@@ -94,8 +96,9 @@ static int	open_app_outfiles(t_input *input, t_cmd_lst *cmd)
 				O_CREAT | O_RDWR | O_APPEND, 0644);
 		if (cmd->fd_app_outfile[i] == FAILED)
 		{
-			print_err(1, cmd->name,
-				cmd->app_outfile[i], "No such file or directory");
+			if (process_type == PARENT)
+				print_err(1, cmd->name,
+					cmd->app_outfile[i], "No such file or directory");
 			return (FAILED);
 		}
 	}
