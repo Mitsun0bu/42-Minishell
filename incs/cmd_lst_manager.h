@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 15:32:59 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/12 17:48:33 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/05/18 10:05:48 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,8 @@
 
 /* cmd_lst_manager/cmd_lst_init.c */
 void		cmd_lst_init(t_input *input, t_cmd_lst **cmd);
-t_cmd_lst	*create_new_cmd(t_input *input, int *i);
 
-/* cmd_lst_manager/cmd_manager.c */
+/* cmd_lst_manager/cmd_lst_manager.c */
 void		cmd_args_manager(t_input *input, int *i, t_cmd_lst *new_cmd);
 void		cmd_infile_manager(t_input *input, int *i, t_cmd_lst *new_cmd);
 void		cmd_outfile_manager(t_input *input, int *i, t_cmd_lst *new_cmd);

@@ -6,11 +6,13 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 15:23:59 by llethuil          #+#    #+#             */
-/*   Updated: 2022/05/12 11:33:26 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/05/18 10:04:58 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
+
+static t_cmd_lst	*create_new_cmd(t_input *input, int *i);
 
 void	cmd_lst_init(t_input *input, t_cmd_lst **cmd)
 {
@@ -22,7 +24,7 @@ void	cmd_lst_init(t_input *input, t_cmd_lst **cmd)
 		add_cmd_back(*cmd, create_new_cmd(input, &i));
 }
 
-t_cmd_lst	*create_new_cmd(t_input *input, int *i)
+static t_cmd_lst	*create_new_cmd(t_input *input, int *i)
 {
 	t_cmd_lst	*new_cmd;
 

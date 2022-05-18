@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 12:09:40 by llethuil          #+#    #+#             */
-/*   Updated: 2022/05/16 11:34:11 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/05/18 10:08:29 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,14 @@ char	**convert_env_tab(t_input *input);
 /* executer/executer.c */
 void	executer(t_input *input, t_cmd_lst *cmd);
 
+/* executer/get_path.c */
+int		get_path(t_input *input, t_cmd_lst *cmd);
+
 /* executer/handle_heredocs.c */
 int		handle_heredocs(t_input *input, t_cmd_lst *cmd);
+
+/* executer/open_all_files.c */
+int		open_all_files(t_input *input, t_cmd_lst *cmd, int process_type);
 
 /* executer/pipe_exec.c */
 int		pipe_exec(t_input *input, t_cmd_lst *cmd);
@@ -45,13 +51,7 @@ int		pipe_exec(t_input *input, t_cmd_lst *cmd);
 int		open_all_pipes(t_cmd_lst *cmd);
 void	close_all_pipes(t_cmd_lst *cmd);
 
-/* executer/open_all_files.c */
-int		open_all_files(t_input *input, t_cmd_lst *cmd, int process_type);
-
-/* executer/get_path.c */
-int		get_path(t_input *input, t_cmd_lst *cmd);
-
-/*executer/set_data_flux.c */
+/* executer/set_data_flux.c */
 int		set_stdin(t_input *input, t_cmd_lst *cmd);
 void	set_stdout(t_input *input, t_cmd_lst *cmd);
 
