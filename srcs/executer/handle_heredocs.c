@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 16:38:12 by llethuil          #+#    #+#             */
-/*   Updated: 2022/04/29 11:53:48 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/05/19 09:54:42 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,8 @@ static int	get_str_from_child(t_input *input, t_cmd_lst *cmd, char *str);
 
 int	handle_heredocs(t_input *input, t_cmd_lst *cmd)
 {
-	int			i;
 	t_cmd_lst	*start;
 
-	i = -1;
 	start = cmd;
 	while (cmd)
 	{

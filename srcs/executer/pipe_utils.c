@@ -6,7 +6,7 @@
 /*   By: llethuil <llethuil@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 09:48:30 by llethuil          #+#    #+#             */
-/*   Updated: 2022/05/04 19:01:33 by llethuil         ###   ########lyon.fr   */
+/*   Updated: 2022/05/19 09:55:35 by llethuil         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,7 @@
 int	open_all_pipes(t_cmd_lst *cmd)
 {
 	t_cmd_lst	*start;
-	int			i;
 
-	i = -1;
 	start = cmd;
 	while (cmd)
 	{
@@ -33,9 +31,6 @@ int	open_all_pipes(t_cmd_lst *cmd)
 
 void	close_all_pipes(t_cmd_lst *cmd)
 {
-	int	i;
-
-	i = -1;
 	while (cmd->previous)
 		cmd = cmd->previous;
 	while (cmd)
